@@ -1,6 +1,15 @@
 package com.ar.genesis.sistema.core.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+
+@Entity(name = "clientes")
+@SequenceGenerator(name = "seq_Cliente", sequenceName = "seq_Cliente", allocationSize = 1)
 public class Cliente {
+    @Id
+    @GeneratedValue
     Integer id;
     String nombre;
     String domicilio;
