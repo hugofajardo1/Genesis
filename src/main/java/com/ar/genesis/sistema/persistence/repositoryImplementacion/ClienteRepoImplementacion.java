@@ -12,14 +12,14 @@ public class ClienteRepoImplementacion implements IClienteRepository {
     @Autowired
     IClienteCRUD clienteCRUD;
 
-
     @Override
     public boolean existeCliente(String nombre) {
-        return false;
+        Cliente clienteEncontrado = clienteCRUD.findByNombre(nombre);
+        return clienteEncontrado.getNombre().equals(nombre);
     }
 
     @Override
     public boolean guardarCliente(Cliente unCliente) {
-        return false;
+        return clienteCRUD.save(unCliente).getId()!=null;
     }
 }
