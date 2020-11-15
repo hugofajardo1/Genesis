@@ -26,7 +26,7 @@ public class CrearClienteUseCaseUnitTest {
         Assertions.assertTrue(resultado);
     }
     @Test
-    void crearCliente_ClienteExiste_NoGuardaCliente() throws ClienteExisteException {
+    void crearCliente_ClienteExiste_NoGuardaCliente() {
         Cliente clienteNuevo = Cliente.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543");
         when(iClienteRepository.existeCliente("Fajardo, Hugo")).thenReturn(true);
         when(iClienteRepository.guardarCliente(clienteNuevo)).thenReturn(false);

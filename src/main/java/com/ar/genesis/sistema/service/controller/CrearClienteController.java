@@ -17,6 +17,10 @@ public class CrearClienteController {
     @Inject
     ICrearClienteInput iCrearClienteInput;
 
+    public CrearClienteController(ICrearClienteInput iCrearClienteInput) {
+        this.iCrearClienteInput = iCrearClienteInput;
+    }
+
     @PostMapping(value = "/cliente")
     public ResponseEntity<?> crearCliente(@RequestBody ClienteDTO clienteDTO){
         try{
