@@ -13,7 +13,6 @@ import javax.inject.Inject;
 @Transactional
 public class CrearClienteUseCase implements ICrearClienteInput {
 
-
     IClienteRepository clienteRepository;
 
     public CrearClienteUseCase(IClienteRepository clienteRepository) {
