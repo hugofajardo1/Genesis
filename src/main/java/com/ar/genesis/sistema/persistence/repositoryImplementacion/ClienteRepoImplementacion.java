@@ -14,8 +14,7 @@ public class ClienteRepoImplementacion implements IClienteRepository {
 
     @Override
     public boolean existeCliente(String nombre) {
-        Cliente clienteEncontrado = clienteCRUD.findByNombre(nombre);
-        return clienteEncontrado.getNombre().equals(nombre);
+        return clienteCRUD.existsByNombre(nombre);
     }
 
     @Override
