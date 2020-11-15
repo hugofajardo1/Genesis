@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:8080")
-@RequestMapping("/")
 @RestController
 public class CrearClienteController {
 
@@ -19,8 +18,7 @@ public class CrearClienteController {
         this.iCrearClienteInput = iCrearClienteInput;
     }
 
-    @RequestMapping(value = "cliente", method = RequestMethod.POST)
-    @ResponseBody
+    @PostMapping(value = "/cliente")
     public ResponseEntity<?> crearCliente(@RequestBody ClienteDTO clienteDTO){
         try{
             boolean resultado = this.iCrearClienteInput.crearCliente(Cliente.instancia(clienteDTO.getId(), clienteDTO.getNombre(), clienteDTO.getDomicilio(), clienteDTO.getTelefono()));

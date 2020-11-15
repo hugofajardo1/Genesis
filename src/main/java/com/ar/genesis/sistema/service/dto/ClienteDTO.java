@@ -1,6 +1,5 @@
 package com.ar.genesis.sistema.service.dto;
 
-import com.ar.genesis.sistema.core.domain.Cliente;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ClienteDTO {
