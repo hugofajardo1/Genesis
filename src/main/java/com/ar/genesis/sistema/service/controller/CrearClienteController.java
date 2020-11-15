@@ -25,7 +25,7 @@ public class CrearClienteController {
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (ClienteExisteException e) {
-            return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).body(false);
+            return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).body(e.toString());
         }
     }
 }
