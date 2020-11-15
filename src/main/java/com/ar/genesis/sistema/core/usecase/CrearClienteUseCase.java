@@ -13,8 +13,12 @@ import javax.inject.Inject;
 @Transactional
 public class CrearClienteUseCase implements ICrearClienteInput {
 
-    @Inject
+
     IClienteRepository clienteRepository;
+
+    public CrearClienteUseCase(IClienteRepository clienteRepository) {
+        this.clienteRepository = clienteRepository;
+    }
 
     @Override
     public boolean crearCliente(Cliente unCliente) throws ClienteExisteException {
