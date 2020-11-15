@@ -8,15 +8,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.inject.Inject;
+
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
 public class CrearClienteController {
 
+    @Inject
     ICrearClienteInput iCrearClienteInput;
-
-    public CrearClienteController(ICrearClienteInput iCrearClienteInput) {
-        this.iCrearClienteInput = iCrearClienteInput;
-    }
 
     @PostMapping(value = "/cliente")
     public ResponseEntity<?> crearCliente(@RequestBody ClienteDTO clienteDTO){
