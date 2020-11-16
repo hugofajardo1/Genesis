@@ -1,1 +1,0 @@
-DELETE FROM tipo_clientes;

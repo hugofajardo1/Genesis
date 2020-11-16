@@ -12,17 +12,16 @@ import javax.inject.Inject;
 
 @SpringBootTest
 @SqlGroup({
-        @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:crearTipoFichaAntes.sql"),
-        @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:crearTipoFichaDespues.sql")
+        @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:modificarTipoFichaAntes.sql"),
+        @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:modificarTipoFichaDespues.sql")
 })
-public class CrearTipoFichaDataUnitTest {
-
+public class ModificarTipoFichaDataUnitTest {
     @Inject
     TipoFichaRepoImplementacion tipoFichaRepoImplementacion;
 
     @Test
     public void guardarTipoFicha_TipoFichaGuardado_devuelveTrue() {
-        TipoFicha tipoFicha = TipoFicha.instancia(null, "Cliente");
+        TipoFicha tipoFicha = TipoFicha.instancia(1, "Cliente");
         boolean resultado = tipoFichaRepoImplementacion.guardarTipoFicha(tipoFicha);
         Assertions.assertTrue(resultado);
     }

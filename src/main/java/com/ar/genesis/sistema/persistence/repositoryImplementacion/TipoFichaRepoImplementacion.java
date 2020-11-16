@@ -14,8 +14,8 @@ public class TipoFichaRepoImplementacion implements ITipoFichaRepository {
     ITipoFichaCRUD tipoClienteCRUD;
 
     @Override
-    public boolean existeTipoCliente(String nombre) { return tipoClienteCRUD.existsByNombre(nombre); }
+    public boolean existeTipoFicha(String nombre) { return tipoClienteCRUD.existsByNombre(nombre); }
 
     @Override
-    public boolean guardarTipoCliente(TipoFicha unTipoFicha) { return tipoClienteCRUD.save(unTipoFicha).getId()!=null; }
+    public boolean guardarTipoFicha(TipoFicha unTipoFicha) { return tipoClienteCRUD.save(unTipoFicha).getId()!=null; }
 }
