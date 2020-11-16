@@ -2,14 +2,14 @@ package com.ar.genesis.sistema.service.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class TipoClienteDTO {
+public class TipoFichaDTO {
 
     @JsonProperty("id")
     Integer id;
     @JsonProperty("nombre")
     String nombre;
 
-    public TipoClienteDTO(Integer id, String nombre) {
+    public TipoFichaDTO(Integer id, String nombre) {
         this.setId(id);
         this.setNombre(nombre);
     }

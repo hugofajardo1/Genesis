@@ -1,9 +1,9 @@
 package com.ar.genesis.sistema.service.controller;
 
-import com.ar.genesis.sistema.core.domain.TipoCliente;
-import com.ar.genesis.sistema.core.exception.TipoClienteExisteException;
-import com.ar.genesis.sistema.core.input.ICrearTipoClienteInput;
-import com.ar.genesis.sistema.service.dto.TipoClienteDTO;
+import com.ar.genesis.sistema.core.domain.TipoFicha;
+import com.ar.genesis.sistema.core.exception.TipoFichaExisteException;
+import com.ar.genesis.sistema.core.input.ICrearTipoFichaInput;
+import com.ar.genesis.sistema.service.dto.TipoFichaDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,21 +15,21 @@ import javax.inject.Inject;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
-public class CrearTipoClienteController {
+public class CrearTipoFichaController {
     @Inject
-    ICrearTipoClienteInput iCrearTipoClienteInput;
+    ICrearTipoFichaInput iCrearTipoFichaInput;
 
-    public CrearTipoClienteController(ICrearTipoClienteInput iCrearTipoClienteInput) {
-        this.iCrearTipoClienteInput = iCrearTipoClienteInput;
+    public CrearTipoFichaController(ICrearTipoFichaInput iCrearTipoFichaInput) {
+        this.iCrearTipoFichaInput = iCrearTipoFichaInput;
     }
 
     @PostMapping(value = "/TipoCliente")
-    public ResponseEntity<?> crearTipoCliente(@RequestBody TipoClienteDTO TipoClienteDTO){
+    public ResponseEntity<?> crearTipoCliente(@RequestBody TipoFichaDTO TipoFichaDTO){
         try{
-            boolean resultado = this.iCrearTipoClienteInput.crearTipoCliente(TipoCliente.instancia(TipoClienteDTO.getId(), TipoClienteDTO.getNombre()));
+            boolean resultado = this.iCrearTipoFichaInput.crearTipoFicha(TipoFicha.instancia(TipoFichaDTO.getId(), TipoFichaDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        } catch (TipoClienteExisteException e) {
+        } catch (TipoFichaExisteException e) {
             return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).body(e.toString());
         }
     }

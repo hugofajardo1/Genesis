@@ -7,20 +7,20 @@ import javax.persistence.SequenceGenerator;
 
 @Entity(name = "tipo_clientes")
 @SequenceGenerator(name = "seq_TipoCliente", sequenceName = "seq_TipoCliente", allocationSize = 1)
-public class TipoCliente {
+public class TipoFicha {
     @Id
     @GeneratedValue
     Integer id;
     String nombre;
-    public TipoCliente() {
+    public TipoFicha() {
     }
 
-    private TipoCliente(Integer id, String nombre) {
+    private TipoFicha(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
-    public static TipoCliente instancia(Integer id, String nombre){
-        return new TipoCliente(id, nombre);
+    public static TipoFicha instancia(Integer id, String nombre){
+        return new TipoFicha(id, nombre);
     }
 
     public Integer getId() {

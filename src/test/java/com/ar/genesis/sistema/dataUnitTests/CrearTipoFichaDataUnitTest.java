@@ -1,7 +1,7 @@
 package com.ar.genesis.sistema.dataUnitTests;
 
-import com.ar.genesis.sistema.core.domain.TipoCliente;
-import com.ar.genesis.sistema.persistence.repositoryImplementacion.TipoClienteRepoImplementacion;
+import com.ar.genesis.sistema.core.domain.TipoFicha;
+import com.ar.genesis.sistema.persistence.repositoryImplementacion.TipoFichaRepoImplementacion;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,15 +15,15 @@ import javax.inject.Inject;
         @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:crearTipoClienteAntes.sql"),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:crearTipoClienteDespues.sql")
 })
-public class CrearTipoClienteDataUnitTest {
+public class CrearTipoFichaDataUnitTest {
 
     @Inject
-    TipoClienteRepoImplementacion tipoClienteRepoImplementacion;
+    TipoFichaRepoImplementacion tipoClienteRepoImplementacion;
 
     @Test
     public void guardarTipoCliente_TipoClienteGuardado_devuelveTrue() {
-        TipoCliente tipoCliente = TipoCliente.instancia(null, "Cliente");
-        boolean resultado = tipoClienteRepoImplementacion.guardarTipoCliente(tipoCliente);
+        TipoFicha tipoFicha = TipoFicha.instancia(null, "Cliente");
+        boolean resultado = tipoClienteRepoImplementacion.guardarTipoCliente(tipoFicha);
         Assertions.assertTrue(resultado);
     }
 
