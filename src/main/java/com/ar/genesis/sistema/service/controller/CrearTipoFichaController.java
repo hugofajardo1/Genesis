@@ -24,7 +24,7 @@ public class CrearTipoFichaController {
     }
 
     @PostMapping(value = "/TipoCliente")
-    public ResponseEntity<?> crearTipoCliente(@RequestBody TipoFichaDTO TipoFichaDTO){
+    public ResponseEntity<?> crearTipoFicha(@RequestBody TipoFichaDTO TipoFichaDTO){
         try{
             boolean resultado = this.iCrearTipoFichaInput.crearTipoFicha(TipoFicha.instancia(TipoFichaDTO.getId(), TipoFichaDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
