@@ -12,19 +12,17 @@ import javax.inject.Inject;
 
 @SpringBootTest
 @SqlGroup({
-        @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:crearClienteAntes.sql"),
-        @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:crearClienteDespues.sql")
+        @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:modificarClienteAntes.sql"),
+        @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:modificarClienteDespues.sql")
 })
-public class CrearClienteDataUT {
-
+public class ModificarClienteDataUT {
     @Inject
     ClienteRepoImplementacion clienteRepoImplementacion;
 
     @Test
     public void guardarCliente_ClienteGuardado_devuelveTrue() {
-        Cliente elCliente= Cliente.instancia(null, "Fajardo, Hugo Manuel", "Bs As 245", "38525416543");
+        Cliente elCliente= Cliente.instancia(1, "Fajardo, Hugo Manuel", "Bs As 245", "38525416543");
         boolean resultado= clienteRepoImplementacion.guardarCliente(elCliente);
         Assertions.assertTrue(resultado);
     }
-
 }
