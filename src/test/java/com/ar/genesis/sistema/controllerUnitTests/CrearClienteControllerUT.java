@@ -18,7 +18,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class CrearClienteControllerUnitTest {
+public class CrearClienteControllerUT {
 
     @Mock
     ICrearClienteInput crearClienteInput;

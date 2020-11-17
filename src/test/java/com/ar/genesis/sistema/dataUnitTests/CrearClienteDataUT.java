@@ -17,7 +17,7 @@ import javax.inject.Inject;
         @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:crearClienteAntes.sql"),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:crearClienteDespues.sql")
 })
-public class CrearClienteDataUnitTest {
+public class CrearClienteDataUT {
 
     @Inject
     ClienteRepoImplementacion clienteRepoImplementacion;

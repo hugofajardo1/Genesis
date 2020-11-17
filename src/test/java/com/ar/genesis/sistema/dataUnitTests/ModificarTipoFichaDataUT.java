@@ -15,7 +15,7 @@ import javax.inject.Inject;
         @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:modificarTipoFichaAntes.sql"),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:modificarTipoFichaDespues.sql")
 })
-public class ModificarTipoFichaDataUnitTest {
+public class ModificarTipoFichaDataUT {
     @Inject
     TipoFichaRepoImplementacion tipoFichaRepoImplementacion;
 
