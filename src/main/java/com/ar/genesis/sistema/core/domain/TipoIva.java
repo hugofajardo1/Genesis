@@ -2,23 +2,23 @@ package com.ar.genesis.sistema.core.domain;
 
 import javax.persistence.*;
 
-@Entity(name = "tipo_fichas")
-@SequenceGenerator(name = "seq_tipo_fichas", sequenceName = "seq_tipo_fichas", allocationSize = 1)
-public class TipoFicha {
+@Entity(name = "tipo_ivas")
+@SequenceGenerator(name = "seq_tipo_ivas", sequenceName = "seq_tipo_ivas", allocationSize = 1)
+public class TipoIva {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_tipo_fichas")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_tipo_ivas")
     Integer id;
     String nombre;
-
-    public TipoFicha() {
+    
+    public TipoIva() {
     }
 
-    private TipoFicha(Integer id, String nombre) {
+    private TipoIva(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
-    public static TipoFicha instancia(Integer id, String nombre){
-        return new TipoFicha(id, nombre);
+    public static TipoIva instancia(Integer id, String nombre){
+        return new TipoIva(id, nombre);
     }
 
     public Integer getId() {
