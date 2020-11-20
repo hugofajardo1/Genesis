@@ -4,6 +4,6 @@ import com.ar.genesis.sistema.core.domain.Cliente;
 
 import java.util.List;
 
-public interface IObtenerClienteRepository {
+public interface IObtenerClientesRepository {
     List<Cliente> obtenerClientes();
 }

@@ -1,8 +1,8 @@
 package com.ar.genesis.sistema.core.usecase;
 
 import com.ar.genesis.sistema.core.domain.Cliente;
-import com.ar.genesis.sistema.core.input.IObtenerClienteInput;
-import com.ar.genesis.sistema.core.repository.IObtenerClienteRepository;
+import com.ar.genesis.sistema.core.input.IObtenerClientesInput;
+import com.ar.genesis.sistema.core.repository.IObtenerClientesRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,16 +10,16 @@ import java.util.List;
 
 @Service
 @Transactional
-public class ObtenerClientesUseCase implements IObtenerClienteInput {
+public class ObtenerClientesUseCase implements IObtenerClientesInput {
 
-    IObtenerClienteRepository iObtenerClienteRepository;
+    IObtenerClientesRepository iObtenerClientesRepository;
 
-    public ObtenerClientesUseCase(IObtenerClienteRepository iObtenerClienteRepository) {
-        this.iObtenerClienteRepository = iObtenerClienteRepository;
+    public ObtenerClientesUseCase(IObtenerClientesRepository iObtenerClientesRepository) {
+        this.iObtenerClientesRepository = iObtenerClientesRepository;
     }
 
     @Override
     public List<Cliente> obtenerClientes() {
-        return iObtenerClienteRepository.obtenerClientes();
+        return iObtenerClientesRepository.obtenerClientes();
     }
 }
