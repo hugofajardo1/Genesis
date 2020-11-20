@@ -31,6 +31,8 @@ public class ObtenerClientesControllerUT {
         ResponseEntity<?> responseEntity = obtenerClientesController.obtenerClientes();
         List<?> resultado = (List<?>) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        Assertions.assertEquals(resultado.size(), 1);
+        if(resultado != null) {
+            Assertions.assertEquals(resultado.size(), 1);
+        }
     }
 }
