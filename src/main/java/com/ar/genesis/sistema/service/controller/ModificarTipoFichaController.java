@@ -19,7 +19,7 @@ public class ModificarTipoFichaController {
     public ModificarTipoFichaController(IModificarTipoFichaInput iModificarTipoFichaInput) {
         this.iModificarTipoFichaInput = iModificarTipoFichaInput;
     }
-    @PutMapping(value = "/TipoCliente")
+    @PutMapping(value = "/TipoFicha")
     public ResponseEntity<?> modificarTipoFicha(@RequestBody TipoFichaDTO TipoFichaDTO){
         try{
             boolean resultado = this.iModificarTipoFichaInput.modificarTipoFicha(TipoFicha.instancia(TipoFichaDTO.getId(), TipoFichaDTO.getNombre()));
