@@ -1,7 +1,6 @@
 package com.ar.genesis.sistema.service.controller;
 
 import com.ar.genesis.sistema.core.input.IObtenerTipoFichasInput;
-import com.ar.genesis.sistema.service.dto.ClienteDTO;
 import com.ar.genesis.sistema.service.dto.TipoFichaDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

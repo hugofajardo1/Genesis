@@ -8,8 +8,11 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_clientes")
     Integer id;
+    @Column(name = "nombre", nullable = false, length = 150)
     String nombre;
+    @Column(name = "domicilio", nullable = false, length = 150)
     String domicilio;
+    @Column(name = "telefono", nullable = false, length = 30)
     String telefono;
 
     public Cliente() {

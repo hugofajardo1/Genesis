@@ -8,6 +8,7 @@ public class TipoFicha {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_tipo_fichas")
     Integer id;
+    @Column(name = "nombre", nullable = false, length = 100)
     String nombre;
 
     public TipoFicha() {

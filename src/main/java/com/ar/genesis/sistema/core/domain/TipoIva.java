@@ -8,6 +8,7 @@ public class TipoIva {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_tipo_ivas")
     Integer id;
+    @Column(name = "nombre", nullable = false, length = 100)
     String nombre;
     
     public TipoIva() {
