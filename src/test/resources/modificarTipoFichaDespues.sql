@@ -1,1 +1,1 @@
-Delete from tipo_fichas;
+DELETE FROM tipo_fichas;
