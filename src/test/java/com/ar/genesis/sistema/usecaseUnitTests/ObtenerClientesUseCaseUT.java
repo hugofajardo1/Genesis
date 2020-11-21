@@ -31,7 +31,6 @@ public class ObtenerClientesUseCaseUT {
     }
 
     public List<Cliente> factoryListaClientes() {
-
         List<Cliente> losClientes = new ArrayList<>();
         Cliente cliente1 = Cliente.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543");
         Cliente cliente2 = Cliente.instancia(2, "Fajardo, Lourdes", "Juan XXIII 59", "5453454");
