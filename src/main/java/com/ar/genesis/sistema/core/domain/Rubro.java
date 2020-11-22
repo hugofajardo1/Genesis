@@ -2,11 +2,11 @@ package com.ar.genesis.sistema.core.domain;
 
 import javax.persistence.*;
 
-@Entity(name = "tipo_rubros")
-@SequenceGenerator(name = "seq_tipo_rubros", sequenceName = "seq_tipo_rubros", allocationSize = 1)
+@Entity(name = "rubros")
+@SequenceGenerator(name = "seq_rubros", sequenceName = "seq_rubros", allocationSize = 1)
 public class Rubro {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_tipo_rubros")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_rubros")
     Integer id;
     @Column(name = "nombre", nullable = false, length = 100)
     String nombre;
