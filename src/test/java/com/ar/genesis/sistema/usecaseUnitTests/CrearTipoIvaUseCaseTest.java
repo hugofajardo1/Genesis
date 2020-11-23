@@ -16,21 +16,21 @@ public class CrearTipoIvaUseCaseTest {
     @Mock
     ITipoIvaRepository iTipoIvaRepository;
     @Test
-    void crearTipoCliente_TipoIvaNoExiste_GuardaCorrectamente() throws TipoIvaExisteException {
+    void crearTipoIva_TipoIvaNoExiste_GuardaCorrectamente() throws TipoIvaExisteException {
         TipoIva unTipoIva = TipoIva.instancia(1, "Responsable Inscripto");
         when(iTipoIvaRepository.existeTipoIva("Responsable Inscripto")).thenReturn(false);
         when(iTipoIvaRepository.guardarTipoIva(unTipoIva)).thenReturn(true);
-        CrearTipoIvaUseCase crearTipoClienteUseCase = new CrearTipoIvaUseCase(iTipoIvaRepository);
-        boolean resultado = crearTipoClienteUseCase.crearTipoIva(unTipoIva);
+        CrearTipoIvaUseCase crearTipoIvaUseCase = new CrearTipoIvaUseCase(iTipoIvaRepository);
+        boolean resultado = crearTipoIvaUseCase.crearTipoIva(unTipoIva);
         Assertions.assertTrue(resultado);
     }
 
     @Test
-    void crearTipoCliente_TipoIvaExiste_NoGuardaTipoCliente() {
+    void crearTipoIva_TipoIvaExiste_NoGuardaTipoIva() {
         TipoIva unTipoIva = TipoIva.instancia(1, "Responsable Inscripto");
         when(iTipoIvaRepository.existeTipoIva("Responsable Inscripto")).thenReturn(true);
         when(iTipoIvaRepository.guardarTipoIva(unTipoIva)).thenReturn(false);
-        CrearTipoIvaUseCase crearTipoClienteUseCase = new CrearTipoIvaUseCase(iTipoIvaRepository);
-        Assertions.assertThrows(TipoIvaExisteException.class, () -> crearTipoClienteUseCase.crearTipoIva(unTipoIva));
+        CrearTipoIvaUseCase crearTipoIvaUseCase = new CrearTipoIvaUseCase(iTipoIvaRepository);
+        Assertions.assertThrows(TipoIvaExisteException.class, () -> crearTipoIvaUseCase.crearTipoIva(unTipoIva));
     }
 }
