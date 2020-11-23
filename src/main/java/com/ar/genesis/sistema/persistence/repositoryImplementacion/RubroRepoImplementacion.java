@@ -19,4 +19,3 @@ public class RubroRepoImplementacion implements IRubroRepository {
     @Override
     public boolean guardarRubro(Rubro unRubro) { return iRubroCRUD.save(unRubro).getId()!=null; }
 }
-

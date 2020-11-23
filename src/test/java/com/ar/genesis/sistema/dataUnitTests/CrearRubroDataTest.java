@@ -18,12 +18,12 @@ import javax.inject.Inject;
 public class CrearRubroDataTest {
 
     @Inject
-    RubroRepoImplementacion RubroRepoImplementacion;
+    RubroRepoImplementacion rubroRepoImplementacion;
 
     @Test
     public void guardarRubro_RubroGuardado_devuelveTrue() {
         Rubro rubro = Rubro.instancia(null, "Rubro");
-        boolean resultado = RubroRepoImplementacion.guardarRubro(rubro);
+        boolean resultado = rubroRepoImplementacion.guardarRubro(rubro);
         Assertions.assertTrue(resultado);
     }
 
