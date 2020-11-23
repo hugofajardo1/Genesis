@@ -12,4 +12,5 @@ public interface ITipoIvaCRUD extends CrudRepository<TipoIva, Integer> {
 
     boolean existsByNombre(String nombre);
 
+    List<TipoIva> findAllByOrderById();
 }
