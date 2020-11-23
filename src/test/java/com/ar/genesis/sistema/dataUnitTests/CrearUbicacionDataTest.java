@@ -22,7 +22,7 @@ public class CrearUbicacionDataTest {
 
     @Test
     public void guardarUbicacion_UbicacionGuardado_devuelveTrue() {
-        Ubicacion ubicacion = Ubicacion.instancia(null, "Ubicacion");
+        Ubicacion ubicacion = Ubicacion.instancia(null, "Ubicacion 1");
         boolean resultado = ubicacionRepoImplementacion.guardarUbicacion(ubicacion);
         Assertions.assertTrue(resultado);
     }
