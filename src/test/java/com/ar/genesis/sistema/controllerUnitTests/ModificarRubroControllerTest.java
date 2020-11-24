@@ -22,7 +22,7 @@ public class ModificarRubroControllerTest {
 
     @Test
     public  void crearRubro_RubroNoExiste_Devuelve200() throws RubroExisteException {
-        RubroDTO RubroDTO = new RubroDTO(1, "Rubro");
+        RubroDTO RubroDTO = new RubroDTO(1, "Rubro 1");
         when(modificarRubroInput.modificarRubro(any(Rubro.class))).thenReturn(true);
 
         ModificarRubroController modificarRubroController = new ModificarRubroController(modificarRubroInput);
@@ -34,7 +34,7 @@ public class ModificarRubroControllerTest {
 
     @Test
     public  void crearRubro_RubroExiste_Devuelve412() throws RubroExisteException {
-        RubroDTO RubroDTO = new RubroDTO(1, "Rubro");
+        RubroDTO RubroDTO = new RubroDTO(1, "Rubro 2");
         when(modificarRubroInput.modificarRubro(any(Rubro.class))).thenThrow(RubroExisteException.class);
 
         ModificarRubroController modificarRubroController = new ModificarRubroController(modificarRubroInput);
