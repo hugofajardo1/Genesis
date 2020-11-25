@@ -1,6 +1,7 @@
 package com.ar.genesis.sistema.usecaseUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Cliente;
+import com.ar.genesis.sistema.core.domain.TipoIva;
 import com.ar.genesis.sistema.core.exception.ClienteExisteException;
 import com.ar.genesis.sistema.core.repository.IClienteRepository;
 import com.ar.genesis.sistema.core.usecase.CrearClienteUseCase;
@@ -18,7 +19,7 @@ public class CrearClienteUseCaseTest {
 
     @Test
     void crearCliente_ClienteNoExiste_GuardaCorrectamente() throws ClienteExisteException {
-        Cliente clienteNuevo = Cliente.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543");
+        Cliente clienteNuevo = Cliente.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"));
         when(iClienteRepository.existeCliente("Fajardo, Hugo")).thenReturn(false);
         when(iClienteRepository.guardarCliente(clienteNuevo)).thenReturn(true);
         CrearClienteUseCase crearClienteUseCase = new CrearClienteUseCase(iClienteRepository);
@@ -27,7 +28,7 @@ public class CrearClienteUseCaseTest {
     }
     @Test
     void crearCliente_ClienteExiste_NoGuardaCliente() {
-        Cliente clienteNuevo = Cliente.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543");
+        Cliente clienteNuevo = Cliente.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"));
         when(iClienteRepository.existeCliente("Fajardo, Hugo")).thenReturn(true);
         when(iClienteRepository.guardarCliente(clienteNuevo)).thenReturn(false);
         CrearClienteUseCase crearClienteUseCase = new CrearClienteUseCase(iClienteRepository);

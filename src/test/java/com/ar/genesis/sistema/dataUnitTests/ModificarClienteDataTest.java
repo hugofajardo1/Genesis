@@ -1,6 +1,7 @@
 package com.ar.genesis.sistema.dataUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Cliente;
+import com.ar.genesis.sistema.core.domain.TipoIva;
 import com.ar.genesis.sistema.persistence.repositoryImplementacion.ClienteRepoImplementacion;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ public class ModificarClienteDataTest {
 
     @Test
     public void guardarCliente_ClienteGuardado_devuelveTrue() {
-        Cliente elCliente= Cliente.instancia(1, "Fajardo, Hugo Manuel", "Bs As 245", "38525416543");
+        Cliente elCliente= Cliente.instancia(1, "Fajardo, Hugo Manuel", "Bs As 245", "38525416543", TipoIva.instancia(1, "Responsable Inscripto"));
         boolean resultado= clienteRepoImplementacion.guardarCliente(elCliente);
         Assertions.assertTrue(resultado);
     }

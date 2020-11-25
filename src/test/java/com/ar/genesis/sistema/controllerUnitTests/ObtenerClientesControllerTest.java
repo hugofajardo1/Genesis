@@ -1,9 +1,9 @@
 package com.ar.genesis.sistema.controllerUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Cliente;
+import com.ar.genesis.sistema.core.domain.TipoIva;
 import com.ar.genesis.sistema.core.input.IObtenerClientesInput;
 import com.ar.genesis.sistema.service.controller.ObtenerClientesController;
-import com.ar.genesis.sistema.service.dto.ClienteDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -24,7 +24,7 @@ public class ObtenerClientesControllerTest {
     @Test
     public void obtenerClientes_ClientesExisten_Devuelve200(){
         List<Cliente> losClientes = new ArrayList<>();
-        losClientes.add(Cliente.instancia(1,"Fajardo, Hugo", "Bs. As. 245", "3825416543"));
+        losClientes.add(Cliente.instancia(1,"Fajardo, Hugo", "Bs. As. 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto")));
         when(obtenerClientesInput.obtenerClientes()).thenReturn(losClientes);
 
         ObtenerClientesController obtenerClientesController = new ObtenerClientesController(obtenerClientesInput);

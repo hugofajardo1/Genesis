@@ -1,6 +1,7 @@
 package com.ar.genesis.sistema.service.controller;
 
 import com.ar.genesis.sistema.core.domain.Cliente;
+import com.ar.genesis.sistema.core.domain.TipoIva;
 import com.ar.genesis.sistema.core.exception.ClienteExisteException;
 import com.ar.genesis.sistema.core.input.ICrearClienteInput;
 import com.ar.genesis.sistema.service.dto.ClienteDTO;
@@ -24,7 +25,7 @@ public class CrearClienteController {
     @PostMapping(value = "/cliente")
     public ResponseEntity<?> crearCliente(@RequestBody ClienteDTO clienteDTO){
         try{
-            boolean resultado = this.iCrearClienteInput.crearCliente(Cliente.instancia(clienteDTO.getId(), clienteDTO.getNombre(), clienteDTO.getDomicilio(), clienteDTO.getTelefono()));
+            boolean resultado = this.iCrearClienteInput.crearCliente(Cliente.instancia(clienteDTO.getId(), clienteDTO.getNombre(), clienteDTO.getDomicilio(), clienteDTO.getTelefono(), TipoIva.instancia(1, "Responsable Inscripto")));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (ClienteExisteException e) {
