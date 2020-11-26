@@ -24,7 +24,7 @@ public class CrearClienteControllerTest {
 
     @Test
     public  void crearCliente_ClienteNoExiste_Devuelve200() throws ClienteExisteException {
-        ClienteDTO clienteDTO = new ClienteDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", "3825416543", new TipoIvaDTO(1, "Responsable Inscripto"));
+        ClienteDTO clienteDTO = new ClienteDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", "3825416543", new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336");
         when(crearClienteInput.crearCliente(any(Cliente.class))).thenReturn(true);
 
         CrearClienteController crearClienteController = new CrearClienteController(crearClienteInput);
@@ -36,7 +36,7 @@ public class CrearClienteControllerTest {
 
     @Test
     public  void crearCliente_ClienteExiste_Devuelve412() throws ClienteExisteException {
-        ClienteDTO clienteDTO = new ClienteDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", "3825416543", new TipoIvaDTO(1, "Responsable Inscripto"));
+        ClienteDTO clienteDTO = new ClienteDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", "3825416543", new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336");
         when(crearClienteInput.crearCliente(any(Cliente.class))).thenThrow(ClienteExisteException.class);
 
         CrearClienteController crearClienteController = new CrearClienteController(crearClienteInput);

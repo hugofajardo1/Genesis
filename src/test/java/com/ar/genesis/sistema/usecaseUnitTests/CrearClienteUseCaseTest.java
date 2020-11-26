@@ -19,7 +19,7 @@ public class CrearClienteUseCaseTest {
 
     @Test
     void crearCliente_ClienteNoExiste_GuardaCorrectamente() throws ClienteExisteException {
-        Cliente clienteNuevo = Cliente.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"));
+        Cliente clienteNuevo = Cliente.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336");
         when(iClienteRepository.existeCliente("Fajardo, Hugo")).thenReturn(false);
         when(iClienteRepository.guardarCliente(clienteNuevo)).thenReturn(true);
         CrearClienteUseCase crearClienteUseCase = new CrearClienteUseCase(iClienteRepository);
@@ -28,7 +28,7 @@ public class CrearClienteUseCaseTest {
     }
     @Test
     void crearCliente_ClienteExiste_NoGuardaCliente() {
-        Cliente clienteNuevo = Cliente.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"));
+        Cliente clienteNuevo = Cliente.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336");
         when(iClienteRepository.existeCliente("Fajardo, Hugo")).thenReturn(true);
         when(iClienteRepository.guardarCliente(clienteNuevo)).thenReturn(false);
         CrearClienteUseCase crearClienteUseCase = new CrearClienteUseCase(iClienteRepository);

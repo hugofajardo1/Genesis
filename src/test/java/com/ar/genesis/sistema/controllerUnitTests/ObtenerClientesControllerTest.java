@@ -24,7 +24,7 @@ public class ObtenerClientesControllerTest {
     @Test
     public void obtenerClientes_ClientesExisten_Devuelve200(){
         List<Cliente> losClientes = new ArrayList<>();
-        losClientes.add(Cliente.instancia(1,"Fajardo, Hugo", "Bs. As. 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto")));
+        losClientes.add(Cliente.instancia(1,"Fajardo, Hugo", "Bs. As. 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336"));
         when(obtenerClientesInput.obtenerClientes()).thenReturn(losClientes);
 
         ObtenerClientesController obtenerClientesController = new ObtenerClientesController(obtenerClientesInput);

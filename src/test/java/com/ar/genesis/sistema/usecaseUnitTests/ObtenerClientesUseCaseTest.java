@@ -33,8 +33,8 @@ public class ObtenerClientesUseCaseTest {
 
     public List<Cliente> factoryListaClientes() {
         List<Cliente> losClientes = new ArrayList<>();
-        Cliente cliente1 = Cliente.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"));
-        Cliente cliente2 = Cliente.instancia(2, "Fajardo, Lourdes", "Juan XXIII 59", "5453454", TipoIva.instancia(1, "Responsable Inscripto"));
+        Cliente cliente1 = Cliente.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336");
+        Cliente cliente2 = Cliente.instancia(2, "Fajardo, Lourdes", "Juan XXIII 59", "5453454", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336");
         losClientes.add(cliente1);
         losClientes.add(cliente2);
         return losClientes;

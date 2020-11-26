@@ -14,13 +14,16 @@ public class ClienteDTO {
     String telefono;
     @JsonProperty("tipo_iva")
     TipoIvaDTO tipoIva;
+    @JsonProperty("cuit")
+    String cuit;
 
-    public ClienteDTO(Integer id, String nombre, String domicilio, String telefono, TipoIvaDTO tipoIva) {
+    public ClienteDTO(Integer id, String nombre, String domicilio, String telefono, TipoIvaDTO tipoIva, String cuit) {
         this.setId(id);
         this.setNombre(nombre);
         this.setDomicilio(domicilio);
         this.setTelefono(telefono);
         this.setTipoIva(tipoIva);
+        this.setCuit(cuit);
     }
 
     public Integer getId() {
@@ -61,5 +64,13 @@ public class ClienteDTO {
 
     public void setTipoIva(TipoIvaDTO tipoIva) {
         this.tipoIva = tipoIva;
+    }
+
+    public String getCuit() {
+        return cuit;
+    }
+
+    public void setCuit(String cuit) {
+        this.cuit = cuit;
     }
 }

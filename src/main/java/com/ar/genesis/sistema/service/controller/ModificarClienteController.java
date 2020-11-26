@@ -24,7 +24,7 @@ public class ModificarClienteController {
     @PutMapping(value = "/cliente")
     public ResponseEntity<?> modificarCliente(@RequestBody ClienteDTO clienteDTO){
         try{
-            boolean resultado = this.iModificarClienteInput.modificarCliente(Cliente.instancia(clienteDTO.getId(), clienteDTO.getNombre(), clienteDTO.getDomicilio(), clienteDTO.getTelefono(), TipoIva.instancia(1, "Responsable Inscripto")));
+            boolean resultado = this.iModificarClienteInput.modificarCliente(Cliente.instancia(clienteDTO.getId(), clienteDTO.getNombre(), clienteDTO.getDomicilio(), clienteDTO.getTelefono(), TipoIva.instancia(1, "Responsable Inscripto"), "20255071336"));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (ClienteExisteException e) {

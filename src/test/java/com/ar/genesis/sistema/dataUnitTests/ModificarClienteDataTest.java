@@ -22,7 +22,7 @@ public class ModificarClienteDataTest {
 
     @Test
     public void guardarCliente_ClienteGuardado_devuelveTrue() {
-        Cliente elCliente= Cliente.instancia(1, "Fajardo, Hugo Manuel", "Bs As 245", "38525416543", TipoIva.instancia(1, "Responsable Inscripto"));
+        Cliente elCliente= Cliente.instancia(1, "Fajardo, Hugo Manuel", "Bs As 245", "38525416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336");
         boolean resultado= clienteRepoImplementacion.guardarCliente(elCliente);
         Assertions.assertTrue(resultado);
     }

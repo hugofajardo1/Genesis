@@ -23,7 +23,7 @@ public class ModificarClienteControllerTest {
 
     @Test
     public  void modificarCliente_ClienteNoExiste_Devuelve200() throws ClienteExisteException {
-        ClienteDTO clienteDTO = new ClienteDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", "3825416543", new TipoIvaDTO(1, "Responsable Inscripto"));
+        ClienteDTO clienteDTO = new ClienteDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", "3825416543", new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336");
         when(iModificarClienteInput.modificarCliente(any(Cliente.class))).thenReturn(true);
 
         ModificarClienteController modificarClienteController = new ModificarClienteController(iModificarClienteInput);
@@ -35,7 +35,7 @@ public class ModificarClienteControllerTest {
 
     @Test
     public  void modificarCliente_ClienteExiste_Devuelve412() throws ClienteExisteException {
-        ClienteDTO clienteDTO = new ClienteDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", "3825416543", new TipoIvaDTO(1, "Responsable Inscripto"));
+        ClienteDTO clienteDTO = new ClienteDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", "3825416543", new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336");
         when(iModificarClienteInput.modificarCliente(any(Cliente.class))).thenThrow(ClienteExisteException.class);
 
         ModificarClienteController modificarClienteController = new ModificarClienteController(iModificarClienteInput);

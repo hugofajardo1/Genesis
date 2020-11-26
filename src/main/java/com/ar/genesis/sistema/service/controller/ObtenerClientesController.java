@@ -24,7 +24,7 @@ public class ObtenerClientesController {
     public ResponseEntity<?> obtenerClientes(){
         try{
             List<ClienteDTO> clientesDTO = new ArrayList<>();
-            iObtenerClientesInput.obtenerClientes().forEach(cliente -> clientesDTO.add(new ClienteDTO(cliente.getId(), cliente.getNombre(), cliente.getDomicilio(), cliente.getTelefono(), new TipoIvaDTO(1, "Responsable Inscripto"))));
+            iObtenerClientesInput.obtenerClientes().forEach(cliente -> clientesDTO.add(new ClienteDTO(cliente.getId(), cliente.getNombre(), cliente.getDomicilio(), cliente.getTelefono(), new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336")));
             if (clientesDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(clientesDTO);
         } catch (Exception ex) {

@@ -17,20 +17,24 @@ public class Cliente {
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "tipo_ivaid")
-    private TipoIva tipoIva;
+    TipoIva tipoIva;
+
+    @Column(name = "cuit", nullable = false, length = 11)
+    String cuit;
 
     public Cliente() {
     }
 
-    private Cliente(Integer id, String nombre, String domicilio, String telefono, TipoIva tipoIva) {
+    private Cliente(Integer id, String nombre, String domicilio, String telefono, TipoIva tipoIva, String cuit) {
         this.setId(id);
         this.setNombre(nombre);
         this.setDomicilio(domicilio);
         this.setTelefono(telefono);
         this.setTipoIva(tipoIva);
+        this.setCuit(cuit);
     }
-    public static Cliente instancia(Integer id, String nombre, String domicilio, String telefono, TipoIva tipoIva){
-        return new Cliente(id, nombre, domicilio, telefono, tipoIva);
+    public static Cliente instancia(Integer id, String nombre, String domicilio, String telefono, TipoIva tipoIva, String cuit){
+        return new Cliente(id, nombre, domicilio, telefono, tipoIva, cuit);
     }
 
     public Integer getId() {
@@ -71,5 +75,13 @@ public class Cliente {
 
     public void setTipoIva(TipoIva tipoIva) {
         this.tipoIva = tipoIva;
+    }
+
+    public String getCuit() {
+        return cuit;
+    }
+
+    public void setCuit(String cuit) {
+        this.cuit = cuit;
     }
 }

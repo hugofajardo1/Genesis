@@ -19,7 +19,7 @@ public class ModificarClienteUseCaseTest {
 
     @Test
     void modificarCliente_ClienteActualizadoCorrectamente() throws ClienteExisteException {
-        Cliente clienteNuevo = Cliente.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"));
+        Cliente clienteNuevo = Cliente.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336");
         when(iClienteRepository.existeCliente("Fajardo, Hugo")).thenReturn(false);
         when(iClienteRepository.guardarCliente(clienteNuevo)).thenReturn(true);
         ModificarClienteUseCase modificarTipoClienteUseCase = new ModificarClienteUseCase(iClienteRepository);
@@ -29,7 +29,7 @@ public class ModificarClienteUseCaseTest {
 
     @Test
     void modificarCliente_HayConflictoClienteExiste_ClienteNoActualiza() {
-        Cliente clienteNuevo = Cliente.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"));
+        Cliente clienteNuevo = Cliente.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336");
         when(iClienteRepository.existeCliente("Fajardo, Hugo")).thenReturn(true);
         when(iClienteRepository.guardarCliente(clienteNuevo)).thenReturn(false);
         ModificarClienteUseCase modificarClienteUseCase = new ModificarClienteUseCase(iClienteRepository);
