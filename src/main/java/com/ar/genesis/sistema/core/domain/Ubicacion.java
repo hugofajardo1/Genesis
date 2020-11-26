@@ -8,7 +8,7 @@ public class Ubicacion {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_ubicaciones")
     Integer id;
-    @Column(name = "nombre", nullable = false, length = 100)
+    @Column(name = "nombre", nullable = false, length = 50)
     String nombre;
 
     public Ubicacion() {

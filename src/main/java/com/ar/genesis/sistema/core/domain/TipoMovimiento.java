@@ -2,24 +2,24 @@ package com.ar.genesis.sistema.core.domain;
 
 import javax.persistence.*;
 
-@Entity(name = "tipo_unidades")
-@SequenceGenerator(name = "seq_tipo_unidades", sequenceName = "seq_tipo_unidades", allocationSize = 1)
-public class TipoUnidad {
+@Entity(name = "tipo_movimientos")
+@SequenceGenerator(name = "seq_tipo_movimientos", sequenceName = "seq_tipo_movimientos", allocationSize = 1)
+public class TipoMovimiento {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_tipo_unidades")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_tipo_movimientos")
     Integer id;
     @Column(name = "nombre", nullable = false, length = 50)
     String nombre;
 
-    public TipoUnidad() {
+    public TipoMovimiento() {
     }
 
-    public TipoUnidad(Integer id, String nombre) {
+    private TipoMovimiento(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
-    public static TipoUnidad instancia(Integer id, String nombre){
-        return new TipoUnidad(id, nombre);
+    public static TipoMovimiento instancia(Integer id, String nombre){
+        return new TipoMovimiento(id, nombre);
     }
 
     public Integer getId() {

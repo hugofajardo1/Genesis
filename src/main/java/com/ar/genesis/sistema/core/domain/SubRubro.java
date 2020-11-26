@@ -8,7 +8,7 @@ public class SubRubro {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_subrubros")
     Integer id;
-    @Column(name = "nombre", nullable = false, length = 100)
+    @Column(name = "nombre", nullable = false, length = 50)
     String nombre;
 
     public SubRubro() {
