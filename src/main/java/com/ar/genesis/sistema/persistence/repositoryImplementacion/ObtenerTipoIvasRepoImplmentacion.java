@@ -18,4 +18,3 @@ public class ObtenerTipoIvasRepoImplmentacion implements IObtenerTipoIvasReposit
         return tipoIvaCRUD.findAllByOrderById();
     }
 }
-
