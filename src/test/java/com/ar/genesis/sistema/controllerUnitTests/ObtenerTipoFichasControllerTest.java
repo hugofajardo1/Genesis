@@ -1,6 +1,5 @@
 package com.ar.genesis.sistema.controllerUnitTests;
 
-import com.ar.genesis.sistema.core.domain.Cliente;
 import com.ar.genesis.sistema.core.domain.TipoFicha;
 import com.ar.genesis.sistema.core.input.IObtenerTipoFichasInput;
 import com.ar.genesis.sistema.service.controller.ObtenerTipoFichasController;
