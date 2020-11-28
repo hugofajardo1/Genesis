@@ -22,9 +22,9 @@ public class ObtenerUbicacionesControllerTest {
 
     @Test
     public void obtenerUbicaciones_UbicacionesExisten_Devuelve200(){
-        List<Ubicacion> lasUbicaciones = new ArrayList<>();
-        lasUbicaciones.add(Ubicacion.instancia(1,"Ubicacion 1"));
-        when(obtenerUbicacionesInput.obtenerUbicaciones()).thenReturn(lasUbicaciones);
+        List<Ubicacion> ubicaciones = new ArrayList<>();
+        ubicaciones.add(Ubicacion.instancia(1,"Ubicacion 1"));
+        when(obtenerUbicacionesInput.obtenerUbicaciones()).thenReturn(ubicaciones);
 
         ObtenerUbicacionesController obtenerUbicacionesController = new ObtenerUbicacionesController(obtenerUbicacionesInput);
         ResponseEntity<?> responseEntity = obtenerUbicacionesController.obtenerUbicaciones();

@@ -22,9 +22,9 @@ public class ObtenerTipoUnidadesControllerTest {
 
     @Test
     public void obtenerTipoUnidades_TipoUnidadesExisten_Devuelve200(){
-        List<TipoUnidad> losTipoUnidades = new ArrayList<>();
-        losTipoUnidades.add(TipoUnidad.instancia(1,"Cliente"));
-        when(obtenerTipoUnidadesInput.obtenerTipoUnidades()).thenReturn(losTipoUnidades);
+        List<TipoUnidad> tipoUnidades = new ArrayList<>();
+        tipoUnidades.add(TipoUnidad.instancia(1,"Cliente"));
+        when(obtenerTipoUnidadesInput.obtenerTipoUnidades()).thenReturn(tipoUnidades);
 
         ObtenerTipoUnidadesController obtenerTipoUnidadesController = new ObtenerTipoUnidadesController(obtenerTipoUnidadesInput);
         ResponseEntity<?> responseEntity = obtenerTipoUnidadesController.obtenerTipoUnidades();

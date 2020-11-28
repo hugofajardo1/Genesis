@@ -21,7 +21,7 @@ public class ModificarTipoMovimientoControllerTest {
     IModificarTipoMovimientoInput modificarTipoMovimientoInput;
 
     @Test
-    public  void crearTipoMovimiento_TipoMovimientoNoExiste_Devuelve200() throws TipoMovimientoExisteException {
+    public  void modificarTipoMovimiento_TipoMovimientoNoExiste_Devuelve200() throws TipoMovimientoExisteException {
         TipoMovimientoDTO tipoMovimientoDTO = new TipoMovimientoDTO(1, "Factura A");
         when(modificarTipoMovimientoInput.modificarTipoMovimiento(any(TipoMovimiento.class))).thenReturn(true);
 
@@ -33,7 +33,7 @@ public class ModificarTipoMovimientoControllerTest {
     }
 
     @Test
-    public  void crearTipoMovimiento_TipoMovimientoExiste_Devuelve412() throws TipoMovimientoExisteException {
+    public  void modificarTipoMovimiento_TipoMovimientoExiste_Devuelve412() throws TipoMovimientoExisteException {
         TipoMovimientoDTO tipoMovimientoDTO = new TipoMovimientoDTO(1, "Factura A");
         when(modificarTipoMovimientoInput.modificarTipoMovimiento(any(TipoMovimiento.class))).thenThrow(TipoMovimientoExisteException.class);
 

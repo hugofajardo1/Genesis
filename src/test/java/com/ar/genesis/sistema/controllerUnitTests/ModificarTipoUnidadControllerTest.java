@@ -21,7 +21,7 @@ public class ModificarTipoUnidadControllerTest {
     IModificarTipoUnidadInput modificarTipoUnidadInput;
 
     @Test
-    public  void crearTipoUnidad_TipoUnidadNoExiste_Devuelve200() throws TipoUnidadExisteException {
+    public  void modificarTipoUnidad_TipoUnidadNoExiste_Devuelve200() throws TipoUnidadExisteException {
         TipoUnidadDTO tipoUnidadDTO = new TipoUnidadDTO(1, "Responsable Inscripto");
         when(modificarTipoUnidadInput.modificarTipoUnidad(any(TipoUnidad.class))).thenReturn(true);
 
@@ -33,7 +33,7 @@ public class ModificarTipoUnidadControllerTest {
     }
 
     @Test
-    public  void crearTipoUnidad_TipoUnidadExiste_Devuelve412() throws TipoUnidadExisteException {
+    public  void modificarTipoUnidad_TipoUnidadExiste_Devuelve412() throws TipoUnidadExisteException {
         TipoUnidadDTO tipoUnidadDTO = new TipoUnidadDTO(1, "Responsable Inscripto");
         when(modificarTipoUnidadInput.modificarTipoUnidad(any(TipoUnidad.class))).thenThrow(TipoUnidadExisteException.class);
 

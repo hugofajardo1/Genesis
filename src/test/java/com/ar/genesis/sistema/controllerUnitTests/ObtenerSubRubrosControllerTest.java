@@ -22,9 +22,9 @@ public class ObtenerSubRubrosControllerTest {
 
     @Test
     public void obtenerSubRubros_SubRubrosExisten_Devuelve200(){
-        List<SubRubro> losSubRubros = new ArrayList<>();
-        losSubRubros.add(SubRubro.instancia(1,"SubRubro  1"));
-        when(obtenerSubRubrosInput.obtenerSubRubros()).thenReturn(losSubRubros);
+        List<SubRubro> subRubros = new ArrayList<>();
+        subRubros.add(SubRubro.instancia(1,"SubRubro  1"));
+        when(obtenerSubRubrosInput.obtenerSubRubros()).thenReturn(subRubros);
 
         ObtenerSubRubrosController obtenerSubRubrosController = new ObtenerSubRubrosController(obtenerSubRubrosInput);
         ResponseEntity<?> responseEntity = obtenerSubRubrosController.obtenerSubRubros();

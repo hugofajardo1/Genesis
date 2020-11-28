@@ -22,9 +22,9 @@ public class ObtenerTipoMovimientosControllerTest {
 
     @Test
     public void obtenerTipoMovimientos_TipoMovimientosExisten_Devuelve200(){
-        List<TipoMovimiento> losTipoMovimientos = new ArrayList<>();
-        losTipoMovimientos.add(TipoMovimiento.instancia(1,"Cliente"));
-        when(obtenerTipoMovimientosInput.obtenerTipoMovimientos()).thenReturn(losTipoMovimientos);
+        List<TipoMovimiento> tipoMovimientos = new ArrayList<>();
+        tipoMovimientos.add(TipoMovimiento.instancia(1,"Cliente"));
+        when(obtenerTipoMovimientosInput.obtenerTipoMovimientos()).thenReturn(tipoMovimientos);
 
         ObtenerTipoMovimientosController obtenerTipoMovimientosController = new ObtenerTipoMovimientosController(obtenerTipoMovimientosInput);
         ResponseEntity<?> responseEntity = obtenerTipoMovimientosController.obtenerTipoMovimientos();

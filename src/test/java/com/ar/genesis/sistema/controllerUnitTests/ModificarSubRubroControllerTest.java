@@ -21,7 +21,7 @@ public class ModificarSubRubroControllerTest {
     IModificarSubRubroInput modificarSubRubroInput;
 
     @Test
-    public  void crearSubRubro_SubRubroNoExiste_Devuelve200() throws SubRubroExisteException {
+    public  void modificarSubRubro_SubRubroNoExiste_Devuelve200() throws SubRubroExisteException {
         SubRubroDTO SubRubroDTO = new SubRubroDTO(1, "SubRubro");
         when(modificarSubRubroInput.modificarSubRubro(any(SubRubro.class))).thenReturn(true);
 
@@ -33,7 +33,7 @@ public class ModificarSubRubroControllerTest {
     }
 
     @Test
-    public  void crearSubRubro_SubRubroExiste_Devuelve412() throws SubRubroExisteException {
+    public  void modificarSubRubro_SubRubroExiste_Devuelve412() throws SubRubroExisteException {
         SubRubroDTO SubRubroDTO = new SubRubroDTO(1, "SubRubro");
         when(modificarSubRubroInput.modificarSubRubro(any(SubRubro.class))).thenThrow(SubRubroExisteException.class);
 

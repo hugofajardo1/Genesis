@@ -18,14 +18,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class CrearRubroControllerTest {
     @Mock
-    ICrearRubroInput crearTipoClienteInput;
+    ICrearRubroInput crearRubroInput;
 
     @Test
-    public  void crearTipoCliente_TipoClienteNoExiste_Devuelve200() throws RubroExisteException {
+    public  void crearRubro_RubroNoExiste_Devuelve200() throws RubroExisteException {
         RubroDTO RubroDTO = new RubroDTO(1, "Rubro");
-        when(crearTipoClienteInput.crearRubro(any(Rubro.class))).thenReturn(true);
+        when(crearRubroInput.crearRubro(any(Rubro.class))).thenReturn(true);
 
-        CrearRubroController crearRubroController = new CrearRubroController(crearTipoClienteInput);
+        CrearRubroController crearRubroController = new CrearRubroController(crearRubroInput);
         ResponseEntity<?> responseEntity = crearRubroController.crearRubro(RubroDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -33,11 +33,11 @@ public class CrearRubroControllerTest {
     }
 
     @Test
-    public  void crearTipoCliente_TipoClienteExiste_Devuelve412() throws RubroExisteException {
+    public  void crearRubro_RubroExiste_Devuelve412() throws RubroExisteException {
         RubroDTO RubroDTO = new RubroDTO(1, "Rubro");
-        when(crearTipoClienteInput.crearRubro(any(Rubro.class))).thenThrow(RubroExisteException.class);
+        when(crearRubroInput.crearRubro(any(Rubro.class))).thenThrow(RubroExisteException.class);
 
-        CrearRubroController crearRubroController = new CrearRubroController(crearTipoClienteInput);
+        CrearRubroController crearRubroController = new CrearRubroController(crearRubroInput);
         ResponseEntity<?> responseEntity = crearRubroController.crearRubro(RubroDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());

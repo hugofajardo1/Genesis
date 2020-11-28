@@ -22,9 +22,9 @@ public class ObtenerTipoFichasControllerTest {
 
     @Test
     public void obtenerTipoFichas_TipoFichasExisten_Devuelve200(){
-        List<TipoFicha> losTipoFichas = new ArrayList<>();
-        losTipoFichas.add(TipoFicha.instancia(1,"Cliente"));
-        when(obtenerTipoFichasInput.obtenerTipoFichas()).thenReturn(losTipoFichas);
+        List<TipoFicha> tipoFichas = new ArrayList<>();
+        tipoFichas.add(TipoFicha.instancia(1,"Cliente"));
+        when(obtenerTipoFichasInput.obtenerTipoFichas()).thenReturn(tipoFichas);
 
         ObtenerTipoFichasController obtenerTipoFichasController = new ObtenerTipoFichasController(obtenerTipoFichasInput);
         ResponseEntity<?> responseEntity = obtenerTipoFichasController.obtenerTipoFichas();

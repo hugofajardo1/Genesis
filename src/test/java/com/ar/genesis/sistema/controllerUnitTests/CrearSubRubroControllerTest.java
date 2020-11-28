@@ -18,14 +18,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class CrearSubRubroControllerTest {
     @Mock
-    ICrearSubRubroInput crearTipoClienteInput;
+    ICrearSubRubroInput crearSubRubroInput;
 
     @Test
-    public  void crearTipoCliente_TipoClienteNoExiste_Devuelve200() throws SubRubroExisteException {
+    public  void crearSubRubro_SubRubroNoExiste_Devuelve200() throws SubRubroExisteException {
         SubRubroDTO subRubroDTO = new SubRubroDTO(1, "SubRubro");
-        when(crearTipoClienteInput.crearSubRubro(any(SubRubro.class))).thenReturn(true);
+        when(crearSubRubroInput.crearSubRubro(any(SubRubro.class))).thenReturn(true);
 
-        CrearSubRubroController crearSubRubroController = new CrearSubRubroController(crearTipoClienteInput);
+        CrearSubRubroController crearSubRubroController = new CrearSubRubroController(crearSubRubroInput);
         ResponseEntity<?> responseEntity = crearSubRubroController.crearSubRubro(subRubroDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -33,11 +33,11 @@ public class CrearSubRubroControllerTest {
     }
 
     @Test
-    public  void crearTipoCliente_TipoClienteExiste_Devuelve412() throws SubRubroExisteException {
+    public  void crearSubRubro_SubRubroExiste_Devuelve412() throws SubRubroExisteException {
         SubRubroDTO subRubroDTO = new SubRubroDTO(1, "SubRubro");
-        when(crearTipoClienteInput.crearSubRubro(any(SubRubro.class))).thenThrow(SubRubroExisteException.class);
+        when(crearSubRubroInput.crearSubRubro(any(SubRubro.class))).thenThrow(SubRubroExisteException.class);
 
-        CrearSubRubroController crearSubRubroController = new CrearSubRubroController(crearTipoClienteInput);
+        CrearSubRubroController crearSubRubroController = new CrearSubRubroController(crearSubRubroInput);
         ResponseEntity<?> responseEntity = crearSubRubroController.crearSubRubro(subRubroDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());

@@ -3,7 +3,6 @@ package com.ar.genesis.sistema.controllerUnitTests;
 import com.ar.genesis.sistema.core.domain.TipoFicha;
 import com.ar.genesis.sistema.core.exception.TipoFichaExisteException;
 import com.ar.genesis.sistema.core.input.IModificarTipoFichaInput;
-import com.ar.genesis.sistema.service.controller.CrearTipoFichaController;
 import com.ar.genesis.sistema.service.controller.ModificarTipoFichaController;
 import com.ar.genesis.sistema.service.dto.TipoFichaDTO;
 import org.junit.jupiter.api.Assertions;
@@ -22,7 +21,7 @@ public class ModificarTipoFichaControllerTest {
     IModificarTipoFichaInput modificarTipoFichaInput;
 
     @Test
-    public  void crearTipoFicha_TipoFichaNoExiste_Devuelve200() throws TipoFichaExisteException {
+    public  void modificarTipoFicha_TipoFichaNoExiste_Devuelve200() throws TipoFichaExisteException {
         TipoFichaDTO tipoFichaDTO = new TipoFichaDTO(1, "Cliente");
         when(modificarTipoFichaInput.modificarTipoFicha(any(TipoFicha.class))).thenReturn(true);
 
@@ -34,7 +33,7 @@ public class ModificarTipoFichaControllerTest {
     }
 
     @Test
-    public  void crearTipoFicha_TipoFichaExiste_Devuelve412() throws TipoFichaExisteException {
+    public  void modificarTipoFicha_TipoFichaExiste_Devuelve412() throws TipoFichaExisteException {
         TipoFichaDTO tipoFichaDTO = new TipoFichaDTO(1, "Cliente");
         when(modificarTipoFichaInput.modificarTipoFicha(any(TipoFicha.class))).thenThrow(TipoFichaExisteException.class);
 

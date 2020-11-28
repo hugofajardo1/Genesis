@@ -22,9 +22,9 @@ public class ObtenerTipoIvasControllerTest {
 
     @Test
     public void obtenerTipoIvas_TipoIvasExisten_Devuelve200(){
-        List<TipoIva> losTipoIvas = new ArrayList<>();
-        losTipoIvas.add(TipoIva.instancia(1,"Cliente"));
-        when(obtenerTipoIvasInput.obtenerTipoIvas()).thenReturn(losTipoIvas);
+        List<TipoIva> tipoIvas = new ArrayList<>();
+        tipoIvas.add(TipoIva.instancia(1,"Cliente"));
+        when(obtenerTipoIvasInput.obtenerTipoIvas()).thenReturn(tipoIvas);
 
         ObtenerTipoIvasController obtenerTipoIvasController = new ObtenerTipoIvasController(obtenerTipoIvasInput);
         ResponseEntity<?> responseEntity = obtenerTipoIvasController.obtenerTipoIvas();

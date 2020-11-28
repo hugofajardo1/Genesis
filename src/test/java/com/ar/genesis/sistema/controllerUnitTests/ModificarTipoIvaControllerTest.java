@@ -21,7 +21,7 @@ public class ModificarTipoIvaControllerTest {
     IModificarTipoIvaInput modificarTipoIvaInput;
 
     @Test
-    public  void crearTipoIva_TipoIvaNoExiste_Devuelve200() throws TipoIvaExisteException {
+    public  void modificarTipoIva_TipoIvaNoExiste_Devuelve200() throws TipoIvaExisteException {
         TipoIvaDTO tipoIvaDTO = new TipoIvaDTO(1, "Responsable Inscripto");
         when(modificarTipoIvaInput.modificarTipoIva(any(TipoIva.class))).thenReturn(true);
 
@@ -33,7 +33,7 @@ public class ModificarTipoIvaControllerTest {
     }
 
     @Test
-    public  void crearTipoIva_TipoIvaExiste_Devuelve412() throws TipoIvaExisteException {
+    public  void modificarTipoIva_TipoIvaExiste_Devuelve412() throws TipoIvaExisteException {
         TipoIvaDTO tipoIvaDTO = new TipoIvaDTO(1, "Responsable Inscripto");
         when(modificarTipoIvaInput.modificarTipoIva(any(TipoIva.class))).thenThrow(TipoIvaExisteException.class);
 
