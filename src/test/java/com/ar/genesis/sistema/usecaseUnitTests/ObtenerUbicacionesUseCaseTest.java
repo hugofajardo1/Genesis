@@ -30,11 +30,11 @@ public class ObtenerUbicacionesUseCaseTest {
     }
 
     public List<Ubicacion> factoryListaUbicaciones() {
-        List<Ubicacion> lasUbicaciones = new ArrayList<>();
-        Ubicacion Ubicacion1 = Ubicacion.instancia(1, "Ubicacion 1");
-        Ubicacion Ubicacion2 = Ubicacion.instancia(2, "Ubicacion 2");
-        lasUbicaciones.add(Ubicacion1);
-        lasUbicaciones.add(Ubicacion2);
-        return lasUbicaciones;
+        List<Ubicacion> ubicaciones = new ArrayList<>();
+        Ubicacion ubicacion1 = Ubicacion.instancia(1, "Ubicacion 1");
+        Ubicacion ubicacion2 = Ubicacion.instancia(2, "Ubicacion 2");
+        ubicaciones.add(ubicacion1);
+        ubicaciones.add(ubicacion2);
+        return ubicaciones;
     }
 }

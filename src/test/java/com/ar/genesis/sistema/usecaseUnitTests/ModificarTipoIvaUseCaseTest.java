@@ -20,8 +20,8 @@ public class ModificarTipoIvaUseCaseTest {
         TipoIva tipoIvaNueva = TipoIva.instancia(1, "Responsable Inscripto");
         when(iTipoIvaRepository.existeTipoIva("Responsable Inscripto")).thenReturn(false);
         when(iTipoIvaRepository.guardarTipoIva(tipoIvaNueva)).thenReturn(true);
-        ModificarTipoIvaUseCase modificarTipoClienteUseCase = new ModificarTipoIvaUseCase(iTipoIvaRepository);
-        boolean resultado = modificarTipoClienteUseCase.modificarTipoIva(tipoIvaNueva);
+        ModificarTipoIvaUseCase modificarTipoIvaUseCase = new ModificarTipoIvaUseCase(iTipoIvaRepository);
+        boolean resultado = modificarTipoIvaUseCase.modificarTipoIva(tipoIvaNueva);
         Assertions.assertTrue(resultado);
     }
 

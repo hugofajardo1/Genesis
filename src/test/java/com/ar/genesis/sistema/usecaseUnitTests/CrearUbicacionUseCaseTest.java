@@ -17,20 +17,20 @@ public class CrearUbicacionUseCaseTest {
     IUbicacionRepository iUbicacionRepository;
     @Test
     void crearTipoUbicacion_UbicacionNoExiste_GuardaCorrectamente() throws UbicacionExisteException {
-        Ubicacion UbicacionNueva = Ubicacion.instancia(1, "Ubicacion 1");
+        Ubicacion ubicacion = Ubicacion.instancia(1, "Ubicacion 1");
         when(iUbicacionRepository.existeUbicacion("Ubicacion 1")).thenReturn(false);
-        when(iUbicacionRepository.guardarUbicacion(UbicacionNueva)).thenReturn(true);
-        CrearUbicacionUseCase crearTipoUbicacionUseCase = new CrearUbicacionUseCase(iUbicacionRepository);
-        boolean resultado = crearTipoUbicacionUseCase.crearUbicacion(UbicacionNueva);
+        when(iUbicacionRepository.guardarUbicacion(ubicacion)).thenReturn(true);
+        CrearUbicacionUseCase crearUbicacionUseCase = new CrearUbicacionUseCase(iUbicacionRepository);
+        boolean resultado = crearUbicacionUseCase.crearUbicacion(ubicacion);
         Assertions.assertTrue(resultado);
     }
 
     @Test
     void crearTipoUbicacion_UbicacionExiste_NoGuardaTipoUbicacion() {
-        Ubicacion UbicacionNueva = Ubicacion.instancia(1, "Ubicacion 1");
+        Ubicacion ubicacion = Ubicacion.instancia(1, "Ubicacion 1");
         when(iUbicacionRepository.existeUbicacion("Ubicacion 1")).thenReturn(true);
-        when(iUbicacionRepository.guardarUbicacion(UbicacionNueva)).thenReturn(false);
-        CrearUbicacionUseCase crearTipoUbicacionUseCase = new CrearUbicacionUseCase(iUbicacionRepository);
-        Assertions.assertThrows(UbicacionExisteException.class, () -> crearTipoUbicacionUseCase.crearUbicacion(UbicacionNueva));
+        when(iUbicacionRepository.guardarUbicacion(ubicacion)).thenReturn(false);
+        CrearUbicacionUseCase crearUbicacionUseCase = new CrearUbicacionUseCase(iUbicacionRepository);
+        Assertions.assertThrows(UbicacionExisteException.class, () -> crearUbicacionUseCase.crearUbicacion(ubicacion));
     }
 }

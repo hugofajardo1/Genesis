@@ -20,8 +20,8 @@ public class ModificarTipoUnidadUseCaseTest {
         TipoUnidad tipoUnidadNueva = TipoUnidad.instancia(1, "Unidad");
         when(iTipoUnidadRepository.existeTipoUnidad("Unidad")).thenReturn(false);
         when(iTipoUnidadRepository.guardarTipoUnidad(tipoUnidadNueva)).thenReturn(true);
-        ModificarTipoUnidadUseCase modificarTipoClienteUseCase = new ModificarTipoUnidadUseCase(iTipoUnidadRepository);
-        boolean resultado = modificarTipoClienteUseCase.modificarTipoUnidad(tipoUnidadNueva);
+        ModificarTipoUnidadUseCase modificarTipoUnidadUseCase = new ModificarTipoUnidadUseCase(iTipoUnidadRepository);
+        boolean resultado = modificarTipoUnidadUseCase.modificarTipoUnidad(tipoUnidadNueva);
         Assertions.assertTrue(resultado);
     }
 

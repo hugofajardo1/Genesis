@@ -22,8 +22,8 @@ public class ModificarFichaUseCaseTest {
         Ficha ficha = Ficha.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336");
         when(iFichaRepository.existeFicha("Fajardo, Hugo")).thenReturn(false);
         when(iFichaRepository.guardarFicha(ficha)).thenReturn(true);
-        ModificarFichaUseCase modificarTipoFichaUseCase = new ModificarFichaUseCase(iFichaRepository);
-        boolean resultado = modificarTipoFichaUseCase.modificarFicha(ficha);
+        ModificarFichaUseCase modificarFichaUseCase = new ModificarFichaUseCase(iFichaRepository);
+        boolean resultado = modificarFichaUseCase.modificarFicha(ficha);
         Assertions.assertTrue(resultado);
     }
 

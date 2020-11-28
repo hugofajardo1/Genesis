@@ -30,11 +30,11 @@ public class ObtenerSubRubrosUseCaseTest {
     }
 
     public List<SubRubro> factoryListaSubRubros() {
-        List<SubRubro> losSubRubros = new ArrayList<>();
-        SubRubro SubRubro1 = SubRubro.instancia(1, "SubRubro 1");
-        SubRubro SubRubro2 = SubRubro.instancia(2, "SubRubro 2");
-        losSubRubros.add(SubRubro1);
-        losSubRubros.add(SubRubro2);
-        return losSubRubros;
+        List<SubRubro> subRubros = new ArrayList<>();
+        SubRubro subRubro1 = SubRubro.instancia(1, "SubRubro 1");
+        SubRubro subRubro2 = SubRubro.instancia(2, "SubRubro 2");
+        subRubros.add(subRubro1);
+        subRubros.add(subRubro2);
+        return subRubros;
     }
 }

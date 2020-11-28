@@ -18,10 +18,10 @@ public class CrearUbicacionUseCase implements ICrearUbicacionInput {
     }
 
     @Override
-    public boolean crearUbicacion(Ubicacion ubicacion) throws UbicacionExisteException {
-        if(iUbicacionRepository.existeUbicacion(ubicacion.getNombre())){
+    public boolean crearUbicacion(Ubicacion unaUbicacion) throws UbicacionExisteException {
+        if(iUbicacionRepository.existeUbicacion(unaUbicacion.getNombre())){
             throw new UbicacionExisteException();
         }
-        return iUbicacionRepository.guardarUbicacion(ubicacion);
+        return iUbicacionRepository.guardarUbicacion(unaUbicacion);
     }
 }

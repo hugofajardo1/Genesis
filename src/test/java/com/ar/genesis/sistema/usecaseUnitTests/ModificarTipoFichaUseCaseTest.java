@@ -21,8 +21,8 @@ public class ModificarTipoFichaUseCaseTest {
         TipoFicha tipoFichaNueva = TipoFicha.instancia(1, "Cliente");
         when(iTipoFichaRepository.existeTipoFicha("Cliente")).thenReturn(false);
         when(iTipoFichaRepository.guardarTipoFicha(tipoFichaNueva)).thenReturn(true);
-        ModificarTipoFichaUseCase modificarTipoClienteUseCase = new ModificarTipoFichaUseCase(iTipoFichaRepository);
-        boolean resultado = modificarTipoClienteUseCase.modificarTipoFicha(tipoFichaNueva);
+        ModificarTipoFichaUseCase modificarTipoFichaUseCase = new ModificarTipoFichaUseCase(iTipoFichaRepository);
+        boolean resultado = modificarTipoFichaUseCase.modificarTipoFicha(tipoFichaNueva);
         Assertions.assertTrue(resultado);
     }
 

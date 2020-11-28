@@ -30,11 +30,11 @@ public class ObtenerTipoUnidadesUseCaseTest {
     }
 
     public List<TipoUnidad> factoryListaTipoUnidades() {
-        List<TipoUnidad> losTipoUnidades = new ArrayList<>();
-        TipoUnidad TipoUnidad1 = TipoUnidad.instancia(1, "Cliente");
-        TipoUnidad TipoUnidad2 = TipoUnidad.instancia(2, "Proveedor");
-        losTipoUnidades.add(TipoUnidad1);
-        losTipoUnidades.add(TipoUnidad2);
-        return losTipoUnidades;
+        List<TipoUnidad> tipoUnidades = new ArrayList<>();
+        TipoUnidad tipoUnidad1 = TipoUnidad.instancia(1, "Cliente");
+        TipoUnidad tipoUnidad2 = TipoUnidad.instancia(2, "Proveedor");
+        tipoUnidades.add(tipoUnidad1);
+        tipoUnidades.add(tipoUnidad2);
+        return tipoUnidades;
     }
 }

@@ -17,20 +17,20 @@ public class CrearRubroUseCaseTest {
     IRubroRepository iRubroRepository;
     @Test
     void crearTipoRubro_RubroNoExiste_GuardaCorrectamente() throws RubroExisteException {
-        Rubro RubroNueva = Rubro.instancia(1, "Rubro");
+        Rubro unRubro = Rubro.instancia(1, "Rubro");
         when(iRubroRepository.existeRubro("Rubro")).thenReturn(false);
-        when(iRubroRepository.guardarRubro(RubroNueva)).thenReturn(true);
-        CrearRubroUseCase crearTipoRubroUseCase = new CrearRubroUseCase(iRubroRepository);
-        boolean resultado = crearTipoRubroUseCase.crearRubro(RubroNueva);
+        when(iRubroRepository.guardarRubro(unRubro)).thenReturn(true);
+        CrearRubroUseCase crearRubroUseCase = new CrearRubroUseCase(iRubroRepository);
+        boolean resultado = crearRubroUseCase.crearRubro(unRubro);
         Assertions.assertTrue(resultado);
     }
 
     @Test
     void crearTipoRubro_RubroExiste_NoGuardaTipoRubro() {
-        Rubro RubroNueva = Rubro.instancia(1, "Rubro");
+        Rubro unRubro = Rubro.instancia(1, "Rubro");
         when(iRubroRepository.existeRubro("Rubro")).thenReturn(true);
-        when(iRubroRepository.guardarRubro(RubroNueva)).thenReturn(false);
-        CrearRubroUseCase crearTipoRubroUseCase = new CrearRubroUseCase(iRubroRepository);
-        Assertions.assertThrows(RubroExisteException.class, () -> crearTipoRubroUseCase.crearRubro(RubroNueva));
+        when(iRubroRepository.guardarRubro(unRubro)).thenReturn(false);
+        CrearRubroUseCase crearRubroUseCase = new CrearRubroUseCase(iRubroRepository);
+        Assertions.assertThrows(RubroExisteException.class, () -> crearRubroUseCase.crearRubro(unRubro));
     }
 }

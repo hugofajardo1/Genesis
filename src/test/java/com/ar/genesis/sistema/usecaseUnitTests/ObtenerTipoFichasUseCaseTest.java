@@ -30,11 +30,11 @@ public class ObtenerTipoFichasUseCaseTest {
     }
 
     public List<TipoFicha> factoryListaTipoFichas() {
-        List<TipoFicha> losTipoFichas = new ArrayList<>();
-        TipoFicha TipoFicha1 = TipoFicha.instancia(1, "Cliente");
-        TipoFicha TipoFicha2 = TipoFicha.instancia(2, "Proveedor");
-        losTipoFichas.add(TipoFicha1);
-        losTipoFichas.add(TipoFicha2);
-        return losTipoFichas;
+        List<TipoFicha> tipoFichas = new ArrayList<>();
+        TipoFicha tipoFicha1 = TipoFicha.instancia(1, "Cliente");
+        TipoFicha tipoFicha2 = TipoFicha.instancia(2, "Proveedor");
+        tipoFichas.add(tipoFicha1);
+        tipoFichas.add(tipoFicha2);
+        return tipoFichas;
     }
 }

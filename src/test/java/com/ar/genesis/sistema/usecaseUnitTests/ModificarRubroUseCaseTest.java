@@ -20,8 +20,8 @@ public class ModificarRubroUseCaseTest {
         Rubro RubroNueva = Rubro.instancia(1, "Rubro");
         when(iRubroRepository.existeRubro("Rubro")).thenReturn(false);
         when(iRubroRepository.guardarRubro(RubroNueva)).thenReturn(true);
-        ModificarRubroUseCase modificarTipoClienteUseCase = new ModificarRubroUseCase(iRubroRepository);
-        boolean resultado = modificarTipoClienteUseCase.modificarRubro(RubroNueva);
+        ModificarRubroUseCase modificarRubroUseCase = new ModificarRubroUseCase(iRubroRepository);
+        boolean resultado = modificarRubroUseCase.modificarRubro(RubroNueva);
         Assertions.assertTrue(resultado);
     }
 

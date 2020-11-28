@@ -20,8 +20,8 @@ public class ModificarTipoMovimientoUseCaseTest {
         TipoMovimiento tipoMovimientoNueva = TipoMovimiento.instancia(1, "Factura A");
         when(iTipoMovimientoRepository.existeTipoMovimiento("Factura A")).thenReturn(false);
         when(iTipoMovimientoRepository.guardarTipoMovimiento(tipoMovimientoNueva)).thenReturn(true);
-        ModificarTipoMovimientoUseCase modificarTipoClienteUseCase = new ModificarTipoMovimientoUseCase(iTipoMovimientoRepository);
-        boolean resultado = modificarTipoClienteUseCase.modificarTipoMovimiento(tipoMovimientoNueva);
+        ModificarTipoMovimientoUseCase modificarTipoMovimientoUseCase = new ModificarTipoMovimientoUseCase(iTipoMovimientoRepository);
+        boolean resultado = modificarTipoMovimientoUseCase.modificarTipoMovimiento(tipoMovimientoNueva);
         Assertions.assertTrue(resultado);
     }
 

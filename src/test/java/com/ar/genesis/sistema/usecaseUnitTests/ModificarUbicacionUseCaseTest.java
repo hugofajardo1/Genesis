@@ -17,20 +17,20 @@ public class ModificarUbicacionUseCaseTest {
     IUbicacionRepository iUbicacionRepository;
     @Test
     void modificarUbicacion_UbicacionActualizadoCorrectamente() throws UbicacionExisteException {
-        Ubicacion UbicacionNueva = Ubicacion.instancia(1, "Ubicacion");
+        Ubicacion unaUbicacion = Ubicacion.instancia(1, "Ubicacion");
         when(iUbicacionRepository.existeUbicacion("Ubicacion")).thenReturn(false);
-        when(iUbicacionRepository.guardarUbicacion(UbicacionNueva)).thenReturn(true);
-        ModificarUbicacionUseCase modificarTipoClienteUseCase = new ModificarUbicacionUseCase(iUbicacionRepository);
-        boolean resultado = modificarTipoClienteUseCase.modificarUbicacion(UbicacionNueva);
+        when(iUbicacionRepository.guardarUbicacion(unaUbicacion)).thenReturn(true);
+        ModificarUbicacionUseCase modificarUbicacionUseCase = new ModificarUbicacionUseCase(iUbicacionRepository);
+        boolean resultado = modificarUbicacionUseCase.modificarUbicacion(unaUbicacion);
         Assertions.assertTrue(resultado);
     }
 
     @Test
     void modificarUbicacion_HayConflictoUbicacionExiste_UbicacionNoActualiza() {
-        Ubicacion UbicacionNueva = Ubicacion.instancia(1, "Ubicacion");
+        Ubicacion unaUbicacion = Ubicacion.instancia(1, "Ubicacion");
         when(iUbicacionRepository.existeUbicacion("Ubicacion")).thenReturn(true);
-        when(iUbicacionRepository.guardarUbicacion(UbicacionNueva)).thenReturn(false);
+        when(iUbicacionRepository.guardarUbicacion(unaUbicacion)).thenReturn(false);
         ModificarUbicacionUseCase modificarUbicacionUseCase = new ModificarUbicacionUseCase(iUbicacionRepository);
-        Assertions.assertThrows(UbicacionExisteException.class, () -> modificarUbicacionUseCase.modificarUbicacion(UbicacionNueva));
+        Assertions.assertThrows(UbicacionExisteException.class, () -> modificarUbicacionUseCase.modificarUbicacion(unaUbicacion));
     }
 }

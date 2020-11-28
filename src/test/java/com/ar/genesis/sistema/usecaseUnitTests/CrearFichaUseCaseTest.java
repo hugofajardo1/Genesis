@@ -19,19 +19,19 @@ public class CrearFichaUseCaseTest {
 
     @Test
     void crearFicha_FichaNoExiste_GuardaCorrectamente() throws FichaExisteException {
-        Ficha ficha = Ficha.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336");
+        Ficha unaFicha = Ficha.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336");
         when(iFichaRepository.existeFicha("Fajardo, Hugo")).thenReturn(false);
-        when(iFichaRepository.guardarFicha(ficha)).thenReturn(true);
+        when(iFichaRepository.guardarFicha(unaFicha)).thenReturn(true);
         CrearFichaUseCase crearFichaUseCase = new CrearFichaUseCase(iFichaRepository);
-        boolean resultado = crearFichaUseCase.crearFicha(ficha);
+        boolean resultado = crearFichaUseCase.crearFicha(unaFicha);
         Assertions.assertTrue(resultado);
     }
     @Test
     void crearFicha_FichaExiste_NoGuardaFicha() {
-        Ficha ficha = Ficha.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336");
+        Ficha unaFicha = Ficha.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336");
         when(iFichaRepository.existeFicha("Fajardo, Hugo")).thenReturn(true);
-        when(iFichaRepository.guardarFicha(ficha)).thenReturn(false);
+        when(iFichaRepository.guardarFicha(unaFicha)).thenReturn(false);
         CrearFichaUseCase crearFichaUseCase = new CrearFichaUseCase(iFichaRepository);
-        Assertions.assertThrows(FichaExisteException.class, () -> crearFichaUseCase.crearFicha(ficha));
+        Assertions.assertThrows(FichaExisteException.class, () -> crearFichaUseCase.crearFicha(unaFicha));
     }
 }

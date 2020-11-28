@@ -17,20 +17,20 @@ public class CrearTipoFichaUseCaseTest {
     ITipoFichaRepository iTipoFichaRepository;
     @Test
     void crearTipoFicha_TipoFichaNoExiste_GuardaCorrectamente() throws TipoFichaExisteException {
-        TipoFicha tipoFichaNueva = TipoFicha.instancia(1, "Cliente");
+        TipoFicha unTipoFicha = TipoFicha.instancia(1, "Cliente");
         when(iTipoFichaRepository.existeTipoFicha("Cliente")).thenReturn(false);
-        when(iTipoFichaRepository.guardarTipoFicha(tipoFichaNueva)).thenReturn(true);
+        when(iTipoFichaRepository.guardarTipoFicha(unTipoFicha)).thenReturn(true);
         CrearTipoFichaUseCase crearTipoFichaUseCase = new CrearTipoFichaUseCase(iTipoFichaRepository);
-        boolean resultado = crearTipoFichaUseCase.crearTipoFicha(tipoFichaNueva);
+        boolean resultado = crearTipoFichaUseCase.crearTipoFicha(unTipoFicha);
         Assertions.assertTrue(resultado);
     }
 
     @Test
     void crearTipoFicha_TipoFichaExiste_NoGuardaTipoFicha() {
-        TipoFicha tipoFichaNueva = TipoFicha.instancia(1, "Cliente");
+        TipoFicha unTipoFicha = TipoFicha.instancia(1, "Cliente");
         when(iTipoFichaRepository.existeTipoFicha("Cliente")).thenReturn(true);
-        when(iTipoFichaRepository.guardarTipoFicha(tipoFichaNueva)).thenReturn(false);
+        when(iTipoFichaRepository.guardarTipoFicha(unTipoFicha)).thenReturn(false);
         CrearTipoFichaUseCase crearTipoFichaUseCase = new CrearTipoFichaUseCase(iTipoFichaRepository);
-        Assertions.assertThrows(TipoFichaExisteException.class, () -> crearTipoFichaUseCase.crearTipoFicha(tipoFichaNueva));
+        Assertions.assertThrows(TipoFichaExisteException.class, () -> crearTipoFichaUseCase.crearTipoFicha(unTipoFicha));
     }
 }

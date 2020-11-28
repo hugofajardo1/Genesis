@@ -30,11 +30,11 @@ public class ObtenerTipoIvasUseCaseTest {
     }
 
     public List<TipoIva> factoryListaTipoIvas() {
-        List<TipoIva> losTipoIvas = new ArrayList<>();
-        TipoIva TipoIva1 = TipoIva.instancia(1, "Responsable Inscripto");
-        TipoIva TipoIva2 = TipoIva.instancia(2, "Consumidor Final");
-        losTipoIvas.add(TipoIva1);
-        losTipoIvas.add(TipoIva2);
-        return losTipoIvas;
+        List<TipoIva> tipoIvas = new ArrayList<>();
+        TipoIva tipoIva1 = TipoIva.instancia(1, "Responsable Inscripto");
+        TipoIva tipoIva2 = TipoIva.instancia(2, "Consumidor Final");
+        tipoIvas.add(tipoIva1);
+        tipoIvas.add(tipoIva2);
+        return tipoIvas;
     }
 }

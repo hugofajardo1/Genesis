@@ -17,20 +17,20 @@ public class CrearSubRubroUseCaseTest {
     ISubRubroRepository iSubRubroRepository;
     @Test
     void crearTipoSubRubro_SubRubroNoExiste_GuardaCorrectamente() throws SubRubroExisteException {
-        SubRubro SubRubroNueva = SubRubro.instancia(1, "SubRubro");
+        SubRubro unSubRubro = SubRubro.instancia(1, "SubRubro");
         when(iSubRubroRepository.existeSubRubro("SubRubro")).thenReturn(false);
-        when(iSubRubroRepository.guardarSubRubro(SubRubroNueva)).thenReturn(true);
-        CrearSubRubroUseCase crearTipoSubRubroUseCase = new CrearSubRubroUseCase(iSubRubroRepository);
-        boolean resultado = crearTipoSubRubroUseCase.crearSubRubro(SubRubroNueva);
+        when(iSubRubroRepository.guardarSubRubro(unSubRubro)).thenReturn(true);
+        CrearSubRubroUseCase crearSubRubroUseCase = new CrearSubRubroUseCase(iSubRubroRepository);
+        boolean resultado = crearSubRubroUseCase.crearSubRubro(unSubRubro);
         Assertions.assertTrue(resultado);
     }
 
     @Test
     void crearTipoSubRubro_SubRubroExiste_NoGuardaTipoSubRubro() {
-        SubRubro SubRubroNueva = SubRubro.instancia(1, "SubRubro");
+        SubRubro unSubRubro = SubRubro.instancia(1, "SubRubro");
         when(iSubRubroRepository.existeSubRubro("SubRubro")).thenReturn(true);
-        when(iSubRubroRepository.guardarSubRubro(SubRubroNueva)).thenReturn(false);
-        CrearSubRubroUseCase crearTipoSubRubroUseCase = new CrearSubRubroUseCase(iSubRubroRepository);
-        Assertions.assertThrows(SubRubroExisteException.class, () -> crearTipoSubRubroUseCase.crearSubRubro(SubRubroNueva));
+        when(iSubRubroRepository.guardarSubRubro(unSubRubro)).thenReturn(false);
+        CrearSubRubroUseCase crearSubRubroUseCase = new CrearSubRubroUseCase(iSubRubroRepository);
+        Assertions.assertThrows(SubRubroExisteException.class, () -> crearSubRubroUseCase.crearSubRubro(unSubRubro));
     }
 }

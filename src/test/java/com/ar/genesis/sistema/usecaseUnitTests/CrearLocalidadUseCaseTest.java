@@ -16,21 +16,21 @@ public class CrearLocalidadUseCaseTest {
     @Mock
     ILocalidadRepository iLocalidadRepository;
     @Test
-    void crearTipoLocalidad_LocalidadNoExiste_GuardaCorrectamente() throws LocalidadExisteException {
-        Localidad localidad = Localidad.instancia(1, "Localidad 1");
+    void crearLocalidad_LocalidadNoExiste_GuardaCorrectamente() throws LocalidadExisteException {
+        Localidad unaLocalidad = Localidad.instancia(1, "Localidad 1");
         when(iLocalidadRepository.existeLocalidad("Localidad 1")).thenReturn(false);
-        when(iLocalidadRepository.guardarLocalidad(localidad)).thenReturn(true);
-        CrearLocalidadUseCase crearTipoLocalidadUseCase = new CrearLocalidadUseCase(iLocalidadRepository);
-        boolean resultado = crearTipoLocalidadUseCase.crearLocalidad(localidad);
+        when(iLocalidadRepository.guardarLocalidad(unaLocalidad)).thenReturn(true);
+        CrearLocalidadUseCase crearLocalidadUseCase = new CrearLocalidadUseCase(iLocalidadRepository);
+        boolean resultado = crearLocalidadUseCase.crearLocalidad(unaLocalidad);
         Assertions.assertTrue(resultado);
     }
 
     @Test
-    void crearTipoLocalidad_LocalidadExiste_NoGuardaTipoLocalidad() {
-        Localidad localidad = Localidad.instancia(1, "Localidad 1");
+    void crearLocalidad_LocalidadExiste_NoGuardaLocalidad() {
+        Localidad unaLocalidad = Localidad.instancia(1, "Localidad 1");
         when(iLocalidadRepository.existeLocalidad("Localidad 1")).thenReturn(true);
-        when(iLocalidadRepository.guardarLocalidad(localidad)).thenReturn(false);
-        CrearLocalidadUseCase crearTipoLocalidadUseCase = new CrearLocalidadUseCase(iLocalidadRepository);
-        Assertions.assertThrows(LocalidadExisteException.class, () -> crearTipoLocalidadUseCase.crearLocalidad(localidad));
+        when(iLocalidadRepository.guardarLocalidad(unaLocalidad)).thenReturn(false);
+        CrearLocalidadUseCase crearLocalidadUseCase = new CrearLocalidadUseCase(iLocalidadRepository);
+        Assertions.assertThrows(LocalidadExisteException.class, () -> crearLocalidadUseCase.crearLocalidad(unaLocalidad));
     }
 }
