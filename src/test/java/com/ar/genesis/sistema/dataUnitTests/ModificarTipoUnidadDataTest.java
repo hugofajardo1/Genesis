@@ -21,8 +21,8 @@ public class ModificarTipoUnidadDataTest {
 
     @Test
     public void guardarTipoUnidad_TipoUnidadGuardado_devuelveTrue() {
-        TipoUnidad tipoUnidad = TipoUnidad.instancia(1, "Responsable Inscripto");
-        boolean resultado = tipoUnidadRepoImplementacion.guardarTipoUnidad(tipoUnidad);
+        TipoUnidad unTipoUnidad = TipoUnidad.instancia(1, "Responsable Inscripto");
+        boolean resultado = tipoUnidadRepoImplementacion.guardarTipoUnidad(unTipoUnidad);
         Assertions.assertTrue(resultado);
     }
 

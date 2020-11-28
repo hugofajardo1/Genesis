@@ -22,8 +22,8 @@ public class CrearUbicacionDataTest {
 
     @Test
     public void guardarUbicacion_UbicacionGuardado_devuelveTrue() {
-        Ubicacion ubicacion = Ubicacion.instancia(null, "Ubicacion 1");
-        boolean resultado = ubicacionRepoImplementacion.guardarUbicacion(ubicacion);
+        Ubicacion unaUbicacion = Ubicacion.instancia(null, "Ubicacion 1");
+        boolean resultado = ubicacionRepoImplementacion.guardarUbicacion(unaUbicacion);
         Assertions.assertTrue(resultado);
     }
 

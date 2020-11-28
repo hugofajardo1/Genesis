@@ -22,8 +22,8 @@ public class CrearLocalidadDataTest {
 
     @Test
     public void guardarLocalidad_LocalidadGuardado_devuelveTrue() {
-        Localidad localidad = Localidad.instancia(null, "Localidad 1");
-        boolean resultado = LocalidadRepoImplementacion.guardarLocalidad(localidad);
+        Localidad unaLocalidad = Localidad.instancia(null, "Localidad 1");
+        boolean resultado = LocalidadRepoImplementacion.guardarLocalidad(unaLocalidad);
         Assertions.assertTrue(resultado);
     }
 

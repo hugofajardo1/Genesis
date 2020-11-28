@@ -23,7 +23,7 @@ public class ObtenerSubRubrosDataTest {
 
     @Test
     public void obtenerSubRubros_SubRubrosExisten_DevuelveListado(){
-        List<SubRubro> SubRubros = obtenerSubRubrosRepoImplmentacion.obtenerSubRubros();
-        assertEquals(2, SubRubros.size());
+        List<SubRubro> subRubros = obtenerSubRubrosRepoImplmentacion.obtenerSubRubros();
+        assertEquals(2, subRubros.size());
     }
 }

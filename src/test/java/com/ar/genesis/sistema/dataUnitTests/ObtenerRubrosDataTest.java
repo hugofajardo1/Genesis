@@ -23,7 +23,7 @@ public class ObtenerRubrosDataTest {
 
     @Test
     public void obtenerRubros_RubrosExisten_DevuelveListado(){
-        List<Rubro> Rubros = obtenerRubrosRepoImplmentacion.obtenerRubros();
-        assertEquals(2, Rubros.size());
+        List<Rubro> rubros = obtenerRubrosRepoImplmentacion.obtenerRubros();
+        assertEquals(2, rubros.size());
     }
 }

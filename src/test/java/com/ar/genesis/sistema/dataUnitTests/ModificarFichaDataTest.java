@@ -22,8 +22,8 @@ public class ModificarFichaDataTest {
 
     @Test
     public void guardarFicha_FichaGuardado_devuelveTrue() {
-        Ficha ficha = Ficha.instancia(1, "Fajardo, Hugo Manuel", "Bs As 245", "38525416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336");
-        boolean resultado= FichaRepoImplementacion.guardarFicha(ficha);
+        Ficha unaFicha = Ficha.instancia(1, "Fajardo, Hugo Manuel", "Bs As 245", "38525416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336");
+        boolean resultado= FichaRepoImplementacion.guardarFicha(unaFicha);
         Assertions.assertTrue(resultado);
     }
 }

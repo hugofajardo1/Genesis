@@ -22,8 +22,8 @@ public class CrearRubroDataTest {
 
     @Test
     public void guardarRubro_RubroGuardado_devuelveTrue() {
-        Rubro rubro = Rubro.instancia(null, "Rubro");
-        boolean resultado = rubroRepoImplementacion.guardarRubro(rubro);
+        Rubro unRubro = Rubro.instancia(null, "Rubro");
+        boolean resultado = rubroRepoImplementacion.guardarRubro(unRubro);
         Assertions.assertTrue(resultado);
     }
 

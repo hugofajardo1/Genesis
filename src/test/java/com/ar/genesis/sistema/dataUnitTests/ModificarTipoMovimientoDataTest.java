@@ -21,8 +21,8 @@ public class ModificarTipoMovimientoDataTest {
 
     @Test
     public void guardarTipoMovimiento_TipoMovimientoGuardado_devuelveTrue() {
-        TipoMovimiento tipoMovimiento = TipoMovimiento.instancia(1, "Responsable Inscripto");
-        boolean resultado = tipoMovimientoRepoImplementacion.guardarTipoMovimiento(tipoMovimiento);
+        TipoMovimiento unTipoMovimiento = TipoMovimiento.instancia(1, "Responsable Inscripto");
+        boolean resultado = tipoMovimientoRepoImplementacion.guardarTipoMovimiento(unTipoMovimiento);
         Assertions.assertTrue(resultado);
     }
 

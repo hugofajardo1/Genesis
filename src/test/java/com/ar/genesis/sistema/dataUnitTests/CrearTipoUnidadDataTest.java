@@ -22,8 +22,8 @@ public class CrearTipoUnidadDataTest {
 
     @Test
     public void guardarTipoUnidad_TipoUnidadGuardado_devuelveTrue() {
-        TipoUnidad tipoUnidad = TipoUnidad.instancia(null, "Responsable Inscripto");
-        boolean resultado = tipoUnidadRepoImplementacion.guardarTipoUnidad(tipoUnidad);
+        TipoUnidad unTipoUnidad = TipoUnidad.instancia(null, "Responsable Inscripto");
+        boolean resultado = tipoUnidadRepoImplementacion.guardarTipoUnidad(unTipoUnidad);
         Assertions.assertTrue(resultado);
     }
 

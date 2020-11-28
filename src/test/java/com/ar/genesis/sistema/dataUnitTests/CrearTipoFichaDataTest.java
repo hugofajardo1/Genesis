@@ -22,8 +22,8 @@ public class CrearTipoFichaDataTest {
 
     @Test
     public void guardarTipoFicha_TipoFichaGuardado_devuelveTrue() {
-        TipoFicha tipoFicha = TipoFicha.instancia(null, "Cliente");
-        boolean resultado = tipoFichaRepoImplementacion.guardarTipoFicha(tipoFicha);
+        TipoFicha unTipoFicha = TipoFicha.instancia(null, "Cliente");
+        boolean resultado = tipoFichaRepoImplementacion.guardarTipoFicha(unTipoFicha);
         Assertions.assertTrue(resultado);
     }
 

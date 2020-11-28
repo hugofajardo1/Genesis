@@ -22,8 +22,8 @@ public class CrearTipoIvaDataTest {
 
     @Test
     public void guardarTipoIva_TipoIvaGuardado_devuelveTrue() {
-        TipoIva tipoIva = TipoIva.instancia(null, "Responsable Inscripto");
-        boolean resultado = tipoIvaRepoImplementacion.guardarTipoIva(tipoIva);
+        TipoIva unTipoIva = TipoIva.instancia(null, "Responsable Inscripto");
+        boolean resultado = tipoIvaRepoImplementacion.guardarTipoIva(unTipoIva);
         Assertions.assertTrue(resultado);
     }
 

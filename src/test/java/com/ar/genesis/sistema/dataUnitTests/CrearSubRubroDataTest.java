@@ -22,8 +22,8 @@ public class CrearSubRubroDataTest {
 
     @Test
     public void guardarSubRubro_SubRubroGuardado_devuelveTrue() {
-        SubRubro subRubro = SubRubro.instancia(null, "SubRubro");
-        boolean resultado = SubRubroRepoImplementacion.guardarSubRubro(subRubro);
+        SubRubro unSubRubro = SubRubro.instancia(null, "SubRubro");
+        boolean resultado = SubRubroRepoImplementacion.guardarSubRubro(unSubRubro);
         Assertions.assertTrue(resultado);
     }
 
