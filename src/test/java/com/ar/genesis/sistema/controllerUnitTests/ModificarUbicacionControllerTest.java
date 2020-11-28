@@ -22,11 +22,11 @@ public class ModificarUbicacionControllerTest {
 
     @Test
     public  void crearUbicacion_UbicacionNoExiste_Devuelve200() throws UbicacionExisteException {
-        UbicacionDTO UbicacionDTO = new UbicacionDTO(1, "Ubicacion 1");
+        UbicacionDTO ubicacionDTO = new UbicacionDTO(1, "Ubicacion 1");
         when(modificarUbicacionInput.modificarUbicacion(any(Ubicacion.class))).thenReturn(true);
 
         ModificarUbicacionController modificarUbicacionController = new ModificarUbicacionController(modificarUbicacionInput);
-        ResponseEntity<?> responseEntity = modificarUbicacionController.modificarUbicacion(UbicacionDTO);
+        ResponseEntity<?> responseEntity = modificarUbicacionController.modificarUbicacion(ubicacionDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
@@ -34,11 +34,11 @@ public class ModificarUbicacionControllerTest {
 
     @Test
     public  void crearUbicacion_UbicacionExiste_Devuelve412() throws UbicacionExisteException {
-        UbicacionDTO UbicacionDTO = new UbicacionDTO(1, "Ubicacion 2");
+        UbicacionDTO ubicacionDTO = new UbicacionDTO(1, "Ubicacion 2");
         when(modificarUbicacionInput.modificarUbicacion(any(Ubicacion.class))).thenThrow(UbicacionExisteException.class);
 
         ModificarUbicacionController modificarUbicacionController = new ModificarUbicacionController(modificarUbicacionInput);
-        ResponseEntity<?> responseEntity = modificarUbicacionController.modificarUbicacion(UbicacionDTO);
+        ResponseEntity<?> responseEntity = modificarUbicacionController.modificarUbicacion(ubicacionDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }

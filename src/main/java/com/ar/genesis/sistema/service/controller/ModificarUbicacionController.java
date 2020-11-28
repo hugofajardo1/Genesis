@@ -23,9 +23,9 @@ public class ModificarUbicacionController {
         this.iModificarUbicacionInput = iModificarUbicacionInput;
     }
     @PutMapping(value = "/Ubicacion")
-    public ResponseEntity<?> modificarUbicacion(@RequestBody UbicacionDTO UbicacionDTO){
+    public ResponseEntity<?> modificarUbicacion(@RequestBody UbicacionDTO ubicacionDTO ){
         try{
-            boolean resultado = this.iModificarUbicacionInput.modificarUbicacion(Ubicacion.instancia(UbicacionDTO.getId(), UbicacionDTO.getNombre()));
+            boolean resultado = this.iModificarUbicacionInput.modificarUbicacion(Ubicacion.instancia(ubicacionDTO.getId(), ubicacionDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (UbicacionExisteException e) {

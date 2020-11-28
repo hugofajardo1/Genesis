@@ -24,9 +24,9 @@ public class CrearUbicacionController {
     }
 
     @PostMapping(value = "/Ubicacion")
-    public ResponseEntity<?> crearUbicacion(@RequestBody UbicacionDTO UbicacionDTO){
+    public ResponseEntity<?> crearUbicacion(@RequestBody UbicacionDTO ubicacionDTO){
         try{
-            boolean resultado = this.iCrearUbicacionInput.crearUbicacion(Ubicacion.instancia(UbicacionDTO.getId(), UbicacionDTO.getNombre()));
+            boolean resultado = this.iCrearUbicacionInput.crearUbicacion(Ubicacion.instancia(ubicacionDTO.getId(), ubicacionDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (UbicacionExisteException e) {

@@ -24,10 +24,10 @@ public class ObtenerUbicacionesController {
     @GetMapping(value = "/Ubicaciones")
     public ResponseEntity<?> obtenerUbicaciones(){
         try{
-            List<UbicacionDTO> UbicacionesDTO = new ArrayList<>();
-            iObtenerUbicacionesInput.obtenerUbicaciones().forEach(Ubicacion -> UbicacionesDTO.add(new UbicacionDTO(Ubicacion.getId(), Ubicacion.getNombre())));
-            if (UbicacionesDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            return ResponseEntity.status(HttpStatus.OK).body(UbicacionesDTO);
+            List<UbicacionDTO> ubicacionesDTO = new ArrayList<>();
+            iObtenerUbicacionesInput.obtenerUbicaciones().forEach(ubicacion -> ubicacionesDTO.add(new UbicacionDTO(ubicacion.getId(), ubicacion.getNombre())));
+            if (ubicacionesDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return ResponseEntity.status(HttpStatus.OK).body(ubicacionesDTO);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
