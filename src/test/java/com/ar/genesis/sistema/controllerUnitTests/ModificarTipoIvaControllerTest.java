@@ -42,5 +42,4 @@ public class ModificarTipoIvaControllerTest {
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }
-
 }
