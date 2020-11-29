@@ -1,6 +1,5 @@
 package com.ar.genesis.sistema.dataUnitTests;
 
-import com.ar.genesis.sistema.core.domain.TipoUnidad;
 import com.ar.genesis.sistema.core.domain.Ubicacion;
 import com.ar.genesis.sistema.persistence.repositoryImplementacion.ObtenerUbicacionesRepoImplmentacion;
 import org.junit.jupiter.api.Test;
@@ -20,11 +19,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 })
 public class ObtenerUbicacionesDataTest {
     @Inject
-    ObtenerUbicacionesRepoImplmentacion obtenerUbicacionesRepoImplmentacion;
+    ObtenerUbicacionesRepoImplmentacion miObtenerUbicacionesRepoImplmentacion;
 
     @Test
     public void obtenerUbicaciones_UbicacionesExisten_DevuelveListado(){
-        List<Ubicacion> ubicaciones = obtenerUbicacionesRepoImplmentacion.obtenerUbicaciones();
+        List<Ubicacion> ubicaciones = miObtenerUbicacionesRepoImplmentacion.obtenerUbicaciones();
         assertEquals(2, ubicaciones.size());
     }
 }

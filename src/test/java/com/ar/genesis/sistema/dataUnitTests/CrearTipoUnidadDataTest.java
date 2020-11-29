@@ -18,12 +18,12 @@ import javax.inject.Inject;
 public class CrearTipoUnidadDataTest {
 
     @Inject
-    TipoUnidadRepoImplementacion tipoUnidadRepoImplementacion;
+    TipoUnidadRepoImplementacion miTipoUnidadRepoImplementacion;
 
     @Test
     public void guardarTipoUnidad_TipoUnidadGuardado_devuelveTrue() {
         TipoUnidad unTipoUnidad = TipoUnidad.instancia(null, "Responsable Inscripto");
-        boolean resultado = tipoUnidadRepoImplementacion.guardarTipoUnidad(unTipoUnidad);
+        boolean resultado = miTipoUnidadRepoImplementacion.guardarTipoUnidad(unTipoUnidad);
         Assertions.assertTrue(resultado);
     }
 

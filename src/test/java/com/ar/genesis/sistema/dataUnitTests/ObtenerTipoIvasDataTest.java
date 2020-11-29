@@ -19,11 +19,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 })
 public class ObtenerTipoIvasDataTest {
     @Inject
-    ObtenerTipoIvasRepoImplmentacion obtenerTipoIvasRepoImplmentacion;
+    ObtenerTipoIvasRepoImplmentacion miObtenerTipoIvasRepoImplmentacion;
 
     @Test
     public void obtenerTipoIvas_TipoIvasExisten_DevuelveListado(){
-        List<TipoIva> tipoIvas = obtenerTipoIvasRepoImplmentacion.obtenerTipoIvas();
+        List<TipoIva> tipoIvas = miObtenerTipoIvasRepoImplmentacion.obtenerTipoIvas();
         assertEquals(2, tipoIvas.size());
     }
 }

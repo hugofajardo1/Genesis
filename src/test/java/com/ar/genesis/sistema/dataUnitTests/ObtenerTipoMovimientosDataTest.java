@@ -19,11 +19,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 })
 public class ObtenerTipoMovimientosDataTest {
     @Inject
-    ObtenerTipoMovimientosRepoImplmentacion obtenerTipoMovimientosRepoImplmentacion;
+    ObtenerTipoMovimientosRepoImplmentacion miObtenerTipoMovimientosRepoImplmentacion;
 
     @Test
     public void obtenerTipoMovimientos_TipoMovimientosExisten_DevuelveListado(){
-        List<TipoMovimiento> tipoMovimientos = obtenerTipoMovimientosRepoImplmentacion.obtenerTipoMovimientos();
+        List<TipoMovimiento> tipoMovimientos = miObtenerTipoMovimientosRepoImplmentacion.obtenerTipoMovimientos();
         assertEquals(2, tipoMovimientos.size());
     }
 }

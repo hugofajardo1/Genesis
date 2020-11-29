@@ -19,11 +19,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 })
 public class ObtenerTipoFichasDataTest {
     @Inject
-    ObtenerTipoFichasRepoImplmentacion obtenerTipoFichasRepoImplmentacion;
+    ObtenerTipoFichasRepoImplmentacion miObtenerTipoFichasRepoImplmentacion;
 
     @Test
     public void obtenerTipoFichas_TipoFichasExisten_DevuelveListado(){
-        List<TipoFicha> tipoFichas = obtenerTipoFichasRepoImplmentacion.obtenerTipoFichas();
+        List<TipoFicha> tipoFichas = miObtenerTipoFichasRepoImplmentacion.obtenerTipoFichas();
         assertEquals(2, tipoFichas.size());
     }
 }

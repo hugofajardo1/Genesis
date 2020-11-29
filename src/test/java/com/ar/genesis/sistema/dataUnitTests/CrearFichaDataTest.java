@@ -19,12 +19,12 @@ import javax.inject.Inject;
 public class CrearFichaDataTest {
 
     @Inject
-    FichaRepoImplementacion FichaRepoImplementacion;
+    FichaRepoImplementacion miFichaRepoImplementacion;
 
     @Test
     public void guardarFicha_FichaGuardado_devuelveTrue() {
         Ficha unaFicha = Ficha.instancia(null, "Fajardo, Hugo Manuel", "Bs As 245", "38525416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336");
-        boolean resultado= FichaRepoImplementacion.guardarFicha(unaFicha);
+        boolean resultado= miFichaRepoImplementacion.guardarFicha(unaFicha);
         Assertions.assertTrue(resultado);
     }
 

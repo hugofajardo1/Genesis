@@ -19,11 +19,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 })
 public class ObtenerLocalidadesDataTest {
     @Inject
-    ObtenerLocalidadesRepoImplmentacion obtenerLocalidadesRepoImplmentacion;
+    ObtenerLocalidadesRepoImplmentacion miObtenerLocalidadesRepoImplmentacion;
 
     @Test
     public void obtenerLocalidades_LocalidadesExisten_DevuelveListado(){
-        List<Localidad> localidades = obtenerLocalidadesRepoImplmentacion.obtenerLocalidades();
+        List<Localidad> localidades = miObtenerLocalidadesRepoImplmentacion.obtenerLocalidades();
         assertEquals(2, localidades.size());
     }
 }

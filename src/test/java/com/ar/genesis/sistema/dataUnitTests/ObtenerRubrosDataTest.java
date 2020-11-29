@@ -19,11 +19,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 })
 public class ObtenerRubrosDataTest {
     @Inject
-    ObtenerRubrosRepoImplmentacion obtenerRubrosRepoImplmentacion;
+    ObtenerRubrosRepoImplmentacion miObtenerRubrosRepoImplmentacion;
 
     @Test
     public void obtenerRubros_RubrosExisten_DevuelveListado(){
-        List<Rubro> rubros = obtenerRubrosRepoImplmentacion.obtenerRubros();
+        List<Rubro> rubros = miObtenerRubrosRepoImplmentacion.obtenerRubros();
         assertEquals(2, rubros.size());
     }
 }
