@@ -16,7 +16,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class ModificarLocalidadControllerTest {
+public class LocalidadModificarControllerTest {
     @Mock
     IModificarLocalidadInput miModificarLocalidadInput;
 

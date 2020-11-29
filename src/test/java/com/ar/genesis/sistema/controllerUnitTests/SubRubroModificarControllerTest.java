@@ -2,8 +2,8 @@ package com.ar.genesis.sistema.controllerUnitTests;
 
 import com.ar.genesis.sistema.core.domain.SubRubro;
 import com.ar.genesis.sistema.core.exception.SubRubroExisteException;
-import com.ar.genesis.sistema.core.input.ICrearSubRubroInput;
-import com.ar.genesis.sistema.service.controller.CrearSubRubroController;
+import com.ar.genesis.sistema.core.input.IModificarSubRubroInput;
+import com.ar.genesis.sistema.service.controller.ModificarSubRubroController;
 import com.ar.genesis.sistema.service.dto.SubRubroDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,29 +16,29 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class CrearSubRubroControllerTest {
+public class SubRubroModificarControllerTest {
     @Mock
-    ICrearSubRubroInput miCrearSubRubroInput;
+    IModificarSubRubroInput miModificarSubRubroInput;
 
     @Test
-    public  void crearSubRubro_SubRubroNoExiste_Devuelve200() throws SubRubroExisteException {
+    public  void modificarSubRubro_SubRubroNoExiste_Devuelve200() throws SubRubroExisteException {
         SubRubroDTO unSubRubroDTO = new SubRubroDTO(1, "SubRubro");
-        when(miCrearSubRubroInput.crearSubRubro(any(SubRubro.class))).thenReturn(true);
+        when(miModificarSubRubroInput.modificarSubRubro(any(SubRubro.class))).thenReturn(true);
 
-        CrearSubRubroController crearSubRubroController = new CrearSubRubroController(miCrearSubRubroInput);
-        ResponseEntity<?> responseEntity = crearSubRubroController.crearSubRubro(unSubRubroDTO);
+        ModificarSubRubroController modificarSubRubroController = new ModificarSubRubroController(miModificarSubRubroInput);
+        ResponseEntity<?> responseEntity = modificarSubRubroController.modificarSubRubro(unSubRubroDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 
     @Test
-    public  void crearSubRubro_SubRubroExiste_Devuelve412() throws SubRubroExisteException {
+    public  void modificarSubRubro_SubRubroExiste_Devuelve412() throws SubRubroExisteException {
         SubRubroDTO unSubRubroDTO = new SubRubroDTO(1, "SubRubro");
-        when(miCrearSubRubroInput.crearSubRubro(any(SubRubro.class))).thenThrow(SubRubroExisteException.class);
+        when(miModificarSubRubroInput.modificarSubRubro(any(SubRubro.class))).thenThrow(SubRubroExisteException.class);
 
-        CrearSubRubroController crearSubRubroController = new CrearSubRubroController(miCrearSubRubroInput);
-        ResponseEntity<?> responseEntity = crearSubRubroController.crearSubRubro(unSubRubroDTO);
+        ModificarSubRubroController modificarSubRubroController = new ModificarSubRubroController(miModificarSubRubroInput);
+        ResponseEntity<?> responseEntity = modificarSubRubroController.modificarSubRubro(unSubRubroDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }

@@ -16,7 +16,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class CrearTipoMovimientoControllerTest {
+public class TipoMovimientoCrearControllerTest {
     @Mock
     ICrearTipoMovimientoInput miCrearTipoMovimientoInput;
 

@@ -17,7 +17,7 @@ import java.util.List;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class ObtenerFichasControllerTest {
+public class FichaObtenerControllerTest {
     @Mock
     IObtenerFichaInput miObtenerFichasInput;
 

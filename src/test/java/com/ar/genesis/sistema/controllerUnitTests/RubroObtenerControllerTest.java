@@ -16,7 +16,7 @@ import java.util.List;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class ObtenerRubrosControllerTest {
+public class RubroObtenerControllerTest {
     @Mock
     IObtenerRubrosInput miObtenerRubrosInput;
 

@@ -16,7 +16,7 @@ import java.util.List;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class ObtenerTipoMovimientosControllerTest {
+public class TipoMovimientoObtenerControllerTest {
     @Mock
     IObtenerTipoMovimientosInput miObtenerTipoMovimientosInput;
 
