@@ -23,9 +23,9 @@ public class CrearTipoUnidadController {
         this.iCrearTipoUnidadInput = iCrearTipoUnidadInput;
     }
     @PostMapping(value = "/TipoUnidad")
-    public ResponseEntity<?> crearTipoUnidad(@RequestBody TipoUnidadDTO TipoUnidadDTO){
+    public ResponseEntity<?> crearTipoUnidad(@RequestBody TipoUnidadDTO tipoUnidadDTO){
         try{
-            boolean resultado = this.iCrearTipoUnidadInput.crearTipoUnidad(TipoUnidad.instancia(TipoUnidadDTO.getId(), TipoUnidadDTO.getNombre()));
+            boolean resultado = this.iCrearTipoUnidadInput.crearTipoUnidad(TipoUnidad.instancia(tipoUnidadDTO.getId(), tipoUnidadDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (TipoUnidadExisteException e) {

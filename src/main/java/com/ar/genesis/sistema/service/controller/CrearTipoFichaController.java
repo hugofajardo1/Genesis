@@ -24,9 +24,9 @@ public class CrearTipoFichaController {
     }
 
     @PostMapping(value = "/TipoFicha")
-    public ResponseEntity<?> crearTipoFicha(@RequestBody TipoFichaDTO TipoFichaDTO){
+    public ResponseEntity<?> crearTipoFicha(@RequestBody TipoFichaDTO tipoFichaDTO){
         try{
-            boolean resultado = this.iCrearTipoFichaInput.crearTipoFicha(TipoFicha.instancia(TipoFichaDTO.getId(), TipoFichaDTO.getNombre()));
+            boolean resultado = this.iCrearTipoFichaInput.crearTipoFicha(TipoFicha.instancia(tipoFichaDTO.getId(), tipoFichaDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (TipoFichaExisteException e) {

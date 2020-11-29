@@ -23,9 +23,9 @@ public class ModificarLocalidadController {
         this.iModificarLocalidadInput = iModificarLocalidadInput;
     }
     @PutMapping(value = "/Localidad")
-    public ResponseEntity<?> modificarLocalidad(@RequestBody LocalidadDTO LocalidadDTO ){
+    public ResponseEntity<?> modificarLocalidad(@RequestBody LocalidadDTO localidadDTO ){
         try{
-            boolean resultado = this.iModificarLocalidadInput.modificarLocalidad(Localidad.instancia(LocalidadDTO.getId(), LocalidadDTO.getNombre()));
+            boolean resultado = this.iModificarLocalidadInput.modificarLocalidad(Localidad.instancia(localidadDTO.getId(), localidadDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (LocalidadExisteException e) {

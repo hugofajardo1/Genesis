@@ -23,9 +23,9 @@ public class ModificarTipoUnidadController {
         this.iModificarTipoUnidadInput = iModificarTipoUnidadInput;
     }
     @PutMapping(value = "/TipoUnidad")
-    public ResponseEntity<?> modificarTipoUnidad(@RequestBody TipoUnidadDTO TipoUnidadDTO){
+    public ResponseEntity<?> modificarTipoUnidad(@RequestBody TipoUnidadDTO tipoUnidadDTO){
         try{
-            boolean resultado = this.iModificarTipoUnidadInput.modificarTipoUnidad(TipoUnidad.instancia(TipoUnidadDTO.getId(), TipoUnidadDTO.getNombre()));
+            boolean resultado = this.iModificarTipoUnidadInput.modificarTipoUnidad(TipoUnidad.instancia(tipoUnidadDTO.getId(), tipoUnidadDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (TipoUnidadExisteException e) {

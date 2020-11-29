@@ -24,10 +24,10 @@ public class ObtenerSubRubrosController {
     @GetMapping(value = "/SubRubros")
     public ResponseEntity<?> obtenerSubRubros(){
         try{
-            List<SubRubroDTO> SubRubrosDTO = new ArrayList<>();
-            iObtenerSubRubrosInput.obtenerSubRubros().forEach(SubRubro -> SubRubrosDTO.add(new SubRubroDTO(SubRubro.getId(), SubRubro.getNombre())));
-            if (SubRubrosDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            return ResponseEntity.status(HttpStatus.OK).body(SubRubrosDTO);
+            List<SubRubroDTO> subRubrosDTO = new ArrayList<>();
+            iObtenerSubRubrosInput.obtenerSubRubros().forEach(SubRubro -> subRubrosDTO.add(new SubRubroDTO(SubRubro.getId(), SubRubro.getNombre())));
+            if (subRubrosDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return ResponseEntity.status(HttpStatus.OK).body(subRubrosDTO);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

@@ -23,9 +23,9 @@ public class ModificarRubroController {
         this.iModificarRubroInput = iModificarRubroInput;
     }
     @PutMapping(value = "/Rubro")
-    public ResponseEntity<?> modificarRubro(@RequestBody RubroDTO RubroDTO){
+    public ResponseEntity<?> modificarRubro(@RequestBody RubroDTO rubroDTO){
         try{
-            boolean resultado = this.iModificarRubroInput.modificarRubro(Rubro.instancia(RubroDTO.getId(), RubroDTO.getNombre()));
+            boolean resultado = this.iModificarRubroInput.modificarRubro(Rubro.instancia(rubroDTO.getId(), rubroDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (RubroExisteException e) {

@@ -23,9 +23,9 @@ public class CrearTipoMovimientoController {
         this.iCrearTipoMovimientoInput = iCrearTipoMovimientoInput;
     }
     @PostMapping(value = "/TipoMovimiento")
-    public ResponseEntity<?> crearTipoMovimiento(@RequestBody TipoMovimientoDTO TipoMovimientoDTO){
+    public ResponseEntity<?> crearTipoMovimiento(@RequestBody TipoMovimientoDTO tipoMovimientoDTO){
         try{
-            boolean resultado = this.iCrearTipoMovimientoInput.crearTipoMovimiento(TipoMovimiento.instancia(TipoMovimientoDTO.getId(), TipoMovimientoDTO.getNombre()));
+            boolean resultado = this.iCrearTipoMovimientoInput.crearTipoMovimiento(TipoMovimiento.instancia(tipoMovimientoDTO.getId(), tipoMovimientoDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (TipoMovimientoExisteException e) {

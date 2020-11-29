@@ -23,9 +23,9 @@ public class ModificarTipoIvaController {
         this.iModificarTipoIvaInput = iModificarTipoIvaInput;
     }
     @PutMapping(value = "/TipoIva")
-    public ResponseEntity<?> modificarTipoIva(@RequestBody TipoIvaDTO TipoIvaDTO){
+    public ResponseEntity<?> modificarTipoIva(@RequestBody TipoIvaDTO tipoIvaDTO){
         try{
-            boolean resultado = this.iModificarTipoIvaInput.modificarTipoIva(TipoIva.instancia(TipoIvaDTO.getId(), TipoIvaDTO.getNombre()));
+            boolean resultado = this.iModificarTipoIvaInput.modificarTipoIva(TipoIva.instancia(tipoIvaDTO.getId(), tipoIvaDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (TipoIvaExisteException e) {

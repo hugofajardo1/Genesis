@@ -23,9 +23,9 @@ public class ModificarTipoMovimientoController {
         this.iModificarTipoMovimientoInput = iModificarTipoMovimientoInput;
     }
     @PutMapping(value = "/TipoMovimiento")
-    public ResponseEntity<?> modificarTipoMovimiento(@RequestBody TipoMovimientoDTO TipoMovimientoDTO){
+    public ResponseEntity<?> modificarTipoMovimiento(@RequestBody TipoMovimientoDTO tipoMovimientoDTO){
         try{
-            boolean resultado = this.iModificarTipoMovimientoInput.modificarTipoMovimiento(TipoMovimiento.instancia(TipoMovimientoDTO.getId(), TipoMovimientoDTO.getNombre()));
+            boolean resultado = this.iModificarTipoMovimientoInput.modificarTipoMovimiento(TipoMovimiento.instancia(tipoMovimientoDTO.getId(), tipoMovimientoDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (TipoMovimientoExisteException e) {

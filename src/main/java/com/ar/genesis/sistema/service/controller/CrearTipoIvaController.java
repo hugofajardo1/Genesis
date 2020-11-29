@@ -23,9 +23,9 @@ public class CrearTipoIvaController {
         this.iCrearTipoIvaInput = iCrearTipoIvaInput;
     }
     @PostMapping(value = "/TipoIva")
-    public ResponseEntity<?> crearTipoIva(@RequestBody TipoIvaDTO TipoIvaDTO){
+    public ResponseEntity<?> crearTipoIva(@RequestBody TipoIvaDTO tipoIvaDTO){
         try{
-            boolean resultado = this.iCrearTipoIvaInput.crearTipoIva(TipoIva.instancia(TipoIvaDTO.getId(), TipoIvaDTO.getNombre()));
+            boolean resultado = this.iCrearTipoIvaInput.crearTipoIva(TipoIva.instancia(tipoIvaDTO.getId(), tipoIvaDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (TipoIvaExisteException e) {

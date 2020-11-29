@@ -23,9 +23,9 @@ public class ModificarSubRubroController {
         this.iModificarSubRubroInput = iModificarSubRubroInput;
     }
     @PutMapping(value = "/SubRubro")
-    public ResponseEntity<?> modificarSubRubro(@RequestBody SubRubroDTO SubRubroDTO){
+    public ResponseEntity<?> modificarSubRubro(@RequestBody SubRubroDTO subRubroDTO){
         try{
-            boolean resultado = this.iModificarSubRubroInput.modificarSubRubro(SubRubro.instancia(SubRubroDTO.getId(), SubRubroDTO.getNombre()));
+            boolean resultado = this.iModificarSubRubroInput.modificarSubRubro(SubRubro.instancia(subRubroDTO.getId(), subRubroDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (SubRubroExisteException e) {
