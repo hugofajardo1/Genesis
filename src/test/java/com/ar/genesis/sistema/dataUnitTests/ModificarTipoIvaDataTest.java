@@ -25,5 +25,4 @@ public class ModificarTipoIvaDataTest {
         boolean resultado = tipoIvaRepoImplementacion.guardarTipoIva(unTipoIva);
         Assertions.assertTrue(resultado);
     }
-
 }

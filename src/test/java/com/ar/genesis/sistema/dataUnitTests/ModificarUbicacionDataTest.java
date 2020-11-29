@@ -25,5 +25,4 @@ public class ModificarUbicacionDataTest {
         boolean resultado = UbicacionRepoImplementacion.guardarUbicacion(unaUbicacion);
         Assertions.assertTrue(resultado);
     }
-
 }

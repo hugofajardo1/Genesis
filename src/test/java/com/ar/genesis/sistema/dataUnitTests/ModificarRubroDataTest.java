@@ -25,5 +25,4 @@ public class ModificarRubroDataTest {
         boolean resultado = RubroRepoImplementacion.guardarRubro(unRubro);
         Assertions.assertTrue(resultado);
     }
-
 }

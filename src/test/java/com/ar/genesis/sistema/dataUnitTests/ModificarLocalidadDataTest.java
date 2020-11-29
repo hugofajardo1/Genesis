@@ -25,5 +25,4 @@ public class ModificarLocalidadDataTest {
         boolean resultado = LocalidadRepoImplementacion.guardarLocalidad(unaLocalidad);
         Assertions.assertTrue(resultado);
     }
-
 }

@@ -25,5 +25,4 @@ public class ModificarTipoFichaDataTest {
         boolean resultado = tipoFichaRepoImplementacion.guardarTipoFicha(unTipoFicha);
         Assertions.assertTrue(resultado);
     }
-
 }

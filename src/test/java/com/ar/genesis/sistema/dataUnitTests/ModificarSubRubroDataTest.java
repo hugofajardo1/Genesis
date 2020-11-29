@@ -25,5 +25,4 @@ public class ModificarSubRubroDataTest {
         boolean resultado = SubRubroRepoImplementacion.guardarSubRubro(unSubRubro);
         Assertions.assertTrue(resultado);
     }
-
 }

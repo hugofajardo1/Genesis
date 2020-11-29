@@ -25,5 +25,4 @@ public class ModificarTipoMovimientoDataTest {
         boolean resultado = tipoMovimientoRepoImplementacion.guardarTipoMovimiento(unTipoMovimiento);
         Assertions.assertTrue(resultado);
     }
-
 }

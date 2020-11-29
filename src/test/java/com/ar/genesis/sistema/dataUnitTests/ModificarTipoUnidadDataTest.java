@@ -25,5 +25,4 @@ public class ModificarTipoUnidadDataTest {
         boolean resultado = tipoUnidadRepoImplementacion.guardarTipoUnidad(unTipoUnidad);
         Assertions.assertTrue(resultado);
     }
-
 }
