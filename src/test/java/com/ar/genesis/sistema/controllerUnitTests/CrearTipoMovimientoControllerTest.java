@@ -22,11 +22,11 @@ public class CrearTipoMovimientoControllerTest {
 
     @Test
     public  void crearTipoMovimiento_TipoMovimientoNoExiste_Devuelve200() throws TipoMovimientoExisteException {
-        TipoMovimientoDTO TipoMovimientoDTO = new TipoMovimientoDTO(1, "Factura A");
+        TipoMovimientoDTO unTipoMovimientoDTO = new TipoMovimientoDTO(1, "Factura A");
         when(miCrearTipoMovimientoInput.crearTipoMovimiento(any(TipoMovimiento.class))).thenReturn(true);
 
         CrearTipoMovimientoController crearTipoMovimientoController = new CrearTipoMovimientoController(miCrearTipoMovimientoInput);
-        ResponseEntity<?> responseEntity = crearTipoMovimientoController.crearTipoMovimiento(TipoMovimientoDTO);
+        ResponseEntity<?> responseEntity = crearTipoMovimientoController.crearTipoMovimiento(unTipoMovimientoDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
@@ -34,11 +34,11 @@ public class CrearTipoMovimientoControllerTest {
 
     @Test
     public  void crearTipoMovimiento_TipoMovimientoExiste_Devuelve412() throws TipoMovimientoExisteException {
-        TipoMovimientoDTO TipoMovimientoDTO = new TipoMovimientoDTO(1, "Factura A");
+        TipoMovimientoDTO unTipoMovimientoDTO = new TipoMovimientoDTO(1, "Factura A");
         when(miCrearTipoMovimientoInput.crearTipoMovimiento(any(TipoMovimiento.class))).thenThrow(TipoMovimientoExisteException.class);
 
         CrearTipoMovimientoController crearTipoMovimientoController = new CrearTipoMovimientoController(miCrearTipoMovimientoInput);
-        ResponseEntity<?> responseEntity = crearTipoMovimientoController.crearTipoMovimiento(TipoMovimientoDTO);
+        ResponseEntity<?> responseEntity = crearTipoMovimientoController.crearTipoMovimiento(unTipoMovimientoDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }

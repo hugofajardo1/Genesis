@@ -22,11 +22,11 @@ public class ModificarTipoMovimientoControllerTest {
 
     @Test
     public  void modificarTipoMovimiento_TipoMovimientoNoExiste_Devuelve200() throws TipoMovimientoExisteException {
-        TipoMovimientoDTO tipoMovimientoDTO = new TipoMovimientoDTO(1, "Factura A");
+        TipoMovimientoDTO unTipoMovimientoDTO = new TipoMovimientoDTO(1, "Factura A");
         when(miModificarTipoMovimientoInput.modificarTipoMovimiento(any(TipoMovimiento.class))).thenReturn(true);
 
         ModificarTipoMovimientoController modificarTipoMovimientoController = new ModificarTipoMovimientoController(miModificarTipoMovimientoInput);
-        ResponseEntity<?> responseEntity = modificarTipoMovimientoController.modificarTipoMovimiento(tipoMovimientoDTO);
+        ResponseEntity<?> responseEntity = modificarTipoMovimientoController.modificarTipoMovimiento(unTipoMovimientoDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
@@ -34,11 +34,11 @@ public class ModificarTipoMovimientoControllerTest {
 
     @Test
     public  void modificarTipoMovimiento_TipoMovimientoExiste_Devuelve412() throws TipoMovimientoExisteException {
-        TipoMovimientoDTO tipoMovimientoDTO = new TipoMovimientoDTO(1, "Factura A");
+        TipoMovimientoDTO unTipoMovimientoDTO = new TipoMovimientoDTO(1, "Factura A");
         when(miModificarTipoMovimientoInput.modificarTipoMovimiento(any(TipoMovimiento.class))).thenThrow(TipoMovimientoExisteException.class);
 
         ModificarTipoMovimientoController modificarTipoMovimientoController = new ModificarTipoMovimientoController(miModificarTipoMovimientoInput);
-        ResponseEntity<?> responseEntity = modificarTipoMovimientoController.modificarTipoMovimiento(tipoMovimientoDTO);
+        ResponseEntity<?> responseEntity = modificarTipoMovimientoController.modificarTipoMovimiento(unTipoMovimientoDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }

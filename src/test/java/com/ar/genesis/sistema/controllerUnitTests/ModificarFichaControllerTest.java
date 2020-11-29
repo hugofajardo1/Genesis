@@ -23,11 +23,11 @@ public class ModificarFichaControllerTest {
 
     @Test
     public  void modificarFicha_FichaNoExiste_Devuelve200() throws FichaExisteException {
-        FichaDTO fichaDTO = new FichaDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", "3825416543", new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336");
+        FichaDTO unaFichaDTO = new FichaDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", "3825416543", new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336");
         when(miModificarFichaInput.modificarFicha(any(Ficha.class))).thenReturn(true);
 
         ModificarFichaController modificarFichaController = new ModificarFichaController(miModificarFichaInput);
-        ResponseEntity<?> responseEntity = modificarFichaController.modificarFicha(fichaDTO);
+        ResponseEntity<?> responseEntity = modificarFichaController.modificarFicha(unaFichaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
@@ -35,11 +35,11 @@ public class ModificarFichaControllerTest {
 
     @Test
     public  void modificarFicha_FichaExiste_Devuelve412() throws FichaExisteException {
-        FichaDTO fichaDTO = new FichaDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", "3825416543", new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336");
+        FichaDTO unaFichaDTO = new FichaDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", "3825416543", new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336");
         when(miModificarFichaInput.modificarFicha(any(Ficha.class))).thenThrow(FichaExisteException.class);
 
         ModificarFichaController modificarFichaController = new ModificarFichaController(miModificarFichaInput);
-        ResponseEntity<?> responseEntity = modificarFichaController.modificarFicha(fichaDTO);
+        ResponseEntity<?> responseEntity = modificarFichaController.modificarFicha(unaFichaDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }

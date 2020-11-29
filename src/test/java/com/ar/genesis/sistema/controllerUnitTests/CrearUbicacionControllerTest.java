@@ -22,11 +22,11 @@ public class CrearUbicacionControllerTest {
 
     @Test
     public  void crearUbicacion_UbicacionNoExiste_Devuelve200() throws UbicacionExisteException {
-        UbicacionDTO ubicacionDTO = new UbicacionDTO(1, "Ubicacion 1");
+        UbicacionDTO unaUbicacionDTO = new UbicacionDTO(1, "Ubicacion 1");
         when(miCrearUbicacionInput.crearUbicacion(any(Ubicacion.class))).thenReturn(true);
 
         CrearUbicacionController crearUbicacionController = new CrearUbicacionController(miCrearUbicacionInput);
-        ResponseEntity<?> responseEntity = crearUbicacionController.crearUbicacion(ubicacionDTO);
+        ResponseEntity<?> responseEntity = crearUbicacionController.crearUbicacion(unaUbicacionDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
@@ -34,11 +34,11 @@ public class CrearUbicacionControllerTest {
 
     @Test
     public  void crearUbicacion_UbicacionExiste_Devuelve412() throws UbicacionExisteException {
-        UbicacionDTO ubicacionDTO = new UbicacionDTO(1, "Ubicacion 1");
+        UbicacionDTO unaUbicacionDTO = new UbicacionDTO(1, "Ubicacion 1");
         when(miCrearUbicacionInput.crearUbicacion(any(Ubicacion.class))).thenThrow(UbicacionExisteException.class);
 
         CrearUbicacionController crearUbicacionController = new CrearUbicacionController(miCrearUbicacionInput);
-        ResponseEntity<?> responseEntity = crearUbicacionController.crearUbicacion(ubicacionDTO);
+        ResponseEntity<?> responseEntity = crearUbicacionController.crearUbicacion(unaUbicacionDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }

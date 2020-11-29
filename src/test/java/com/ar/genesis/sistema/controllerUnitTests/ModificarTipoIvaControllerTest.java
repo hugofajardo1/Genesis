@@ -22,11 +22,11 @@ public class ModificarTipoIvaControllerTest {
 
     @Test
     public  void modificarTipoIva_TipoIvaNoExiste_Devuelve200() throws TipoIvaExisteException {
-        TipoIvaDTO tipoIvaDTO = new TipoIvaDTO(1, "Responsable Inscripto");
+        TipoIvaDTO unTipoIvaDTO = new TipoIvaDTO(1, "Responsable Inscripto");
         when(miModificarTipoIvaInput.modificarTipoIva(any(TipoIva.class))).thenReturn(true);
 
         ModificarTipoIvaController modificarTipoIvaController = new ModificarTipoIvaController(miModificarTipoIvaInput);
-        ResponseEntity<?> responseEntity = modificarTipoIvaController.modificarTipoIva(tipoIvaDTO);
+        ResponseEntity<?> responseEntity = modificarTipoIvaController.modificarTipoIva(unTipoIvaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
@@ -34,11 +34,11 @@ public class ModificarTipoIvaControllerTest {
 
     @Test
     public  void modificarTipoIva_TipoIvaExiste_Devuelve412() throws TipoIvaExisteException {
-        TipoIvaDTO tipoIvaDTO = new TipoIvaDTO(1, "Responsable Inscripto");
+        TipoIvaDTO unTipoIvaDTO = new TipoIvaDTO(1, "Responsable Inscripto");
         when(miModificarTipoIvaInput.modificarTipoIva(any(TipoIva.class))).thenThrow(TipoIvaExisteException.class);
 
         ModificarTipoIvaController modificarTipoIvaController = new ModificarTipoIvaController(miModificarTipoIvaInput);
-        ResponseEntity<?> responseEntity = modificarTipoIvaController.modificarTipoIva(tipoIvaDTO);
+        ResponseEntity<?> responseEntity = modificarTipoIvaController.modificarTipoIva(unTipoIvaDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }

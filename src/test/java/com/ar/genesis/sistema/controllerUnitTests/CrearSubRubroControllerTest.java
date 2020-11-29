@@ -22,11 +22,11 @@ public class CrearSubRubroControllerTest {
 
     @Test
     public  void crearSubRubro_SubRubroNoExiste_Devuelve200() throws SubRubroExisteException {
-        SubRubroDTO subRubroDTO = new SubRubroDTO(1, "SubRubro");
+        SubRubroDTO unSubRubroDTO = new SubRubroDTO(1, "SubRubro");
         when(miCrearSubRubroInput.crearSubRubro(any(SubRubro.class))).thenReturn(true);
 
         CrearSubRubroController crearSubRubroController = new CrearSubRubroController(miCrearSubRubroInput);
-        ResponseEntity<?> responseEntity = crearSubRubroController.crearSubRubro(subRubroDTO);
+        ResponseEntity<?> responseEntity = crearSubRubroController.crearSubRubro(unSubRubroDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
@@ -34,11 +34,11 @@ public class CrearSubRubroControllerTest {
 
     @Test
     public  void crearSubRubro_SubRubroExiste_Devuelve412() throws SubRubroExisteException {
-        SubRubroDTO subRubroDTO = new SubRubroDTO(1, "SubRubro");
+        SubRubroDTO unSubRubroDTO = new SubRubroDTO(1, "SubRubro");
         when(miCrearSubRubroInput.crearSubRubro(any(SubRubro.class))).thenThrow(SubRubroExisteException.class);
 
         CrearSubRubroController crearSubRubroController = new CrearSubRubroController(miCrearSubRubroInput);
-        ResponseEntity<?> responseEntity = crearSubRubroController.crearSubRubro(subRubroDTO);
+        ResponseEntity<?> responseEntity = crearSubRubroController.crearSubRubro(unSubRubroDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }

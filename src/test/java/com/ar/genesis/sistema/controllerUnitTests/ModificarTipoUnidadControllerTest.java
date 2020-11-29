@@ -22,11 +22,11 @@ public class ModificarTipoUnidadControllerTest {
 
     @Test
     public  void modificarTipoUnidad_TipoUnidadNoExiste_Devuelve200() throws TipoUnidadExisteException {
-        TipoUnidadDTO tipoUnidadDTO = new TipoUnidadDTO(1, "Responsable Inscripto");
+        TipoUnidadDTO unTipoUnidadDTO = new TipoUnidadDTO(1, "Responsable Inscripto");
         when(miModificarTipoUnidadInput.modificarTipoUnidad(any(TipoUnidad.class))).thenReturn(true);
 
         ModificarTipoUnidadController modificarTipoUnidadController = new ModificarTipoUnidadController(miModificarTipoUnidadInput);
-        ResponseEntity<?> responseEntity = modificarTipoUnidadController.modificarTipoUnidad(tipoUnidadDTO);
+        ResponseEntity<?> responseEntity = modificarTipoUnidadController.modificarTipoUnidad(unTipoUnidadDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
@@ -34,11 +34,11 @@ public class ModificarTipoUnidadControllerTest {
 
     @Test
     public  void modificarTipoUnidad_TipoUnidadExiste_Devuelve412() throws TipoUnidadExisteException {
-        TipoUnidadDTO tipoUnidadDTO = new TipoUnidadDTO(1, "Responsable Inscripto");
+        TipoUnidadDTO unTipoUnidadDTO = new TipoUnidadDTO(1, "Responsable Inscripto");
         when(miModificarTipoUnidadInput.modificarTipoUnidad(any(TipoUnidad.class))).thenThrow(TipoUnidadExisteException.class);
 
         ModificarTipoUnidadController modificarTipoUnidadController = new ModificarTipoUnidadController(miModificarTipoUnidadInput);
-        ResponseEntity<?> responseEntity = modificarTipoUnidadController.modificarTipoUnidad(tipoUnidadDTO);
+        ResponseEntity<?> responseEntity = modificarTipoUnidadController.modificarTipoUnidad(unTipoUnidadDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }

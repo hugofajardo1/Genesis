@@ -22,11 +22,11 @@ public class CrearTipoFichaControllerTest {
 
     @Test
     public  void crearTipoFicha_TipoFichaNoExiste_Devuelve200() throws TipoFichaExisteException {
-        TipoFichaDTO TipoFichaDTO = new TipoFichaDTO(1, "Cliente");
+        TipoFichaDTO unTipoFichaDTO = new TipoFichaDTO(1, "Cliente");
         when(miCrearTipoFichaInput.crearTipoFicha(any(TipoFicha.class))).thenReturn(true);
 
         CrearTipoFichaController crearTipoFichaController = new CrearTipoFichaController(miCrearTipoFichaInput);
-        ResponseEntity<?> responseEntity = crearTipoFichaController.crearTipoFicha(TipoFichaDTO);
+        ResponseEntity<?> responseEntity = crearTipoFichaController.crearTipoFicha(unTipoFichaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
@@ -34,11 +34,11 @@ public class CrearTipoFichaControllerTest {
 
     @Test
     public  void crearTipoFicha_TipoFichaExiste_Devuelve412() throws TipoFichaExisteException {
-        TipoFichaDTO TipoFichaDTO = new TipoFichaDTO(1, "Cliente");
+        TipoFichaDTO unTipoFichaDTO = new TipoFichaDTO(1, "Cliente");
         when(miCrearTipoFichaInput.crearTipoFicha(any(TipoFicha.class))).thenThrow(TipoFichaExisteException.class);
 
         CrearTipoFichaController crearTipoFichaController = new CrearTipoFichaController(miCrearTipoFichaInput);
-        ResponseEntity<?> responseEntity = crearTipoFichaController.crearTipoFicha(TipoFichaDTO);
+        ResponseEntity<?> responseEntity = crearTipoFichaController.crearTipoFicha(unTipoFichaDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }

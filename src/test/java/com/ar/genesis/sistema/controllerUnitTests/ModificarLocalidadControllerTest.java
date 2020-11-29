@@ -22,11 +22,11 @@ public class ModificarLocalidadControllerTest {
 
     @Test
     public  void modificarLocalidad_LocalidadNoExiste_Devuelve200() throws LocalidadExisteException {
-        LocalidadDTO LocalidadDTO = new LocalidadDTO(1, "Localidad 1");
+        LocalidadDTO unaLocalidadDTO = new LocalidadDTO(1, "Localidad 1");
         when(miModificarLocalidadInput.modificarLocalidad(any(Localidad.class))).thenReturn(true);
 
         ModificarLocalidadController modificarLocalidadController = new ModificarLocalidadController(miModificarLocalidadInput);
-        ResponseEntity<?> responseEntity = modificarLocalidadController.modificarLocalidad(LocalidadDTO);
+        ResponseEntity<?> responseEntity = modificarLocalidadController.modificarLocalidad(unaLocalidadDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
@@ -34,11 +34,11 @@ public class ModificarLocalidadControllerTest {
 
     @Test
     public  void modificarLocalidad_LocalidadExiste_Devuelve412() throws LocalidadExisteException {
-        LocalidadDTO LocalidadDTO = new LocalidadDTO(1, "Localidad 2");
+        LocalidadDTO unaLocalidadDTO = new LocalidadDTO(1, "Localidad 2");
         when(miModificarLocalidadInput.modificarLocalidad(any(Localidad.class))).thenThrow(LocalidadExisteException.class);
 
         ModificarLocalidadController modificarLocalidadController = new ModificarLocalidadController(miModificarLocalidadInput);
-        ResponseEntity<?> responseEntity = modificarLocalidadController.modificarLocalidad(LocalidadDTO);
+        ResponseEntity<?> responseEntity = modificarLocalidadController.modificarLocalidad(unaLocalidadDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }

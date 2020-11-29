@@ -24,11 +24,11 @@ public class CrearFichaControllerTest {
 
     @Test
     public  void crearFicha_FichaNoExiste_Devuelve200() throws FichaExisteException {
-        FichaDTO fichaDTO = new FichaDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", "3825416543", new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336");
+        FichaDTO unaFichaDTO = new FichaDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", "3825416543", new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336");
         when(miCrearFichaInput.crearFicha(any(Ficha.class))).thenReturn(true);
 
         CrearFichaController crearFichaController = new CrearFichaController(miCrearFichaInput);
-        ResponseEntity<?> responseEntity = crearFichaController.crearFicha(fichaDTO);
+        ResponseEntity<?> responseEntity = crearFichaController.crearFicha(unaFichaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
@@ -36,11 +36,11 @@ public class CrearFichaControllerTest {
 
     @Test
     public  void crearFicha_FichaExiste_Devuelve412() throws FichaExisteException {
-        FichaDTO fichaDTO = new FichaDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", "3825416543", new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336");
+        FichaDTO unaFichaDTO = new FichaDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", "3825416543", new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336");
         when(miCrearFichaInput.crearFicha(any(Ficha.class))).thenThrow(FichaExisteException.class);
 
         CrearFichaController crearFichaController = new CrearFichaController(miCrearFichaInput);
-        ResponseEntity<?> responseEntity = crearFichaController.crearFicha(fichaDTO);
+        ResponseEntity<?> responseEntity = crearFichaController.crearFicha(unaFichaDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }

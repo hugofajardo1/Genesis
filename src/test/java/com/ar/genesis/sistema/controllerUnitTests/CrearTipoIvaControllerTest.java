@@ -22,11 +22,11 @@ public class CrearTipoIvaControllerTest {
 
     @Test
     public  void crearTipoIva_TipoIvaNoExiste_Devuelve200() throws TipoIvaExisteException {
-        TipoIvaDTO TipoIvaDTO = new TipoIvaDTO(1, "Responsable Inscripto");
+        TipoIvaDTO unTipoIvaDTO = new TipoIvaDTO(1, "Responsable Inscripto");
         when(miCrearTipoIvaInput.crearTipoIva(any(TipoIva.class))).thenReturn(true);
 
         CrearTipoIvaController crearTipoIvaController = new CrearTipoIvaController(miCrearTipoIvaInput);
-        ResponseEntity<?> responseEntity = crearTipoIvaController.crearTipoIva(TipoIvaDTO);
+        ResponseEntity<?> responseEntity = crearTipoIvaController.crearTipoIva(unTipoIvaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
@@ -34,11 +34,11 @@ public class CrearTipoIvaControllerTest {
 
     @Test
     public  void crearTipoIva_TipoIvaExiste_Devuelve412() throws TipoIvaExisteException {
-        TipoIvaDTO TipoIvaDTO = new TipoIvaDTO(1, "Responsable Inscripto");
+        TipoIvaDTO unTipoIvaDTO = new TipoIvaDTO(1, "Responsable Inscripto");
         when(miCrearTipoIvaInput.crearTipoIva(any(TipoIva.class))).thenThrow(TipoIvaExisteException.class);
 
         CrearTipoIvaController crearTipoIvaController = new CrearTipoIvaController(miCrearTipoIvaInput);
-        ResponseEntity<?> responseEntity = crearTipoIvaController.crearTipoIva(TipoIvaDTO);
+        ResponseEntity<?> responseEntity = crearTipoIvaController.crearTipoIva(unTipoIvaDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }

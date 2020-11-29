@@ -22,11 +22,11 @@ public class CrearLocalidadControllerTest {
 
     @Test
     public  void crearLocalidad_LocalidadNoExiste_Devuelve200() throws LocalidadExisteException {
-        LocalidadDTO localidadDTO = new LocalidadDTO(1, "Localidad 1");
+        LocalidadDTO unaLocalidadDTO = new LocalidadDTO(1, "Localidad 1");
         when(miCrearLocalidadInput.crearLocalidad(any(Localidad.class))).thenReturn(true);
 
         CrearLocalidadController crearLocalidadController = new CrearLocalidadController(miCrearLocalidadInput);
-        ResponseEntity<?> responseEntity = crearLocalidadController.crearLocalidad(localidadDTO);
+        ResponseEntity<?> responseEntity = crearLocalidadController.crearLocalidad(unaLocalidadDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
@@ -34,11 +34,11 @@ public class CrearLocalidadControllerTest {
 
     @Test
     public  void crearLocalidad_LocalidadExiste_Devuelve412() throws LocalidadExisteException {
-        LocalidadDTO localidadDTO = new LocalidadDTO(1, "Localidad 1");
+        LocalidadDTO unaLocalidadDTO = new LocalidadDTO(1, "Localidad 1");
         when(miCrearLocalidadInput.crearLocalidad(any(Localidad.class))).thenThrow(LocalidadExisteException.class);
 
         CrearLocalidadController crearLocalidadController = new CrearLocalidadController(miCrearLocalidadInput);
-        ResponseEntity<?> responseEntity = crearLocalidadController.crearLocalidad(localidadDTO);
+        ResponseEntity<?> responseEntity = crearLocalidadController.crearLocalidad(unaLocalidadDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }

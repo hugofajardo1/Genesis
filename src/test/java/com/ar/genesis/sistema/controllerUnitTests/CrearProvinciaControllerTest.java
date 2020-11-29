@@ -22,11 +22,11 @@ public class CrearProvinciaControllerTest {
 
     @Test
     public  void crearProvincia_ProvinciaNoExiste_Devuelve200() throws ProvinciaExisteException {
-        ProvinciaDTO provinciaDTO = new ProvinciaDTO(1, "Provincia");
+        ProvinciaDTO unaProvinciaDTO = new ProvinciaDTO(1, "Provincia");
         when(miCrearProvinciaInput.crearProvincia(any(Provincia.class))).thenReturn(true);
 
         CrearProvinciaController crearProvinciaController = new CrearProvinciaController(miCrearProvinciaInput);
-        ResponseEntity<?> responseEntity = crearProvinciaController.crearProvincia(provinciaDTO);
+        ResponseEntity<?> responseEntity = crearProvinciaController.crearProvincia(unaProvinciaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
@@ -34,11 +34,11 @@ public class CrearProvinciaControllerTest {
 
     @Test
     public  void crearProvincia_ProvinciaExiste_Devuelve412() throws ProvinciaExisteException {
-        ProvinciaDTO provinciaDTO = new ProvinciaDTO(1, "Provincia");
+        ProvinciaDTO unaProvinciaDTO = new ProvinciaDTO(1, "Provincia");
         when(miCrearProvinciaInput.crearProvincia(any(Provincia.class))).thenThrow(ProvinciaExisteException.class);
 
         CrearProvinciaController crearProvinciaController = new CrearProvinciaController(miCrearProvinciaInput);
-        ResponseEntity<?> responseEntity = crearProvinciaController.crearProvincia(provinciaDTO);
+        ResponseEntity<?> responseEntity = crearProvinciaController.crearProvincia(unaProvinciaDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }
