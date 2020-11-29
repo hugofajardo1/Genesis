@@ -17,20 +17,20 @@ public class ModificarSubRubroUseCaseTest {
     ISubRubroRepository iSubRubroRepository;
     @Test
     void modificarSubRubro_SubRubroActualizadoCorrectamente() throws SubRubroExisteException {
-        SubRubro SubRubroNueva = SubRubro.instancia(1, "SubRubro");
+        SubRubro unSubRubro = SubRubro.instancia(1, "SubRubro");
         when(iSubRubroRepository.existeSubRubro("SubRubro")).thenReturn(false);
-        when(iSubRubroRepository.guardarSubRubro(SubRubroNueva)).thenReturn(true);
+        when(iSubRubroRepository.guardarSubRubro(unSubRubro)).thenReturn(true);
         ModificarSubRubroUseCase modificarSubRubroUseCase = new ModificarSubRubroUseCase(iSubRubroRepository);
-        boolean resultado = modificarSubRubroUseCase.modificarSubRubro(SubRubroNueva);
+        boolean resultado = modificarSubRubroUseCase.modificarSubRubro(unSubRubro);
         Assertions.assertTrue(resultado);
     }
 
     @Test
     void modificarSubRubro_HayConflictoSubRubroExiste_SubRubroNoActualiza() {
-        SubRubro SubRubroNueva = SubRubro.instancia(1, "SubRubro");
+        SubRubro unSubRubro = SubRubro.instancia(1, "SubRubro");
         when(iSubRubroRepository.existeSubRubro("SubRubro")).thenReturn(true);
-        when(iSubRubroRepository.guardarSubRubro(SubRubroNueva)).thenReturn(false);
+        when(iSubRubroRepository.guardarSubRubro(unSubRubro)).thenReturn(false);
         ModificarSubRubroUseCase modificarSubRubroUseCase = new ModificarSubRubroUseCase(iSubRubroRepository);
-        Assertions.assertThrows(SubRubroExisteException.class, () -> modificarSubRubroUseCase.modificarSubRubro(SubRubroNueva));
+        Assertions.assertThrows(SubRubroExisteException.class, () -> modificarSubRubroUseCase.modificarSubRubro(unSubRubro));
     }
 }

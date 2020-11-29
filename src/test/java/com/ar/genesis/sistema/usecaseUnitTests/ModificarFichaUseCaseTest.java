@@ -19,20 +19,20 @@ public class ModificarFichaUseCaseTest {
 
     @Test
     void modificarFicha_FichaActualizadoCorrectamente() throws FichaExisteException {
-        Ficha ficha = Ficha.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336");
+        Ficha unaFicha = Ficha.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336");
         when(iFichaRepository.existeFicha("Fajardo, Hugo")).thenReturn(false);
-        when(iFichaRepository.guardarFicha(ficha)).thenReturn(true);
+        when(iFichaRepository.guardarFicha(unaFicha)).thenReturn(true);
         ModificarFichaUseCase modificarFichaUseCase = new ModificarFichaUseCase(iFichaRepository);
-        boolean resultado = modificarFichaUseCase.modificarFicha(ficha);
+        boolean resultado = modificarFichaUseCase.modificarFicha(unaFicha);
         Assertions.assertTrue(resultado);
     }
 
     @Test
     void modificarFicha_HayConflictoFichaExiste_FichaNoActualiza() {
-        Ficha ficha = Ficha.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336");
+        Ficha unaFicha = Ficha.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336");
         when(iFichaRepository.existeFicha("Fajardo, Hugo")).thenReturn(true);
-        when(iFichaRepository.guardarFicha(ficha)).thenReturn(false);
+        when(iFichaRepository.guardarFicha(unaFicha)).thenReturn(false);
         ModificarFichaUseCase modificarFichaUseCase = new ModificarFichaUseCase(iFichaRepository);
-        Assertions.assertThrows(FichaExisteException.class, () -> modificarFichaUseCase.modificarFicha(ficha));
+        Assertions.assertThrows(FichaExisteException.class, () -> modificarFichaUseCase.modificarFicha(unaFicha));
     }
 }

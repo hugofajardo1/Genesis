@@ -17,20 +17,20 @@ public class ModificarTipoMovimientoUseCaseTest {
     ITipoMovimientoRepository iTipoMovimientoRepository;
     @Test
     void modificarTipoMovimiento_TipoMovimientoActualizadoCorrectamente() throws TipoMovimientoExisteException {
-        TipoMovimiento tipoMovimientoNueva = TipoMovimiento.instancia(1, "Factura A");
+        TipoMovimiento unTipoMovimiento = TipoMovimiento.instancia(1, "Factura A");
         when(iTipoMovimientoRepository.existeTipoMovimiento("Factura A")).thenReturn(false);
-        when(iTipoMovimientoRepository.guardarTipoMovimiento(tipoMovimientoNueva)).thenReturn(true);
+        when(iTipoMovimientoRepository.guardarTipoMovimiento(unTipoMovimiento)).thenReturn(true);
         ModificarTipoMovimientoUseCase modificarTipoMovimientoUseCase = new ModificarTipoMovimientoUseCase(iTipoMovimientoRepository);
-        boolean resultado = modificarTipoMovimientoUseCase.modificarTipoMovimiento(tipoMovimientoNueva);
+        boolean resultado = modificarTipoMovimientoUseCase.modificarTipoMovimiento(unTipoMovimiento);
         Assertions.assertTrue(resultado);
     }
 
     @Test
     void modificarTipoMovimiento_HayConflictoTipoMovimientoExiste_TipoMovimientoNoActualiza() {
-        TipoMovimiento tipoMovimientoNueva = TipoMovimiento.instancia(1, "Factura A");
+        TipoMovimiento unTipoMovimiento = TipoMovimiento.instancia(1, "Factura A");
         when(iTipoMovimientoRepository.existeTipoMovimiento("Factura A")).thenReturn(true);
-        when(iTipoMovimientoRepository.guardarTipoMovimiento(tipoMovimientoNueva)).thenReturn(false);
+        when(iTipoMovimientoRepository.guardarTipoMovimiento(unTipoMovimiento)).thenReturn(false);
         ModificarTipoMovimientoUseCase modificarTipoMovimientoUseCase = new ModificarTipoMovimientoUseCase(iTipoMovimientoRepository);
-        Assertions.assertThrows(TipoMovimientoExisteException.class, () -> modificarTipoMovimientoUseCase.modificarTipoMovimiento(tipoMovimientoNueva));
+        Assertions.assertThrows(TipoMovimientoExisteException.class, () -> modificarTipoMovimientoUseCase.modificarTipoMovimiento(unTipoMovimiento));
     }
 }

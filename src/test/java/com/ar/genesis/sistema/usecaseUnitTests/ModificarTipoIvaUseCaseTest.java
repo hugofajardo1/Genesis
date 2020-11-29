@@ -17,20 +17,20 @@ public class ModificarTipoIvaUseCaseTest {
     ITipoIvaRepository iTipoIvaRepository;
     @Test
     void modificarTipoIva_TipoIvaActualizadoCorrectamente() throws TipoIvaExisteException {
-        TipoIva tipoIvaNueva = TipoIva.instancia(1, "Responsable Inscripto");
+        TipoIva unTipoIva = TipoIva.instancia(1, "Responsable Inscripto");
         when(iTipoIvaRepository.existeTipoIva("Responsable Inscripto")).thenReturn(false);
-        when(iTipoIvaRepository.guardarTipoIva(tipoIvaNueva)).thenReturn(true);
+        when(iTipoIvaRepository.guardarTipoIva(unTipoIva)).thenReturn(true);
         ModificarTipoIvaUseCase modificarTipoIvaUseCase = new ModificarTipoIvaUseCase(iTipoIvaRepository);
-        boolean resultado = modificarTipoIvaUseCase.modificarTipoIva(tipoIvaNueva);
+        boolean resultado = modificarTipoIvaUseCase.modificarTipoIva(unTipoIva);
         Assertions.assertTrue(resultado);
     }
 
     @Test
     void modificarTipoIva_HayConflictoTipoIvaExiste_TipoIvaNoActualiza() {
-        TipoIva tipoIvaNueva = TipoIva.instancia(1, "Responsable Inscripto");
+        TipoIva unTipoIva = TipoIva.instancia(1, "Responsable Inscripto");
         when(iTipoIvaRepository.existeTipoIva("Responsable Inscripto")).thenReturn(true);
-        when(iTipoIvaRepository.guardarTipoIva(tipoIvaNueva)).thenReturn(false);
+        when(iTipoIvaRepository.guardarTipoIva(unTipoIva)).thenReturn(false);
         ModificarTipoIvaUseCase modificarTipoIvaUseCase = new ModificarTipoIvaUseCase(iTipoIvaRepository);
-        Assertions.assertThrows(TipoIvaExisteException.class, () -> modificarTipoIvaUseCase.modificarTipoIva(tipoIvaNueva));
+        Assertions.assertThrows(TipoIvaExisteException.class, () -> modificarTipoIvaUseCase.modificarTipoIva(unTipoIva));
     }
 }

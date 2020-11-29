@@ -17,20 +17,20 @@ public class ModificarTipoUnidadUseCaseTest {
     ITipoUnidadRepository iTipoUnidadRepository;
     @Test
     void modificarTipoUnidad_TipoUnidadActualizadoCorrectamente() throws TipoUnidadExisteException {
-        TipoUnidad tipoUnidadNueva = TipoUnidad.instancia(1, "Unidad");
+        TipoUnidad unTipoUnidad = TipoUnidad.instancia(1, "Unidad");
         when(iTipoUnidadRepository.existeTipoUnidad("Unidad")).thenReturn(false);
-        when(iTipoUnidadRepository.guardarTipoUnidad(tipoUnidadNueva)).thenReturn(true);
+        when(iTipoUnidadRepository.guardarTipoUnidad(unTipoUnidad)).thenReturn(true);
         ModificarTipoUnidadUseCase modificarTipoUnidadUseCase = new ModificarTipoUnidadUseCase(iTipoUnidadRepository);
-        boolean resultado = modificarTipoUnidadUseCase.modificarTipoUnidad(tipoUnidadNueva);
+        boolean resultado = modificarTipoUnidadUseCase.modificarTipoUnidad(unTipoUnidad);
         Assertions.assertTrue(resultado);
     }
 
     @Test
     void modificarTipoUnidad_HayConflictoTipoUnidadExiste_TipoUnidadNoActualiza() {
-        TipoUnidad tipoUnidadNueva = TipoUnidad.instancia(1, "Unidad");
+        TipoUnidad unTipoUnidad = TipoUnidad.instancia(1, "Unidad");
         when(iTipoUnidadRepository.existeTipoUnidad("Unidad")).thenReturn(true);
-        when(iTipoUnidadRepository.guardarTipoUnidad(tipoUnidadNueva)).thenReturn(false);
+        when(iTipoUnidadRepository.guardarTipoUnidad(unTipoUnidad)).thenReturn(false);
         ModificarTipoUnidadUseCase modificarTipoUnidadUseCase = new ModificarTipoUnidadUseCase(iTipoUnidadRepository);
-        Assertions.assertThrows(TipoUnidadExisteException.class, () -> modificarTipoUnidadUseCase.modificarTipoUnidad(tipoUnidadNueva));
+        Assertions.assertThrows(TipoUnidadExisteException.class, () -> modificarTipoUnidadUseCase.modificarTipoUnidad(unTipoUnidad));
     }
 }

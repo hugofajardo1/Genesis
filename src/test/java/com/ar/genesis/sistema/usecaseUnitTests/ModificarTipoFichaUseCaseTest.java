@@ -18,20 +18,20 @@ public class ModificarTipoFichaUseCaseTest {
     ITipoFichaRepository iTipoFichaRepository;
     @Test
     void modificarTipoFicha_TipoFichaActualizadoCorrectamente() throws TipoFichaExisteException {
-        TipoFicha tipoFichaNueva = TipoFicha.instancia(1, "Cliente");
+        TipoFicha unTipoFicha = TipoFicha.instancia(1, "Cliente");
         when(iTipoFichaRepository.existeTipoFicha("Cliente")).thenReturn(false);
-        when(iTipoFichaRepository.guardarTipoFicha(tipoFichaNueva)).thenReturn(true);
+        when(iTipoFichaRepository.guardarTipoFicha(unTipoFicha)).thenReturn(true);
         ModificarTipoFichaUseCase modificarTipoFichaUseCase = new ModificarTipoFichaUseCase(iTipoFichaRepository);
-        boolean resultado = modificarTipoFichaUseCase.modificarTipoFicha(tipoFichaNueva);
+        boolean resultado = modificarTipoFichaUseCase.modificarTipoFicha(unTipoFicha);
         Assertions.assertTrue(resultado);
     }
 
     @Test
     void modificarTipoFicha_HayConflictoTipoFichaExiste_TipoFichaNoActualiza() {
-        TipoFicha tipoFichaNueva = TipoFicha.instancia(1, "Cliente");
+        TipoFicha unTipoFicha = TipoFicha.instancia(1, "Cliente");
         when(iTipoFichaRepository.existeTipoFicha("Cliente")).thenReturn(true);
-        when(iTipoFichaRepository.guardarTipoFicha(tipoFichaNueva)).thenReturn(false);
+        when(iTipoFichaRepository.guardarTipoFicha(unTipoFicha)).thenReturn(false);
         ModificarTipoFichaUseCase modificarTipoFichaUseCase = new ModificarTipoFichaUseCase(iTipoFichaRepository);
-        Assertions.assertThrows(TipoFichaExisteException.class, () -> modificarTipoFichaUseCase.modificarTipoFicha(tipoFichaNueva));
+        Assertions.assertThrows(TipoFichaExisteException.class, () -> modificarTipoFichaUseCase.modificarTipoFicha(unTipoFicha));
     }
 }

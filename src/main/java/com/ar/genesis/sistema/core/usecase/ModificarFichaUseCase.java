@@ -18,10 +18,10 @@ public class ModificarFichaUseCase implements IModificarFichaInput {
     }
 
     @Override
-    public boolean modificarFicha(Ficha ficha) throws FichaExisteException {
-        if (iFichaRepository.existeFicha(ficha.getNombre())){
+    public boolean modificarFicha(Ficha unaFicha) throws FichaExisteException {
+        if (iFichaRepository.existeFicha(unaFicha.getNombre())){
             throw new FichaExisteException();
         }
-        return iFichaRepository.guardarFicha(ficha);
+        return iFichaRepository.guardarFicha(unaFicha);
     }
 }
