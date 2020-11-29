@@ -18,14 +18,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class ModificarTipoIvaControllerTest {
     @Mock
-    IModificarTipoIvaInput modificarTipoIvaInput;
+    IModificarTipoIvaInput miModificarTipoIvaInput;
 
     @Test
     public  void modificarTipoIva_TipoIvaNoExiste_Devuelve200() throws TipoIvaExisteException {
         TipoIvaDTO tipoIvaDTO = new TipoIvaDTO(1, "Responsable Inscripto");
-        when(modificarTipoIvaInput.modificarTipoIva(any(TipoIva.class))).thenReturn(true);
+        when(miModificarTipoIvaInput.modificarTipoIva(any(TipoIva.class))).thenReturn(true);
 
-        ModificarTipoIvaController modificarTipoIvaController = new ModificarTipoIvaController(modificarTipoIvaInput);
+        ModificarTipoIvaController modificarTipoIvaController = new ModificarTipoIvaController(miModificarTipoIvaInput);
         ResponseEntity<?> responseEntity = modificarTipoIvaController.modificarTipoIva(tipoIvaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -35,9 +35,9 @@ public class ModificarTipoIvaControllerTest {
     @Test
     public  void modificarTipoIva_TipoIvaExiste_Devuelve412() throws TipoIvaExisteException {
         TipoIvaDTO tipoIvaDTO = new TipoIvaDTO(1, "Responsable Inscripto");
-        when(modificarTipoIvaInput.modificarTipoIva(any(TipoIva.class))).thenThrow(TipoIvaExisteException.class);
+        when(miModificarTipoIvaInput.modificarTipoIva(any(TipoIva.class))).thenThrow(TipoIvaExisteException.class);
 
-        ModificarTipoIvaController modificarTipoIvaController = new ModificarTipoIvaController(modificarTipoIvaInput);
+        ModificarTipoIvaController modificarTipoIvaController = new ModificarTipoIvaController(miModificarTipoIvaInput);
         ResponseEntity<?> responseEntity = modificarTipoIvaController.modificarTipoIva(tipoIvaDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());

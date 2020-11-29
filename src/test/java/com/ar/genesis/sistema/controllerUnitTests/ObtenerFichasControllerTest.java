@@ -19,15 +19,15 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class ObtenerFichasControllerTest {
     @Mock
-    IObtenerFichaInput obtenerFichasInput;
+    IObtenerFichaInput miObtenerFichasInput;
 
     @Test
     public void obtenerFichas_FichasExisten_Devuelve200(){
         List<Ficha> fichas = new ArrayList<>();
         fichas.add(Ficha.instancia(1,"Fajardo, Hugo", "Bs. As. 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336"));
-        when(obtenerFichasInput.obtenerFichas()).thenReturn(fichas);
+        when(miObtenerFichasInput.obtenerFichas()).thenReturn(fichas);
 
-        ObtenerFichasController obtenerFichasController = new ObtenerFichasController(obtenerFichasInput);
+        ObtenerFichasController obtenerFichasController = new ObtenerFichasController(miObtenerFichasInput);
         ResponseEntity<?> responseEntity = obtenerFichasController.obtenerFichas();
         List<?> resultado = (List<?>) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());

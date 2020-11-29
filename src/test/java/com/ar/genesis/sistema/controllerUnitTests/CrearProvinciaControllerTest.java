@@ -18,14 +18,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class CrearProvinciaControllerTest {
     @Mock
-    ICrearProvinciaInput crearProvinciaInput;
+    ICrearProvinciaInput miCrearProvinciaInput;
 
     @Test
     public  void crearProvincia_ProvinciaNoExiste_Devuelve200() throws ProvinciaExisteException {
         ProvinciaDTO provinciaDTO = new ProvinciaDTO(1, "Provincia");
-        when(crearProvinciaInput.crearProvincia(any(Provincia.class))).thenReturn(true);
+        when(miCrearProvinciaInput.crearProvincia(any(Provincia.class))).thenReturn(true);
 
-        CrearProvinciaController crearProvinciaController = new CrearProvinciaController(crearProvinciaInput);
+        CrearProvinciaController crearProvinciaController = new CrearProvinciaController(miCrearProvinciaInput);
         ResponseEntity<?> responseEntity = crearProvinciaController.crearProvincia(provinciaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -35,9 +35,9 @@ public class CrearProvinciaControllerTest {
     @Test
     public  void crearProvincia_ProvinciaExiste_Devuelve412() throws ProvinciaExisteException {
         ProvinciaDTO provinciaDTO = new ProvinciaDTO(1, "Provincia");
-        when(crearProvinciaInput.crearProvincia(any(Provincia.class))).thenThrow(ProvinciaExisteException.class);
+        when(miCrearProvinciaInput.crearProvincia(any(Provincia.class))).thenThrow(ProvinciaExisteException.class);
 
-        CrearProvinciaController crearProvinciaController = new CrearProvinciaController(crearProvinciaInput);
+        CrearProvinciaController crearProvinciaController = new CrearProvinciaController(miCrearProvinciaInput);
         ResponseEntity<?> responseEntity = crearProvinciaController.crearProvincia(provinciaDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());

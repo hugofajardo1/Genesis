@@ -18,14 +18,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class ModificarLocalidadControllerTest {
     @Mock
-    IModificarLocalidadInput modificarLocalidadInput;
+    IModificarLocalidadInput miModificarLocalidadInput;
 
     @Test
     public  void modificarLocalidad_LocalidadNoExiste_Devuelve200() throws LocalidadExisteException {
         LocalidadDTO LocalidadDTO = new LocalidadDTO(1, "Localidad 1");
-        when(modificarLocalidadInput.modificarLocalidad(any(Localidad.class))).thenReturn(true);
+        when(miModificarLocalidadInput.modificarLocalidad(any(Localidad.class))).thenReturn(true);
 
-        ModificarLocalidadController modificarLocalidadController = new ModificarLocalidadController(modificarLocalidadInput);
+        ModificarLocalidadController modificarLocalidadController = new ModificarLocalidadController(miModificarLocalidadInput);
         ResponseEntity<?> responseEntity = modificarLocalidadController.modificarLocalidad(LocalidadDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -35,9 +35,9 @@ public class ModificarLocalidadControllerTest {
     @Test
     public  void modificarLocalidad_LocalidadExiste_Devuelve412() throws LocalidadExisteException {
         LocalidadDTO LocalidadDTO = new LocalidadDTO(1, "Localidad 2");
-        when(modificarLocalidadInput.modificarLocalidad(any(Localidad.class))).thenThrow(LocalidadExisteException.class);
+        when(miModificarLocalidadInput.modificarLocalidad(any(Localidad.class))).thenThrow(LocalidadExisteException.class);
 
-        ModificarLocalidadController modificarLocalidadController = new ModificarLocalidadController(modificarLocalidadInput);
+        ModificarLocalidadController modificarLocalidadController = new ModificarLocalidadController(miModificarLocalidadInput);
         ResponseEntity<?> responseEntity = modificarLocalidadController.modificarLocalidad(LocalidadDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());

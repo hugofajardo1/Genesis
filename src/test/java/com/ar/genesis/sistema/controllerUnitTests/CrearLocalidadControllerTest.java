@@ -18,14 +18,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class CrearLocalidadControllerTest {
     @Mock
-    ICrearLocalidadInput crearLocalidadInput;
+    ICrearLocalidadInput miCrearLocalidadInput;
 
     @Test
     public  void crearLocalidad_LocalidadNoExiste_Devuelve200() throws LocalidadExisteException {
         LocalidadDTO localidadDTO = new LocalidadDTO(1, "Localidad 1");
-        when(crearLocalidadInput.crearLocalidad(any(Localidad.class))).thenReturn(true);
+        when(miCrearLocalidadInput.crearLocalidad(any(Localidad.class))).thenReturn(true);
 
-        CrearLocalidadController crearLocalidadController = new CrearLocalidadController(crearLocalidadInput);
+        CrearLocalidadController crearLocalidadController = new CrearLocalidadController(miCrearLocalidadInput);
         ResponseEntity<?> responseEntity = crearLocalidadController.crearLocalidad(localidadDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -35,9 +35,9 @@ public class CrearLocalidadControllerTest {
     @Test
     public  void crearLocalidad_LocalidadExiste_Devuelve412() throws LocalidadExisteException {
         LocalidadDTO localidadDTO = new LocalidadDTO(1, "Localidad 1");
-        when(crearLocalidadInput.crearLocalidad(any(Localidad.class))).thenThrow(LocalidadExisteException.class);
+        when(miCrearLocalidadInput.crearLocalidad(any(Localidad.class))).thenThrow(LocalidadExisteException.class);
 
-        CrearLocalidadController crearLocalidadController = new CrearLocalidadController(crearLocalidadInput);
+        CrearLocalidadController crearLocalidadController = new CrearLocalidadController(miCrearLocalidadInput);
         ResponseEntity<?> responseEntity = crearLocalidadController.crearLocalidad(localidadDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());

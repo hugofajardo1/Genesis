@@ -18,15 +18,15 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class ObtenerTipoUnidadesControllerTest {
     @Mock
-    IObtenerTipoUnidadesInput obtenerTipoUnidadesInput;
+    IObtenerTipoUnidadesInput miObtenerTipoUnidadesInput;
 
     @Test
     public void obtenerTipoUnidades_TipoUnidadesExisten_Devuelve200(){
         List<TipoUnidad> tipoUnidades = new ArrayList<>();
         tipoUnidades.add(TipoUnidad.instancia(1,"Cliente"));
-        when(obtenerTipoUnidadesInput.obtenerTipoUnidades()).thenReturn(tipoUnidades);
+        when(miObtenerTipoUnidadesInput.obtenerTipoUnidades()).thenReturn(tipoUnidades);
 
-        ObtenerTipoUnidadesController obtenerTipoUnidadesController = new ObtenerTipoUnidadesController(obtenerTipoUnidadesInput);
+        ObtenerTipoUnidadesController obtenerTipoUnidadesController = new ObtenerTipoUnidadesController(miObtenerTipoUnidadesInput);
         ResponseEntity<?> responseEntity = obtenerTipoUnidadesController.obtenerTipoUnidades();
         List<?> resultado = (List<?>) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());

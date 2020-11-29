@@ -18,14 +18,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class CrearTipoMovimientoControllerTest {
     @Mock
-    ICrearTipoMovimientoInput iCrearTipoMovimientoInput;
+    ICrearTipoMovimientoInput miCrearTipoMovimientoInput;
 
     @Test
     public  void crearTipoMovimiento_TipoMovimientoNoExiste_Devuelve200() throws TipoMovimientoExisteException {
         TipoMovimientoDTO TipoMovimientoDTO = new TipoMovimientoDTO(1, "Factura A");
-        when(iCrearTipoMovimientoInput.crearTipoMovimiento(any(TipoMovimiento.class))).thenReturn(true);
+        when(miCrearTipoMovimientoInput.crearTipoMovimiento(any(TipoMovimiento.class))).thenReturn(true);
 
-        CrearTipoMovimientoController crearTipoMovimientoController = new CrearTipoMovimientoController(iCrearTipoMovimientoInput);
+        CrearTipoMovimientoController crearTipoMovimientoController = new CrearTipoMovimientoController(miCrearTipoMovimientoInput);
         ResponseEntity<?> responseEntity = crearTipoMovimientoController.crearTipoMovimiento(TipoMovimientoDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -35,9 +35,9 @@ public class CrearTipoMovimientoControllerTest {
     @Test
     public  void crearTipoMovimiento_TipoMovimientoExiste_Devuelve412() throws TipoMovimientoExisteException {
         TipoMovimientoDTO TipoMovimientoDTO = new TipoMovimientoDTO(1, "Factura A");
-        when(iCrearTipoMovimientoInput.crearTipoMovimiento(any(TipoMovimiento.class))).thenThrow(TipoMovimientoExisteException.class);
+        when(miCrearTipoMovimientoInput.crearTipoMovimiento(any(TipoMovimiento.class))).thenThrow(TipoMovimientoExisteException.class);
 
-        CrearTipoMovimientoController crearTipoMovimientoController = new CrearTipoMovimientoController(iCrearTipoMovimientoInput);
+        CrearTipoMovimientoController crearTipoMovimientoController = new CrearTipoMovimientoController(miCrearTipoMovimientoInput);
         ResponseEntity<?> responseEntity = crearTipoMovimientoController.crearTipoMovimiento(TipoMovimientoDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());

@@ -18,14 +18,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class ModificarRubroControllerTest {
     @Mock
-    IModificarRubroInput modificarRubroInput;
+    IModificarRubroInput miModificarRubroInput;
 
     @Test
     public  void modificarRubro_RubroNoExiste_Devuelve200() throws RubroExisteException {
         RubroDTO RubroDTO = new RubroDTO(1, "Rubro 1");
-        when(modificarRubroInput.modificarRubro(any(Rubro.class))).thenReturn(true);
+        when(miModificarRubroInput.modificarRubro(any(Rubro.class))).thenReturn(true);
 
-        ModificarRubroController modificarRubroController = new ModificarRubroController(modificarRubroInput);
+        ModificarRubroController modificarRubroController = new ModificarRubroController(miModificarRubroInput);
         ResponseEntity<?> responseEntity = modificarRubroController.modificarRubro(RubroDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -35,9 +35,9 @@ public class ModificarRubroControllerTest {
     @Test
     public  void modificarRubro_RubroExiste_Devuelve412() throws RubroExisteException {
         RubroDTO RubroDTO = new RubroDTO(1, "Rubro 2");
-        when(modificarRubroInput.modificarRubro(any(Rubro.class))).thenThrow(RubroExisteException.class);
+        when(miModificarRubroInput.modificarRubro(any(Rubro.class))).thenThrow(RubroExisteException.class);
 
-        ModificarRubroController modificarRubroController = new ModificarRubroController(modificarRubroInput);
+        ModificarRubroController modificarRubroController = new ModificarRubroController(miModificarRubroInput);
         ResponseEntity<?> responseEntity = modificarRubroController.modificarRubro(RubroDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());

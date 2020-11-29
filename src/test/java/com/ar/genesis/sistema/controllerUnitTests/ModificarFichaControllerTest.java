@@ -19,14 +19,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class ModificarFichaControllerTest {
     @Mock
-    IModificarFichaInput iModificarFichaInput;
+    IModificarFichaInput miModificarFichaInput;
 
     @Test
     public  void modificarFicha_FichaNoExiste_Devuelve200() throws FichaExisteException {
         FichaDTO fichaDTO = new FichaDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", "3825416543", new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336");
-        when(iModificarFichaInput.modificarFicha(any(Ficha.class))).thenReturn(true);
+        when(miModificarFichaInput.modificarFicha(any(Ficha.class))).thenReturn(true);
 
-        ModificarFichaController modificarFichaController = new ModificarFichaController(iModificarFichaInput);
+        ModificarFichaController modificarFichaController = new ModificarFichaController(miModificarFichaInput);
         ResponseEntity<?> responseEntity = modificarFichaController.modificarFicha(fichaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -36,9 +36,9 @@ public class ModificarFichaControllerTest {
     @Test
     public  void modificarFicha_FichaExiste_Devuelve412() throws FichaExisteException {
         FichaDTO fichaDTO = new FichaDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", "3825416543", new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336");
-        when(iModificarFichaInput.modificarFicha(any(Ficha.class))).thenThrow(FichaExisteException.class);
+        when(miModificarFichaInput.modificarFicha(any(Ficha.class))).thenThrow(FichaExisteException.class);
 
-        ModificarFichaController modificarFichaController = new ModificarFichaController(iModificarFichaInput);
+        ModificarFichaController modificarFichaController = new ModificarFichaController(miModificarFichaInput);
         ResponseEntity<?> responseEntity = modificarFichaController.modificarFicha(fichaDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());

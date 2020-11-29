@@ -18,14 +18,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class ModificarSubRubroControllerTest {
     @Mock
-    IModificarSubRubroInput modificarSubRubroInput;
+    IModificarSubRubroInput miModificarSubRubroInput;
 
     @Test
     public  void modificarSubRubro_SubRubroNoExiste_Devuelve200() throws SubRubroExisteException {
         SubRubroDTO SubRubroDTO = new SubRubroDTO(1, "SubRubro");
-        when(modificarSubRubroInput.modificarSubRubro(any(SubRubro.class))).thenReturn(true);
+        when(miModificarSubRubroInput.modificarSubRubro(any(SubRubro.class))).thenReturn(true);
 
-        ModificarSubRubroController modificarSubRubroController = new ModificarSubRubroController(modificarSubRubroInput);
+        ModificarSubRubroController modificarSubRubroController = new ModificarSubRubroController(miModificarSubRubroInput);
         ResponseEntity<?> responseEntity = modificarSubRubroController.modificarSubRubro(SubRubroDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -35,9 +35,9 @@ public class ModificarSubRubroControllerTest {
     @Test
     public  void modificarSubRubro_SubRubroExiste_Devuelve412() throws SubRubroExisteException {
         SubRubroDTO SubRubroDTO = new SubRubroDTO(1, "SubRubro");
-        when(modificarSubRubroInput.modificarSubRubro(any(SubRubro.class))).thenThrow(SubRubroExisteException.class);
+        when(miModificarSubRubroInput.modificarSubRubro(any(SubRubro.class))).thenThrow(SubRubroExisteException.class);
 
-        ModificarSubRubroController modificarSubRubroController = new ModificarSubRubroController(modificarSubRubroInput);
+        ModificarSubRubroController modificarSubRubroController = new ModificarSubRubroController(miModificarSubRubroInput);
         ResponseEntity<?> responseEntity = modificarSubRubroController.modificarSubRubro(SubRubroDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());

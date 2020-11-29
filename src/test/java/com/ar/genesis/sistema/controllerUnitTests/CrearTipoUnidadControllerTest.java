@@ -18,14 +18,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class CrearTipoUnidadControllerTest {
     @Mock
-    ICrearTipoUnidadInput iCrearTipoUnidadInput;
+    ICrearTipoUnidadInput miCrearTipoUnidadInput;
 
     @Test
     public  void crearTipoUnidad_TipoUnidadNoExiste_Devuelve200() throws TipoUnidadExisteException {
         TipoUnidadDTO TipoUnidadDTO = new TipoUnidadDTO(1, "Unidad");
-        when(iCrearTipoUnidadInput.crearTipoUnidad(any(TipoUnidad.class))).thenReturn(true);
+        when(miCrearTipoUnidadInput.crearTipoUnidad(any(TipoUnidad.class))).thenReturn(true);
 
-        CrearTipoUnidadController crearTipoUnidadController = new CrearTipoUnidadController(iCrearTipoUnidadInput);
+        CrearTipoUnidadController crearTipoUnidadController = new CrearTipoUnidadController(miCrearTipoUnidadInput);
         ResponseEntity<?> responseEntity = crearTipoUnidadController.crearTipoUnidad(TipoUnidadDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -35,9 +35,9 @@ public class CrearTipoUnidadControllerTest {
     @Test
     public  void crearTipoUnidad_TipoUnidadExiste_Devuelve412() throws TipoUnidadExisteException {
         TipoUnidadDTO TipoUnidadDTO = new TipoUnidadDTO(1, "Unidad");
-        when(iCrearTipoUnidadInput.crearTipoUnidad(any(TipoUnidad.class))).thenThrow(TipoUnidadExisteException.class);
+        when(miCrearTipoUnidadInput.crearTipoUnidad(any(TipoUnidad.class))).thenThrow(TipoUnidadExisteException.class);
 
-        CrearTipoUnidadController crearTipoUnidadController = new CrearTipoUnidadController(iCrearTipoUnidadInput);
+        CrearTipoUnidadController crearTipoUnidadController = new CrearTipoUnidadController(miCrearTipoUnidadInput);
         ResponseEntity<?> responseEntity = crearTipoUnidadController.crearTipoUnidad(TipoUnidadDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());

@@ -20,14 +20,14 @@ import static org.mockito.Mockito.when;
 public class CrearFichaControllerTest {
 
     @Mock
-    ICrearFichaInput crearFichaInput;
+    ICrearFichaInput miCrearFichaInput;
 
     @Test
     public  void crearFicha_FichaNoExiste_Devuelve200() throws FichaExisteException {
         FichaDTO fichaDTO = new FichaDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", "3825416543", new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336");
-        when(crearFichaInput.crearFicha(any(Ficha.class))).thenReturn(true);
+        when(miCrearFichaInput.crearFicha(any(Ficha.class))).thenReturn(true);
 
-        CrearFichaController crearFichaController = new CrearFichaController(crearFichaInput);
+        CrearFichaController crearFichaController = new CrearFichaController(miCrearFichaInput);
         ResponseEntity<?> responseEntity = crearFichaController.crearFicha(fichaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -37,9 +37,9 @@ public class CrearFichaControllerTest {
     @Test
     public  void crearFicha_FichaExiste_Devuelve412() throws FichaExisteException {
         FichaDTO fichaDTO = new FichaDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", "3825416543", new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336");
-        when(crearFichaInput.crearFicha(any(Ficha.class))).thenThrow(FichaExisteException.class);
+        when(miCrearFichaInput.crearFicha(any(Ficha.class))).thenThrow(FichaExisteException.class);
 
-        CrearFichaController crearFichaController = new CrearFichaController(crearFichaInput);
+        CrearFichaController crearFichaController = new CrearFichaController(miCrearFichaInput);
         ResponseEntity<?> responseEntity = crearFichaController.crearFicha(fichaDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());

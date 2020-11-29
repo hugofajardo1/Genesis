@@ -18,14 +18,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class CrearTipoIvaControllerTest {
     @Mock
-    ICrearTipoIvaInput iCrearTipoIvaInput;
+    ICrearTipoIvaInput miCrearTipoIvaInput;
 
     @Test
     public  void crearTipoIva_TipoIvaNoExiste_Devuelve200() throws TipoIvaExisteException {
         TipoIvaDTO TipoIvaDTO = new TipoIvaDTO(1, "Responsable Inscripto");
-        when(iCrearTipoIvaInput.crearTipoIva(any(TipoIva.class))).thenReturn(true);
+        when(miCrearTipoIvaInput.crearTipoIva(any(TipoIva.class))).thenReturn(true);
 
-        CrearTipoIvaController crearTipoIvaController = new CrearTipoIvaController(iCrearTipoIvaInput);
+        CrearTipoIvaController crearTipoIvaController = new CrearTipoIvaController(miCrearTipoIvaInput);
         ResponseEntity<?> responseEntity = crearTipoIvaController.crearTipoIva(TipoIvaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -35,9 +35,9 @@ public class CrearTipoIvaControllerTest {
     @Test
     public  void crearTipoIva_TipoIvaExiste_Devuelve412() throws TipoIvaExisteException {
         TipoIvaDTO TipoIvaDTO = new TipoIvaDTO(1, "Responsable Inscripto");
-        when(iCrearTipoIvaInput.crearTipoIva(any(TipoIva.class))).thenThrow(TipoIvaExisteException.class);
+        when(miCrearTipoIvaInput.crearTipoIva(any(TipoIva.class))).thenThrow(TipoIvaExisteException.class);
 
-        CrearTipoIvaController crearTipoIvaController = new CrearTipoIvaController(iCrearTipoIvaInput);
+        CrearTipoIvaController crearTipoIvaController = new CrearTipoIvaController(miCrearTipoIvaInput);
         ResponseEntity<?> responseEntity = crearTipoIvaController.crearTipoIva(TipoIvaDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());

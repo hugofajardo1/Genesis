@@ -18,14 +18,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class CrearTipoFichaControllerTest {
     @Mock
-    ICrearTipoFichaInput crearTipoFichaInput;
+    ICrearTipoFichaInput miCrearTipoFichaInput;
 
     @Test
     public  void crearTipoFicha_TipoFichaNoExiste_Devuelve200() throws TipoFichaExisteException {
         TipoFichaDTO TipoFichaDTO = new TipoFichaDTO(1, "Cliente");
-        when(crearTipoFichaInput.crearTipoFicha(any(TipoFicha.class))).thenReturn(true);
+        when(miCrearTipoFichaInput.crearTipoFicha(any(TipoFicha.class))).thenReturn(true);
 
-        CrearTipoFichaController crearTipoFichaController = new CrearTipoFichaController(crearTipoFichaInput);
+        CrearTipoFichaController crearTipoFichaController = new CrearTipoFichaController(miCrearTipoFichaInput);
         ResponseEntity<?> responseEntity = crearTipoFichaController.crearTipoFicha(TipoFichaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -35,9 +35,9 @@ public class CrearTipoFichaControllerTest {
     @Test
     public  void crearTipoFicha_TipoFichaExiste_Devuelve412() throws TipoFichaExisteException {
         TipoFichaDTO TipoFichaDTO = new TipoFichaDTO(1, "Cliente");
-        when(crearTipoFichaInput.crearTipoFicha(any(TipoFicha.class))).thenThrow(TipoFichaExisteException.class);
+        when(miCrearTipoFichaInput.crearTipoFicha(any(TipoFicha.class))).thenThrow(TipoFichaExisteException.class);
 
-        CrearTipoFichaController crearTipoFichaController = new CrearTipoFichaController(crearTipoFichaInput);
+        CrearTipoFichaController crearTipoFichaController = new CrearTipoFichaController(miCrearTipoFichaInput);
         ResponseEntity<?> responseEntity = crearTipoFichaController.crearTipoFicha(TipoFichaDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());

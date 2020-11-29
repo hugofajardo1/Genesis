@@ -18,15 +18,15 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class ObtenerLocalidadesControllerTest {
     @Mock
-    IObtenerLocalidadesInput obtenerLocalidadesInput;
+    IObtenerLocalidadesInput miObtenerLocalidadesInput;
 
     @Test
     public void obtenerLocalidades_LocalidadesExisten_Devuelve200(){
         List<Localidad> localidades = new ArrayList<>();
         localidades.add(Localidad.instancia(1,"Localidad 1"));
-        when(obtenerLocalidadesInput.obtenerLocalidades()).thenReturn(localidades);
+        when(miObtenerLocalidadesInput.obtenerLocalidades()).thenReturn(localidades);
 
-        ObtenerLocalidadesController obtenerLocalidadesController = new ObtenerLocalidadesController(obtenerLocalidadesInput);
+        ObtenerLocalidadesController obtenerLocalidadesController = new ObtenerLocalidadesController(miObtenerLocalidadesInput);
         ResponseEntity<?> responseEntity = obtenerLocalidadesController.obtenerLocalidades();
         List<?> resultado = (List<?>) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());

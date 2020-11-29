@@ -18,14 +18,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class CrearUbicacionControllerTest {
     @Mock
-    ICrearUbicacionInput crearUbicacionInput;
+    ICrearUbicacionInput miCrearUbicacionInput;
 
     @Test
     public  void crearUbicacion_UbicacionNoExiste_Devuelve200() throws UbicacionExisteException {
         UbicacionDTO ubicacionDTO = new UbicacionDTO(1, "Ubicacion 1");
-        when(crearUbicacionInput.crearUbicacion(any(Ubicacion.class))).thenReturn(true);
+        when(miCrearUbicacionInput.crearUbicacion(any(Ubicacion.class))).thenReturn(true);
 
-        CrearUbicacionController crearUbicacionController = new CrearUbicacionController(crearUbicacionInput);
+        CrearUbicacionController crearUbicacionController = new CrearUbicacionController(miCrearUbicacionInput);
         ResponseEntity<?> responseEntity = crearUbicacionController.crearUbicacion(ubicacionDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -35,9 +35,9 @@ public class CrearUbicacionControllerTest {
     @Test
     public  void crearUbicacion_UbicacionExiste_Devuelve412() throws UbicacionExisteException {
         UbicacionDTO ubicacionDTO = new UbicacionDTO(1, "Ubicacion 1");
-        when(crearUbicacionInput.crearUbicacion(any(Ubicacion.class))).thenThrow(UbicacionExisteException.class);
+        when(miCrearUbicacionInput.crearUbicacion(any(Ubicacion.class))).thenThrow(UbicacionExisteException.class);
 
-        CrearUbicacionController crearUbicacionController = new CrearUbicacionController(crearUbicacionInput);
+        CrearUbicacionController crearUbicacionController = new CrearUbicacionController(miCrearUbicacionInput);
         ResponseEntity<?> responseEntity = crearUbicacionController.crearUbicacion(ubicacionDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
