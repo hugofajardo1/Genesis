@@ -17,12 +17,12 @@ import javax.inject.Inject;
 })
 public class ModificarTipoMovimientoDataTest {
     @Inject
-    TipoMovimientoRepoImplementacion tipoMovimientoRepoImplementacion;
+    TipoMovimientoRepoImplementacion miTipoMovimientoRepoImplementacion;
 
     @Test
     public void guardarTipoMovimiento_TipoMovimientoGuardado_devuelveTrue() {
         TipoMovimiento unTipoMovimiento = TipoMovimiento.instancia(1, "Responsable Inscripto");
-        boolean resultado = tipoMovimientoRepoImplementacion.guardarTipoMovimiento(unTipoMovimiento);
+        boolean resultado = miTipoMovimientoRepoImplementacion.guardarTipoMovimiento(unTipoMovimiento);
         Assertions.assertTrue(resultado);
     }
 }

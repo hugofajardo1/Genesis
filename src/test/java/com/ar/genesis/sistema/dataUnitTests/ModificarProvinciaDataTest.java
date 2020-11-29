@@ -17,12 +17,12 @@ import javax.inject.Inject;
 })
 public class ModificarProvinciaDataTest {
     @Inject
-    ProvinciaRepoImplementacion provinciaRepoImplementacion;
+    ProvinciaRepoImplementacion miProvinciaRepoImplementacion;
 
     @Test
     public void guardarProvincia_ProvinciaGuardado_devuelveTrue() {
         Provincia unaProvincia = Provincia.instancia(1, "Provincia 1");
-        boolean resultado = provinciaRepoImplementacion.guardarProvincia(unaProvincia);
+        boolean resultado = miProvinciaRepoImplementacion.guardarProvincia(unaProvincia);
         Assertions.assertTrue(resultado);
     }
 

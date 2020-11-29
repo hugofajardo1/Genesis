@@ -17,12 +17,12 @@ import javax.inject.Inject;
 })
 public class ModificarTipoIvaDataTest {
     @Inject
-    TipoIvaRepoImplementacion tipoIvaRepoImplementacion;
+    TipoIvaRepoImplementacion miTipoIvaRepoImplementacion;
 
     @Test
     public void guardarTipoIva_TipoIvaGuardado_devuelveTrue() {
         TipoIva unTipoIva = TipoIva.instancia(1, "Responsable Inscripto");
-        boolean resultado = tipoIvaRepoImplementacion.guardarTipoIva(unTipoIva);
+        boolean resultado = miTipoIvaRepoImplementacion.guardarTipoIva(unTipoIva);
         Assertions.assertTrue(resultado);
     }
 }

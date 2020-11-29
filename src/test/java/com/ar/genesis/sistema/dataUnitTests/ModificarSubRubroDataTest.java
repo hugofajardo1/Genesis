@@ -17,12 +17,12 @@ import javax.inject.Inject;
 })
 public class ModificarSubRubroDataTest {
     @Inject
-    SubRubroRepoImplementacion subRubroRepoImplementacion;
+    SubRubroRepoImplementacion miSubRubroRepoImplementacion;
 
     @Test
     public void guardarSubRubro_SubRubroGuardado_devuelveTrue() {
         SubRubro unSubRubro = SubRubro.instancia(1, "SubRubro");
-        boolean resultado = subRubroRepoImplementacion.guardarSubRubro(unSubRubro);
+        boolean resultado = miSubRubroRepoImplementacion.guardarSubRubro(unSubRubro);
         Assertions.assertTrue(resultado);
     }
 }

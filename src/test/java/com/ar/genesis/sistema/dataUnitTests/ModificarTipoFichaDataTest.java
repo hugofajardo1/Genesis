@@ -17,12 +17,12 @@ import javax.inject.Inject;
 })
 public class ModificarTipoFichaDataTest {
     @Inject
-    TipoFichaRepoImplementacion tipoFichaRepoImplementacion;
+    TipoFichaRepoImplementacion miTipoFichaRepoImplementacion;
 
     @Test
     public void guardarTipoFicha_TipoFichaGuardado_devuelveTrue() {
         TipoFicha unTipoFicha = TipoFicha.instancia(1, "Cliente");
-        boolean resultado = tipoFichaRepoImplementacion.guardarTipoFicha(unTipoFicha);
+        boolean resultado = miTipoFichaRepoImplementacion.guardarTipoFicha(unTipoFicha);
         Assertions.assertTrue(resultado);
     }
 }
