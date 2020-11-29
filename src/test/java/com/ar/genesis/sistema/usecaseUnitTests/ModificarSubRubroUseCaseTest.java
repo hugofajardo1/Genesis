@@ -14,13 +14,13 @@ import static org.mockito.Mockito.when;
 @ExtendWith(mockito.MockitoExtension.class)
 public class ModificarSubRubroUseCaseTest {
     @Mock
-    ISubRubroRepository iSubRubroRepository;
+    ISubRubroRepository miSubRubroRepository;
     @Test
     void modificarSubRubro_SubRubroActualizadoCorrectamente() throws SubRubroExisteException {
         SubRubro unSubRubro = SubRubro.instancia(1, "SubRubro");
-        when(iSubRubroRepository.existeSubRubro("SubRubro")).thenReturn(false);
-        when(iSubRubroRepository.guardarSubRubro(unSubRubro)).thenReturn(true);
-        ModificarSubRubroUseCase modificarSubRubroUseCase = new ModificarSubRubroUseCase(iSubRubroRepository);
+        when(miSubRubroRepository.existeSubRubro("SubRubro")).thenReturn(false);
+        when(miSubRubroRepository.guardarSubRubro(unSubRubro)).thenReturn(true);
+        ModificarSubRubroUseCase modificarSubRubroUseCase = new ModificarSubRubroUseCase(miSubRubroRepository);
         boolean resultado = modificarSubRubroUseCase.modificarSubRubro(unSubRubro);
         Assertions.assertTrue(resultado);
     }
@@ -28,9 +28,9 @@ public class ModificarSubRubroUseCaseTest {
     @Test
     void modificarSubRubro_HayConflictoSubRubroExiste_SubRubroNoActualiza() {
         SubRubro unSubRubro = SubRubro.instancia(1, "SubRubro");
-        when(iSubRubroRepository.existeSubRubro("SubRubro")).thenReturn(true);
-        when(iSubRubroRepository.guardarSubRubro(unSubRubro)).thenReturn(false);
-        ModificarSubRubroUseCase modificarSubRubroUseCase = new ModificarSubRubroUseCase(iSubRubroRepository);
+        when(miSubRubroRepository.existeSubRubro("SubRubro")).thenReturn(true);
+        when(miSubRubroRepository.guardarSubRubro(unSubRubro)).thenReturn(false);
+        ModificarSubRubroUseCase modificarSubRubroUseCase = new ModificarSubRubroUseCase(miSubRubroRepository);
         Assertions.assertThrows(SubRubroExisteException.class, () -> modificarSubRubroUseCase.modificarSubRubro(unSubRubro));
     }
 }

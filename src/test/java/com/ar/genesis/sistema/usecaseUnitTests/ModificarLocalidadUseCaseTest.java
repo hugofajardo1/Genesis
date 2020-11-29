@@ -14,13 +14,13 @@ import static org.mockito.Mockito.when;
 @ExtendWith(mockito.MockitoExtension.class)
 public class ModificarLocalidadUseCaseTest {
     @Mock
-    ILocalidadRepository iLocalidadRepository;
+    ILocalidadRepository miLocalidadRepository;
     @Test
     void modificarLocalidad_LocalidadActualizadoCorrectamente() throws LocalidadExisteException {
         Localidad unaLocalidad = Localidad.instancia(1, "Localidad");
-        when(iLocalidadRepository.existeLocalidad("Localidad")).thenReturn(false);
-        when(iLocalidadRepository.guardarLocalidad(unaLocalidad)).thenReturn(true);
-        ModificarLocalidadUseCase modificarLocalidadUseCase = new ModificarLocalidadUseCase(iLocalidadRepository);
+        when(miLocalidadRepository.existeLocalidad("Localidad")).thenReturn(false);
+        when(miLocalidadRepository.guardarLocalidad(unaLocalidad)).thenReturn(true);
+        ModificarLocalidadUseCase modificarLocalidadUseCase = new ModificarLocalidadUseCase(miLocalidadRepository);
         boolean resultado = modificarLocalidadUseCase.modificarLocalidad(unaLocalidad);
         Assertions.assertTrue(resultado);
     }
@@ -28,9 +28,9 @@ public class ModificarLocalidadUseCaseTest {
     @Test
     void modificarLocalidad_HayConflictoLocalidadExiste_LocalidadNoActualiza() {
         Localidad unaLocalidad = Localidad.instancia(1, "Localidad");
-        when(iLocalidadRepository.existeLocalidad("Localidad")).thenReturn(true);
-        when(iLocalidadRepository.guardarLocalidad(unaLocalidad)).thenReturn(false);
-        ModificarLocalidadUseCase modificarLocalidadUseCase = new ModificarLocalidadUseCase(iLocalidadRepository);
+        when(miLocalidadRepository.existeLocalidad("Localidad")).thenReturn(true);
+        when(miLocalidadRepository.guardarLocalidad(unaLocalidad)).thenReturn(false);
+        ModificarLocalidadUseCase modificarLocalidadUseCase = new ModificarLocalidadUseCase(miLocalidadRepository);
         Assertions.assertThrows(LocalidadExisteException.class, () -> modificarLocalidadUseCase.modificarLocalidad(unaLocalidad));
     }
 }

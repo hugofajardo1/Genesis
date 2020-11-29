@@ -14,13 +14,13 @@ import static org.mockito.Mockito.when;
 @ExtendWith(mockito.MockitoExtension.class)
 public class ModificarTipoUnidadUseCaseTest {
     @Mock
-    ITipoUnidadRepository iTipoUnidadRepository;
+    ITipoUnidadRepository miTipoUnidadRepository;
     @Test
     void modificarTipoUnidad_TipoUnidadActualizadoCorrectamente() throws TipoUnidadExisteException {
         TipoUnidad unTipoUnidad = TipoUnidad.instancia(1, "Unidad");
-        when(iTipoUnidadRepository.existeTipoUnidad("Unidad")).thenReturn(false);
-        when(iTipoUnidadRepository.guardarTipoUnidad(unTipoUnidad)).thenReturn(true);
-        ModificarTipoUnidadUseCase modificarTipoUnidadUseCase = new ModificarTipoUnidadUseCase(iTipoUnidadRepository);
+        when(miTipoUnidadRepository.existeTipoUnidad("Unidad")).thenReturn(false);
+        when(miTipoUnidadRepository.guardarTipoUnidad(unTipoUnidad)).thenReturn(true);
+        ModificarTipoUnidadUseCase modificarTipoUnidadUseCase = new ModificarTipoUnidadUseCase(miTipoUnidadRepository);
         boolean resultado = modificarTipoUnidadUseCase.modificarTipoUnidad(unTipoUnidad);
         Assertions.assertTrue(resultado);
     }
@@ -28,9 +28,9 @@ public class ModificarTipoUnidadUseCaseTest {
     @Test
     void modificarTipoUnidad_HayConflictoTipoUnidadExiste_TipoUnidadNoActualiza() {
         TipoUnidad unTipoUnidad = TipoUnidad.instancia(1, "Unidad");
-        when(iTipoUnidadRepository.existeTipoUnidad("Unidad")).thenReturn(true);
-        when(iTipoUnidadRepository.guardarTipoUnidad(unTipoUnidad)).thenReturn(false);
-        ModificarTipoUnidadUseCase modificarTipoUnidadUseCase = new ModificarTipoUnidadUseCase(iTipoUnidadRepository);
+        when(miTipoUnidadRepository.existeTipoUnidad("Unidad")).thenReturn(true);
+        when(miTipoUnidadRepository.guardarTipoUnidad(unTipoUnidad)).thenReturn(false);
+        ModificarTipoUnidadUseCase modificarTipoUnidadUseCase = new ModificarTipoUnidadUseCase(miTipoUnidadRepository);
         Assertions.assertThrows(TipoUnidadExisteException.class, () -> modificarTipoUnidadUseCase.modificarTipoUnidad(unTipoUnidad));
     }
 }

@@ -14,13 +14,13 @@ import static org.mockito.Mockito.when;
 @ExtendWith(mockito.MockitoExtension.class)
 public class ModificarRubroUseCaseTest {
     @Mock
-    IRubroRepository iRubroRepository;
+    IRubroRepository miRubroRepository;
     @Test
     void modificarRubro_RubroActualizadoCorrectamente() throws RubroExisteException {
         Rubro unRubro = Rubro.instancia(1, "Rubro");
-        when(iRubroRepository.existeRubro("Rubro")).thenReturn(false);
-        when(iRubroRepository.guardarRubro(unRubro)).thenReturn(true);
-        ModificarRubroUseCase modificarRubroUseCase = new ModificarRubroUseCase(iRubroRepository);
+        when(miRubroRepository.existeRubro("Rubro")).thenReturn(false);
+        when(miRubroRepository.guardarRubro(unRubro)).thenReturn(true);
+        ModificarRubroUseCase modificarRubroUseCase = new ModificarRubroUseCase(miRubroRepository);
         boolean resultado = modificarRubroUseCase.modificarRubro(unRubro);
         Assertions.assertTrue(resultado);
     }
@@ -28,9 +28,9 @@ public class ModificarRubroUseCaseTest {
     @Test
     void modificarRubro_HayConflictoRubroExiste_RubroNoActualiza() {
         Rubro unRubro = Rubro.instancia(1, "Rubro");
-        when(iRubroRepository.existeRubro("Rubro")).thenReturn(true);
-        when(iRubroRepository.guardarRubro(unRubro)).thenReturn(false);
-        ModificarRubroUseCase modificarRubroUseCase = new ModificarRubroUseCase(iRubroRepository);
+        when(miRubroRepository.existeRubro("Rubro")).thenReturn(true);
+        when(miRubroRepository.guardarRubro(unRubro)).thenReturn(false);
+        ModificarRubroUseCase modificarRubroUseCase = new ModificarRubroUseCase(miRubroRepository);
         Assertions.assertThrows(RubroExisteException.class, () -> modificarRubroUseCase.modificarRubro(unRubro));
     }
 }

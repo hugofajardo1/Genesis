@@ -14,13 +14,13 @@ import static org.mockito.Mockito.when;
 @ExtendWith(mockito.MockitoExtension.class)
 public class ModificarTipoIvaUseCaseTest {
     @Mock
-    ITipoIvaRepository iTipoIvaRepository;
+    ITipoIvaRepository miTipoIvaRepository;
     @Test
     void modificarTipoIva_TipoIvaActualizadoCorrectamente() throws TipoIvaExisteException {
         TipoIva unTipoIva = TipoIva.instancia(1, "Responsable Inscripto");
-        when(iTipoIvaRepository.existeTipoIva("Responsable Inscripto")).thenReturn(false);
-        when(iTipoIvaRepository.guardarTipoIva(unTipoIva)).thenReturn(true);
-        ModificarTipoIvaUseCase modificarTipoIvaUseCase = new ModificarTipoIvaUseCase(iTipoIvaRepository);
+        when(miTipoIvaRepository.existeTipoIva("Responsable Inscripto")).thenReturn(false);
+        when(miTipoIvaRepository.guardarTipoIva(unTipoIva)).thenReturn(true);
+        ModificarTipoIvaUseCase modificarTipoIvaUseCase = new ModificarTipoIvaUseCase(miTipoIvaRepository);
         boolean resultado = modificarTipoIvaUseCase.modificarTipoIva(unTipoIva);
         Assertions.assertTrue(resultado);
     }
@@ -28,9 +28,9 @@ public class ModificarTipoIvaUseCaseTest {
     @Test
     void modificarTipoIva_HayConflictoTipoIvaExiste_TipoIvaNoActualiza() {
         TipoIva unTipoIva = TipoIva.instancia(1, "Responsable Inscripto");
-        when(iTipoIvaRepository.existeTipoIva("Responsable Inscripto")).thenReturn(true);
-        when(iTipoIvaRepository.guardarTipoIva(unTipoIva)).thenReturn(false);
-        ModificarTipoIvaUseCase modificarTipoIvaUseCase = new ModificarTipoIvaUseCase(iTipoIvaRepository);
+        when(miTipoIvaRepository.existeTipoIva("Responsable Inscripto")).thenReturn(true);
+        when(miTipoIvaRepository.guardarTipoIva(unTipoIva)).thenReturn(false);
+        ModificarTipoIvaUseCase modificarTipoIvaUseCase = new ModificarTipoIvaUseCase(miTipoIvaRepository);
         Assertions.assertThrows(TipoIvaExisteException.class, () -> modificarTipoIvaUseCase.modificarTipoIva(unTipoIva));
     }
 }

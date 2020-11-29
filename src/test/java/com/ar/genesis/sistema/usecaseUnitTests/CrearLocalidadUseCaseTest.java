@@ -14,13 +14,13 @@ import static org.mockito.Mockito.when;
 @ExtendWith(mockito.MockitoExtension.class)
 public class CrearLocalidadUseCaseTest {
     @Mock
-    ILocalidadRepository iLocalidadRepository;
+    ILocalidadRepository miLocalidadRepository;
     @Test
     void crearLocalidad_LocalidadNoExiste_GuardaCorrectamente() throws LocalidadExisteException {
         Localidad unaLocalidad = Localidad.instancia(1, "Localidad 1");
-        when(iLocalidadRepository.existeLocalidad("Localidad 1")).thenReturn(false);
-        when(iLocalidadRepository.guardarLocalidad(unaLocalidad)).thenReturn(true);
-        CrearLocalidadUseCase crearLocalidadUseCase = new CrearLocalidadUseCase(iLocalidadRepository);
+        when(miLocalidadRepository.existeLocalidad("Localidad 1")).thenReturn(false);
+        when(miLocalidadRepository.guardarLocalidad(unaLocalidad)).thenReturn(true);
+        CrearLocalidadUseCase crearLocalidadUseCase = new CrearLocalidadUseCase(miLocalidadRepository);
         boolean resultado = crearLocalidadUseCase.crearLocalidad(unaLocalidad);
         Assertions.assertTrue(resultado);
     }
@@ -28,9 +28,9 @@ public class CrearLocalidadUseCaseTest {
     @Test
     void crearLocalidad_LocalidadExiste_NoGuardaLocalidad() {
         Localidad unaLocalidad = Localidad.instancia(1, "Localidad 1");
-        when(iLocalidadRepository.existeLocalidad("Localidad 1")).thenReturn(true);
-        when(iLocalidadRepository.guardarLocalidad(unaLocalidad)).thenReturn(false);
-        CrearLocalidadUseCase crearLocalidadUseCase = new CrearLocalidadUseCase(iLocalidadRepository);
+        when(miLocalidadRepository.existeLocalidad("Localidad 1")).thenReturn(true);
+        when(miLocalidadRepository.guardarLocalidad(unaLocalidad)).thenReturn(false);
+        CrearLocalidadUseCase crearLocalidadUseCase = new CrearLocalidadUseCase(miLocalidadRepository);
         Assertions.assertThrows(LocalidadExisteException.class, () -> crearLocalidadUseCase.crearLocalidad(unaLocalidad));
     }
 }

@@ -14,13 +14,13 @@ import static org.mockito.Mockito.when;
 @ExtendWith(mockito.MockitoExtension.class)
 public class CrearTipoIvaUseCaseTest {
     @Mock
-    ITipoIvaRepository iTipoIvaRepository;
+    ITipoIvaRepository miTipoIvaRepository;
     @Test
     void crearTipoIva_TipoIvaNoExiste_GuardaCorrectamente() throws TipoIvaExisteException {
         TipoIva unTipoIva = TipoIva.instancia(1, "Responsable Inscripto");
-        when(iTipoIvaRepository.existeTipoIva("Responsable Inscripto")).thenReturn(false);
-        when(iTipoIvaRepository.guardarTipoIva(unTipoIva)).thenReturn(true);
-        CrearTipoIvaUseCase crearTipoIvaUseCase = new CrearTipoIvaUseCase(iTipoIvaRepository);
+        when(miTipoIvaRepository.existeTipoIva("Responsable Inscripto")).thenReturn(false);
+        when(miTipoIvaRepository.guardarTipoIva(unTipoIva)).thenReturn(true);
+        CrearTipoIvaUseCase crearTipoIvaUseCase = new CrearTipoIvaUseCase(miTipoIvaRepository);
         boolean resultado = crearTipoIvaUseCase.crearTipoIva(unTipoIva);
         Assertions.assertTrue(resultado);
     }
@@ -28,9 +28,9 @@ public class CrearTipoIvaUseCaseTest {
     @Test
     void crearTipoIva_TipoIvaExiste_NoGuardaTipoIva() {
         TipoIva unTipoIva = TipoIva.instancia(1, "Responsable Inscripto");
-        when(iTipoIvaRepository.existeTipoIva("Responsable Inscripto")).thenReturn(true);
-        when(iTipoIvaRepository.guardarTipoIva(unTipoIva)).thenReturn(false);
-        CrearTipoIvaUseCase crearTipoIvaUseCase = new CrearTipoIvaUseCase(iTipoIvaRepository);
+        when(miTipoIvaRepository.existeTipoIva("Responsable Inscripto")).thenReturn(true);
+        when(miTipoIvaRepository.guardarTipoIva(unTipoIva)).thenReturn(false);
+        CrearTipoIvaUseCase crearTipoIvaUseCase = new CrearTipoIvaUseCase(miTipoIvaRepository);
         Assertions.assertThrows(TipoIvaExisteException.class, () -> crearTipoIvaUseCase.crearTipoIva(unTipoIva));
     }
 }

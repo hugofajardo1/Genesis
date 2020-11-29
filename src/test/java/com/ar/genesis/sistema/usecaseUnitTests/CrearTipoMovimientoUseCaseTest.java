@@ -14,13 +14,13 @@ import static org.mockito.Mockito.when;
 @ExtendWith(mockito.MockitoExtension.class)
 public class CrearTipoMovimientoUseCaseTest {
     @Mock
-    ITipoMovimientoRepository iTipoMovimientoRepository;
+    ITipoMovimientoRepository miTipoMovimientoRepository;
     @Test
     void crearTipoMovimiento_TipoMovimientoNoExiste_GuardaCorrectamente() throws TipoMovimientoExisteException {
         TipoMovimiento unTipoMovimiento = TipoMovimiento.instancia(1, "Factura A");
-        when(iTipoMovimientoRepository.existeTipoMovimiento("Factura A")).thenReturn(false);
-        when(iTipoMovimientoRepository.guardarTipoMovimiento(unTipoMovimiento)).thenReturn(true);
-        CrearTipoMovimientoUseCase crearTipoMovimientoUseCase = new CrearTipoMovimientoUseCase(iTipoMovimientoRepository);
+        when(miTipoMovimientoRepository.existeTipoMovimiento("Factura A")).thenReturn(false);
+        when(miTipoMovimientoRepository.guardarTipoMovimiento(unTipoMovimiento)).thenReturn(true);
+        CrearTipoMovimientoUseCase crearTipoMovimientoUseCase = new CrearTipoMovimientoUseCase(miTipoMovimientoRepository);
         boolean resultado = crearTipoMovimientoUseCase.crearTipoMovimiento(unTipoMovimiento);
         Assertions.assertTrue(resultado);
     }
@@ -28,9 +28,9 @@ public class CrearTipoMovimientoUseCaseTest {
     @Test
     void crearTipoMovimiento_TipoMovimientoExiste_NoGuardaTipoMovimiento() {
         TipoMovimiento unTipoMovimiento = TipoMovimiento.instancia(1, "Factura A");
-        when(iTipoMovimientoRepository.existeTipoMovimiento("Factura A")).thenReturn(true);
-        when(iTipoMovimientoRepository.guardarTipoMovimiento(unTipoMovimiento)).thenReturn(false);
-        CrearTipoMovimientoUseCase crearTipoMovimientoUseCase = new CrearTipoMovimientoUseCase(iTipoMovimientoRepository);
+        when(miTipoMovimientoRepository.existeTipoMovimiento("Factura A")).thenReturn(true);
+        when(miTipoMovimientoRepository.guardarTipoMovimiento(unTipoMovimiento)).thenReturn(false);
+        CrearTipoMovimientoUseCase crearTipoMovimientoUseCase = new CrearTipoMovimientoUseCase(miTipoMovimientoRepository);
         Assertions.assertThrows(TipoMovimientoExisteException.class, () -> crearTipoMovimientoUseCase.crearTipoMovimiento(unTipoMovimiento));
     }
 }

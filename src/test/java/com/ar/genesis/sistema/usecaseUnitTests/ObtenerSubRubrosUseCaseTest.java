@@ -17,14 +17,14 @@ import static org.mockito.Mockito.when;
 @ExtendWith(mockito.MockitoExtension.class)
 public class ObtenerSubRubrosUseCaseTest {
     @Mock
-    IObtenerSubRubrosRepository iObtenerSubRubrosRepository;
+    IObtenerSubRubrosRepository miObtenerSubRubrosRepository;
     @Spy
     List<SubRubro> SubRubros = factoryListaSubRubros();
 
     @Test
     public void obtenerSubRubros_devuelveLista(){
-        when(iObtenerSubRubrosRepository.obtenerSubRubros()).thenReturn(SubRubros);
-        ObtenerSubRubrosUseCase obtenerSubRubrosUseCase = new ObtenerSubRubrosUseCase(iObtenerSubRubrosRepository);
+        when(miObtenerSubRubrosRepository.obtenerSubRubros()).thenReturn(SubRubros);
+        ObtenerSubRubrosUseCase obtenerSubRubrosUseCase = new ObtenerSubRubrosUseCase(miObtenerSubRubrosRepository);
         List<SubRubro> resultado = obtenerSubRubrosUseCase.obtenerSubRubros();
         Assertions.assertEquals(2,resultado.size());
     }

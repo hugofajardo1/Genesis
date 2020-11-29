@@ -14,13 +14,13 @@ import static org.mockito.Mockito.when;
 @ExtendWith(mockito.MockitoExtension.class)
 public class CrearTipoUnidadUseCaseTest {
     @Mock
-    ITipoUnidadRepository iTipoUnidadRepository;
+    ITipoUnidadRepository miTipoUnidadRepository;
     @Test
     void crearTipoUnidad_TipoUnidadNoExiste_GuardaCorrectamente() throws TipoUnidadExisteException {
         TipoUnidad unTipoUnidad = TipoUnidad.instancia(1, "Unidad");
-        when(iTipoUnidadRepository.existeTipoUnidad("Unidad")).thenReturn(false);
-        when(iTipoUnidadRepository.guardarTipoUnidad(unTipoUnidad)).thenReturn(true);
-        CrearTipoUnidadUseCase crearTipoUnidadUseCase = new CrearTipoUnidadUseCase(iTipoUnidadRepository);
+        when(miTipoUnidadRepository.existeTipoUnidad("Unidad")).thenReturn(false);
+        when(miTipoUnidadRepository.guardarTipoUnidad(unTipoUnidad)).thenReturn(true);
+        CrearTipoUnidadUseCase crearTipoUnidadUseCase = new CrearTipoUnidadUseCase(miTipoUnidadRepository);
         boolean resultado = crearTipoUnidadUseCase.crearTipoUnidad(unTipoUnidad);
         Assertions.assertTrue(resultado);
     }
@@ -28,9 +28,9 @@ public class CrearTipoUnidadUseCaseTest {
     @Test
     void crearTipoUnidad_TipoUnidadExiste_NoGuardaTipoUnidad() {
         TipoUnidad unTipoUnidad = TipoUnidad.instancia(1, "Unidad");
-        when(iTipoUnidadRepository.existeTipoUnidad("Unidad")).thenReturn(true);
-        when(iTipoUnidadRepository.guardarTipoUnidad(unTipoUnidad)).thenReturn(false);
-        CrearTipoUnidadUseCase crearTipoUnidadUseCase = new CrearTipoUnidadUseCase(iTipoUnidadRepository);
+        when(miTipoUnidadRepository.existeTipoUnidad("Unidad")).thenReturn(true);
+        when(miTipoUnidadRepository.guardarTipoUnidad(unTipoUnidad)).thenReturn(false);
+        CrearTipoUnidadUseCase crearTipoUnidadUseCase = new CrearTipoUnidadUseCase(miTipoUnidadRepository);
         Assertions.assertThrows(TipoUnidadExisteException.class, () -> crearTipoUnidadUseCase.crearTipoUnidad(unTipoUnidad));
     }
 }

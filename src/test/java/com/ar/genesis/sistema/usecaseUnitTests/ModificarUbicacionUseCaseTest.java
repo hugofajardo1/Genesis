@@ -14,13 +14,13 @@ import static org.mockito.Mockito.when;
 @ExtendWith(mockito.MockitoExtension.class)
 public class ModificarUbicacionUseCaseTest {
     @Mock
-    IUbicacionRepository iUbicacionRepository;
+    IUbicacionRepository miUbicacionRepository;
     @Test
     void modificarUbicacion_UbicacionActualizadoCorrectamente() throws UbicacionExisteException {
         Ubicacion unaUbicacion = Ubicacion.instancia(1, "Ubicacion");
-        when(iUbicacionRepository.existeUbicacion("Ubicacion")).thenReturn(false);
-        when(iUbicacionRepository.guardarUbicacion(unaUbicacion)).thenReturn(true);
-        ModificarUbicacionUseCase modificarUbicacionUseCase = new ModificarUbicacionUseCase(iUbicacionRepository);
+        when(miUbicacionRepository.existeUbicacion("Ubicacion")).thenReturn(false);
+        when(miUbicacionRepository.guardarUbicacion(unaUbicacion)).thenReturn(true);
+        ModificarUbicacionUseCase modificarUbicacionUseCase = new ModificarUbicacionUseCase(miUbicacionRepository);
         boolean resultado = modificarUbicacionUseCase.modificarUbicacion(unaUbicacion);
         Assertions.assertTrue(resultado);
     }
@@ -28,9 +28,9 @@ public class ModificarUbicacionUseCaseTest {
     @Test
     void modificarUbicacion_HayConflictoUbicacionExiste_UbicacionNoActualiza() {
         Ubicacion unaUbicacion = Ubicacion.instancia(1, "Ubicacion");
-        when(iUbicacionRepository.existeUbicacion("Ubicacion")).thenReturn(true);
-        when(iUbicacionRepository.guardarUbicacion(unaUbicacion)).thenReturn(false);
-        ModificarUbicacionUseCase modificarUbicacionUseCase = new ModificarUbicacionUseCase(iUbicacionRepository);
+        when(miUbicacionRepository.existeUbicacion("Ubicacion")).thenReturn(true);
+        when(miUbicacionRepository.guardarUbicacion(unaUbicacion)).thenReturn(false);
+        ModificarUbicacionUseCase modificarUbicacionUseCase = new ModificarUbicacionUseCase(miUbicacionRepository);
         Assertions.assertThrows(UbicacionExisteException.class, () -> modificarUbicacionUseCase.modificarUbicacion(unaUbicacion));
     }
 }

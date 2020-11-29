@@ -14,13 +14,13 @@ import static org.mockito.Mockito.when;
 @ExtendWith(mockito.MockitoExtension.class)
 public class ModificarProvinciaUseCaseTest {
     @Mock
-    IProvinciaRepository iProvinciaRepository;
+    IProvinciaRepository miProvinciaRepository;
     @Test
     void modificarProvincia_ProvinciaActualizadoCorrectamente() throws ProvinciaExisteException {
         Provincia unaProvincia = Provincia.instancia(1, "Provincia");
-        when(iProvinciaRepository.existeProvincia("Provincia")).thenReturn(false);
-        when(iProvinciaRepository.guardarProvincia(unaProvincia)).thenReturn(true);
-        ModificarProvinciaUseCase modificarProvinciaUseCase = new ModificarProvinciaUseCase(iProvinciaRepository);
+        when(miProvinciaRepository.existeProvincia("Provincia")).thenReturn(false);
+        when(miProvinciaRepository.guardarProvincia(unaProvincia)).thenReturn(true);
+        ModificarProvinciaUseCase modificarProvinciaUseCase = new ModificarProvinciaUseCase(miProvinciaRepository);
         boolean resultado = modificarProvinciaUseCase.modificarProvincia(unaProvincia);
         Assertions.assertTrue(resultado);
     }
@@ -28,9 +28,9 @@ public class ModificarProvinciaUseCaseTest {
     @Test
     void modificarProvincia_HayConflictoProvinciaExiste_ProvinciaNoActualiza() {
         Provincia unaProvincia = Provincia.instancia(1, "Provincia");
-        when(iProvinciaRepository.existeProvincia("Provincia")).thenReturn(true);
-        when(iProvinciaRepository.guardarProvincia(unaProvincia)).thenReturn(false);
-        ModificarProvinciaUseCase modificarProvinciaUseCase = new ModificarProvinciaUseCase(iProvinciaRepository);
+        when(miProvinciaRepository.existeProvincia("Provincia")).thenReturn(true);
+        when(miProvinciaRepository.guardarProvincia(unaProvincia)).thenReturn(false);
+        ModificarProvinciaUseCase modificarProvinciaUseCase = new ModificarProvinciaUseCase(miProvinciaRepository);
         Assertions.assertThrows(ProvinciaExisteException.class, () -> modificarProvinciaUseCase.modificarProvincia(unaProvincia));
     }
 }

@@ -14,13 +14,13 @@ import static org.mockito.Mockito.when;
 @ExtendWith(mockito.MockitoExtension.class)
 public class CrearRubroUseCaseTest {
     @Mock
-    IRubroRepository iRubroRepository;
+    IRubroRepository miRubroRepository;
     @Test
     void crearTipoRubro_RubroNoExiste_GuardaCorrectamente() throws RubroExisteException {
         Rubro unRubro = Rubro.instancia(1, "Rubro");
-        when(iRubroRepository.existeRubro("Rubro")).thenReturn(false);
-        when(iRubroRepository.guardarRubro(unRubro)).thenReturn(true);
-        CrearRubroUseCase crearRubroUseCase = new CrearRubroUseCase(iRubroRepository);
+        when(miRubroRepository.existeRubro("Rubro")).thenReturn(false);
+        when(miRubroRepository.guardarRubro(unRubro)).thenReturn(true);
+        CrearRubroUseCase crearRubroUseCase = new CrearRubroUseCase(miRubroRepository);
         boolean resultado = crearRubroUseCase.crearRubro(unRubro);
         Assertions.assertTrue(resultado);
     }
@@ -28,9 +28,9 @@ public class CrearRubroUseCaseTest {
     @Test
     void crearTipoRubro_RubroExiste_NoGuardaTipoRubro() {
         Rubro unRubro = Rubro.instancia(1, "Rubro");
-        when(iRubroRepository.existeRubro("Rubro")).thenReturn(true);
-        when(iRubroRepository.guardarRubro(unRubro)).thenReturn(false);
-        CrearRubroUseCase crearRubroUseCase = new CrearRubroUseCase(iRubroRepository);
+        when(miRubroRepository.existeRubro("Rubro")).thenReturn(true);
+        when(miRubroRepository.guardarRubro(unRubro)).thenReturn(false);
+        CrearRubroUseCase crearRubroUseCase = new CrearRubroUseCase(miRubroRepository);
         Assertions.assertThrows(RubroExisteException.class, () -> crearRubroUseCase.crearRubro(unRubro));
     }
 }

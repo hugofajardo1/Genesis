@@ -14,13 +14,13 @@ import static org.mockito.Mockito.when;
 @ExtendWith(mockito.MockitoExtension.class)
 public class ModificarTipoMovimientoUseCaseTest {
     @Mock
-    ITipoMovimientoRepository iTipoMovimientoRepository;
+    ITipoMovimientoRepository miTipoMovimientoRepository;
     @Test
     void modificarTipoMovimiento_TipoMovimientoActualizadoCorrectamente() throws TipoMovimientoExisteException {
         TipoMovimiento unTipoMovimiento = TipoMovimiento.instancia(1, "Factura A");
-        when(iTipoMovimientoRepository.existeTipoMovimiento("Factura A")).thenReturn(false);
-        when(iTipoMovimientoRepository.guardarTipoMovimiento(unTipoMovimiento)).thenReturn(true);
-        ModificarTipoMovimientoUseCase modificarTipoMovimientoUseCase = new ModificarTipoMovimientoUseCase(iTipoMovimientoRepository);
+        when(miTipoMovimientoRepository.existeTipoMovimiento("Factura A")).thenReturn(false);
+        when(miTipoMovimientoRepository.guardarTipoMovimiento(unTipoMovimiento)).thenReturn(true);
+        ModificarTipoMovimientoUseCase modificarTipoMovimientoUseCase = new ModificarTipoMovimientoUseCase(miTipoMovimientoRepository);
         boolean resultado = modificarTipoMovimientoUseCase.modificarTipoMovimiento(unTipoMovimiento);
         Assertions.assertTrue(resultado);
     }
@@ -28,9 +28,9 @@ public class ModificarTipoMovimientoUseCaseTest {
     @Test
     void modificarTipoMovimiento_HayConflictoTipoMovimientoExiste_TipoMovimientoNoActualiza() {
         TipoMovimiento unTipoMovimiento = TipoMovimiento.instancia(1, "Factura A");
-        when(iTipoMovimientoRepository.existeTipoMovimiento("Factura A")).thenReturn(true);
-        when(iTipoMovimientoRepository.guardarTipoMovimiento(unTipoMovimiento)).thenReturn(false);
-        ModificarTipoMovimientoUseCase modificarTipoMovimientoUseCase = new ModificarTipoMovimientoUseCase(iTipoMovimientoRepository);
+        when(miTipoMovimientoRepository.existeTipoMovimiento("Factura A")).thenReturn(true);
+        when(miTipoMovimientoRepository.guardarTipoMovimiento(unTipoMovimiento)).thenReturn(false);
+        ModificarTipoMovimientoUseCase modificarTipoMovimientoUseCase = new ModificarTipoMovimientoUseCase(miTipoMovimientoRepository);
         Assertions.assertThrows(TipoMovimientoExisteException.class, () -> modificarTipoMovimientoUseCase.modificarTipoMovimiento(unTipoMovimiento));
     }
 }
