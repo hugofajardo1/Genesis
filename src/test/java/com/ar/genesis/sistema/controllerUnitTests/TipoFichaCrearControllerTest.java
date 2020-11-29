@@ -3,7 +3,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 import com.ar.genesis.sistema.core.domain.TipoFicha;
 import com.ar.genesis.sistema.core.exception.TipoFichaExisteException;
 import com.ar.genesis.sistema.core.input.ICrearTipoFichaInput;
-import com.ar.genesis.sistema.service.controller.CrearTipoFichaController;
+import com.ar.genesis.sistema.service.controller.TipoFichaCrearController;
 import com.ar.genesis.sistema.service.dto.TipoFichaDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -25,8 +25,8 @@ public class TipoFichaCrearControllerTest {
         TipoFichaDTO unTipoFichaDTO = new TipoFichaDTO(1, "Cliente");
         when(miCrearTipoFichaInput.crearTipoFicha(any(TipoFicha.class))).thenReturn(true);
 
-        CrearTipoFichaController crearTipoFichaController = new CrearTipoFichaController(miCrearTipoFichaInput);
-        ResponseEntity<?> responseEntity = crearTipoFichaController.crearTipoFicha(unTipoFichaDTO);
+        TipoFichaCrearController tipoFichaCrearController = new TipoFichaCrearController(miCrearTipoFichaInput);
+        ResponseEntity<?> responseEntity = tipoFichaCrearController.crearTipoFicha(unTipoFichaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
@@ -37,8 +37,8 @@ public class TipoFichaCrearControllerTest {
         TipoFichaDTO unTipoFichaDTO = new TipoFichaDTO(1, "Cliente");
         when(miCrearTipoFichaInput.crearTipoFicha(any(TipoFicha.class))).thenThrow(TipoFichaExisteException.class);
 
-        CrearTipoFichaController crearTipoFichaController = new CrearTipoFichaController(miCrearTipoFichaInput);
-        ResponseEntity<?> responseEntity = crearTipoFichaController.crearTipoFicha(unTipoFichaDTO);
+        TipoFichaCrearController tipoFichaCrearController = new TipoFichaCrearController(miCrearTipoFichaInput);
+        ResponseEntity<?> responseEntity = tipoFichaCrearController.crearTipoFicha(unTipoFichaDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }

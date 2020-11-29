@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 
 import com.ar.genesis.sistema.core.domain.TipoIva;
 import com.ar.genesis.sistema.core.input.IObtenerTipoIvasInput;
-import com.ar.genesis.sistema.service.controller.ObtenerTipoIvasController;
+import com.ar.genesis.sistema.service.controller.TipoIvaObtenerController;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -26,8 +26,8 @@ public class TipoIvaObtenerControllerTest {
         tipoIvas.add(TipoIva.instancia(1,"Cliente"));
         when(miObtenerTipoIvasInput.obtenerTipoIvas()).thenReturn(tipoIvas);
 
-        ObtenerTipoIvasController obtenerTipoIvasController = new ObtenerTipoIvasController(miObtenerTipoIvasInput);
-        ResponseEntity<?> responseEntity = obtenerTipoIvasController.obtenerTipoIvas();
+        TipoIvaObtenerController tipoIvaObtenerController = new TipoIvaObtenerController(miObtenerTipoIvasInput);
+        ResponseEntity<?> responseEntity = tipoIvaObtenerController.obtenerTipoIvas();
         List<?> resultado = (List<?>) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         if(resultado != null) {

@@ -3,7 +3,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 import com.ar.genesis.sistema.core.domain.SubRubro;
 import com.ar.genesis.sistema.core.exception.SubRubroExisteException;
 import com.ar.genesis.sistema.core.input.IModificarSubRubroInput;
-import com.ar.genesis.sistema.service.controller.ModificarSubRubroController;
+import com.ar.genesis.sistema.service.controller.SubRubroModificarController;
 import com.ar.genesis.sistema.service.dto.SubRubroDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -25,8 +25,8 @@ public class SubRubroModificarControllerTest {
         SubRubroDTO unSubRubroDTO = new SubRubroDTO(1, "SubRubro");
         when(miModificarSubRubroInput.modificarSubRubro(any(SubRubro.class))).thenReturn(true);
 
-        ModificarSubRubroController modificarSubRubroController = new ModificarSubRubroController(miModificarSubRubroInput);
-        ResponseEntity<?> responseEntity = modificarSubRubroController.modificarSubRubro(unSubRubroDTO);
+        SubRubroModificarController subRubroModificarController = new SubRubroModificarController(miModificarSubRubroInput);
+        ResponseEntity<?> responseEntity = subRubroModificarController.modificarSubRubro(unSubRubroDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
@@ -37,8 +37,8 @@ public class SubRubroModificarControllerTest {
         SubRubroDTO unSubRubroDTO = new SubRubroDTO(1, "SubRubro");
         when(miModificarSubRubroInput.modificarSubRubro(any(SubRubro.class))).thenThrow(SubRubroExisteException.class);
 
-        ModificarSubRubroController modificarSubRubroController = new ModificarSubRubroController(miModificarSubRubroInput);
-        ResponseEntity<?> responseEntity = modificarSubRubroController.modificarSubRubro(unSubRubroDTO);
+        SubRubroModificarController subRubroModificarController = new SubRubroModificarController(miModificarSubRubroInput);
+        ResponseEntity<?> responseEntity = subRubroModificarController.modificarSubRubro(unSubRubroDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }

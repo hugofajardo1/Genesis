@@ -15,11 +15,11 @@ import javax.inject.Inject;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
-public class ModificarRubroController {
+public class RubroModificarController {
     @Inject
     IModificarRubroInput miModificarRubroInput;
 
-    public ModificarRubroController(IModificarRubroInput miModificarRubroInput) { this.miModificarRubroInput = miModificarRubroInput; }
+    public RubroModificarController(IModificarRubroInput miModificarRubroInput) { this.miModificarRubroInput = miModificarRubroInput; }
 
     @PutMapping(value = "/Rubro")
     public ResponseEntity<?> modificarRubro(@RequestBody RubroDTO unRubroDTO){

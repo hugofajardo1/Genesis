@@ -3,7 +3,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 import com.ar.genesis.sistema.core.domain.Ubicacion;
 import com.ar.genesis.sistema.core.exception.UbicacionExisteException;
 import com.ar.genesis.sistema.core.input.IModificarUbicacionInput;
-import com.ar.genesis.sistema.service.controller.ModificarUbicacionController;
+import com.ar.genesis.sistema.service.controller.UbicacionModificarController;
 import com.ar.genesis.sistema.service.dto.UbicacionDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -25,8 +25,8 @@ public class UbicacionModificarControllerTest {
         UbicacionDTO unaUbicacionDTO = new UbicacionDTO(1, "Ubicacion 1");
         when(miModificarUbicacionInput.modificarUbicacion(any(Ubicacion.class))).thenReturn(true);
 
-        ModificarUbicacionController modificarUbicacionController = new ModificarUbicacionController(miModificarUbicacionInput);
-        ResponseEntity<?> responseEntity = modificarUbicacionController.modificarUbicacion(unaUbicacionDTO);
+        UbicacionModificarController ubicacionModificarController = new UbicacionModificarController(miModificarUbicacionInput);
+        ResponseEntity<?> responseEntity = ubicacionModificarController.modificarUbicacion(unaUbicacionDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
@@ -37,8 +37,8 @@ public class UbicacionModificarControllerTest {
         UbicacionDTO unaUbicacionDTO = new UbicacionDTO(1, "Ubicacion 2");
         when(miModificarUbicacionInput.modificarUbicacion(any(Ubicacion.class))).thenThrow(UbicacionExisteException.class);
 
-        ModificarUbicacionController modificarUbicacionController = new ModificarUbicacionController(miModificarUbicacionInput);
-        ResponseEntity<?> responseEntity = modificarUbicacionController.modificarUbicacion(unaUbicacionDTO);
+        UbicacionModificarController ubicacionModificarController = new UbicacionModificarController(miModificarUbicacionInput);
+        ResponseEntity<?> responseEntity = ubicacionModificarController.modificarUbicacion(unaUbicacionDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }

@@ -3,7 +3,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 import com.ar.genesis.sistema.core.domain.Provincia;
 import com.ar.genesis.sistema.core.exception.ProvinciaExisteException;
 import com.ar.genesis.sistema.core.input.ICrearProvinciaInput;
-import com.ar.genesis.sistema.service.controller.CrearProvinciaController;
+import com.ar.genesis.sistema.service.controller.ProvinciaCrearController;
 import com.ar.genesis.sistema.service.dto.ProvinciaDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -25,8 +25,8 @@ public class ProvinciaCrearControllerTest {
         ProvinciaDTO unaProvinciaDTO = new ProvinciaDTO(1, "Provincia");
         when(miCrearProvinciaInput.crearProvincia(any(Provincia.class))).thenReturn(true);
 
-        CrearProvinciaController crearProvinciaController = new CrearProvinciaController(miCrearProvinciaInput);
-        ResponseEntity<?> responseEntity = crearProvinciaController.crearProvincia(unaProvinciaDTO);
+        ProvinciaCrearController provinciaCrearController = new ProvinciaCrearController(miCrearProvinciaInput);
+        ResponseEntity<?> responseEntity = provinciaCrearController.crearProvincia(unaProvinciaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
@@ -37,8 +37,8 @@ public class ProvinciaCrearControllerTest {
         ProvinciaDTO unaProvinciaDTO = new ProvinciaDTO(1, "Provincia");
         when(miCrearProvinciaInput.crearProvincia(any(Provincia.class))).thenThrow(ProvinciaExisteException.class);
 
-        CrearProvinciaController crearProvinciaController = new CrearProvinciaController(miCrearProvinciaInput);
-        ResponseEntity<?> responseEntity = crearProvinciaController.crearProvincia(unaProvinciaDTO);
+        ProvinciaCrearController provinciaCrearController = new ProvinciaCrearController(miCrearProvinciaInput);
+        ResponseEntity<?> responseEntity = provinciaCrearController.crearProvincia(unaProvinciaDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }

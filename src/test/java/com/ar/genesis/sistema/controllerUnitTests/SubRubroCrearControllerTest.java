@@ -3,7 +3,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 import com.ar.genesis.sistema.core.domain.SubRubro;
 import com.ar.genesis.sistema.core.exception.SubRubroExisteException;
 import com.ar.genesis.sistema.core.input.ICrearSubRubroInput;
-import com.ar.genesis.sistema.service.controller.CrearSubRubroController;
+import com.ar.genesis.sistema.service.controller.SubRubroCrearController;
 import com.ar.genesis.sistema.service.dto.SubRubroDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -25,8 +25,8 @@ public class SubRubroCrearControllerTest {
         SubRubroDTO unSubRubroDTO = new SubRubroDTO(1, "SubRubro");
         when(miCrearSubRubroInput.crearSubRubro(any(SubRubro.class))).thenReturn(true);
 
-        CrearSubRubroController crearSubRubroController = new CrearSubRubroController(miCrearSubRubroInput);
-        ResponseEntity<?> responseEntity = crearSubRubroController.crearSubRubro(unSubRubroDTO);
+        SubRubroCrearController subRubroCrearController = new SubRubroCrearController(miCrearSubRubroInput);
+        ResponseEntity<?> responseEntity = subRubroCrearController.crearSubRubro(unSubRubroDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
@@ -37,8 +37,8 @@ public class SubRubroCrearControllerTest {
         SubRubroDTO unSubRubroDTO = new SubRubroDTO(1, "SubRubro");
         when(miCrearSubRubroInput.crearSubRubro(any(SubRubro.class))).thenThrow(SubRubroExisteException.class);
 
-        CrearSubRubroController crearSubRubroController = new CrearSubRubroController(miCrearSubRubroInput);
-        ResponseEntity<?> responseEntity = crearSubRubroController.crearSubRubro(unSubRubroDTO);
+        SubRubroCrearController subRubroCrearController = new SubRubroCrearController(miCrearSubRubroInput);
+        ResponseEntity<?> responseEntity = subRubroCrearController.crearSubRubro(unSubRubroDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }

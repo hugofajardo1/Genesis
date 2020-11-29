@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Rubro;
 import com.ar.genesis.sistema.core.input.IObtenerRubrosInput;
-import com.ar.genesis.sistema.service.controller.ObtenerRubrosController;
+import com.ar.genesis.sistema.service.controller.RubroObtenerController;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -26,8 +26,8 @@ public class RubroObtenerControllerTest {
         rubros.add(Rubro.instancia(1,"Rubro  1"));
         when(miObtenerRubrosInput.obtenerRubros()).thenReturn(rubros);
 
-        ObtenerRubrosController obtenerRubrosController = new ObtenerRubrosController(miObtenerRubrosInput);
-        ResponseEntity<?> responseEntity = obtenerRubrosController.obtenerRubros();
+        RubroObtenerController rubroObtenerController = new RubroObtenerController(miObtenerRubrosInput);
+        ResponseEntity<?> responseEntity = rubroObtenerController.obtenerRubros();
         List<?> resultado = (List<?>) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         if(resultado != null) {

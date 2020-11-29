@@ -3,7 +3,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 import com.ar.genesis.sistema.core.domain.TipoIva;
 import com.ar.genesis.sistema.core.exception.TipoIvaExisteException;
 import com.ar.genesis.sistema.core.input.IModificarTipoIvaInput;
-import com.ar.genesis.sistema.service.controller.ModificarTipoIvaController;
+import com.ar.genesis.sistema.service.controller.TipoIvaModificarController;
 import com.ar.genesis.sistema.service.dto.TipoIvaDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -25,8 +25,8 @@ public class TipoIvaModificarControllerTest {
         TipoIvaDTO unTipoIvaDTO = new TipoIvaDTO(1, "Responsable Inscripto");
         when(miModificarTipoIvaInput.modificarTipoIva(any(TipoIva.class))).thenReturn(true);
 
-        ModificarTipoIvaController modificarTipoIvaController = new ModificarTipoIvaController(miModificarTipoIvaInput);
-        ResponseEntity<?> responseEntity = modificarTipoIvaController.modificarTipoIva(unTipoIvaDTO);
+        TipoIvaModificarController tipoIvaModificarController = new TipoIvaModificarController(miModificarTipoIvaInput);
+        ResponseEntity<?> responseEntity = tipoIvaModificarController.modificarTipoIva(unTipoIvaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
@@ -37,8 +37,8 @@ public class TipoIvaModificarControllerTest {
         TipoIvaDTO unTipoIvaDTO = new TipoIvaDTO(1, "Responsable Inscripto");
         when(miModificarTipoIvaInput.modificarTipoIva(any(TipoIva.class))).thenThrow(TipoIvaExisteException.class);
 
-        ModificarTipoIvaController modificarTipoIvaController = new ModificarTipoIvaController(miModificarTipoIvaInput);
-        ResponseEntity<?> responseEntity = modificarTipoIvaController.modificarTipoIva(unTipoIvaDTO);
+        TipoIvaModificarController tipoIvaModificarController = new TipoIvaModificarController(miModificarTipoIvaInput);
+        ResponseEntity<?> responseEntity = tipoIvaModificarController.modificarTipoIva(unTipoIvaDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }

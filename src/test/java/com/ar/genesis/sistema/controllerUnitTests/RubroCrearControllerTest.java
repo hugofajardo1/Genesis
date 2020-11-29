@@ -3,7 +3,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 import com.ar.genesis.sistema.core.domain.Rubro;
 import com.ar.genesis.sistema.core.exception.RubroExisteException;
 import com.ar.genesis.sistema.core.input.ICrearRubroInput;
-import com.ar.genesis.sistema.service.controller.CrearRubroController;
+import com.ar.genesis.sistema.service.controller.RubroCrearController;
 import com.ar.genesis.sistema.service.dto.RubroDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -25,8 +25,8 @@ public class RubroCrearControllerTest {
         RubroDTO unRubroDTO = new RubroDTO(1, "Rubro");
         when(miCrearRubroInput.crearRubro(any(Rubro.class))).thenReturn(true);
 
-        CrearRubroController crearRubroController = new CrearRubroController(miCrearRubroInput);
-        ResponseEntity<?> responseEntity = crearRubroController.crearRubro(unRubroDTO);
+        RubroCrearController rubroCrearController = new RubroCrearController(miCrearRubroInput);
+        ResponseEntity<?> responseEntity = rubroCrearController.crearRubro(unRubroDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
@@ -37,8 +37,8 @@ public class RubroCrearControllerTest {
         RubroDTO unRubroDTO = new RubroDTO(1, "Rubro");
         when(miCrearRubroInput.crearRubro(any(Rubro.class))).thenThrow(RubroExisteException.class);
 
-        CrearRubroController crearRubroController = new CrearRubroController(miCrearRubroInput);
-        ResponseEntity<?> responseEntity = crearRubroController.crearRubro(unRubroDTO);
+        RubroCrearController rubroCrearController = new RubroCrearController(miCrearRubroInput);
+        ResponseEntity<?> responseEntity = rubroCrearController.crearRubro(unRubroDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }

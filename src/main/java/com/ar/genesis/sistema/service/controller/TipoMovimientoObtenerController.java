@@ -14,11 +14,11 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
-public class ObtenerTipoMovimientosController {
+public class TipoMovimientoObtenerController {
     @Inject
     IObtenerTipoMovimientosInput miObtenerTipoMovimientosInput;
 
-    public ObtenerTipoMovimientosController(IObtenerTipoMovimientosInput miObtenerTipoMovimientosInput) { this.miObtenerTipoMovimientosInput = miObtenerTipoMovimientosInput; }
+    public TipoMovimientoObtenerController(IObtenerTipoMovimientosInput miObtenerTipoMovimientosInput) { this.miObtenerTipoMovimientosInput = miObtenerTipoMovimientosInput; }
 
     @GetMapping(value = "/TipoMovimientos")
     public ResponseEntity<?> obtenerTipoMovimientos(){

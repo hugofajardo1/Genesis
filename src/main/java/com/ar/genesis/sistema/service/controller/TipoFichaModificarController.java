@@ -12,11 +12,11 @@ import javax.inject.Inject;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
-public class ModificarTipoFichaController {
+public class TipoFichaModificarController {
     @Inject
     IModificarTipoFichaInput miModificarTipoFichaInput;
 
-    public ModificarTipoFichaController(IModificarTipoFichaInput miModificarTipoFichaInput) { this.miModificarTipoFichaInput = miModificarTipoFichaInput; }
+    public TipoFichaModificarController(IModificarTipoFichaInput miModificarTipoFichaInput) { this.miModificarTipoFichaInput = miModificarTipoFichaInput; }
 
     @PutMapping(value = "/TipoFicha")
     public ResponseEntity<?> modificarTipoFicha(@RequestBody TipoFichaDTO unTipoFichaDTO){

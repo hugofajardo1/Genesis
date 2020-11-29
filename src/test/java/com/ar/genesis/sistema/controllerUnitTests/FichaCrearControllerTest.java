@@ -3,7 +3,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 import com.ar.genesis.sistema.core.domain.Ficha;
 import com.ar.genesis.sistema.core.exception.FichaExisteException;
 import com.ar.genesis.sistema.core.input.ICrearFichaInput;
-import com.ar.genesis.sistema.service.controller.CrearFichaController;
+import com.ar.genesis.sistema.service.controller.FichaCrearController;
 import com.ar.genesis.sistema.service.dto.FichaDTO;
 import com.ar.genesis.sistema.service.dto.TipoIvaDTO;
 import org.junit.jupiter.api.Assertions;
@@ -27,8 +27,8 @@ public class FichaCrearControllerTest {
         FichaDTO unaFichaDTO = new FichaDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", "3825416543", new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336");
         when(miCrearFichaInput.crearFicha(any(Ficha.class))).thenReturn(true);
 
-        CrearFichaController crearFichaController = new CrearFichaController(miCrearFichaInput);
-        ResponseEntity<?> responseEntity = crearFichaController.crearFicha(unaFichaDTO);
+        FichaCrearController fichaCrearController = new FichaCrearController(miCrearFichaInput);
+        ResponseEntity<?> responseEntity = fichaCrearController.crearFicha(unaFichaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
@@ -39,8 +39,8 @@ public class FichaCrearControllerTest {
         FichaDTO unaFichaDTO = new FichaDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", "3825416543", new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336");
         when(miCrearFichaInput.crearFicha(any(Ficha.class))).thenThrow(FichaExisteException.class);
 
-        CrearFichaController crearFichaController = new CrearFichaController(miCrearFichaInput);
-        ResponseEntity<?> responseEntity = crearFichaController.crearFicha(unaFichaDTO);
+        FichaCrearController fichaCrearController = new FichaCrearController(miCrearFichaInput);
+        ResponseEntity<?> responseEntity = fichaCrearController.crearFicha(unaFichaDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }

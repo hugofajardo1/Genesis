@@ -15,11 +15,11 @@ import javax.inject.Inject;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
-public class CrearTipoFichaController {
+public class TipoFichaCrearController {
     @Inject
     ICrearTipoFichaInput miCrearTipoFichaInput;
 
-    public CrearTipoFichaController(ICrearTipoFichaInput miCrearTipoFichaInput) { this.miCrearTipoFichaInput = miCrearTipoFichaInput; }
+    public TipoFichaCrearController(ICrearTipoFichaInput miCrearTipoFichaInput) { this.miCrearTipoFichaInput = miCrearTipoFichaInput; }
 
     @PostMapping(value = "/TipoFicha")
     public ResponseEntity<?> crearTipoFicha(@RequestBody TipoFichaDTO unTipoFichaDTO){

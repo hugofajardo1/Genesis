@@ -3,7 +3,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 import com.ar.genesis.sistema.core.domain.Ubicacion;
 import com.ar.genesis.sistema.core.exception.UbicacionExisteException;
 import com.ar.genesis.sistema.core.input.ICrearUbicacionInput;
-import com.ar.genesis.sistema.service.controller.CrearUbicacionController;
+import com.ar.genesis.sistema.service.controller.UbicacionCrearController;
 import com.ar.genesis.sistema.service.dto.UbicacionDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -25,8 +25,8 @@ public class UbicacionCrearControllerTest {
         UbicacionDTO unaUbicacionDTO = new UbicacionDTO(1, "Ubicacion 1");
         when(miCrearUbicacionInput.crearUbicacion(any(Ubicacion.class))).thenReturn(true);
 
-        CrearUbicacionController crearUbicacionController = new CrearUbicacionController(miCrearUbicacionInput);
-        ResponseEntity<?> responseEntity = crearUbicacionController.crearUbicacion(unaUbicacionDTO);
+        UbicacionCrearController ubicacionCrearController = new UbicacionCrearController(miCrearUbicacionInput);
+        ResponseEntity<?> responseEntity = ubicacionCrearController.crearUbicacion(unaUbicacionDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
@@ -37,8 +37,8 @@ public class UbicacionCrearControllerTest {
         UbicacionDTO unaUbicacionDTO = new UbicacionDTO(1, "Ubicacion 1");
         when(miCrearUbicacionInput.crearUbicacion(any(Ubicacion.class))).thenThrow(UbicacionExisteException.class);
 
-        CrearUbicacionController crearUbicacionController = new CrearUbicacionController(miCrearUbicacionInput);
-        ResponseEntity<?> responseEntity = crearUbicacionController.crearUbicacion(unaUbicacionDTO);
+        UbicacionCrearController ubicacionCrearController = new UbicacionCrearController(miCrearUbicacionInput);
+        ResponseEntity<?> responseEntity = ubicacionCrearController.crearUbicacion(unaUbicacionDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }

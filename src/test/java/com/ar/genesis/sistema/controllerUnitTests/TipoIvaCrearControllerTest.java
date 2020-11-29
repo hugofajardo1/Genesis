@@ -3,7 +3,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 import com.ar.genesis.sistema.core.domain.TipoIva;
 import com.ar.genesis.sistema.core.exception.TipoIvaExisteException;
 import com.ar.genesis.sistema.core.input.ICrearTipoIvaInput;
-import com.ar.genesis.sistema.service.controller.CrearTipoIvaController;
+import com.ar.genesis.sistema.service.controller.TipoIvaCrearController;
 import com.ar.genesis.sistema.service.dto.TipoIvaDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -25,8 +25,8 @@ public class TipoIvaCrearControllerTest {
         TipoIvaDTO unTipoIvaDTO = new TipoIvaDTO(1, "Responsable Inscripto");
         when(miCrearTipoIvaInput.crearTipoIva(any(TipoIva.class))).thenReturn(true);
 
-        CrearTipoIvaController crearTipoIvaController = new CrearTipoIvaController(miCrearTipoIvaInput);
-        ResponseEntity<?> responseEntity = crearTipoIvaController.crearTipoIva(unTipoIvaDTO);
+        TipoIvaCrearController tipoIvaCrearController = new TipoIvaCrearController(miCrearTipoIvaInput);
+        ResponseEntity<?> responseEntity = tipoIvaCrearController.crearTipoIva(unTipoIvaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
@@ -37,8 +37,8 @@ public class TipoIvaCrearControllerTest {
         TipoIvaDTO unTipoIvaDTO = new TipoIvaDTO(1, "Responsable Inscripto");
         when(miCrearTipoIvaInput.crearTipoIva(any(TipoIva.class))).thenThrow(TipoIvaExisteException.class);
 
-        CrearTipoIvaController crearTipoIvaController = new CrearTipoIvaController(miCrearTipoIvaInput);
-        ResponseEntity<?> responseEntity = crearTipoIvaController.crearTipoIva(unTipoIvaDTO);
+        TipoIvaCrearController tipoIvaCrearController = new TipoIvaCrearController(miCrearTipoIvaInput);
+        ResponseEntity<?> responseEntity = tipoIvaCrearController.crearTipoIva(unTipoIvaDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }

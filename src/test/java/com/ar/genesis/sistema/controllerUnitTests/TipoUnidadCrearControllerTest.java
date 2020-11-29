@@ -3,7 +3,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 import com.ar.genesis.sistema.core.domain.TipoUnidad;
 import com.ar.genesis.sistema.core.exception.TipoUnidadExisteException;
 import com.ar.genesis.sistema.core.input.ICrearTipoUnidadInput;
-import com.ar.genesis.sistema.service.controller.CrearTipoUnidadController;
+import com.ar.genesis.sistema.service.controller.TipoUnidadCrearController;
 import com.ar.genesis.sistema.service.dto.TipoUnidadDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -25,8 +25,8 @@ public class TipoUnidadCrearControllerTest {
         TipoUnidadDTO unTipoUnidadDTO = new TipoUnidadDTO(1, "Unidad");
         when(miCrearTipoUnidadInput.crearTipoUnidad(any(TipoUnidad.class))).thenReturn(true);
 
-        CrearTipoUnidadController crearTipoUnidadController = new CrearTipoUnidadController(miCrearTipoUnidadInput);
-        ResponseEntity<?> responseEntity = crearTipoUnidadController.crearTipoUnidad(unTipoUnidadDTO);
+        TipoUnidadCrearController tipoUnidadCrearController = new TipoUnidadCrearController(miCrearTipoUnidadInput);
+        ResponseEntity<?> responseEntity = tipoUnidadCrearController.crearTipoUnidad(unTipoUnidadDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
@@ -37,8 +37,8 @@ public class TipoUnidadCrearControllerTest {
         TipoUnidadDTO unTipoUnidadDTO = new TipoUnidadDTO(1, "Unidad");
         when(miCrearTipoUnidadInput.crearTipoUnidad(any(TipoUnidad.class))).thenThrow(TipoUnidadExisteException.class);
 
-        CrearTipoUnidadController crearTipoUnidadController = new CrearTipoUnidadController(miCrearTipoUnidadInput);
-        ResponseEntity<?> responseEntity = crearTipoUnidadController.crearTipoUnidad(unTipoUnidadDTO);
+        TipoUnidadCrearController tipoUnidadCrearController = new TipoUnidadCrearController(miCrearTipoUnidadInput);
+        ResponseEntity<?> responseEntity = tipoUnidadCrearController.crearTipoUnidad(unTipoUnidadDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }

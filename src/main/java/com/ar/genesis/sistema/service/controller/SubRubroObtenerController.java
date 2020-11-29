@@ -14,11 +14,11 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
-public class ObtenerSubRubrosController {
+public class SubRubroObtenerController {
     @Inject
     IObtenerSubRubrosInput miObtenerSubRubrosInput;
 
-    public ObtenerSubRubrosController(IObtenerSubRubrosInput miObtenerSubRubrosInput) { this.miObtenerSubRubrosInput = miObtenerSubRubrosInput; }
+    public SubRubroObtenerController(IObtenerSubRubrosInput miObtenerSubRubrosInput) { this.miObtenerSubRubrosInput = miObtenerSubRubrosInput; }
 
     @GetMapping(value = "/SubRubros")
     public ResponseEntity<?> obtenerSubRubros(){

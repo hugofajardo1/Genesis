@@ -15,11 +15,11 @@ import javax.inject.Inject;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
-public class ModificarProvinciaController {
+public class ProvinciaModificarController {
     @Inject
     IModificarProvinciaInput miModificarProvinciaInput;
 
-    public ModificarProvinciaController(IModificarProvinciaInput miModificarProvinciaInput) { this.miModificarProvinciaInput = miModificarProvinciaInput; }
+    public ProvinciaModificarController(IModificarProvinciaInput miModificarProvinciaInput) { this.miModificarProvinciaInput = miModificarProvinciaInput; }
 
     @PutMapping(value = "/Provincia")
     public ResponseEntity<?> modificarProvincia(@RequestBody ProvinciaDTO unProvinciaDTO){

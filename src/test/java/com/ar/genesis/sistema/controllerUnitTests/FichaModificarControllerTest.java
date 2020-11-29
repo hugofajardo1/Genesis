@@ -3,7 +3,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 import com.ar.genesis.sistema.core.domain.Ficha;
 import com.ar.genesis.sistema.core.exception.FichaExisteException;
 import com.ar.genesis.sistema.core.input.IModificarFichaInput;
-import com.ar.genesis.sistema.service.controller.ModificarFichaController;
+import com.ar.genesis.sistema.service.controller.FichaModificarController;
 import com.ar.genesis.sistema.service.dto.FichaDTO;
 import com.ar.genesis.sistema.service.dto.TipoIvaDTO;
 import org.junit.jupiter.api.Assertions;
@@ -26,8 +26,8 @@ public class FichaModificarControllerTest {
         FichaDTO unaFichaDTO = new FichaDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", "3825416543", new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336");
         when(miModificarFichaInput.modificarFicha(any(Ficha.class))).thenReturn(true);
 
-        ModificarFichaController modificarFichaController = new ModificarFichaController(miModificarFichaInput);
-        ResponseEntity<?> responseEntity = modificarFichaController.modificarFicha(unaFichaDTO);
+        FichaModificarController fichaModificarController = new FichaModificarController(miModificarFichaInput);
+        ResponseEntity<?> responseEntity = fichaModificarController.modificarFicha(unaFichaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
@@ -38,8 +38,8 @@ public class FichaModificarControllerTest {
         FichaDTO unaFichaDTO = new FichaDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", "3825416543", new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336");
         when(miModificarFichaInput.modificarFicha(any(Ficha.class))).thenThrow(FichaExisteException.class);
 
-        ModificarFichaController modificarFichaController = new ModificarFichaController(miModificarFichaInput);
-        ResponseEntity<?> responseEntity = modificarFichaController.modificarFicha(unaFichaDTO);
+        FichaModificarController fichaModificarController = new FichaModificarController(miModificarFichaInput);
+        ResponseEntity<?> responseEntity = fichaModificarController.modificarFicha(unaFichaDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());
     }

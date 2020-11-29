@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 
 import com.ar.genesis.sistema.core.domain.TipoUnidad;
 import com.ar.genesis.sistema.core.input.IObtenerTipoUnidadesInput;
-import com.ar.genesis.sistema.service.controller.ObtenerTipoUnidadesController;
+import com.ar.genesis.sistema.service.controller.TipoUnidadObtenerController;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -26,8 +26,8 @@ public class TipoUnidadObtenerControllerTest {
         tipoUnidades.add(TipoUnidad.instancia(1,"Cliente"));
         when(miObtenerTipoUnidadesInput.obtenerTipoUnidades()).thenReturn(tipoUnidades);
 
-        ObtenerTipoUnidadesController obtenerTipoUnidadesController = new ObtenerTipoUnidadesController(miObtenerTipoUnidadesInput);
-        ResponseEntity<?> responseEntity = obtenerTipoUnidadesController.obtenerTipoUnidades();
+        TipoUnidadObtenerController tipoUnidadObtenerController = new TipoUnidadObtenerController(miObtenerTipoUnidadesInput);
+        ResponseEntity<?> responseEntity = tipoUnidadObtenerController.obtenerTipoUnidades();
         List<?> resultado = (List<?>) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         if(resultado != null) {

@@ -3,7 +3,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 import com.ar.genesis.sistema.core.domain.Ficha;
 import com.ar.genesis.sistema.core.domain.TipoIva;
 import com.ar.genesis.sistema.core.input.IObtenerFichaInput;
-import com.ar.genesis.sistema.service.controller.ObtenerFichasController;
+import com.ar.genesis.sistema.service.controller.FichaObtenerController;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -27,8 +27,8 @@ public class FichaObtenerControllerTest {
         fichas.add(Ficha.instancia(1,"Fajardo, Hugo", "Bs. As. 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336"));
         when(miObtenerFichasInput.obtenerFichas()).thenReturn(fichas);
 
-        ObtenerFichasController obtenerFichasController = new ObtenerFichasController(miObtenerFichasInput);
-        ResponseEntity<?> responseEntity = obtenerFichasController.obtenerFichas();
+        FichaObtenerController fichaObtenerController = new FichaObtenerController(miObtenerFichasInput);
+        ResponseEntity<?> responseEntity = fichaObtenerController.obtenerFichas();
         List<?> resultado = (List<?>) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         if(resultado != null) {

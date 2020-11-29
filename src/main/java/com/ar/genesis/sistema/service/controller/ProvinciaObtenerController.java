@@ -14,11 +14,11 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
-public class ObtenerProvinciasController {
+public class ProvinciaObtenerController {
     @Inject
     IObtenerProvinciasInput miObtenerProvinciasInput;
 
-    public ObtenerProvinciasController(IObtenerProvinciasInput miObtenerProvinciasInput) { this.miObtenerProvinciasInput = miObtenerProvinciasInput; }
+    public ProvinciaObtenerController(IObtenerProvinciasInput miObtenerProvinciasInput) { this.miObtenerProvinciasInput = miObtenerProvinciasInput; }
 
     @GetMapping(value = "/Provincias")
     public ResponseEntity<?> obtenerProvincias(){

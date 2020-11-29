@@ -2,12 +2,12 @@ package com.ar.genesis.sistema.service.controller;
 
 import com.ar.genesis.sistema.core.domain.TipoUnidad;
 import com.ar.genesis.sistema.core.exception.TipoUnidadExisteException;
-import com.ar.genesis.sistema.core.input.ICrearTipoUnidadInput;
+import com.ar.genesis.sistema.core.input.IModificarTipoUnidadInput;
 import com.ar.genesis.sistema.service.dto.TipoUnidadDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,16 +15,16 @@ import javax.inject.Inject;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
-public class CrearTipoUnidadController {
+public class TipoUnidadModificarController {
     @Inject
-    ICrearTipoUnidadInput miCrearTipoUnidadInput;
+    IModificarTipoUnidadInput miModificarTipoUnidadInput;
 
-    public CrearTipoUnidadController(ICrearTipoUnidadInput miCrearTipoUnidadInput) { this.miCrearTipoUnidadInput = miCrearTipoUnidadInput; }
+    public TipoUnidadModificarController(IModificarTipoUnidadInput miModificarTipoUnidadInput) { this.miModificarTipoUnidadInput = miModificarTipoUnidadInput; }
 
-    @PostMapping(value = "/TipoUnidad")
-    public ResponseEntity<?> crearTipoUnidad(@RequestBody TipoUnidadDTO unTipoUnidadDTO){
+    @PutMapping(value = "/TipoUnidad")
+    public ResponseEntity<?> modificarTipoUnidad(@RequestBody TipoUnidadDTO unTipoUnidadDTO){
         try{
-            boolean resultado = this.miCrearTipoUnidadInput.crearTipoUnidad(TipoUnidad.instancia(unTipoUnidadDTO.getId(), unTipoUnidadDTO.getNombre()));
+            boolean resultado = this.miModificarTipoUnidadInput.modificarTipoUnidad(TipoUnidad.instancia(unTipoUnidadDTO.getId(), unTipoUnidadDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (TipoUnidadExisteException e) {

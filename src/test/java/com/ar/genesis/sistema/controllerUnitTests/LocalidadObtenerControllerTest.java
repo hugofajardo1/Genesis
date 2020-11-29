@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Localidad;
 import com.ar.genesis.sistema.core.input.IObtenerLocalidadesInput;
-import com.ar.genesis.sistema.service.controller.ObtenerLocalidadesController;
+import com.ar.genesis.sistema.service.controller.LocalidadObtenerController;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -26,8 +26,8 @@ public class LocalidadObtenerControllerTest {
         localidades.add(Localidad.instancia(1,"Localidad 1"));
         when(miObtenerLocalidadesInput.obtenerLocalidades()).thenReturn(localidades);
 
-        ObtenerLocalidadesController obtenerLocalidadesController = new ObtenerLocalidadesController(miObtenerLocalidadesInput);
-        ResponseEntity<?> responseEntity = obtenerLocalidadesController.obtenerLocalidades();
+        LocalidadObtenerController localidadObtenerController = new LocalidadObtenerController(miObtenerLocalidadesInput);
+        ResponseEntity<?> responseEntity = localidadObtenerController.obtenerLocalidades();
         List<?> resultado = (List<?>) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         if(resultado != null) {
