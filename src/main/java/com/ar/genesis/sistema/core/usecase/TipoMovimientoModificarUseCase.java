@@ -9,11 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class ModificarTipoMovimientoUseCase implements IModificarTipoMovimientoInput {
+public class TipoMovimientoModificarUseCase implements IModificarTipoMovimientoInput {
 
     ITipoMovimientoRepository miTipoMovimientoRepository;
 
-    public ModificarTipoMovimientoUseCase(ITipoMovimientoRepository miTipoMovimientoRepository) { this.miTipoMovimientoRepository = miTipoMovimientoRepository; }
+    public TipoMovimientoModificarUseCase(ITipoMovimientoRepository miTipoMovimientoRepository) { this.miTipoMovimientoRepository = miTipoMovimientoRepository; }
 
     @Override
     public boolean modificarTipoMovimiento(TipoMovimiento unTipoMovimiento) throws TipoMovimientoExisteException {

@@ -10,11 +10,11 @@ import java.util.List;
 
 @Service
 @Transactional
-public class ObtenerProvinciasUseCase implements IObtenerProvinciasInput {
+public class ProvinciaObtenerUseCase implements IObtenerProvinciasInput {
 
     IObtenerProvinciasRepository miObtenerProvinciasRepository;
 
-    public ObtenerProvinciasUseCase(IObtenerProvinciasRepository miObtenerProvinciasRepository) { this.miObtenerProvinciasRepository = miObtenerProvinciasRepository; }
+    public ProvinciaObtenerUseCase(IObtenerProvinciasRepository miObtenerProvinciasRepository) { this.miObtenerProvinciasRepository = miObtenerProvinciasRepository; }
 
     @Override
     public List<Provincia> obtenerProvincias() {

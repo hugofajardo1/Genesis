@@ -3,7 +3,7 @@ package com.ar.genesis.sistema.usecaseUnitTests;
 import com.ar.genesis.sistema.core.domain.TipoUnidad;
 import com.ar.genesis.sistema.core.exception.TipoUnidadExisteException;
 import com.ar.genesis.sistema.core.repository.ITipoUnidadRepository;
-import com.ar.genesis.sistema.core.usecase.ModificarTipoUnidadUseCase;
+import com.ar.genesis.sistema.core.usecase.TipoUnidadModificarUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,8 +20,8 @@ public class TipoUnidadModificarUseCaseTest {
         TipoUnidad unTipoUnidad = TipoUnidad.instancia(1, "Unidad");
         when(miTipoUnidadRepository.existeTipoUnidad("Unidad")).thenReturn(false);
         when(miTipoUnidadRepository.guardarTipoUnidad(unTipoUnidad)).thenReturn(true);
-        ModificarTipoUnidadUseCase modificarTipoUnidadUseCase = new ModificarTipoUnidadUseCase(miTipoUnidadRepository);
-        boolean resultado = modificarTipoUnidadUseCase.modificarTipoUnidad(unTipoUnidad);
+        TipoUnidadModificarUseCase tipoUnidadModificarUseCase = new TipoUnidadModificarUseCase(miTipoUnidadRepository);
+        boolean resultado = tipoUnidadModificarUseCase.modificarTipoUnidad(unTipoUnidad);
         Assertions.assertTrue(resultado);
     }
 
@@ -30,7 +30,7 @@ public class TipoUnidadModificarUseCaseTest {
         TipoUnidad unTipoUnidad = TipoUnidad.instancia(1, "Unidad");
         when(miTipoUnidadRepository.existeTipoUnidad("Unidad")).thenReturn(true);
         when(miTipoUnidadRepository.guardarTipoUnidad(unTipoUnidad)).thenReturn(false);
-        ModificarTipoUnidadUseCase modificarTipoUnidadUseCase = new ModificarTipoUnidadUseCase(miTipoUnidadRepository);
-        Assertions.assertThrows(TipoUnidadExisteException.class, () -> modificarTipoUnidadUseCase.modificarTipoUnidad(unTipoUnidad));
+        TipoUnidadModificarUseCase tipoUnidadModificarUseCase = new TipoUnidadModificarUseCase(miTipoUnidadRepository);
+        Assertions.assertThrows(TipoUnidadExisteException.class, () -> tipoUnidadModificarUseCase.modificarTipoUnidad(unTipoUnidad));
     }
 }

@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.usecaseUnitTests;
 
 import com.ar.genesis.sistema.core.domain.TipoFicha;
 import com.ar.genesis.sistema.core.repository.IObtenerTipoFichasRepository;
-import com.ar.genesis.sistema.core.usecase.ObtenerTipoFichasUseCase;
+import com.ar.genesis.sistema.core.usecase.TipoFichaObtenerUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,8 +24,8 @@ public class TipoFichaObtenerUseCaseTest {
     @Test
     public void obtenerTipoFichas_devuelveLista(){
         when(miObtenerTipoFichasRepository.obtenerTipoFichas()).thenReturn(tipoFichas);
-        ObtenerTipoFichasUseCase obtenerTipoFichasUseCase = new ObtenerTipoFichasUseCase(miObtenerTipoFichasRepository);
-        List<TipoFicha> resultado = obtenerTipoFichasUseCase.obtenerTipoFichas();
+        TipoFichaObtenerUseCase tipoFichaObtenerUseCase = new TipoFichaObtenerUseCase(miObtenerTipoFichasRepository);
+        List<TipoFicha> resultado = tipoFichaObtenerUseCase.obtenerTipoFichas();
         Assertions.assertEquals(2,resultado.size());
     }
 

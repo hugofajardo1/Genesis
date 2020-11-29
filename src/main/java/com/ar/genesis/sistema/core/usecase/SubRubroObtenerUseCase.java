@@ -10,11 +10,11 @@ import java.util.List;
 
 @Service
 @Transactional
-public class ObtenerSubRubrosUseCase implements IObtenerSubRubrosInput {
+public class SubRubroObtenerUseCase implements IObtenerSubRubrosInput {
 
     IObtenerSubRubrosRepository miObtenerSubRubrosRepository;
 
-    public ObtenerSubRubrosUseCase(IObtenerSubRubrosRepository miObtenerSubRubrosRepository) { this.miObtenerSubRubrosRepository = miObtenerSubRubrosRepository; }
+    public SubRubroObtenerUseCase(IObtenerSubRubrosRepository miObtenerSubRubrosRepository) { this.miObtenerSubRubrosRepository = miObtenerSubRubrosRepository; }
 
     @Override
     public List<SubRubro> obtenerSubRubros() {

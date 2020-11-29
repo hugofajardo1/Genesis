@@ -3,7 +3,7 @@ package com.ar.genesis.sistema.usecaseUnitTests;
 import com.ar.genesis.sistema.core.domain.TipoMovimiento;
 import com.ar.genesis.sistema.core.exception.TipoMovimientoExisteException;
 import com.ar.genesis.sistema.core.repository.ITipoMovimientoRepository;
-import com.ar.genesis.sistema.core.usecase.ModificarTipoMovimientoUseCase;
+import com.ar.genesis.sistema.core.usecase.TipoMovimientoModificarUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,8 +20,8 @@ public class TipoMovimientoModificarUseCaseTest {
         TipoMovimiento unTipoMovimiento = TipoMovimiento.instancia(1, "Factura A");
         when(miTipoMovimientoRepository.existeTipoMovimiento("Factura A")).thenReturn(false);
         when(miTipoMovimientoRepository.guardarTipoMovimiento(unTipoMovimiento)).thenReturn(true);
-        ModificarTipoMovimientoUseCase modificarTipoMovimientoUseCase = new ModificarTipoMovimientoUseCase(miTipoMovimientoRepository);
-        boolean resultado = modificarTipoMovimientoUseCase.modificarTipoMovimiento(unTipoMovimiento);
+        TipoMovimientoModificarUseCase tipoMovimientoModificarUseCase = new TipoMovimientoModificarUseCase(miTipoMovimientoRepository);
+        boolean resultado = tipoMovimientoModificarUseCase.modificarTipoMovimiento(unTipoMovimiento);
         Assertions.assertTrue(resultado);
     }
 
@@ -30,7 +30,7 @@ public class TipoMovimientoModificarUseCaseTest {
         TipoMovimiento unTipoMovimiento = TipoMovimiento.instancia(1, "Factura A");
         when(miTipoMovimientoRepository.existeTipoMovimiento("Factura A")).thenReturn(true);
         when(miTipoMovimientoRepository.guardarTipoMovimiento(unTipoMovimiento)).thenReturn(false);
-        ModificarTipoMovimientoUseCase modificarTipoMovimientoUseCase = new ModificarTipoMovimientoUseCase(miTipoMovimientoRepository);
-        Assertions.assertThrows(TipoMovimientoExisteException.class, () -> modificarTipoMovimientoUseCase.modificarTipoMovimiento(unTipoMovimiento));
+        TipoMovimientoModificarUseCase tipoMovimientoModificarUseCase = new TipoMovimientoModificarUseCase(miTipoMovimientoRepository);
+        Assertions.assertThrows(TipoMovimientoExisteException.class, () -> tipoMovimientoModificarUseCase.modificarTipoMovimiento(unTipoMovimiento));
     }
 }

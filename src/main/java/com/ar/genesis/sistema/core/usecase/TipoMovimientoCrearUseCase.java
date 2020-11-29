@@ -9,11 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class CrearTipoMovimientoUseCase implements ICrearTipoMovimientoInput {
+public class TipoMovimientoCrearUseCase implements ICrearTipoMovimientoInput {
 
     ITipoMovimientoRepository miTipoMovimientoRepository;
 
-    public CrearTipoMovimientoUseCase(ITipoMovimientoRepository miTipoMovimientoRepository) {  this.miTipoMovimientoRepository = miTipoMovimientoRepository; }
+    public TipoMovimientoCrearUseCase(ITipoMovimientoRepository miTipoMovimientoRepository) {  this.miTipoMovimientoRepository = miTipoMovimientoRepository; }
 
     public boolean crearTipoMovimiento(TipoMovimiento unTipoMovimiento) throws TipoMovimientoExisteException {
         if (miTipoMovimientoRepository.existeTipoMovimiento(unTipoMovimiento.getNombre())){

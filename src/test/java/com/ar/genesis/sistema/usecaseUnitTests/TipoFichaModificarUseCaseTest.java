@@ -3,7 +3,7 @@ package com.ar.genesis.sistema.usecaseUnitTests;
 import com.ar.genesis.sistema.core.domain.TipoFicha;
 import com.ar.genesis.sistema.core.exception.TipoFichaExisteException;
 import com.ar.genesis.sistema.core.repository.ITipoFichaRepository;
-import com.ar.genesis.sistema.core.usecase.ModificarTipoFichaUseCase;
+import com.ar.genesis.sistema.core.usecase.TipoFichaModificarUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,8 +20,8 @@ public class TipoFichaModificarUseCaseTest {
         TipoFicha unTipoFicha = TipoFicha.instancia(1, "Cliente");
         when(miTipoFichaRepository.existeTipoFicha("Cliente")).thenReturn(false);
         when(miTipoFichaRepository.guardarTipoFicha(unTipoFicha)).thenReturn(true);
-        ModificarTipoFichaUseCase modificarTipoFichaUseCase = new ModificarTipoFichaUseCase(miTipoFichaRepository);
-        boolean resultado = modificarTipoFichaUseCase.modificarTipoFicha(unTipoFicha);
+        TipoFichaModificarUseCase tipoFichaModificarUseCase = new TipoFichaModificarUseCase(miTipoFichaRepository);
+        boolean resultado = tipoFichaModificarUseCase.modificarTipoFicha(unTipoFicha);
         Assertions.assertTrue(resultado);
     }
 
@@ -30,7 +30,7 @@ public class TipoFichaModificarUseCaseTest {
         TipoFicha unTipoFicha = TipoFicha.instancia(1, "Cliente");
         when(miTipoFichaRepository.existeTipoFicha("Cliente")).thenReturn(true);
         when(miTipoFichaRepository.guardarTipoFicha(unTipoFicha)).thenReturn(false);
-        ModificarTipoFichaUseCase modificarTipoFichaUseCase = new ModificarTipoFichaUseCase(miTipoFichaRepository);
-        Assertions.assertThrows(TipoFichaExisteException.class, () -> modificarTipoFichaUseCase.modificarTipoFicha(unTipoFicha));
+        TipoFichaModificarUseCase tipoFichaModificarUseCase = new TipoFichaModificarUseCase(miTipoFichaRepository);
+        Assertions.assertThrows(TipoFichaExisteException.class, () -> tipoFichaModificarUseCase.modificarTipoFicha(unTipoFicha));
     }
 }

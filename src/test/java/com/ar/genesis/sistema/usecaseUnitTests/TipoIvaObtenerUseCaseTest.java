@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.usecaseUnitTests;
 
 import com.ar.genesis.sistema.core.domain.TipoIva;
 import com.ar.genesis.sistema.core.repository.IObtenerTipoIvasRepository;
-import com.ar.genesis.sistema.core.usecase.ObtenerTipoIvasUseCase;
+import com.ar.genesis.sistema.core.usecase.TipoIvaObtenerUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,8 +24,8 @@ public class TipoIvaObtenerUseCaseTest {
     @Test
     public void obtenerTipoIvas_devuelveLista(){
         when(miObtenerTipoIvasRepository.obtenerTipoIvas()).thenReturn(tipoIvas);
-        ObtenerTipoIvasUseCase obtenerTipoIvasUseCase = new ObtenerTipoIvasUseCase(miObtenerTipoIvasRepository);
-        List<TipoIva> resultado = obtenerTipoIvasUseCase.obtenerTipoIvas();
+        TipoIvaObtenerUseCase tipoIvaObtenerUseCase = new TipoIvaObtenerUseCase(miObtenerTipoIvasRepository);
+        List<TipoIva> resultado = tipoIvaObtenerUseCase.obtenerTipoIvas();
         Assertions.assertEquals(2,resultado.size());
     }
 

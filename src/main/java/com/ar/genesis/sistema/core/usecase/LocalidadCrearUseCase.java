@@ -9,11 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class CrearLocalidadUseCase implements ICrearLocalidadInput {
+public class LocalidadCrearUseCase implements ICrearLocalidadInput {
 
     ILocalidadRepository miLocalidadRepository;
 
-    public CrearLocalidadUseCase(ILocalidadRepository miLocalidadRepository) { this.miLocalidadRepository = miLocalidadRepository; }
+    public LocalidadCrearUseCase(ILocalidadRepository miLocalidadRepository) { this.miLocalidadRepository = miLocalidadRepository; }
 
     @Override
     public boolean crearLocalidad(Localidad unaLocalidad) throws LocalidadExisteException {

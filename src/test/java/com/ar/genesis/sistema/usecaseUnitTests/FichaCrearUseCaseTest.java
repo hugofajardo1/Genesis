@@ -4,7 +4,7 @@ import com.ar.genesis.sistema.core.domain.Ficha;
 import com.ar.genesis.sistema.core.domain.TipoIva;
 import com.ar.genesis.sistema.core.exception.FichaExisteException;
 import com.ar.genesis.sistema.core.repository.IFichaRepository;
-import com.ar.genesis.sistema.core.usecase.CrearFichaUseCase;
+import com.ar.genesis.sistema.core.usecase.FichaCrearUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,8 +22,8 @@ public class FichaCrearUseCaseTest {
         Ficha unaFicha = Ficha.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336");
         when(miFichaRepository.existeFicha("Fajardo, Hugo")).thenReturn(false);
         when(miFichaRepository.guardarFicha(unaFicha)).thenReturn(true);
-        CrearFichaUseCase crearFichaUseCase = new CrearFichaUseCase(miFichaRepository);
-        boolean resultado = crearFichaUseCase.crearFicha(unaFicha);
+        FichaCrearUseCase fichaCrearUseCase = new FichaCrearUseCase(miFichaRepository);
+        boolean resultado = fichaCrearUseCase.crearFicha(unaFicha);
         Assertions.assertTrue(resultado);
     }
     @Test
@@ -31,7 +31,7 @@ public class FichaCrearUseCaseTest {
         Ficha unaFicha = Ficha.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336");
         when(miFichaRepository.existeFicha("Fajardo, Hugo")).thenReturn(true);
         when(miFichaRepository.guardarFicha(unaFicha)).thenReturn(false);
-        CrearFichaUseCase crearFichaUseCase = new CrearFichaUseCase(miFichaRepository);
-        Assertions.assertThrows(FichaExisteException.class, () -> crearFichaUseCase.crearFicha(unaFicha));
+        FichaCrearUseCase fichaCrearUseCase = new FichaCrearUseCase(miFichaRepository);
+        Assertions.assertThrows(FichaExisteException.class, () -> fichaCrearUseCase.crearFicha(unaFicha));
     }
 }

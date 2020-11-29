@@ -10,11 +10,11 @@ import java.util.List;
 
 @Service
 @Transactional
-public class ObtenerTipoUnidadesUseCase implements IObtenerTipoUnidadesInput {
+public class TipoUnidadObtenerUseCase implements IObtenerTipoUnidadesInput {
 
     IObtenerTipoUnidadesRepository miObtenerTipoUnidadesRepository;
 
-    public ObtenerTipoUnidadesUseCase(IObtenerTipoUnidadesRepository miObtenerTipoUnidadesRepository) { this.miObtenerTipoUnidadesRepository = miObtenerTipoUnidadesRepository; }
+    public TipoUnidadObtenerUseCase(IObtenerTipoUnidadesRepository miObtenerTipoUnidadesRepository) { this.miObtenerTipoUnidadesRepository = miObtenerTipoUnidadesRepository; }
 
     @Override
     public List<TipoUnidad> obtenerTipoUnidades() {

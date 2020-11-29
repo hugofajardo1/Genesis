@@ -3,7 +3,7 @@ package com.ar.genesis.sistema.usecaseUnitTests;
 import com.ar.genesis.sistema.core.domain.Localidad;
 import com.ar.genesis.sistema.core.exception.LocalidadExisteException;
 import com.ar.genesis.sistema.core.repository.ILocalidadRepository;
-import com.ar.genesis.sistema.core.usecase.ModificarLocalidadUseCase;
+import com.ar.genesis.sistema.core.usecase.LocalidadModificarUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,8 +20,8 @@ public class LocalidadModificarUseCaseTest {
         Localidad unaLocalidad = Localidad.instancia(1, "Localidad");
         when(miLocalidadRepository.existeLocalidad("Localidad")).thenReturn(false);
         when(miLocalidadRepository.guardarLocalidad(unaLocalidad)).thenReturn(true);
-        ModificarLocalidadUseCase modificarLocalidadUseCase = new ModificarLocalidadUseCase(miLocalidadRepository);
-        boolean resultado = modificarLocalidadUseCase.modificarLocalidad(unaLocalidad);
+        LocalidadModificarUseCase localidadModificarUseCase = new LocalidadModificarUseCase(miLocalidadRepository);
+        boolean resultado = localidadModificarUseCase.modificarLocalidad(unaLocalidad);
         Assertions.assertTrue(resultado);
     }
 
@@ -30,7 +30,7 @@ public class LocalidadModificarUseCaseTest {
         Localidad unaLocalidad = Localidad.instancia(1, "Localidad");
         when(miLocalidadRepository.existeLocalidad("Localidad")).thenReturn(true);
         when(miLocalidadRepository.guardarLocalidad(unaLocalidad)).thenReturn(false);
-        ModificarLocalidadUseCase modificarLocalidadUseCase = new ModificarLocalidadUseCase(miLocalidadRepository);
-        Assertions.assertThrows(LocalidadExisteException.class, () -> modificarLocalidadUseCase.modificarLocalidad(unaLocalidad));
+        LocalidadModificarUseCase localidadModificarUseCase = new LocalidadModificarUseCase(miLocalidadRepository);
+        Assertions.assertThrows(LocalidadExisteException.class, () -> localidadModificarUseCase.modificarLocalidad(unaLocalidad));
     }
 }

@@ -9,11 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class CrearTipoIvaUseCase implements ICrearTipoIvaInput {
+public class TipoIvaCrearUseCase implements ICrearTipoIvaInput {
 
     ITipoIvaRepository miTipoIvaRepository;
 
-    public CrearTipoIvaUseCase(ITipoIvaRepository miTipoIvaRepository) {  this.miTipoIvaRepository = miTipoIvaRepository; }
+    public TipoIvaCrearUseCase(ITipoIvaRepository miTipoIvaRepository) {  this.miTipoIvaRepository = miTipoIvaRepository; }
 
     public boolean crearTipoIva(TipoIva unTipoIva) throws TipoIvaExisteException {
         if (miTipoIvaRepository.existeTipoIva(unTipoIva.getNombre())){

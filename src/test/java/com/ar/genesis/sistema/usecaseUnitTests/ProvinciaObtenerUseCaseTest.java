@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.usecaseUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Provincia;
 import com.ar.genesis.sistema.core.repository.IObtenerProvinciasRepository;
-import com.ar.genesis.sistema.core.usecase.ObtenerProvinciasUseCase;
+import com.ar.genesis.sistema.core.usecase.ProvinciaObtenerUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,8 +24,8 @@ public class ProvinciaObtenerUseCaseTest {
     @Test
     public void obtenerProvincias_devuelveLista(){
         when(miObtenerProvinciasRepository.obtenerProvincias()).thenReturn(provincias);
-        ObtenerProvinciasUseCase obtenerProvinciasUseCase = new ObtenerProvinciasUseCase(miObtenerProvinciasRepository);
-        List<Provincia> resultado = obtenerProvinciasUseCase.obtenerProvincias();
+        ProvinciaObtenerUseCase provinciaObtenerUseCase = new ProvinciaObtenerUseCase(miObtenerProvinciasRepository);
+        List<Provincia> resultado = provinciaObtenerUseCase.obtenerProvincias();
         Assertions.assertEquals(2,resultado.size());
     }
 

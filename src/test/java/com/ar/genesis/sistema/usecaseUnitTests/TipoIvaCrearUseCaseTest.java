@@ -3,7 +3,7 @@ package com.ar.genesis.sistema.usecaseUnitTests;
 import com.ar.genesis.sistema.core.domain.TipoIva;
 import com.ar.genesis.sistema.core.exception.TipoIvaExisteException;
 import com.ar.genesis.sistema.core.repository.ITipoIvaRepository;
-import com.ar.genesis.sistema.core.usecase.CrearTipoIvaUseCase;
+import com.ar.genesis.sistema.core.usecase.TipoIvaCrearUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,8 +20,8 @@ public class TipoIvaCrearUseCaseTest {
         TipoIva unTipoIva = TipoIva.instancia(1, "Responsable Inscripto");
         when(miTipoIvaRepository.existeTipoIva("Responsable Inscripto")).thenReturn(false);
         when(miTipoIvaRepository.guardarTipoIva(unTipoIva)).thenReturn(true);
-        CrearTipoIvaUseCase crearTipoIvaUseCase = new CrearTipoIvaUseCase(miTipoIvaRepository);
-        boolean resultado = crearTipoIvaUseCase.crearTipoIva(unTipoIva);
+        TipoIvaCrearUseCase tipoIvaCrearUseCase = new TipoIvaCrearUseCase(miTipoIvaRepository);
+        boolean resultado = tipoIvaCrearUseCase.crearTipoIva(unTipoIva);
         Assertions.assertTrue(resultado);
     }
 
@@ -30,7 +30,7 @@ public class TipoIvaCrearUseCaseTest {
         TipoIva unTipoIva = TipoIva.instancia(1, "Responsable Inscripto");
         when(miTipoIvaRepository.existeTipoIva("Responsable Inscripto")).thenReturn(true);
         when(miTipoIvaRepository.guardarTipoIva(unTipoIva)).thenReturn(false);
-        CrearTipoIvaUseCase crearTipoIvaUseCase = new CrearTipoIvaUseCase(miTipoIvaRepository);
-        Assertions.assertThrows(TipoIvaExisteException.class, () -> crearTipoIvaUseCase.crearTipoIva(unTipoIva));
+        TipoIvaCrearUseCase tipoIvaCrearUseCase = new TipoIvaCrearUseCase(miTipoIvaRepository);
+        Assertions.assertThrows(TipoIvaExisteException.class, () -> tipoIvaCrearUseCase.crearTipoIva(unTipoIva));
     }
 }

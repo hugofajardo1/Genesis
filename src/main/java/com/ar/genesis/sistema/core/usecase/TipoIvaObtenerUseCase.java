@@ -10,11 +10,11 @@ import java.util.List;
 
 @Service
 @Transactional
-public class ObtenerTipoIvasUseCase implements IObtenerTipoIvasInput {
+public class TipoIvaObtenerUseCase implements IObtenerTipoIvasInput {
 
     IObtenerTipoIvasRepository miObtenerTipoIvasRepository;
 
-    public ObtenerTipoIvasUseCase(IObtenerTipoIvasRepository miObtenerTipoIvasRepository) { this.miObtenerTipoIvasRepository = miObtenerTipoIvasRepository; }
+    public TipoIvaObtenerUseCase(IObtenerTipoIvasRepository miObtenerTipoIvasRepository) { this.miObtenerTipoIvasRepository = miObtenerTipoIvasRepository; }
 
     @Override
     public List<TipoIva> obtenerTipoIvas() {
