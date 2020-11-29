@@ -15,7 +15,7 @@ import java.util.List;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(mockito.MockitoExtension.class)
-public class ObtenerSubRubrosUseCaseTest {
+public class SubRubroObtenerUseCaseTest {
     @Mock
     IObtenerSubRubrosRepository miObtenerSubRubrosRepository;
     @Spy

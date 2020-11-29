@@ -3,7 +3,7 @@ package com.ar.genesis.sistema.usecaseUnitTests;
 import com.ar.genesis.sistema.core.domain.TipoMovimiento;
 import com.ar.genesis.sistema.core.exception.TipoMovimientoExisteException;
 import com.ar.genesis.sistema.core.repository.ITipoMovimientoRepository;
-import com.ar.genesis.sistema.core.usecase.ModificarTipoMovimientoUseCase;
+import com.ar.genesis.sistema.core.usecase.CrearTipoMovimientoUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,25 +12,25 @@ import org.mockito.Mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(mockito.MockitoExtension.class)
-public class ModificarTipoMovimientoUseCaseTest {
+public class TipoMovimientoCrearUseCaseTest {
     @Mock
     ITipoMovimientoRepository miTipoMovimientoRepository;
     @Test
-    void modificarTipoMovimiento_TipoMovimientoActualizadoCorrectamente() throws TipoMovimientoExisteException {
+    void crearTipoMovimiento_TipoMovimientoNoExiste_GuardaCorrectamente() throws TipoMovimientoExisteException {
         TipoMovimiento unTipoMovimiento = TipoMovimiento.instancia(1, "Factura A");
         when(miTipoMovimientoRepository.existeTipoMovimiento("Factura A")).thenReturn(false);
         when(miTipoMovimientoRepository.guardarTipoMovimiento(unTipoMovimiento)).thenReturn(true);
-        ModificarTipoMovimientoUseCase modificarTipoMovimientoUseCase = new ModificarTipoMovimientoUseCase(miTipoMovimientoRepository);
-        boolean resultado = modificarTipoMovimientoUseCase.modificarTipoMovimiento(unTipoMovimiento);
+        CrearTipoMovimientoUseCase crearTipoMovimientoUseCase = new CrearTipoMovimientoUseCase(miTipoMovimientoRepository);
+        boolean resultado = crearTipoMovimientoUseCase.crearTipoMovimiento(unTipoMovimiento);
         Assertions.assertTrue(resultado);
     }
 
     @Test
-    void modificarTipoMovimiento_HayConflictoTipoMovimientoExiste_TipoMovimientoNoActualiza() {
+    void crearTipoMovimiento_TipoMovimientoExiste_NoGuardaTipoMovimiento() {
         TipoMovimiento unTipoMovimiento = TipoMovimiento.instancia(1, "Factura A");
         when(miTipoMovimientoRepository.existeTipoMovimiento("Factura A")).thenReturn(true);
         when(miTipoMovimientoRepository.guardarTipoMovimiento(unTipoMovimiento)).thenReturn(false);
-        ModificarTipoMovimientoUseCase modificarTipoMovimientoUseCase = new ModificarTipoMovimientoUseCase(miTipoMovimientoRepository);
-        Assertions.assertThrows(TipoMovimientoExisteException.class, () -> modificarTipoMovimientoUseCase.modificarTipoMovimiento(unTipoMovimiento));
+        CrearTipoMovimientoUseCase crearTipoMovimientoUseCase = new CrearTipoMovimientoUseCase(miTipoMovimientoRepository);
+        Assertions.assertThrows(TipoMovimientoExisteException.class, () -> crearTipoMovimientoUseCase.crearTipoMovimiento(unTipoMovimiento));
     }
 }

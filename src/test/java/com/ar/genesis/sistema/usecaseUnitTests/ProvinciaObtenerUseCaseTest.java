@@ -15,7 +15,7 @@ import java.util.List;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(mockito.MockitoExtension.class)
-public class ObtenerProvinciasUseCaseTest {
+public class ProvinciaObtenerUseCaseTest {
     @Mock
     IObtenerProvinciasRepository miObtenerProvinciasRepository;
     @Spy

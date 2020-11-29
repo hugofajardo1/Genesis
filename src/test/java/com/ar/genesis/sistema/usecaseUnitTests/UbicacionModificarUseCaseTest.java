@@ -12,7 +12,7 @@ import org.mockito.Mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(mockito.MockitoExtension.class)
-public class ModificarUbicacionUseCaseTest {
+public class UbicacionModificarUseCaseTest {
     @Mock
     IUbicacionRepository miUbicacionRepository;
     @Test

@@ -15,7 +15,7 @@ import java.util.List;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(mockito.MockitoExtension.class)
-public class ObtenerTipoIvasUseCaseTest {
+public class TipoIvaObtenerUseCaseTest {
     @Mock
     IObtenerTipoIvasRepository miObtenerTipoIvasRepository;
     @Spy
