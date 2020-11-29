@@ -17,12 +17,12 @@ import javax.inject.Inject;
 })
 public class ModificarSubRubroDataTest {
     @Inject
-    com.ar.genesis.sistema.persistence.repositoryImplementacion.SubRubroRepoImplementacion SubRubroRepoImplementacion;
+    SubRubroRepoImplementacion subRubroRepoImplementacion;
 
     @Test
     public void guardarSubRubro_SubRubroGuardado_devuelveTrue() {
         SubRubro unSubRubro = SubRubro.instancia(1, "SubRubro");
-        boolean resultado = SubRubroRepoImplementacion.guardarSubRubro(unSubRubro);
+        boolean resultado = subRubroRepoImplementacion.guardarSubRubro(unSubRubro);
         Assertions.assertTrue(resultado);
     }
 }

@@ -17,12 +17,12 @@ import javax.inject.Inject;
 })
 public class ModificarUbicacionDataTest {
     @Inject
-    UbicacionRepoImplementacion UbicacionRepoImplementacion;
+    UbicacionRepoImplementacion ubicacionRepoImplementacion;
 
     @Test
     public void guardarUbicacion_UbicacionGuardado_devuelveTrue() {
         Ubicacion unaUbicacion = Ubicacion.instancia(1, "Ubicacion 1");
-        boolean resultado = UbicacionRepoImplementacion.guardarUbicacion(unaUbicacion);
+        boolean resultado = ubicacionRepoImplementacion.guardarUbicacion(unaUbicacion);
         Assertions.assertTrue(resultado);
     }
 }

@@ -17,12 +17,12 @@ import javax.inject.Inject;
 })
 public class ModificarLocalidadDataTest {
     @Inject
-    LocalidadRepoImplementacion LocalidadRepoImplementacion;
+    LocalidadRepoImplementacion localidadRepoImplementacion;
 
     @Test
     public void guardarLocalidad_LocalidadGuardado_devuelveTrue() {
         Localidad unaLocalidad = Localidad.instancia(1, "Localidad 1");
-        boolean resultado = LocalidadRepoImplementacion.guardarLocalidad(unaLocalidad);
+        boolean resultado = localidadRepoImplementacion.guardarLocalidad(unaLocalidad);
         Assertions.assertTrue(resultado);
     }
 }
