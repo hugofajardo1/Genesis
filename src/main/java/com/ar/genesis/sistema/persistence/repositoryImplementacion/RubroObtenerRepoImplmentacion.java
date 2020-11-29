@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 @Service
-public class ObtenerRubrosRepoImplmentacion implements IObtenerRubrosRepository {
+public class RubroObtenerRepoImplmentacion implements IObtenerRubrosRepository {
     @Inject
     IRubroCRUD miRubroCRUD;
 

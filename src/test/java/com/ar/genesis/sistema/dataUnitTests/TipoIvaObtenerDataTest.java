@@ -1,7 +1,7 @@
 package com.ar.genesis.sistema.dataUnitTests;
 
 import com.ar.genesis.sistema.core.domain.TipoIva;
-import com.ar.genesis.sistema.persistence.repositoryImplementacion.ObtenerTipoIvasRepoImplmentacion;
+import com.ar.genesis.sistema.persistence.repositoryImplementacion.TipoIvaObtenerRepoImplmentacion;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
@@ -19,11 +19,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 })
 public class TipoIvaObtenerDataTest {
     @Inject
-    ObtenerTipoIvasRepoImplmentacion miObtenerTipoIvasRepoImplmentacion;
+    TipoIvaObtenerRepoImplmentacion miTipoIvaObtenerRepoImplmentacion;
 
     @Test
     public void obtenerTipoIvas_TipoIvasExisten_DevuelveListado(){
-        List<TipoIva> tipoIvas = miObtenerTipoIvasRepoImplmentacion.obtenerTipoIvas();
+        List<TipoIva> tipoIvas = miTipoIvaObtenerRepoImplmentacion.obtenerTipoIvas();
         assertEquals(2, tipoIvas.size());
     }
 }

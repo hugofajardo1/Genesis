@@ -1,7 +1,7 @@
 package com.ar.genesis.sistema.dataUnitTests;
 
 import com.ar.genesis.sistema.core.domain.TipoMovimiento;
-import com.ar.genesis.sistema.persistence.repositoryImplementacion.ObtenerTipoMovimientosRepoImplmentacion;
+import com.ar.genesis.sistema.persistence.repositoryImplementacion.TipoMovimientoObtenerRepoImplmentacion;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
@@ -19,11 +19,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 })
 public class TipoMovimientoObtenerDataTest {
     @Inject
-    ObtenerTipoMovimientosRepoImplmentacion miObtenerTipoMovimientosRepoImplmentacion;
+    TipoMovimientoObtenerRepoImplmentacion miTipoMovimientoObtenerRepoImplmentacion;
 
     @Test
     public void obtenerTipoMovimientos_TipoMovimientosExisten_DevuelveListado(){
-        List<TipoMovimiento> tipoMovimientos = miObtenerTipoMovimientosRepoImplmentacion.obtenerTipoMovimientos();
+        List<TipoMovimiento> tipoMovimientos = miTipoMovimientoObtenerRepoImplmentacion.obtenerTipoMovimientos();
         assertEquals(2, tipoMovimientos.size());
     }
 }

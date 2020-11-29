@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 @Service
-public class ObtenerLocalidadesRepoImplmentacion implements IObtenerLocalidadesRepository {
+public class LocalidadObtenerRepoImplmentacion implements IObtenerLocalidadesRepository {
     @Inject
     ILocalidadCRUD miLocalidadCRUD;
 
