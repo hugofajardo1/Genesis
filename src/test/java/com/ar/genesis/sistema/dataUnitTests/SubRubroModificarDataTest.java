@@ -12,19 +12,17 @@ import javax.inject.Inject;
 
 @SpringBootTest
 @SqlGroup({
-        @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:crearSubRubroAntes.sql"),
-        @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:crearSubRubroDespues.sql")
+        @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:modificarSubRubroAntes.sql"),
+        @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:modificarSubRubroDespues.sql")
 })
-public class CrearSubRubroDataTest {
-
+public class SubRubroModificarDataTest {
     @Inject
     SubRubroRepoImplementacion miSubRubroRepoImplementacion;
 
     @Test
     public void guardarSubRubro_SubRubroGuardado_devuelveTrue() {
-        SubRubro unSubRubro = SubRubro.instancia(null, "SubRubro");
+        SubRubro unSubRubro = SubRubro.instancia(1, "SubRubro");
         boolean resultado = miSubRubroRepoImplementacion.guardarSubRubro(unSubRubro);
         Assertions.assertTrue(resultado);
     }
-
 }

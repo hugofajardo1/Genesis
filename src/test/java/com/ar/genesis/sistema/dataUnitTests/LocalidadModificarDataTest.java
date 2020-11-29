@@ -15,7 +15,7 @@ import javax.inject.Inject;
         @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:modificarLocalidadAntes.sql"),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:modificarLocalidadDespues.sql")
 })
-public class ModificarLocalidadDataTest {
+public class LocalidadModificarDataTest {
     @Inject
     LocalidadRepoImplementacion miLocalidadRepoImplementacion;
 

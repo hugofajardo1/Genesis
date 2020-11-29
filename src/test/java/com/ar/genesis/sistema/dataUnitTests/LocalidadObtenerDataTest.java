@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:obtenerLocalidadesAntes.sql"),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:obtenerLocalidadesDespues.sql")
 })
-public class ObtenerLocalidadesDataTest {
+public class LocalidadObtenerDataTest {
     @Inject
     ObtenerLocalidadesRepoImplmentacion miObtenerLocalidadesRepoImplmentacion;
 

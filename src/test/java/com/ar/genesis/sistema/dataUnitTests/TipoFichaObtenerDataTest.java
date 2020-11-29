@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:obtenerTipoFichasAntes.sql"),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:obtenerTipoFichasDespues.sql")
 })
-public class ObtenerTipoFichasDataTest {
+public class TipoFichaObtenerDataTest {
     @Inject
     ObtenerTipoFichasRepoImplmentacion miObtenerTipoFichasRepoImplmentacion;
 

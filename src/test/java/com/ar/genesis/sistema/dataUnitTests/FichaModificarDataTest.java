@@ -16,7 +16,7 @@ import javax.inject.Inject;
         @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:modificarFichaAntes.sql"),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:modificarFichaDespues.sql")
 })
-public class ModificarFichaDataTest {
+public class FichaModificarDataTest {
     @Inject
     FichaRepoImplementacion miFichaRepoImplementacion;
 

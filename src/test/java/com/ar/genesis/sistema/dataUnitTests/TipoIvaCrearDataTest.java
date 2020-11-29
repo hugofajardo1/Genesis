@@ -12,17 +12,19 @@ import javax.inject.Inject;
 
 @SpringBootTest
 @SqlGroup({
-        @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:modificarTipoIvaAntes.sql"),
-        @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:modificarTipoIvaDespues.sql")
+        @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:crearTipoIvaAntes.sql"),
+        @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:crearTipoIvaDespues.sql")
 })
-public class ModificarTipoIvaDataTest {
+public class TipoIvaCrearDataTest {
+
     @Inject
     TipoIvaRepoImplementacion miTipoIvaRepoImplementacion;
 
     @Test
     public void guardarTipoIva_TipoIvaGuardado_devuelveTrue() {
-        TipoIva unTipoIva = TipoIva.instancia(1, "Responsable Inscripto");
+        TipoIva unTipoIva = TipoIva.instancia(null, "Responsable Inscripto");
         boolean resultado = miTipoIvaRepoImplementacion.guardarTipoIva(unTipoIva);
         Assertions.assertTrue(resultado);
     }
+
 }

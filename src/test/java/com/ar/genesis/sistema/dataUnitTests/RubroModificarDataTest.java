@@ -15,7 +15,7 @@ import javax.inject.Inject;
         @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:modificarRubroAntes.sql"),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:modificarRubroDespues.sql")
 })
-public class ModificarRubroDataTest {
+public class RubroModificarDataTest {
     @Inject
     RubroRepoImplementacion miRubroRepoImplementacion;
 

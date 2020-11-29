@@ -12,17 +12,19 @@ import javax.inject.Inject;
 
 @SpringBootTest
 @SqlGroup({
-        @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:modificarUbicacionAntes.sql"),
-        @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:modificarUbicacionDespues.sql")
+        @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:crearUbicacionAntes.sql"),
+        @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:crearUbicacionDespues.sql")
 })
-public class ModificarUbicacionDataTest {
+public class UbicacionCrearDataTest {
+
     @Inject
     UbicacionRepoImplementacion miUbicacionRepoImplementacion;
 
     @Test
     public void guardarUbicacion_UbicacionGuardado_devuelveTrue() {
-        Ubicacion unaUbicacion = Ubicacion.instancia(1, "Ubicacion 1");
+        Ubicacion unaUbicacion = Ubicacion.instancia(null, "Ubicacion 1");
         boolean resultado = miUbicacionRepoImplementacion.guardarUbicacion(unaUbicacion);
         Assertions.assertTrue(resultado);
     }
+
 }
