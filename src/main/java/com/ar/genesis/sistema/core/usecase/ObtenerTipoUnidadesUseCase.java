@@ -12,14 +12,12 @@ import java.util.List;
 @Transactional
 public class ObtenerTipoUnidadesUseCase implements IObtenerTipoUnidadesInput {
 
-    IObtenerTipoUnidadesRepository iObtenerTipoUnidadesRepository;
+    IObtenerTipoUnidadesRepository miObtenerTipoUnidadesRepository;
 
-    public ObtenerTipoUnidadesUseCase(IObtenerTipoUnidadesRepository iObtenerTipoUnidadesRepository) {
-        this.iObtenerTipoUnidadesRepository = iObtenerTipoUnidadesRepository;
-    }
+    public ObtenerTipoUnidadesUseCase(IObtenerTipoUnidadesRepository miObtenerTipoUnidadesRepository) { this.miObtenerTipoUnidadesRepository = miObtenerTipoUnidadesRepository; }
 
     @Override
     public List<TipoUnidad> obtenerTipoUnidades() {
-        return iObtenerTipoUnidadesRepository.obtenerTipoUnidades();
+        return miObtenerTipoUnidadesRepository.obtenerTipoUnidades();
     }
 }

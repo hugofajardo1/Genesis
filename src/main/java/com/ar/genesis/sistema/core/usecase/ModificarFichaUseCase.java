@@ -11,17 +11,17 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ModificarFichaUseCase implements IModificarFichaInput {
 
-    IFichaRepository iFichaRepository;
+    IFichaRepository miFichaRepository;
 
-    public ModificarFichaUseCase(IFichaRepository iFichaRepository) {
-        this.iFichaRepository = iFichaRepository;
+    public ModificarFichaUseCase(IFichaRepository miFichaRepository) {
+        this.miFichaRepository = miFichaRepository;
     }
 
     @Override
     public boolean modificarFicha(Ficha unaFicha) throws FichaExisteException {
-        if (iFichaRepository.existeFicha(unaFicha.getNombre())){
+        if (miFichaRepository.existeFicha(unaFicha.getNombre())){
             throw new FichaExisteException();
         }
-        return iFichaRepository.guardarFicha(unaFicha);
+        return miFichaRepository.guardarFicha(unaFicha);
     }
 }

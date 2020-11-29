@@ -12,14 +12,12 @@ import java.util.List;
 @Transactional
 public class ObtenerRubrosUseCase implements IObtenerRubrosInput {
 
-    IObtenerRubrosRepository iObtenerRubrosRepository;
+    IObtenerRubrosRepository miObtenerRubrosRepository;
 
-    public ObtenerRubrosUseCase(IObtenerRubrosRepository iObtenerRubrosRepository) {
-        this.iObtenerRubrosRepository = iObtenerRubrosRepository;
-    }
+    public ObtenerRubrosUseCase(IObtenerRubrosRepository miObtenerRubrosRepository) { this.miObtenerRubrosRepository = miObtenerRubrosRepository; }
 
     @Override
     public List<Rubro> obtenerRubros() {
-        return iObtenerRubrosRepository.obtenerRubros();
+        return miObtenerRubrosRepository.obtenerRubros();
     }
 }

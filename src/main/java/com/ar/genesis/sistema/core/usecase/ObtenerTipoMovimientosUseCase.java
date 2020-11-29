@@ -12,14 +12,12 @@ import java.util.List;
 @Transactional
 public class ObtenerTipoMovimientosUseCase implements IObtenerTipoMovimientosInput {
 
-    IObtenerTipoMovimientosRepository iObtenerTipoMovimientosRepository;
+    IObtenerTipoMovimientosRepository miObtenerTipoMovimientosRepository;
 
-    public ObtenerTipoMovimientosUseCase(IObtenerTipoMovimientosRepository iObtenerTipoMovimientosRepository) {
-        this.iObtenerTipoMovimientosRepository = iObtenerTipoMovimientosRepository;
-    }
+    public ObtenerTipoMovimientosUseCase(IObtenerTipoMovimientosRepository miObtenerTipoMovimientosRepository) { this.miObtenerTipoMovimientosRepository = miObtenerTipoMovimientosRepository; }
 
     @Override
     public List<TipoMovimiento> obtenerTipoMovimientos() {
-        return iObtenerTipoMovimientosRepository.obtenerTipoMovimientos();
+        return miObtenerTipoMovimientosRepository.obtenerTipoMovimientos();
     }
 }

@@ -11,17 +11,17 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ModificarRubroUseCase implements IModificarRubroInput {
 
-    IRubroRepository iRubroRepository;
+    IRubroRepository miRubroRepository;
 
-    public ModificarRubroUseCase(IRubroRepository iRubroRepository) {
-        this.iRubroRepository = iRubroRepository;
+    public ModificarRubroUseCase(IRubroRepository miRubroRepository) {
+        this.miRubroRepository = miRubroRepository;
     }
 
     @Override
     public boolean modificarRubro(Rubro unRubro) throws RubroExisteException {
-        if(iRubroRepository.existeRubro(unRubro.getNombre())){
+        if(miRubroRepository.existeRubro(unRubro.getNombre())){
             throw new RubroExisteException();
         }
-        return iRubroRepository.guardarRubro(unRubro);
+        return miRubroRepository.guardarRubro(unRubro);
     }
 }

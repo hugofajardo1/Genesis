@@ -11,17 +11,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class CrearUbicacionUseCase implements ICrearUbicacionInput {
 
-    IUbicacionRepository iUbicacionRepository;
+    IUbicacionRepository miUbicacionRepository;
 
-    public CrearUbicacionUseCase(IUbicacionRepository iUbicacionRepository) {
-        this.iUbicacionRepository = iUbicacionRepository;
-    }
+    public CrearUbicacionUseCase(IUbicacionRepository miUbicacionRepository) { this.miUbicacionRepository = miUbicacionRepository; }
 
     @Override
     public boolean crearUbicacion(Ubicacion unaUbicacion) throws UbicacionExisteException {
-        if(iUbicacionRepository.existeUbicacion(unaUbicacion.getNombre())){
+        if(miUbicacionRepository.existeUbicacion(unaUbicacion.getNombre())){
             throw new UbicacionExisteException();
         }
-        return iUbicacionRepository.guardarUbicacion(unaUbicacion);
+        return miUbicacionRepository.guardarUbicacion(unaUbicacion);
     }
 }

@@ -11,17 +11,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ModificarTipoIvaUseCase implements IModificarTipoIvaInput {
 
-    ITipoIvaRepository iTipoIvaRepository;
+    ITipoIvaRepository miTipoIvaRepository;
 
-    public ModificarTipoIvaUseCase(ITipoIvaRepository iTipoIvaRepository) {
-        this.iTipoIvaRepository = iTipoIvaRepository;
-    }
+    public ModificarTipoIvaUseCase(ITipoIvaRepository miTipoIvaRepository) { this.miTipoIvaRepository = miTipoIvaRepository; }
 
     @Override
     public boolean modificarTipoIva(TipoIva unTipoIva) throws TipoIvaExisteException {
-        if(iTipoIvaRepository.existeTipoIva(unTipoIva.getNombre())){
+        if(miTipoIvaRepository.existeTipoIva(unTipoIva.getNombre())){
             throw new TipoIvaExisteException();
         }
-        return iTipoIvaRepository.guardarTipoIva(unTipoIva);
+        return miTipoIvaRepository.guardarTipoIva(unTipoIva);
     }
 }

@@ -11,17 +11,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ModificarTipoMovimientoUseCase implements IModificarTipoMovimientoInput {
 
-    ITipoMovimientoRepository iTipoMovimientoRepository;
+    ITipoMovimientoRepository miTipoMovimientoRepository;
 
-    public ModificarTipoMovimientoUseCase(ITipoMovimientoRepository iTipoMovimientoRepository) {
-        this.iTipoMovimientoRepository = iTipoMovimientoRepository;
-    }
+    public ModificarTipoMovimientoUseCase(ITipoMovimientoRepository miTipoMovimientoRepository) { this.miTipoMovimientoRepository = miTipoMovimientoRepository; }
 
     @Override
     public boolean modificarTipoMovimiento(TipoMovimiento unTipoMovimiento) throws TipoMovimientoExisteException {
-        if(iTipoMovimientoRepository.existeTipoMovimiento(unTipoMovimiento.getNombre())){
+        if(miTipoMovimientoRepository.existeTipoMovimiento(unTipoMovimiento.getNombre())){
             throw new TipoMovimientoExisteException();
         }
-        return iTipoMovimientoRepository.guardarTipoMovimiento(unTipoMovimiento);
+        return miTipoMovimientoRepository.guardarTipoMovimiento(unTipoMovimiento);
     }
 }

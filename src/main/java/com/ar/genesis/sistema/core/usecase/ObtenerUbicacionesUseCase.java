@@ -12,14 +12,12 @@ import java.util.List;
 @Transactional
 public class ObtenerUbicacionesUseCase implements IObtenerUbicacionesInput {
 
-    IObtenerUbicacionesRepository iObtenerUbicacionesRepository;
+    IObtenerUbicacionesRepository miObtenerUbicacionesRepository;
 
-    public ObtenerUbicacionesUseCase(IObtenerUbicacionesRepository iObtenerUbicacionesRepository) {
-        this.iObtenerUbicacionesRepository = iObtenerUbicacionesRepository;
-    }
+    public ObtenerUbicacionesUseCase(IObtenerUbicacionesRepository miObtenerUbicacionesRepository) { this.miObtenerUbicacionesRepository = miObtenerUbicacionesRepository; }
 
     @Override
     public List<Ubicacion> obtenerUbicaciones() {
-        return iObtenerUbicacionesRepository.obtenerUbicaciones();
+        return miObtenerUbicacionesRepository.obtenerUbicaciones();
     }
 }

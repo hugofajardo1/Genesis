@@ -11,17 +11,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ModificarProvinciaUseCase implements IModificarProvinciaInput {
 
-    IProvinciaRepository iProvinciaRepository;
+    IProvinciaRepository miProvinciaRepository;
 
-    public ModificarProvinciaUseCase(IProvinciaRepository iProvinciaRepository) {
-        this.iProvinciaRepository = iProvinciaRepository;
-    }
+    public ModificarProvinciaUseCase(IProvinciaRepository miProvinciaRepository) { this.miProvinciaRepository = miProvinciaRepository; }
 
     @Override
     public boolean modificarProvincia(Provincia unaProvincia) throws ProvinciaExisteException {
-        if(iProvinciaRepository.existeProvincia(unaProvincia.getNombre())){
+        if(miProvinciaRepository.existeProvincia(unaProvincia.getNombre())){
             throw new ProvinciaExisteException();
         }
-        return iProvinciaRepository.guardarProvincia(unaProvincia);
+        return miProvinciaRepository.guardarProvincia(unaProvincia);
     }
 }

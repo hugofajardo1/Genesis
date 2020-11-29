@@ -12,14 +12,12 @@ import java.util.List;
 @Transactional
 public class ObtenerTipoIvasUseCase implements IObtenerTipoIvasInput {
 
-    IObtenerTipoIvasRepository iObtenerTipoIvasRepository;
+    IObtenerTipoIvasRepository miObtenerTipoIvasRepository;
 
-    public ObtenerTipoIvasUseCase(IObtenerTipoIvasRepository iObtenerTipoIvasRepository) {
-        this.iObtenerTipoIvasRepository = iObtenerTipoIvasRepository;
-    }
+    public ObtenerTipoIvasUseCase(IObtenerTipoIvasRepository miObtenerTipoIvasRepository) { this.miObtenerTipoIvasRepository = miObtenerTipoIvasRepository; }
 
     @Override
     public List<TipoIva> obtenerTipoIvas() {
-        return iObtenerTipoIvasRepository.obtenerTipoIvas();
+        return miObtenerTipoIvasRepository.obtenerTipoIvas();
     }
 }

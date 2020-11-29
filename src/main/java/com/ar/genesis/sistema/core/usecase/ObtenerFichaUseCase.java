@@ -12,14 +12,12 @@ import java.util.List;
 @Transactional
 public class ObtenerFichaUseCase implements IObtenerFichaInput {
 
-    IObtenerFichasRepository iObtenerFichasRepository;
+    IObtenerFichasRepository miObtenerFichasRepository;
 
-    public ObtenerFichaUseCase(IObtenerFichasRepository iObtenerFichasRepository) {
-        this.iObtenerFichasRepository = iObtenerFichasRepository;
-    }
+    public ObtenerFichaUseCase(IObtenerFichasRepository miObtenerFichasRepository) { this.miObtenerFichasRepository = miObtenerFichasRepository; }
 
     @Override
     public List<Ficha> obtenerFichas() {
-        return iObtenerFichasRepository.obtenerFichas();
+        return miObtenerFichasRepository.obtenerFichas();
     }
 }

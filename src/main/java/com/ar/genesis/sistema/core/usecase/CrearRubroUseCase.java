@@ -11,17 +11,17 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class CrearRubroUseCase implements ICrearRubroInput {
 
-    IRubroRepository iRubroRepository;
+    IRubroRepository miRubroRepository;
 
-    public CrearRubroUseCase(IRubroRepository iRubroRepository) {
-        this.iRubroRepository = iRubroRepository;
+    public CrearRubroUseCase(IRubroRepository miRubroRepository) {
+        this.miRubroRepository = miRubroRepository;
     }
 
     @Override
     public boolean crearRubro(Rubro unRubro) throws RubroExisteException {
-        if(iRubroRepository.existeRubro(unRubro.getNombre())){
+        if(miRubroRepository.existeRubro(unRubro.getNombre())){
             throw new RubroExisteException();
         }
-        return iRubroRepository.guardarRubro(unRubro);
+        return miRubroRepository.guardarRubro(unRubro);
     }
 }

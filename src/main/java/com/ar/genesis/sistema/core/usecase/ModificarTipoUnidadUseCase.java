@@ -11,17 +11,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ModificarTipoUnidadUseCase implements IModificarTipoUnidadInput {
 
-    ITipoUnidadRepository iTipoUnidadRepository;
+    ITipoUnidadRepository miTipoUnidadRepository;
 
-    public ModificarTipoUnidadUseCase(ITipoUnidadRepository iTipoUnidadRepository) {
-        this.iTipoUnidadRepository = iTipoUnidadRepository;
-    }
+    public ModificarTipoUnidadUseCase(ITipoUnidadRepository miTipoUnidadRepository) { this.miTipoUnidadRepository = miTipoUnidadRepository; }
 
     @Override
     public boolean modificarTipoUnidad(TipoUnidad unTipoUnidad) throws TipoUnidadExisteException {
-        if(iTipoUnidadRepository.existeTipoUnidad(unTipoUnidad.getNombre())){
+        if(miTipoUnidadRepository.existeTipoUnidad(unTipoUnidad.getNombre())){
             throw new TipoUnidadExisteException();
         }
-        return iTipoUnidadRepository.guardarTipoUnidad(unTipoUnidad);
+        return miTipoUnidadRepository.guardarTipoUnidad(unTipoUnidad);
     }
 }

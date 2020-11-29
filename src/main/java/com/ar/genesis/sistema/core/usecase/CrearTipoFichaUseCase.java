@@ -11,17 +11,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class CrearTipoFichaUseCase implements ICrearTipoFichaInput {
 
-    ITipoFichaRepository iTipoFichaRepository;
+    ITipoFichaRepository miTipoFichaRepository;
 
-    public CrearTipoFichaUseCase(ITipoFichaRepository iTipoFichaRepository) {
-        this.iTipoFichaRepository = iTipoFichaRepository;
-    }
+    public CrearTipoFichaUseCase(ITipoFichaRepository miTipoFichaRepository) { this.miTipoFichaRepository = miTipoFichaRepository; }
 
     @Override
     public boolean crearTipoFicha(TipoFicha unTipoFicha) throws TipoFichaExisteException {
-        if(iTipoFichaRepository.existeTipoFicha(unTipoFicha.getNombre())){
+        if(miTipoFichaRepository.existeTipoFicha(unTipoFicha.getNombre())){
             throw new TipoFichaExisteException();
         }
-        return iTipoFichaRepository.guardarTipoFicha(unTipoFicha);
+        return miTipoFichaRepository.guardarTipoFicha(unTipoFicha);
     }
 }
