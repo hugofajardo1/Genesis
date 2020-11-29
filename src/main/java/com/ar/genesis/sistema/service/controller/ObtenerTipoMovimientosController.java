@@ -16,16 +16,15 @@ import java.util.List;
 @RestController
 public class ObtenerTipoMovimientosController {
     @Inject
-    IObtenerTipoMovimientosInput iObtenerTipoMovimientosInput;
+    IObtenerTipoMovimientosInput miObtenerTipoMovimientosInput;
 
-    public ObtenerTipoMovimientosController(IObtenerTipoMovimientosInput iObtenerTipoMovimientosInput) {
-        this.iObtenerTipoMovimientosInput = iObtenerTipoMovimientosInput;
-    }
+    public ObtenerTipoMovimientosController(IObtenerTipoMovimientosInput miObtenerTipoMovimientosInput) { this.miObtenerTipoMovimientosInput = miObtenerTipoMovimientosInput; }
+
     @GetMapping(value = "/TipoMovimientos")
     public ResponseEntity<?> obtenerTipoMovimientos(){
         try{
             List<TipoMovimientoDTO> tipoMovimientosDTO = new ArrayList<>();
-            iObtenerTipoMovimientosInput.obtenerTipoMovimientos().forEach(TipoMovimiento -> tipoMovimientosDTO.add(new TipoMovimientoDTO(TipoMovimiento.getId(), TipoMovimiento.getNombre())));
+            miObtenerTipoMovimientosInput.obtenerTipoMovimientos().forEach(unTipoMovimiento -> tipoMovimientosDTO.add(new TipoMovimientoDTO(unTipoMovimiento.getId(), unTipoMovimiento.getNombre())));
             if (tipoMovimientosDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(tipoMovimientosDTO);
         } catch (Exception ex) {

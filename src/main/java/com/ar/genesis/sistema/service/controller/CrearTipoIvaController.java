@@ -17,15 +17,14 @@ import javax.inject.Inject;
 @RestController
 public class CrearTipoIvaController {
     @Inject
-    ICrearTipoIvaInput iCrearTipoIvaInput;
+    ICrearTipoIvaInput miCrearTipoIvaInput;
 
-    public CrearTipoIvaController(ICrearTipoIvaInput iCrearTipoIvaInput) {
-        this.iCrearTipoIvaInput = iCrearTipoIvaInput;
-    }
+    public CrearTipoIvaController(ICrearTipoIvaInput miCrearTipoIvaInput) { this.miCrearTipoIvaInput = miCrearTipoIvaInput; }
+
     @PostMapping(value = "/TipoIva")
-    public ResponseEntity<?> crearTipoIva(@RequestBody TipoIvaDTO tipoIvaDTO){
+    public ResponseEntity<?> crearTipoIva(@RequestBody TipoIvaDTO unTipoIvaDTO){
         try{
-            boolean resultado = this.iCrearTipoIvaInput.crearTipoIva(TipoIva.instancia(tipoIvaDTO.getId(), tipoIvaDTO.getNombre()));
+            boolean resultado = this.miCrearTipoIvaInput.crearTipoIva(TipoIva.instancia(unTipoIvaDTO.getId(), unTipoIvaDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (TipoIvaExisteException e) {

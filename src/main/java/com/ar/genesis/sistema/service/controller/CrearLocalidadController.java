@@ -17,16 +17,14 @@ import javax.inject.Inject;
 @RestController
 public class CrearLocalidadController {
     @Inject
-    ICrearLocalidadInput iCrearLocalidadInput;
+    ICrearLocalidadInput miCrearLocalidadInput;
 
-    public CrearLocalidadController(ICrearLocalidadInput iCrearLocalidadInput) {
-        this.iCrearLocalidadInput = iCrearLocalidadInput;
-    }
+    public CrearLocalidadController(ICrearLocalidadInput miCrearLocalidadInput) { this.miCrearLocalidadInput = miCrearLocalidadInput; }
 
     @PostMapping(value = "/Localidad")
-    public ResponseEntity<?> crearLocalidad(@RequestBody LocalidadDTO localidadDTO){
+    public ResponseEntity<?> crearLocalidad(@RequestBody LocalidadDTO unaLocalidadDTO){
         try{
-            boolean resultado = this.iCrearLocalidadInput.crearLocalidad(Localidad.instancia(localidadDTO.getId(), localidadDTO.getNombre()));
+            boolean resultado = this.miCrearLocalidadInput.crearLocalidad(Localidad.instancia(unaLocalidadDTO.getId(), unaLocalidadDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (LocalidadExisteException e) {

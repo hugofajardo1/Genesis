@@ -16,16 +16,16 @@ import java.util.List;
 @RestController
 public class ObtenerRubrosController {
     @Inject
-    IObtenerRubrosInput iObtenerRubrosInput;
+    IObtenerRubrosInput miObtenerRubrosInput;
 
-    public ObtenerRubrosController(IObtenerRubrosInput iObtenerRubrosInput) {
-        this.iObtenerRubrosInput = iObtenerRubrosInput;
+    public ObtenerRubrosController(IObtenerRubrosInput miObtenerRubrosInput) {
+        this.miObtenerRubrosInput = miObtenerRubrosInput;
     }
     @GetMapping(value = "/Rubros")
     public ResponseEntity<?> obtenerRubros(){
         try{
             List<RubroDTO> rubrosDTO = new ArrayList<>();
-            iObtenerRubrosInput.obtenerRubros().forEach(Rubro -> rubrosDTO.add(new RubroDTO(Rubro.getId(), Rubro.getNombre())));
+            miObtenerRubrosInput.obtenerRubros().forEach(unRubro -> rubrosDTO.add(new RubroDTO(unRubro.getId(), unRubro.getNombre())));
             if (rubrosDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(rubrosDTO);
         } catch (Exception ex) {

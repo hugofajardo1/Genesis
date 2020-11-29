@@ -15,18 +15,17 @@ import java.util.List;
 @RestController
 public class ObtenerFichasController {
     @Inject
-    IObtenerFichaInput iObtenerFichaInput;
+    IObtenerFichaInput miObtenerFichaInput;
 
-    public ObtenerFichasController(IObtenerFichaInput iObtenerFichaInput) {
-        this.iObtenerFichaInput = iObtenerFichaInput;
-    }
+    public ObtenerFichasController(IObtenerFichaInput miObtenerFichaInput) { this.miObtenerFichaInput = miObtenerFichaInput; }
+
     @GetMapping(value = "/Fichas")
     public ResponseEntity<?> obtenerFichas(){
         try{
-            List<FichaDTO> fichaDTO = new ArrayList<>();
-            iObtenerFichaInput.obtenerFichas().forEach(Ficha -> fichaDTO.add(new FichaDTO(Ficha.getId(), Ficha.getNombre(), Ficha.getDomicilio(), Ficha.getTelefono(), new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336")));
-            if (fichaDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            return ResponseEntity.status(HttpStatus.OK).body(fichaDTO);
+            List<FichaDTO> fichasDTO = new ArrayList<>();
+            miObtenerFichaInput.obtenerFichas().forEach(unaFicha -> fichasDTO.add(new FichaDTO(unaFicha.getId(), unaFicha.getNombre(), unaFicha.getDomicilio(), unaFicha.getTelefono(), new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336")));
+            if (fichasDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return ResponseEntity.status(HttpStatus.OK).body(fichasDTO);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

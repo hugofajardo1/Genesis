@@ -16,16 +16,15 @@ import java.util.List;
 @RestController
 public class ObtenerTipoIvasController {
     @Inject
-    IObtenerTipoIvasInput iObtenerTipoIvasInput;
+    IObtenerTipoIvasInput miObtenerTipoIvasInput;
 
-    public ObtenerTipoIvasController(IObtenerTipoIvasInput iObtenerTipoIvasInput) {
-        this.iObtenerTipoIvasInput = iObtenerTipoIvasInput;
-    }
+    public ObtenerTipoIvasController(IObtenerTipoIvasInput miObtenerTipoIvasInput) { this.miObtenerTipoIvasInput = miObtenerTipoIvasInput; }
+
     @GetMapping(value = "/TipoIvas")
     public ResponseEntity<?> obtenerTipoIvas(){
         try{
             List<TipoIvaDTO> tipoIvasDTO = new ArrayList<>();
-            iObtenerTipoIvasInput.obtenerTipoIvas().forEach(TipoIva -> tipoIvasDTO.add(new TipoIvaDTO(TipoIva.getId(), TipoIva.getNombre())));
+            miObtenerTipoIvasInput.obtenerTipoIvas().forEach(unTipoIva -> tipoIvasDTO.add(new TipoIvaDTO(unTipoIva.getId(), unTipoIva.getNombre())));
             if (tipoIvasDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(tipoIvasDTO);
         } catch (Exception ex) {

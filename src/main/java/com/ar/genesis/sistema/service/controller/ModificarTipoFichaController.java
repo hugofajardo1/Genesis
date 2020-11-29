@@ -14,15 +14,14 @@ import javax.inject.Inject;
 @RestController
 public class ModificarTipoFichaController {
     @Inject
-    IModificarTipoFichaInput iModificarTipoFichaInput;
+    IModificarTipoFichaInput miModificarTipoFichaInput;
 
-    public ModificarTipoFichaController(IModificarTipoFichaInput iModificarTipoFichaInput) {
-        this.iModificarTipoFichaInput = iModificarTipoFichaInput;
-    }
+    public ModificarTipoFichaController(IModificarTipoFichaInput miModificarTipoFichaInput) { this.miModificarTipoFichaInput = miModificarTipoFichaInput; }
+
     @PutMapping(value = "/TipoFicha")
-    public ResponseEntity<?> modificarTipoFicha(@RequestBody TipoFichaDTO tipoFichaDTO){
+    public ResponseEntity<?> modificarTipoFicha(@RequestBody TipoFichaDTO unTipoFichaDTO){
         try{
-            boolean resultado = this.iModificarTipoFichaInput.modificarTipoFicha(TipoFicha.instancia(tipoFichaDTO.getId(), tipoFichaDTO.getNombre()));
+            boolean resultado = this.miModificarTipoFichaInput.modificarTipoFicha(TipoFicha.instancia(unTipoFichaDTO.getId(), unTipoFichaDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (TipoFichaExisteException e) {

@@ -14,18 +14,17 @@ import javax.inject.Inject;
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
 public class CrearFichaController {
-
     @Inject
-    ICrearFichaInput iCrearFichaInput;
+    ICrearFichaInput miCrearFichaInput;
 
-    public CrearFichaController(ICrearFichaInput iCrearFichaInput) {
-        this.iCrearFichaInput = iCrearFichaInput;
+    public CrearFichaController(ICrearFichaInput miCrearFichaInput) {
+        this.miCrearFichaInput = miCrearFichaInput;
     }
 
     @PostMapping(value = "/Ficha")
-    public ResponseEntity<?> crearFicha(@RequestBody FichaDTO fichaDTO){
+    public ResponseEntity<?> crearFicha(@RequestBody FichaDTO unaFichaDTO){
         try{
-            boolean resultado = this.iCrearFichaInput.crearFicha(Ficha.instancia(fichaDTO.getId(), fichaDTO.getNombre(), fichaDTO.getDomicilio(), fichaDTO.getTelefono(), TipoIva.instancia(1, "Responsable Inscripto"), "20255071336"));
+            boolean resultado = this.miCrearFichaInput.crearFicha(Ficha.instancia(unaFichaDTO.getId(), unaFichaDTO.getNombre(), unaFichaDTO.getDomicilio(), unaFichaDTO.getTelefono(), TipoIva.instancia(1, "Responsable Inscripto"), "20255071336"));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (FichaExisteException e) {

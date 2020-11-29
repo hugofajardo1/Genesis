@@ -17,16 +17,14 @@ import javax.inject.Inject;
 @RestController
 public class CrearProvinciaController {
     @Inject
-    ICrearProvinciaInput iCrearProvinciaInput;
+    ICrearProvinciaInput miCrearProvinciaInput;
 
-    public CrearProvinciaController(ICrearProvinciaInput iCrearProvinciaInput) {
-        this.iCrearProvinciaInput = iCrearProvinciaInput;
-    }
+    public CrearProvinciaController(ICrearProvinciaInput miCrearProvinciaInput) { this.miCrearProvinciaInput = miCrearProvinciaInput; }
 
     @PostMapping(value = "/Provincia")
-    public ResponseEntity<?> crearProvincia(@RequestBody ProvinciaDTO provinciaDTO){
+    public ResponseEntity<?> crearProvincia(@RequestBody ProvinciaDTO unaProvinciaDTO){
         try{
-            boolean resultado = this.iCrearProvinciaInput.crearProvincia(Provincia.instancia(provinciaDTO.getId(), provinciaDTO.getNombre()));
+            boolean resultado = this.miCrearProvinciaInput.crearProvincia(Provincia.instancia(unaProvinciaDTO.getId(), unaProvinciaDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (ProvinciaExisteException e) {

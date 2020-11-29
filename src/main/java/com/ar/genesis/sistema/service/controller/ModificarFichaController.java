@@ -16,15 +16,14 @@ import javax.inject.Inject;
 public class ModificarFichaController {
 
     @Inject
-    IModificarFichaInput iModificarFichaInput;
+    IModificarFichaInput miModificarFichaInput;
 
-    public ModificarFichaController(IModificarFichaInput iModificarFichaInput) {
-        this.iModificarFichaInput = iModificarFichaInput;
-    }
+    public ModificarFichaController(IModificarFichaInput miModificarFichaInput) { this.miModificarFichaInput = miModificarFichaInput; }
+
     @PutMapping(value = "/Ficha")
-    public ResponseEntity<?> modificarFicha(@RequestBody FichaDTO fichaDTO){
+    public ResponseEntity<?> modificarFicha(@RequestBody FichaDTO unaFichaDTO){
         try{
-            boolean resultado = this.iModificarFichaInput.modificarFicha(Ficha.instancia(fichaDTO.getId(), fichaDTO.getNombre(), fichaDTO.getDomicilio(), fichaDTO.getTelefono(), TipoIva.instancia(1, "Responsable Inscripto"), "20255071336"));
+            boolean resultado = this.miModificarFichaInput.modificarFicha(Ficha.instancia(unaFichaDTO.getId(), unaFichaDTO.getNombre(), unaFichaDTO.getDomicilio(), unaFichaDTO.getTelefono(), TipoIva.instancia(1, "Responsable Inscripto"), "20255071336"));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (FichaExisteException e) {

@@ -16,16 +16,15 @@ import java.util.List;
 @RestController
 public class ObtenerLocalidadesController {
     @Inject
-    IObtenerLocalidadesInput iObtenerLocalidadesInput;
+    IObtenerLocalidadesInput miObtenerLocalidadesInput;
 
-    public ObtenerLocalidadesController(IObtenerLocalidadesInput iObtenerLocalidadesInput) {
-        this.iObtenerLocalidadesInput = iObtenerLocalidadesInput;
-    }
+    public ObtenerLocalidadesController(IObtenerLocalidadesInput miObtenerLocalidadesInput) { this.miObtenerLocalidadesInput = miObtenerLocalidadesInput; }
+
     @GetMapping(value = "/Localidades")
     public ResponseEntity<?> obtenerLocalidades(){
         try{
             List<LocalidadDTO> localidadesDTO = new ArrayList<>();
-            iObtenerLocalidadesInput.obtenerLocalidades().forEach(localidad -> localidadesDTO.add(new LocalidadDTO(localidad.getId(), localidad.getNombre())));
+            miObtenerLocalidadesInput.obtenerLocalidades().forEach(unaLocalidad -> localidadesDTO.add(new LocalidadDTO(unaLocalidad.getId(), unaLocalidad.getNombre())));
             if (localidadesDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(localidadesDTO);
         } catch (Exception ex) {

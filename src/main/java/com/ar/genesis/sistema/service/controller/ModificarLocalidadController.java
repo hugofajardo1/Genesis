@@ -17,15 +17,14 @@ import javax.inject.Inject;
 @RestController
 public class ModificarLocalidadController {
     @Inject
-    IModificarLocalidadInput iModificarLocalidadInput;
+    IModificarLocalidadInput miModificarLocalidadInput;
 
-    public ModificarLocalidadController(IModificarLocalidadInput iModificarLocalidadInput) {
-        this.iModificarLocalidadInput = iModificarLocalidadInput;
-    }
+    public ModificarLocalidadController(IModificarLocalidadInput miModificarLocalidadInput) { this.miModificarLocalidadInput = miModificarLocalidadInput; }
+
     @PutMapping(value = "/Localidad")
-    public ResponseEntity<?> modificarLocalidad(@RequestBody LocalidadDTO localidadDTO ){
+    public ResponseEntity<?> modificarLocalidad(@RequestBody LocalidadDTO unaLocalidadDTO ){
         try{
-            boolean resultado = this.iModificarLocalidadInput.modificarLocalidad(Localidad.instancia(localidadDTO.getId(), localidadDTO.getNombre()));
+            boolean resultado = this.miModificarLocalidadInput.modificarLocalidad(Localidad.instancia(unaLocalidadDTO.getId(), unaLocalidadDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (LocalidadExisteException e) {

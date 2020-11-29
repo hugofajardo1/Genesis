@@ -17,16 +17,14 @@ import javax.inject.Inject;
 @RestController
 public class CrearTipoFichaController {
     @Inject
-    ICrearTipoFichaInput iCrearTipoFichaInput;
+    ICrearTipoFichaInput miCrearTipoFichaInput;
 
-    public CrearTipoFichaController(ICrearTipoFichaInput iCrearTipoFichaInput) {
-        this.iCrearTipoFichaInput = iCrearTipoFichaInput;
-    }
+    public CrearTipoFichaController(ICrearTipoFichaInput miCrearTipoFichaInput) { this.miCrearTipoFichaInput = miCrearTipoFichaInput; }
 
     @PostMapping(value = "/TipoFicha")
-    public ResponseEntity<?> crearTipoFicha(@RequestBody TipoFichaDTO tipoFichaDTO){
+    public ResponseEntity<?> crearTipoFicha(@RequestBody TipoFichaDTO unTipoFichaDTO){
         try{
-            boolean resultado = this.iCrearTipoFichaInput.crearTipoFicha(TipoFicha.instancia(tipoFichaDTO.getId(), tipoFichaDTO.getNombre()));
+            boolean resultado = this.miCrearTipoFichaInput.crearTipoFicha(TipoFicha.instancia(unTipoFichaDTO.getId(), unTipoFichaDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (TipoFichaExisteException e) {

@@ -17,15 +17,14 @@ import javax.inject.Inject;
 @RestController
 public class CrearTipoUnidadController {
     @Inject
-    ICrearTipoUnidadInput iCrearTipoUnidadInput;
+    ICrearTipoUnidadInput miCrearTipoUnidadInput;
 
-    public CrearTipoUnidadController(ICrearTipoUnidadInput iCrearTipoUnidadInput) {
-        this.iCrearTipoUnidadInput = iCrearTipoUnidadInput;
-    }
+    public CrearTipoUnidadController(ICrearTipoUnidadInput miCrearTipoUnidadInput) { this.miCrearTipoUnidadInput = miCrearTipoUnidadInput; }
+
     @PostMapping(value = "/TipoUnidad")
-    public ResponseEntity<?> crearTipoUnidad(@RequestBody TipoUnidadDTO tipoUnidadDTO){
+    public ResponseEntity<?> crearTipoUnidad(@RequestBody TipoUnidadDTO unTipoUnidadDTO){
         try{
-            boolean resultado = this.iCrearTipoUnidadInput.crearTipoUnidad(TipoUnidad.instancia(tipoUnidadDTO.getId(), tipoUnidadDTO.getNombre()));
+            boolean resultado = this.miCrearTipoUnidadInput.crearTipoUnidad(TipoUnidad.instancia(unTipoUnidadDTO.getId(), unTipoUnidadDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (TipoUnidadExisteException e) {

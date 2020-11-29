@@ -17,15 +17,14 @@ import javax.inject.Inject;
 @RestController
 public class CrearTipoMovimientoController {
     @Inject
-    ICrearTipoMovimientoInput iCrearTipoMovimientoInput;
+    ICrearTipoMovimientoInput miCrearTipoMovimientoInput;
 
-    public CrearTipoMovimientoController(ICrearTipoMovimientoInput iCrearTipoMovimientoInput) {
-        this.iCrearTipoMovimientoInput = iCrearTipoMovimientoInput;
-    }
+    public CrearTipoMovimientoController(ICrearTipoMovimientoInput miCrearTipoMovimientoInput) { this.miCrearTipoMovimientoInput = miCrearTipoMovimientoInput; }
+
     @PostMapping(value = "/TipoMovimiento")
-    public ResponseEntity<?> crearTipoMovimiento(@RequestBody TipoMovimientoDTO tipoMovimientoDTO){
+    public ResponseEntity<?> crearTipoMovimiento(@RequestBody TipoMovimientoDTO unTipoMovimientoDTO){
         try{
-            boolean resultado = this.iCrearTipoMovimientoInput.crearTipoMovimiento(TipoMovimiento.instancia(tipoMovimientoDTO.getId(), tipoMovimientoDTO.getNombre()));
+            boolean resultado = this.miCrearTipoMovimientoInput.crearTipoMovimiento(TipoMovimiento.instancia(unTipoMovimientoDTO.getId(), unTipoMovimientoDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (TipoMovimientoExisteException e) {

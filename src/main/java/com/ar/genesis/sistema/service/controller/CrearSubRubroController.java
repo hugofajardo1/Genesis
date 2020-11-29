@@ -17,16 +17,14 @@ import javax.inject.Inject;
 @RestController
 public class CrearSubRubroController {
     @Inject
-    ICrearSubRubroInput iCrearSubRubroInput;
+    ICrearSubRubroInput miCrearSubRubroInput;
 
-    public CrearSubRubroController(ICrearSubRubroInput iCrearSubRubroInput) {
-        this.iCrearSubRubroInput = iCrearSubRubroInput;
-    }
+    public CrearSubRubroController(ICrearSubRubroInput miCrearSubRubroInput) { this.miCrearSubRubroInput = miCrearSubRubroInput; }
 
     @PostMapping(value = "/SubRubro")
-    public ResponseEntity<?> crearSubRubro(@RequestBody SubRubroDTO subRubroDTO){
+    public ResponseEntity<?> crearSubRubro(@RequestBody SubRubroDTO unSubRubroDTO){
         try{
-            boolean resultado = this.iCrearSubRubroInput.crearSubRubro(SubRubro.instancia(subRubroDTO.getId(), subRubroDTO.getNombre()));
+            boolean resultado = this.miCrearSubRubroInput.crearSubRubro(SubRubro.instancia(unSubRubroDTO.getId(), unSubRubroDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (SubRubroExisteException e) {

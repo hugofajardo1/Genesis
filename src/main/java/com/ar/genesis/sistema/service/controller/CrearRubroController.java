@@ -17,16 +17,16 @@ import javax.inject.Inject;
 @RestController
 public class CrearRubroController {
     @Inject
-    ICrearRubroInput iCrearRubroInput;
+    ICrearRubroInput miCrearRubroInput;
 
-    public CrearRubroController(ICrearRubroInput iCrearRubroInput) {
-        this.iCrearRubroInput = iCrearRubroInput;
+    public CrearRubroController(ICrearRubroInput miCrearRubroInput) {
+        this.miCrearRubroInput = miCrearRubroInput;
     }
 
     @PostMapping(value = "/Rubro")
-    public ResponseEntity<?> crearRubro(@RequestBody RubroDTO RubroDTO){
+    public ResponseEntity<?> crearRubro(@RequestBody RubroDTO unRubroDTO){
         try{
-            boolean resultado = this.iCrearRubroInput.crearRubro(Rubro.instancia(RubroDTO.getId(), RubroDTO.getNombre()));
+            boolean resultado = this.miCrearRubroInput.crearRubro(Rubro.instancia(unRubroDTO.getId(), unRubroDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (RubroExisteException e) {

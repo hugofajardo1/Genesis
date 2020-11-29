@@ -17,15 +17,14 @@ import javax.inject.Inject;
 @RestController
 public class ModificarSubRubroController {
     @Inject
-    IModificarSubRubroInput iModificarSubRubroInput;
+    IModificarSubRubroInput miModificarSubRubroInput;
 
-    public ModificarSubRubroController(IModificarSubRubroInput iModificarSubRubroInput) {
-        this.iModificarSubRubroInput = iModificarSubRubroInput;
-    }
+    public ModificarSubRubroController(IModificarSubRubroInput miModificarSubRubroInput) { this.miModificarSubRubroInput = miModificarSubRubroInput; }
+
     @PutMapping(value = "/SubRubro")
-    public ResponseEntity<?> modificarSubRubro(@RequestBody SubRubroDTO subRubroDTO){
+    public ResponseEntity<?> modificarSubRubro(@RequestBody SubRubroDTO unSubRubroDTO){
         try{
-            boolean resultado = this.iModificarSubRubroInput.modificarSubRubro(SubRubro.instancia(subRubroDTO.getId(), subRubroDTO.getNombre()));
+            boolean resultado = this.miModificarSubRubroInput.modificarSubRubro(SubRubro.instancia(unSubRubroDTO.getId(), unSubRubroDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (SubRubroExisteException e) {

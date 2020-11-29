@@ -17,15 +17,14 @@ import javax.inject.Inject;
 @RestController
 public class ModificarUbicacionController {
     @Inject
-    IModificarUbicacionInput iModificarUbicacionInput;
+    IModificarUbicacionInput miModificarUbicacionInput;
 
-    public ModificarUbicacionController(IModificarUbicacionInput iModificarUbicacionInput) {
-        this.iModificarUbicacionInput = iModificarUbicacionInput;
-    }
+    public ModificarUbicacionController(IModificarUbicacionInput miModificarUbicacionInput) { this.miModificarUbicacionInput = miModificarUbicacionInput; }
+
     @PutMapping(value = "/Ubicacion")
-    public ResponseEntity<?> modificarUbicacion(@RequestBody UbicacionDTO ubicacionDTO ){
+    public ResponseEntity<?> modificarUbicacion(@RequestBody UbicacionDTO unaUbicacionDTO ){
         try{
-            boolean resultado = this.iModificarUbicacionInput.modificarUbicacion(Ubicacion.instancia(ubicacionDTO.getId(), ubicacionDTO.getNombre()));
+            boolean resultado = this.miModificarUbicacionInput.modificarUbicacion(Ubicacion.instancia(unaUbicacionDTO.getId(), unaUbicacionDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (UbicacionExisteException e) {
