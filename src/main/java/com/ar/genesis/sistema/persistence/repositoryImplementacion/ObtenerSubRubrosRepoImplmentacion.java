@@ -11,10 +11,10 @@ import java.util.List;
 @Service
 public class ObtenerSubRubrosRepoImplmentacion implements IObtenerSubRubrosRepository {
     @Inject
-    ISubRubroCRUD subRubroCRUD;
+    ISubRubroCRUD miSubRubroCRUD;
 
     @Override
     public List<SubRubro> obtenerSubRubros() {
-        return subRubroCRUD.findAllByOrderById();
+        return miSubRubroCRUD.findAllByOrderById();
     }
 }

@@ -11,11 +11,11 @@ import javax.inject.Inject;
 public class ProvinciaRepoImplementacion implements IProvinciaRepository {
 
     @Inject
-    IProvinciaCRUD provinciaCRUD;
+    IProvinciaCRUD miProvinciaCRUD;
 
     @Override
-    public boolean existeProvincia(String nombre) { return provinciaCRUD.existsByNombre(nombre); }
+    public boolean existeProvincia(String nombre) { return miProvinciaCRUD.existsByNombre(nombre); }
 
     @Override
-    public boolean guardarProvincia(Provincia unProvincia) { return provinciaCRUD.save(unProvincia).getId()!=null; }
+    public boolean guardarProvincia(Provincia unProvincia) { return miProvinciaCRUD.save(unProvincia).getId()!=null; }
 }

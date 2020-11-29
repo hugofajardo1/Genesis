@@ -11,10 +11,10 @@ import java.util.List;
 @Service
 public class ObtenerTipoIvasRepoImplmentacion implements IObtenerTipoIvasRepository {
     @Inject
-    ITipoIvaCRUD tipoIvaCRUD;
+    ITipoIvaCRUD miTipoIvaCRUD;
 
     @Override
     public List<TipoIva> obtenerTipoIvas() {
-        return tipoIvaCRUD.findAllByOrderById();
+        return miTipoIvaCRUD.findAllByOrderById();
     }
 }

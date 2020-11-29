@@ -11,10 +11,10 @@ import java.util.List;
 @Service
 public class ObtenerTipoMovimientosRepoImplmentacion implements IObtenerTipoMovimientosRepository {
     @Inject
-    ITipoMovimientoCRUD tipoMovimientoCRUD;
+    ITipoMovimientoCRUD miTipoMovimientoCRUD;
 
     @Override
     public List<TipoMovimiento> obtenerTipoMovimientos() {
-        return tipoMovimientoCRUD.findAllByOrderById();
+        return miTipoMovimientoCRUD.findAllByOrderById();
     }
 }

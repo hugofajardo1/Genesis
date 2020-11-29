@@ -11,11 +11,11 @@ import javax.inject.Inject;
 public class TipoUnidadRepoImplementacion implements ITipoUnidadRepository {
 
     @Inject
-    ITipoUnidadCRUD tipoUnidadCRUD;
+    ITipoUnidadCRUD miTipoUnidadCRUD;
 
     @Override
-    public boolean existeTipoUnidad(String nombre) { return tipoUnidadCRUD.existsByNombre(nombre); }
+    public boolean existeTipoUnidad(String nombre) { return miTipoUnidadCRUD.existsByNombre(nombre); }
 
     @Override
-    public boolean guardarTipoUnidad(TipoUnidad unTipoUnidad) { return tipoUnidadCRUD.save(unTipoUnidad).getId()!=null; }
+    public boolean guardarTipoUnidad(TipoUnidad unTipoUnidad) { return miTipoUnidadCRUD.save(unTipoUnidad).getId()!=null; }
 }

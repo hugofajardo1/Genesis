@@ -11,11 +11,11 @@ import javax.inject.Inject;
 public class TipoMovimientoRepoImplementacion implements ITipoMovimientoRepository {
 
     @Inject
-    ITipoMovimientoCRUD tipoMovimientoCRUD;
+    ITipoMovimientoCRUD miTipoMovimientoCRUD;
 
     @Override
-    public boolean existeTipoMovimiento(String nombre) { return tipoMovimientoCRUD.existsByNombre(nombre); }
+    public boolean existeTipoMovimiento(String nombre) { return miTipoMovimientoCRUD.existsByNombre(nombre); }
 
     @Override
-    public boolean guardarTipoMovimiento(TipoMovimiento unTipoMovimiento) { return tipoMovimientoCRUD.save(unTipoMovimiento).getId()!=null; }
+    public boolean guardarTipoMovimiento(TipoMovimiento unTipoMovimiento) { return miTipoMovimientoCRUD.save(unTipoMovimiento).getId()!=null; }
 }

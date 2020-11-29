@@ -11,11 +11,11 @@ import javax.inject.Inject;
 public class UbicacionRepoImplementacion implements IUbicacionRepository {
 
     @Inject
-    IUbicacionCRUD ubicacionCRUD;
+    IUbicacionCRUD miUbicacionCRUD;
 
     @Override
-    public boolean existeUbicacion(String nombre) { return ubicacionCRUD.existsByNombre(nombre); }
+    public boolean existeUbicacion(String nombre) { return miUbicacionCRUD.existsByNombre(nombre); }
 
     @Override
-    public boolean guardarUbicacion(Ubicacion ubicacion) { return ubicacionCRUD.save(ubicacion).getId()!=null; }
+    public boolean guardarUbicacion(Ubicacion ubicacion) { return miUbicacionCRUD.save(ubicacion).getId()!=null; }
 }

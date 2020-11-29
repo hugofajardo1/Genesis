@@ -11,10 +11,10 @@ import java.util.List;
 @Service
 public class ObtenerTipoUnidadesRepoImplmentacion implements IObtenerTipoUnidadesRepository {
     @Inject
-    ITipoUnidadCRUD tipoUnidadCRUD;
+    ITipoUnidadCRUD miTipoUnidadCRUD;
 
     @Override
     public List<TipoUnidad> obtenerTipoUnidades() {
-        return tipoUnidadCRUD.findAllByOrderById();
+        return miTipoUnidadCRUD.findAllByOrderById();
     }
 }

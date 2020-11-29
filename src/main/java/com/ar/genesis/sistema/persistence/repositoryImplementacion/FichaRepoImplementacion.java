@@ -11,15 +11,15 @@ import javax.inject.Inject;
 public class FichaRepoImplementacion implements IFichaRepository {
 
     @Inject
-    IFichaCRUD fichaCRUD;
+    IFichaCRUD miFichaCRUD;
 
     @Override
     public boolean existeFicha(String nombre) {
-        return fichaCRUD.existsByNombre(nombre);
+        return miFichaCRUD.existsByNombre(nombre);
     }
 
     @Override
     public boolean guardarFicha(Ficha ficha) {
-        return fichaCRUD.save(ficha).getId()!=null;
+        return miFichaCRUD.save(ficha).getId()!=null;
     }
 }

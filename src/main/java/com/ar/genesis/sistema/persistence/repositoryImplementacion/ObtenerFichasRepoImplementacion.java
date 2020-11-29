@@ -11,10 +11,10 @@ import java.util.List;
 @Service
 public class ObtenerFichasRepoImplementacion implements IObtenerFichasRepository {
     @Inject
-    IFichaCRUD fichaCRUD;
+    IFichaCRUD miFichaCRUD;
 
     @Override
     public List<Ficha> obtenerFichas() {
-        return fichaCRUD.findAllByOrderById();
+        return miFichaCRUD.findAllByOrderById();
     }
 }

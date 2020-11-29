@@ -11,11 +11,11 @@ import javax.inject.Inject;
 public class LocalidadRepoImplementacion implements ILocalidadRepository {
 
     @Inject
-    ILocalidadCRUD localidadCRUD;
+    ILocalidadCRUD miLocalidadCRUD;
 
     @Override
-    public boolean existeLocalidad(String nombre) { return localidadCRUD.existsByNombre(nombre); }
+    public boolean existeLocalidad(String nombre) { return miLocalidadCRUD.existsByNombre(nombre); }
 
     @Override
-    public boolean guardarLocalidad(Localidad localidad) { return localidadCRUD.save(localidad).getId()!=null; }
+    public boolean guardarLocalidad(Localidad localidad) { return miLocalidadCRUD.save(localidad).getId()!=null; }
 }

@@ -11,10 +11,10 @@ import java.util.List;
 @Service
 public class ObtenerLocalidadesRepoImplmentacion implements IObtenerLocalidadesRepository {
     @Inject
-    ILocalidadCRUD localidadCRUD;
+    ILocalidadCRUD miLocalidadCRUD;
 
     @Override
     public List<Localidad> obtenerLocalidades() {
-        return localidadCRUD.findAllByOrderById();
+        return miLocalidadCRUD.findAllByOrderById();
     }
 }

@@ -11,11 +11,11 @@ import javax.inject.Inject;
 public class TipoIvaRepoImplementacion implements ITipoIvaRepository {
 
     @Inject
-    ITipoIvaCRUD tipoIvaCRUD;
+    ITipoIvaCRUD miTipoIvaCRUD;
 
     @Override
-    public boolean existeTipoIva(String nombre) { return tipoIvaCRUD.existsByNombre(nombre); }
+    public boolean existeTipoIva(String nombre) { return miTipoIvaCRUD.existsByNombre(nombre); }
 
     @Override
-    public boolean guardarTipoIva(TipoIva unTipoIva) { return tipoIvaCRUD.save(unTipoIva).getId()!=null; }
+    public boolean guardarTipoIva(TipoIva unTipoIva) { return miTipoIvaCRUD.save(unTipoIva).getId()!=null; }
 }

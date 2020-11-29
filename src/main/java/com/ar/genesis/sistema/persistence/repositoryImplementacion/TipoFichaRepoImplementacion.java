@@ -11,11 +11,11 @@ import javax.inject.Inject;
 public class TipoFichaRepoImplementacion implements ITipoFichaRepository {
 
     @Inject
-    ITipoFichaCRUD tipoFichaCRUD;
+    ITipoFichaCRUD miTipoFichaCRUD;
 
     @Override
-    public boolean existeTipoFicha(String nombre) { return tipoFichaCRUD.existsByNombre(nombre); }
+    public boolean existeTipoFicha(String nombre) { return miTipoFichaCRUD.existsByNombre(nombre); }
 
     @Override
-    public boolean guardarTipoFicha(TipoFicha unTipoFicha) { return tipoFichaCRUD.save(unTipoFicha).getId()!=null; }
+    public boolean guardarTipoFicha(TipoFicha unTipoFicha) { return miTipoFichaCRUD.save(unTipoFicha).getId()!=null; }
 }

@@ -11,12 +11,12 @@ import javax.inject.Inject;
 public class SubRubroRepoImplementacion implements ISubRubroRepository {
 
     @Inject
-    ISubRubroCRUD rubroCRUD;
+    ISubRubroCRUD miRubroCRUD;
 
     @Override
-    public boolean existeSubRubro(String nombre) { return rubroCRUD.existsByNombre(nombre); }
+    public boolean existeSubRubro(String nombre) { return miRubroCRUD.existsByNombre(nombre); }
 
     @Override
-    public boolean guardarSubRubro(SubRubro unSubRubro) { return rubroCRUD.save(unSubRubro).getId()!=null; }
+    public boolean guardarSubRubro(SubRubro unSubRubro) { return miRubroCRUD.save(unSubRubro).getId()!=null; }
 }
 
