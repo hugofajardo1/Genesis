@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.service.controller;
 
 import com.ar.genesis.sistema.core.domain.SubRubro;
 import com.ar.genesis.sistema.core.exception.SubRubroExisteException;
-import com.ar.genesis.sistema.core.input.ICrearSubRubroInput;
+import com.ar.genesis.sistema.core.input.ISubRubroCrearInput;
 import com.ar.genesis.sistema.service.dto.SubRubroDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,14 +17,14 @@ import javax.inject.Inject;
 @RestController
 public class SubRubroCrearController {
     @Inject
-    ICrearSubRubroInput miCrearSubRubroInput;
+    ISubRubroCrearInput miSubRubroCrearInput;
 
-    public SubRubroCrearController(ICrearSubRubroInput miCrearSubRubroInput) { this.miCrearSubRubroInput = miCrearSubRubroInput; }
+    public SubRubroCrearController(ISubRubroCrearInput miSubRubroCrearInput) { this.miSubRubroCrearInput = miSubRubroCrearInput; }
 
     @PostMapping(value = "/SubRubro")
     public ResponseEntity<?> crearSubRubro(@RequestBody SubRubroDTO unSubRubroDTO){
         try{
-            boolean resultado = this.miCrearSubRubroInput.crearSubRubro(SubRubro.instancia(unSubRubroDTO.getId(), unSubRubroDTO.getNombre()));
+            boolean resultado = this.miSubRubroCrearInput.crearSubRubro(SubRubro.instancia(unSubRubroDTO.getId(), unSubRubroDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (SubRubroExisteException e) {

@@ -1,6 +1,6 @@
 package com.ar.genesis.sistema.service.controller;
 
-import com.ar.genesis.sistema.core.input.IObtenerLocalidadesInput;
+import com.ar.genesis.sistema.core.input.ILocalidadObtenerInput;
 import com.ar.genesis.sistema.service.dto.LocalidadDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,15 +16,15 @@ import java.util.List;
 @RestController
 public class LocalidadObtenerController {
     @Inject
-    IObtenerLocalidadesInput miObtenerLocalidadesInput;
+    ILocalidadObtenerInput miLocalidadObtenerInput;
 
-    public LocalidadObtenerController(IObtenerLocalidadesInput miObtenerLocalidadesInput) { this.miObtenerLocalidadesInput = miObtenerLocalidadesInput; }
+    public LocalidadObtenerController(ILocalidadObtenerInput miLocalidadObtenerInput) { this.miLocalidadObtenerInput = miLocalidadObtenerInput; }
 
     @GetMapping(value = "/Localidades")
     public ResponseEntity<?> obtenerLocalidades(){
         try{
             List<LocalidadDTO> localidadesDTO = new ArrayList<>();
-            miObtenerLocalidadesInput.obtenerLocalidades().forEach(unaLocalidad -> localidadesDTO.add(new LocalidadDTO(unaLocalidad.getId(), unaLocalidad.getNombre())));
+            miLocalidadObtenerInput.obtenerLocalidades().forEach(unaLocalidad -> localidadesDTO.add(new LocalidadDTO(unaLocalidad.getId(), unaLocalidad.getNombre())));
             if (localidadesDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(localidadesDTO);
         } catch (Exception ex) {

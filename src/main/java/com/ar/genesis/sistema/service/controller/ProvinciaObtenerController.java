@@ -1,6 +1,6 @@
 package com.ar.genesis.sistema.service.controller;
 
-import com.ar.genesis.sistema.core.input.IObtenerProvinciasInput;
+import com.ar.genesis.sistema.core.input.IProvinciaObtenerInput;
 import com.ar.genesis.sistema.service.dto.ProvinciaDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,15 +16,15 @@ import java.util.List;
 @RestController
 public class ProvinciaObtenerController {
     @Inject
-    IObtenerProvinciasInput miObtenerProvinciasInput;
+    IProvinciaObtenerInput miProvinciaObtenerInput;
 
-    public ProvinciaObtenerController(IObtenerProvinciasInput miObtenerProvinciasInput) { this.miObtenerProvinciasInput = miObtenerProvinciasInput; }
+    public ProvinciaObtenerController(IProvinciaObtenerInput miProvinciaObtenerInput) { this.miProvinciaObtenerInput = miProvinciaObtenerInput; }
 
     @GetMapping(value = "/Provincias")
     public ResponseEntity<?> obtenerProvincias(){
         try{
             List<ProvinciaDTO> provinciasDTO = new ArrayList<>();
-            miObtenerProvinciasInput.obtenerProvincias().forEach(unaProvincia -> provinciasDTO.add(new ProvinciaDTO(unaProvincia.getId(), unaProvincia.getNombre())));
+            miProvinciaObtenerInput.obtenerProvincias().forEach(unaProvincia -> provinciasDTO.add(new ProvinciaDTO(unaProvincia.getId(), unaProvincia.getNombre())));
             if (provinciasDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(provinciasDTO);
         } catch (Exception ex) {

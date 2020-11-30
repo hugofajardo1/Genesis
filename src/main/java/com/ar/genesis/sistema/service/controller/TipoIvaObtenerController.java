@@ -1,6 +1,6 @@
 package com.ar.genesis.sistema.service.controller;
 
-import com.ar.genesis.sistema.core.input.IObtenerTipoIvasInput;
+import com.ar.genesis.sistema.core.input.ITipoIvaObtenerInput;
 import com.ar.genesis.sistema.service.dto.TipoIvaDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,15 +16,15 @@ import java.util.List;
 @RestController
 public class TipoIvaObtenerController {
     @Inject
-    IObtenerTipoIvasInput miObtenerTipoIvasInput;
+    ITipoIvaObtenerInput miTipoIvaObtenerInput;
 
-    public TipoIvaObtenerController(IObtenerTipoIvasInput miObtenerTipoIvasInput) { this.miObtenerTipoIvasInput = miObtenerTipoIvasInput; }
+    public TipoIvaObtenerController(ITipoIvaObtenerInput miTipoIvaObtenerInput) { this.miTipoIvaObtenerInput = miTipoIvaObtenerInput; }
 
     @GetMapping(value = "/TipoIvas")
     public ResponseEntity<?> obtenerTipoIvas(){
         try{
             List<TipoIvaDTO> tipoIvasDTO = new ArrayList<>();
-            miObtenerTipoIvasInput.obtenerTipoIvas().forEach(unTipoIva -> tipoIvasDTO.add(new TipoIvaDTO(unTipoIva.getId(), unTipoIva.getNombre())));
+            miTipoIvaObtenerInput.obtenerTipoIvas().forEach(unTipoIva -> tipoIvasDTO.add(new TipoIvaDTO(unTipoIva.getId(), unTipoIva.getNombre())));
             if (tipoIvasDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(tipoIvasDTO);
         } catch (Exception ex) {

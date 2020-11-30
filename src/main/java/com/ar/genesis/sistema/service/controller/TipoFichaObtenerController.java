@@ -1,6 +1,6 @@
 package com.ar.genesis.sistema.service.controller;
 
-import com.ar.genesis.sistema.core.input.IObtenerTipoFichasInput;
+import com.ar.genesis.sistema.core.input.ITipoFichaObtenerInput;
 import com.ar.genesis.sistema.service.dto.TipoFichaDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,15 +16,15 @@ import java.util.List;
 @RestController
 public class TipoFichaObtenerController {
     @Inject
-    IObtenerTipoFichasInput miObtenerTipoFichasInput;
+    ITipoFichaObtenerInput miTipoFichaObtenerInput;
 
-    public TipoFichaObtenerController(IObtenerTipoFichasInput miObtenerTipoFichasInput) { this.miObtenerTipoFichasInput = miObtenerTipoFichasInput; }
+    public TipoFichaObtenerController(ITipoFichaObtenerInput miTipoFichaObtenerInput) { this.miTipoFichaObtenerInput = miTipoFichaObtenerInput; }
 
     @GetMapping(value = "/TipoFichas")
     public ResponseEntity<?> obtenerTipoFichas(){
         try{
             List<TipoFichaDTO> tipoFichasDTO = new ArrayList<>();
-            miObtenerTipoFichasInput.obtenerTipoFichas().forEach(unTipoFicha -> tipoFichasDTO.add(new TipoFichaDTO(unTipoFicha.getId(), unTipoFicha.getNombre())));
+            miTipoFichaObtenerInput.obtenerTipoFichas().forEach(unTipoFicha -> tipoFichasDTO.add(new TipoFichaDTO(unTipoFicha.getId(), unTipoFicha.getNombre())));
             if (tipoFichasDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(tipoFichasDTO);
         } catch (Exception ex) {

@@ -1,6 +1,6 @@
 package com.ar.genesis.sistema.service.controller;
 
-import com.ar.genesis.sistema.core.input.IObtenerFichaInput;
+import com.ar.genesis.sistema.core.input.IFichaObtenerInput;
 import com.ar.genesis.sistema.service.dto.FichaDTO;
 import com.ar.genesis.sistema.service.dto.TipoIvaDTO;
 import org.springframework.http.HttpStatus;
@@ -15,15 +15,15 @@ import java.util.List;
 @RestController
 public class FichaObtenerController {
     @Inject
-    IObtenerFichaInput miObtenerFichaInput;
+    IFichaObtenerInput miFichaObtenerInput;
 
-    public FichaObtenerController(IObtenerFichaInput miObtenerFichaInput) { this.miObtenerFichaInput = miObtenerFichaInput; }
+    public FichaObtenerController(IFichaObtenerInput miFichaObtenerInput) { this.miFichaObtenerInput = miFichaObtenerInput; }
 
     @GetMapping(value = "/Fichas")
     public ResponseEntity<?> obtenerFichas(){
         try{
             List<FichaDTO> fichasDTO = new ArrayList<>();
-            miObtenerFichaInput.obtenerFichas().forEach(unaFicha -> fichasDTO.add(new FichaDTO(unaFicha.getId(), unaFicha.getNombre(), unaFicha.getDomicilio(), unaFicha.getTelefono(), new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336")));
+            miFichaObtenerInput.obtenerFichas().forEach(unaFicha -> fichasDTO.add(new FichaDTO(unaFicha.getId(), unaFicha.getNombre(), unaFicha.getDomicilio(), unaFicha.getTelefono(), new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336")));
             if (fichasDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(fichasDTO);
         } catch (Exception ex) {

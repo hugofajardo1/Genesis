@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.service.controller;
 
 import com.ar.genesis.sistema.core.domain.TipoIva;
 import com.ar.genesis.sistema.core.exception.TipoIvaExisteException;
-import com.ar.genesis.sistema.core.input.ICrearTipoIvaInput;
+import com.ar.genesis.sistema.core.input.ITipoIvaCrearInput;
 import com.ar.genesis.sistema.service.dto.TipoIvaDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,14 +17,14 @@ import javax.inject.Inject;
 @RestController
 public class TipoIvaCrearController {
     @Inject
-    ICrearTipoIvaInput miCrearTipoIvaInput;
+    ITipoIvaCrearInput miTipoIvaCrearInput;
 
-    public TipoIvaCrearController(ICrearTipoIvaInput miCrearTipoIvaInput) { this.miCrearTipoIvaInput = miCrearTipoIvaInput; }
+    public TipoIvaCrearController(ITipoIvaCrearInput miTipoIvaCrearInput) { this.miTipoIvaCrearInput = miTipoIvaCrearInput; }
 
     @PostMapping(value = "/TipoIva")
     public ResponseEntity<?> crearTipoIva(@RequestBody TipoIvaDTO unTipoIvaDTO){
         try{
-            boolean resultado = this.miCrearTipoIvaInput.crearTipoIva(TipoIva.instancia(unTipoIvaDTO.getId(), unTipoIvaDTO.getNombre()));
+            boolean resultado = this.miTipoIvaCrearInput.crearTipoIva(TipoIva.instancia(unTipoIvaDTO.getId(), unTipoIvaDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (TipoIvaExisteException e) {

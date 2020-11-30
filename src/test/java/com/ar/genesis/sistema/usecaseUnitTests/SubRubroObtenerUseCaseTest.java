@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.usecaseUnitTests;
 
 import com.ar.genesis.sistema.core.domain.SubRubro;
 import com.ar.genesis.sistema.core.repository.ISubRubroObtenerRepository;
-import com.ar.genesis.sistema.core.usecase.SubRubroObtenerUseCase;
+import com.ar.genesis.sistema.core.usecase.SubRubroUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,7 +24,7 @@ public class SubRubroObtenerUseCaseTest {
     @Test
     public void obtenerSubRubros_devuelveLista(){
         when(miSubRubroObtenerRepository.obtenerSubRubros()).thenReturn(SubRubros);
-        SubRubroObtenerUseCase subRubroObtenerUseCase = new SubRubroObtenerUseCase(miSubRubroObtenerRepository);
+        SubRubroUseCase subRubroObtenerUseCase = new SubRubroUseCase(miSubRubroObtenerRepository);
         List<SubRubro> resultado = subRubroObtenerUseCase.obtenerSubRubros();
         Assertions.assertEquals(2,resultado.size());
     }

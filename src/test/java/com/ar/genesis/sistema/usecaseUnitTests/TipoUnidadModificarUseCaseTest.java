@@ -3,7 +3,7 @@ package com.ar.genesis.sistema.usecaseUnitTests;
 import com.ar.genesis.sistema.core.domain.TipoUnidad;
 import com.ar.genesis.sistema.core.exception.TipoUnidadExisteException;
 import com.ar.genesis.sistema.core.repository.ITipoUnidadRepository;
-import com.ar.genesis.sistema.core.usecase.TipoUnidadModificarUseCase;
+import com.ar.genesis.sistema.core.usecase.TipoUnidadUseCaseModificar;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +20,7 @@ public class TipoUnidadModificarUseCaseTest {
         TipoUnidad unTipoUnidad = TipoUnidad.instancia(1, "Unidad");
         when(miTipoUnidadRepository.existeTipoUnidad("Unidad")).thenReturn(false);
         when(miTipoUnidadRepository.guardarTipoUnidad(unTipoUnidad)).thenReturn(true);
-        TipoUnidadModificarUseCase tipoUnidadModificarUseCase = new TipoUnidadModificarUseCase(miTipoUnidadRepository);
+        TipoUnidadUseCaseModificar tipoUnidadModificarUseCase = new TipoUnidadUseCaseModificar(miTipoUnidadRepository);
         boolean resultado = tipoUnidadModificarUseCase.modificarTipoUnidad(unTipoUnidad);
         Assertions.assertTrue(resultado);
     }
@@ -30,7 +30,7 @@ public class TipoUnidadModificarUseCaseTest {
         TipoUnidad unTipoUnidad = TipoUnidad.instancia(1, "Unidad");
         when(miTipoUnidadRepository.existeTipoUnidad("Unidad")).thenReturn(true);
         when(miTipoUnidadRepository.guardarTipoUnidad(unTipoUnidad)).thenReturn(false);
-        TipoUnidadModificarUseCase tipoUnidadModificarUseCase = new TipoUnidadModificarUseCase(miTipoUnidadRepository);
+        TipoUnidadUseCaseModificar tipoUnidadModificarUseCase = new TipoUnidadUseCaseModificar(miTipoUnidadRepository);
         Assertions.assertThrows(TipoUnidadExisteException.class, () -> tipoUnidadModificarUseCase.modificarTipoUnidad(unTipoUnidad));
     }
 }

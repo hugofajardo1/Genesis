@@ -3,7 +3,7 @@ package com.ar.genesis.sistema.usecaseUnitTests;
 import com.ar.genesis.sistema.core.domain.Provincia;
 import com.ar.genesis.sistema.core.exception.ProvinciaExisteException;
 import com.ar.genesis.sistema.core.repository.IProvinciaRepository;
-import com.ar.genesis.sistema.core.usecase.ProvinciaModificarUseCase;
+import com.ar.genesis.sistema.core.usecase.ProvinciaUseCaseModificar;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +20,7 @@ public class ProvinciaModificarUseCaseTest {
         Provincia unaProvincia = Provincia.instancia(1, "Provincia");
         when(miProvinciaRepository.existeProvincia("Provincia")).thenReturn(false);
         when(miProvinciaRepository.guardarProvincia(unaProvincia)).thenReturn(true);
-        ProvinciaModificarUseCase provinciaModificarUseCase = new ProvinciaModificarUseCase(miProvinciaRepository);
+        ProvinciaUseCaseModificar provinciaModificarUseCase = new ProvinciaUseCaseModificar(miProvinciaRepository);
         boolean resultado = provinciaModificarUseCase.modificarProvincia(unaProvincia);
         Assertions.assertTrue(resultado);
     }
@@ -30,7 +30,7 @@ public class ProvinciaModificarUseCaseTest {
         Provincia unaProvincia = Provincia.instancia(1, "Provincia");
         when(miProvinciaRepository.existeProvincia("Provincia")).thenReturn(true);
         when(miProvinciaRepository.guardarProvincia(unaProvincia)).thenReturn(false);
-        ProvinciaModificarUseCase provinciaModificarUseCase = new ProvinciaModificarUseCase(miProvinciaRepository);
+        ProvinciaUseCaseModificar provinciaModificarUseCase = new ProvinciaUseCaseModificar(miProvinciaRepository);
         Assertions.assertThrows(ProvinciaExisteException.class, () -> provinciaModificarUseCase.modificarProvincia(unaProvincia));
     }
 }

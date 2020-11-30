@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Ubicacion;
 import com.ar.genesis.sistema.core.exception.UbicacionExisteException;
-import com.ar.genesis.sistema.core.input.ICrearUbicacionInput;
+import com.ar.genesis.sistema.core.input.IUbicacionCrearInput;
 import com.ar.genesis.sistema.service.controller.UbicacionCrearController;
 import com.ar.genesis.sistema.service.dto.UbicacionDTO;
 import org.junit.jupiter.api.Assertions;
@@ -18,14 +18,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class UbicacionCrearControllerTest {
     @Mock
-    ICrearUbicacionInput miCrearUbicacionInput;
+    IUbicacionCrearInput miUbicacionCrearInput;
 
     @Test
     public  void crearUbicacion_UbicacionNoExiste_Devuelve200() throws UbicacionExisteException {
         UbicacionDTO unaUbicacionDTO = new UbicacionDTO(1, "Ubicacion 1");
-        when(miCrearUbicacionInput.crearUbicacion(any(Ubicacion.class))).thenReturn(true);
+        when(miUbicacionCrearInput.crearUbicacion(any(Ubicacion.class))).thenReturn(true);
 
-        UbicacionCrearController ubicacionCrearController = new UbicacionCrearController(miCrearUbicacionInput);
+        UbicacionCrearController ubicacionCrearController = new UbicacionCrearController(miUbicacionCrearInput);
         ResponseEntity<?> responseEntity = ubicacionCrearController.crearUbicacion(unaUbicacionDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -35,9 +35,9 @@ public class UbicacionCrearControllerTest {
     @Test
     public  void crearUbicacion_UbicacionExiste_Devuelve412() throws UbicacionExisteException {
         UbicacionDTO unaUbicacionDTO = new UbicacionDTO(1, "Ubicacion 1");
-        when(miCrearUbicacionInput.crearUbicacion(any(Ubicacion.class))).thenThrow(UbicacionExisteException.class);
+        when(miUbicacionCrearInput.crearUbicacion(any(Ubicacion.class))).thenThrow(UbicacionExisteException.class);
 
-        UbicacionCrearController ubicacionCrearController = new UbicacionCrearController(miCrearUbicacionInput);
+        UbicacionCrearController ubicacionCrearController = new UbicacionCrearController(miUbicacionCrearInput);
         ResponseEntity<?> responseEntity = ubicacionCrearController.crearUbicacion(unaUbicacionDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());

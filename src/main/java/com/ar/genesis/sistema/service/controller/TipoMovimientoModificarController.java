@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.service.controller;
 
 import com.ar.genesis.sistema.core.domain.TipoMovimiento;
 import com.ar.genesis.sistema.core.exception.TipoMovimientoExisteException;
-import com.ar.genesis.sistema.core.input.IModificarTipoMovimientoInput;
+import com.ar.genesis.sistema.core.input.ITipoMovimientoModificarInput;
 import com.ar.genesis.sistema.service.dto.TipoMovimientoDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,14 +17,14 @@ import javax.inject.Inject;
 @RestController
 public class TipoMovimientoModificarController {
     @Inject
-    IModificarTipoMovimientoInput miModificarTipoMovimientoInput;
+    ITipoMovimientoModificarInput miTipoMovimientoModificarInput;
 
-    public TipoMovimientoModificarController(IModificarTipoMovimientoInput miModificarTipoMovimientoInput) { this.miModificarTipoMovimientoInput = miModificarTipoMovimientoInput; }
+    public TipoMovimientoModificarController(ITipoMovimientoModificarInput miTipoMovimientoModificarInput) { this.miTipoMovimientoModificarInput = miTipoMovimientoModificarInput; }
 
     @PutMapping(value = "/TipoMovimiento")
     public ResponseEntity<?> modificarTipoMovimiento(@RequestBody TipoMovimientoDTO unTipoMovimientoDTO){
         try{
-            boolean resultado = this.miModificarTipoMovimientoInput.modificarTipoMovimiento(TipoMovimiento.instancia(unTipoMovimientoDTO.getId(), unTipoMovimientoDTO.getNombre()));
+            boolean resultado = this.miTipoMovimientoModificarInput.modificarTipoMovimiento(TipoMovimiento.instancia(unTipoMovimientoDTO.getId(), unTipoMovimientoDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (TipoMovimientoExisteException e) {

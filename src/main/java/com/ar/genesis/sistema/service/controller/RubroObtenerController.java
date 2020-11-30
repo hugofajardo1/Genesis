@@ -1,6 +1,6 @@
 package com.ar.genesis.sistema.service.controller;
 
-import com.ar.genesis.sistema.core.input.IObtenerRubrosInput;
+import com.ar.genesis.sistema.core.input.IRubroObtenerInput;
 import com.ar.genesis.sistema.service.dto.RubroDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,16 +16,16 @@ import java.util.List;
 @RestController
 public class RubroObtenerController {
     @Inject
-    IObtenerRubrosInput miObtenerRubrosInput;
+    IRubroObtenerInput miRubroObtenerInput;
 
-    public RubroObtenerController(IObtenerRubrosInput miObtenerRubrosInput) {
-        this.miObtenerRubrosInput = miObtenerRubrosInput;
+    public RubroObtenerController(IRubroObtenerInput miRubroObtenerInput) {
+        this.miRubroObtenerInput = miRubroObtenerInput;
     }
     @GetMapping(value = "/Rubros")
     public ResponseEntity<?> obtenerRubros(){
         try{
             List<RubroDTO> rubrosDTO = new ArrayList<>();
-            miObtenerRubrosInput.obtenerRubros().forEach(unRubro -> rubrosDTO.add(new RubroDTO(unRubro.getId(), unRubro.getNombre())));
+            miRubroObtenerInput.obtenerRubros().forEach(unRubro -> rubrosDTO.add(new RubroDTO(unRubro.getId(), unRubro.getNombre())));
             if (rubrosDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(rubrosDTO);
         } catch (Exception ex) {

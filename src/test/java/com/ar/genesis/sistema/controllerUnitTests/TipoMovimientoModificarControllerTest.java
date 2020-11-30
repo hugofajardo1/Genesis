@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 
 import com.ar.genesis.sistema.core.domain.TipoMovimiento;
 import com.ar.genesis.sistema.core.exception.TipoMovimientoExisteException;
-import com.ar.genesis.sistema.core.input.IModificarTipoMovimientoInput;
+import com.ar.genesis.sistema.core.input.ITipoMovimientoModificarInput;
 import com.ar.genesis.sistema.service.controller.TipoMovimientoModificarController;
 import com.ar.genesis.sistema.service.dto.TipoMovimientoDTO;
 import org.junit.jupiter.api.Assertions;
@@ -18,14 +18,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class TipoMovimientoModificarControllerTest {
     @Mock
-    IModificarTipoMovimientoInput miModificarTipoMovimientoInput;
+    ITipoMovimientoModificarInput miTipoMovimientoModificarInput;
 
     @Test
     public  void modificarTipoMovimiento_TipoMovimientoNoExiste_Devuelve200() throws TipoMovimientoExisteException {
         TipoMovimientoDTO unTipoMovimientoDTO = new TipoMovimientoDTO(1, "Factura A");
-        when(miModificarTipoMovimientoInput.modificarTipoMovimiento(any(TipoMovimiento.class))).thenReturn(true);
+        when(miTipoMovimientoModificarInput.modificarTipoMovimiento(any(TipoMovimiento.class))).thenReturn(true);
 
-        TipoMovimientoModificarController tipoMovimientoModificarController = new TipoMovimientoModificarController(miModificarTipoMovimientoInput);
+        TipoMovimientoModificarController tipoMovimientoModificarController = new TipoMovimientoModificarController(miTipoMovimientoModificarInput);
         ResponseEntity<?> responseEntity = tipoMovimientoModificarController.modificarTipoMovimiento(unTipoMovimientoDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -35,9 +35,9 @@ public class TipoMovimientoModificarControllerTest {
     @Test
     public  void modificarTipoMovimiento_TipoMovimientoExiste_Devuelve412() throws TipoMovimientoExisteException {
         TipoMovimientoDTO unTipoMovimientoDTO = new TipoMovimientoDTO(1, "Factura A");
-        when(miModificarTipoMovimientoInput.modificarTipoMovimiento(any(TipoMovimiento.class))).thenThrow(TipoMovimientoExisteException.class);
+        when(miTipoMovimientoModificarInput.modificarTipoMovimiento(any(TipoMovimiento.class))).thenThrow(TipoMovimientoExisteException.class);
 
-        TipoMovimientoModificarController tipoMovimientoModificarController = new TipoMovimientoModificarController(miModificarTipoMovimientoInput);
+        TipoMovimientoModificarController tipoMovimientoModificarController = new TipoMovimientoModificarController(miTipoMovimientoModificarInput);
         ResponseEntity<?> responseEntity = tipoMovimientoModificarController.modificarTipoMovimiento(unTipoMovimientoDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());

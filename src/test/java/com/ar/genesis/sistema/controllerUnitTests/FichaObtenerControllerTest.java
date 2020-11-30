@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Ficha;
 import com.ar.genesis.sistema.core.domain.TipoIva;
-import com.ar.genesis.sistema.core.input.IObtenerFichaInput;
+import com.ar.genesis.sistema.core.input.IFichaObtenerInput;
 import com.ar.genesis.sistema.service.controller.FichaObtenerController;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class FichaObtenerControllerTest {
     @Mock
-    IObtenerFichaInput miObtenerFichasInput;
+    IFichaObtenerInput miObtenerFichasInput;
 
     @Test
     public void obtenerFichas_FichasExisten_Devuelve200(){

@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.service.controller;
 
 import com.ar.genesis.sistema.core.domain.Rubro;
 import com.ar.genesis.sistema.core.exception.RubroExisteException;
-import com.ar.genesis.sistema.core.input.IModificarRubroInput;
+import com.ar.genesis.sistema.core.input.IRubroModificarInput;
 import com.ar.genesis.sistema.service.dto.RubroDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,14 +17,14 @@ import javax.inject.Inject;
 @RestController
 public class RubroModificarController {
     @Inject
-    IModificarRubroInput miModificarRubroInput;
+    IRubroModificarInput miRubroModificarInput;
 
-    public RubroModificarController(IModificarRubroInput miModificarRubroInput) { this.miModificarRubroInput = miModificarRubroInput; }
+    public RubroModificarController(IRubroModificarInput miRubroModificarInput) { this.miRubroModificarInput = miRubroModificarInput; }
 
     @PutMapping(value = "/Rubro")
     public ResponseEntity<?> modificarRubro(@RequestBody RubroDTO unRubroDTO){
         try{
-            boolean resultado = this.miModificarRubroInput.modificarRubro(Rubro.instancia(unRubroDTO.getId(), unRubroDTO.getNombre()));
+            boolean resultado = this.miRubroModificarInput.modificarRubro(Rubro.instancia(unRubroDTO.getId(), unRubroDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (RubroExisteException e) {

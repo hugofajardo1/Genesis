@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.service.controller;
 
 import com.ar.genesis.sistema.core.domain.Ubicacion;
 import com.ar.genesis.sistema.core.exception.UbicacionExisteException;
-import com.ar.genesis.sistema.core.input.ICrearUbicacionInput;
+import com.ar.genesis.sistema.core.input.IUbicacionCrearInput;
 import com.ar.genesis.sistema.service.dto.UbicacionDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,14 +17,14 @@ import javax.inject.Inject;
 @RestController
 public class UbicacionCrearController {
     @Inject
-    ICrearUbicacionInput miCrearUbicacionInput;
+    IUbicacionCrearInput miUbicacionCrearInput;
 
-    public UbicacionCrearController(ICrearUbicacionInput miCrearUbicacionInput) { this.miCrearUbicacionInput = miCrearUbicacionInput; }
+    public UbicacionCrearController(IUbicacionCrearInput miUbicacionCrearInput) { this.miUbicacionCrearInput = miUbicacionCrearInput; }
 
     @PostMapping(value = "/Ubicacion")
     public ResponseEntity<?> crearUbicacion(@RequestBody UbicacionDTO unaUbicacionDTO){
         try{
-            boolean resultado = this.miCrearUbicacionInput.crearUbicacion(Ubicacion.instancia(unaUbicacionDTO.getId(), unaUbicacionDTO.getNombre()));
+            boolean resultado = this.miUbicacionCrearInput.crearUbicacion(Ubicacion.instancia(unaUbicacionDTO.getId(), unaUbicacionDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (UbicacionExisteException e) {

@@ -1,6 +1,6 @@
 package com.ar.genesis.sistema.service.controller;
 
-import com.ar.genesis.sistema.core.input.IObtenerTipoUnidadesInput;
+import com.ar.genesis.sistema.core.input.ITipoUnidadObtenerInput;
 import com.ar.genesis.sistema.service.dto.TipoUnidadDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,15 +16,15 @@ import java.util.List;
 @RestController
 public class TipoUnidadObtenerController {
     @Inject
-    IObtenerTipoUnidadesInput miObtenerTipoUnidadesInput;
+    ITipoUnidadObtenerInput miTipoUnidadObtenerInput;
 
-    public TipoUnidadObtenerController(IObtenerTipoUnidadesInput miObtenerTipoUnidadesInput) { this.miObtenerTipoUnidadesInput = miObtenerTipoUnidadesInput; }
+    public TipoUnidadObtenerController(ITipoUnidadObtenerInput miTipoUnidadObtenerInput) { this.miTipoUnidadObtenerInput = miTipoUnidadObtenerInput; }
 
     @GetMapping(value = "/TipoUnidades")
     public ResponseEntity<?> obtenerTipoUnidades(){
         try{
             List<TipoUnidadDTO> tipoUnidadesDTO = new ArrayList<>();
-            miObtenerTipoUnidadesInput.obtenerTipoUnidades().forEach(unTipoUnidad -> tipoUnidadesDTO.add(new TipoUnidadDTO(unTipoUnidad.getId(), unTipoUnidad.getNombre())));
+            miTipoUnidadObtenerInput.obtenerTipoUnidades().forEach(unTipoUnidad -> tipoUnidadesDTO.add(new TipoUnidadDTO(unTipoUnidad.getId(), unTipoUnidad.getNombre())));
             if (tipoUnidadesDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(tipoUnidadesDTO);
         } catch (Exception ex) {

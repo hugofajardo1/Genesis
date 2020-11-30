@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Rubro;
 import com.ar.genesis.sistema.core.exception.RubroExisteException;
-import com.ar.genesis.sistema.core.input.IModificarRubroInput;
+import com.ar.genesis.sistema.core.input.IRubroModificarInput;
 import com.ar.genesis.sistema.service.controller.RubroModificarController;
 import com.ar.genesis.sistema.service.dto.RubroDTO;
 import org.junit.jupiter.api.Assertions;
@@ -18,14 +18,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class RubroModificarControllerTest {
     @Mock
-    IModificarRubroInput miModificarRubroInput;
+    IRubroModificarInput miRubroModificarInput;
 
     @Test
     public  void modificarRubro_RubroNoExiste_Devuelve200() throws RubroExisteException {
         RubroDTO unRubroDTO = new RubroDTO(1, "Rubro 1");
-        when(miModificarRubroInput.modificarRubro(any(Rubro.class))).thenReturn(true);
+        when(miRubroModificarInput.modificarRubro(any(Rubro.class))).thenReturn(true);
 
-        RubroModificarController rubroModificarController = new RubroModificarController(miModificarRubroInput);
+        RubroModificarController rubroModificarController = new RubroModificarController(miRubroModificarInput);
         ResponseEntity<?> responseEntity = rubroModificarController.modificarRubro(unRubroDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -35,9 +35,9 @@ public class RubroModificarControllerTest {
     @Test
     public  void modificarRubro_RubroExiste_Devuelve412() throws RubroExisteException {
         RubroDTO unRubroDTO = new RubroDTO(1, "Rubro 2");
-        when(miModificarRubroInput.modificarRubro(any(Rubro.class))).thenThrow(RubroExisteException.class);
+        when(miRubroModificarInput.modificarRubro(any(Rubro.class))).thenThrow(RubroExisteException.class);
 
-        RubroModificarController rubroModificarController = new RubroModificarController(miModificarRubroInput);
+        RubroModificarController rubroModificarController = new RubroModificarController(miRubroModificarInput);
         ResponseEntity<?> responseEntity = rubroModificarController.modificarRubro(unRubroDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());

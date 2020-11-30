@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Provincia;
 import com.ar.genesis.sistema.core.exception.ProvinciaExisteException;
-import com.ar.genesis.sistema.core.input.IModificarProvinciaInput;
+import com.ar.genesis.sistema.core.input.IProvinciaModificarInput;
 import com.ar.genesis.sistema.service.controller.ProvinciaModificarController;
 import com.ar.genesis.sistema.service.dto.ProvinciaDTO;
 import org.junit.jupiter.api.Assertions;
@@ -18,14 +18,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class ProvinciaModificarControllerTest {
     @Mock
-    IModificarProvinciaInput miModificarProvinciaInput;
+    IProvinciaModificarInput miProvinciaModificarInput;
 
     @Test
     public  void modificarProvincia_ProvinciaNoExiste_Devuelve200() throws ProvinciaExisteException {
         ProvinciaDTO unProvinciaDTO = new ProvinciaDTO(1, "Provincia 1");
-        when(miModificarProvinciaInput.modificarProvincia(any(Provincia.class))).thenReturn(true);
+        when(miProvinciaModificarInput.modificarProvincia(any(Provincia.class))).thenReturn(true);
 
-        ProvinciaModificarController provinciaModificarController = new ProvinciaModificarController(miModificarProvinciaInput);
+        ProvinciaModificarController provinciaModificarController = new ProvinciaModificarController(miProvinciaModificarInput);
         ResponseEntity<?> responseEntity = provinciaModificarController.modificarProvincia(unProvinciaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -35,9 +35,9 @@ public class ProvinciaModificarControllerTest {
     @Test
     public  void modificarProvincia_ProvinciaExiste_Devuelve412() throws ProvinciaExisteException {
         ProvinciaDTO unProvinciaDTO = new ProvinciaDTO(1, "Provincia 2");
-        when(miModificarProvinciaInput.modificarProvincia(any(Provincia.class))).thenThrow(ProvinciaExisteException.class);
+        when(miProvinciaModificarInput.modificarProvincia(any(Provincia.class))).thenThrow(ProvinciaExisteException.class);
 
-        ProvinciaModificarController provinciaModificarController = new ProvinciaModificarController(miModificarProvinciaInput);
+        ProvinciaModificarController provinciaModificarController = new ProvinciaModificarController(miProvinciaModificarInput);
         ResponseEntity<?> responseEntity = provinciaModificarController.modificarProvincia(unProvinciaDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());

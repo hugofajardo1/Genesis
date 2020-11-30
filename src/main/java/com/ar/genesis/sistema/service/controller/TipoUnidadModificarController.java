@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.service.controller;
 
 import com.ar.genesis.sistema.core.domain.TipoUnidad;
 import com.ar.genesis.sistema.core.exception.TipoUnidadExisteException;
-import com.ar.genesis.sistema.core.input.IModificarTipoUnidadInput;
+import com.ar.genesis.sistema.core.input.ITipoUnidadModificarInput;
 import com.ar.genesis.sistema.service.dto.TipoUnidadDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,14 +17,14 @@ import javax.inject.Inject;
 @RestController
 public class TipoUnidadModificarController {
     @Inject
-    IModificarTipoUnidadInput miModificarTipoUnidadInput;
+    ITipoUnidadModificarInput miTipoUnidadModificarInput;
 
-    public TipoUnidadModificarController(IModificarTipoUnidadInput miModificarTipoUnidadInput) { this.miModificarTipoUnidadInput = miModificarTipoUnidadInput; }
+    public TipoUnidadModificarController(ITipoUnidadModificarInput miTipoUnidadModificarInput) { this.miTipoUnidadModificarInput = miTipoUnidadModificarInput; }
 
     @PutMapping(value = "/TipoUnidad")
     public ResponseEntity<?> modificarTipoUnidad(@RequestBody TipoUnidadDTO unTipoUnidadDTO){
         try{
-            boolean resultado = this.miModificarTipoUnidadInput.modificarTipoUnidad(TipoUnidad.instancia(unTipoUnidadDTO.getId(), unTipoUnidadDTO.getNombre()));
+            boolean resultado = this.miTipoUnidadModificarInput.modificarTipoUnidad(TipoUnidad.instancia(unTipoUnidadDTO.getId(), unTipoUnidadDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (TipoUnidadExisteException e) {

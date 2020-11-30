@@ -1,6 +1,6 @@
 package com.ar.genesis.sistema.service.controller;
 
-import com.ar.genesis.sistema.core.input.IObtenerTipoMovimientosInput;
+import com.ar.genesis.sistema.core.input.ITipoMovimientoObtenerInput;
 import com.ar.genesis.sistema.service.dto.TipoMovimientoDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,15 +16,15 @@ import java.util.List;
 @RestController
 public class TipoMovimientoObtenerController {
     @Inject
-    IObtenerTipoMovimientosInput miObtenerTipoMovimientosInput;
+    ITipoMovimientoObtenerInput miTipoMovimientoObtenerInput;
 
-    public TipoMovimientoObtenerController(IObtenerTipoMovimientosInput miObtenerTipoMovimientosInput) { this.miObtenerTipoMovimientosInput = miObtenerTipoMovimientosInput; }
+    public TipoMovimientoObtenerController(ITipoMovimientoObtenerInput miTipoMovimientoObtenerInput) { this.miTipoMovimientoObtenerInput = miTipoMovimientoObtenerInput; }
 
     @GetMapping(value = "/TipoMovimientos")
     public ResponseEntity<?> obtenerTipoMovimientos(){
         try{
             List<TipoMovimientoDTO> tipoMovimientosDTO = new ArrayList<>();
-            miObtenerTipoMovimientosInput.obtenerTipoMovimientos().forEach(unTipoMovimiento -> tipoMovimientosDTO.add(new TipoMovimientoDTO(unTipoMovimiento.getId(), unTipoMovimiento.getNombre())));
+            miTipoMovimientoObtenerInput.obtenerTipoMovimientos().forEach(unTipoMovimiento -> tipoMovimientosDTO.add(new TipoMovimientoDTO(unTipoMovimiento.getId(), unTipoMovimiento.getNombre())));
             if (tipoMovimientosDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(tipoMovimientosDTO);
         } catch (Exception ex) {

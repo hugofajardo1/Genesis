@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 
 import com.ar.genesis.sistema.core.domain.TipoIva;
 import com.ar.genesis.sistema.core.exception.TipoIvaExisteException;
-import com.ar.genesis.sistema.core.input.ICrearTipoIvaInput;
+import com.ar.genesis.sistema.core.input.ITipoIvaCrearInput;
 import com.ar.genesis.sistema.service.controller.TipoIvaCrearController;
 import com.ar.genesis.sistema.service.dto.TipoIvaDTO;
 import org.junit.jupiter.api.Assertions;
@@ -18,14 +18,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class TipoIvaCrearControllerTest {
     @Mock
-    ICrearTipoIvaInput miCrearTipoIvaInput;
+    ITipoIvaCrearInput miTipoIvaCrearInput;
 
     @Test
     public  void crearTipoIva_TipoIvaNoExiste_Devuelve200() throws TipoIvaExisteException {
         TipoIvaDTO unTipoIvaDTO = new TipoIvaDTO(1, "Responsable Inscripto");
-        when(miCrearTipoIvaInput.crearTipoIva(any(TipoIva.class))).thenReturn(true);
+        when(miTipoIvaCrearInput.crearTipoIva(any(TipoIva.class))).thenReturn(true);
 
-        TipoIvaCrearController tipoIvaCrearController = new TipoIvaCrearController(miCrearTipoIvaInput);
+        TipoIvaCrearController tipoIvaCrearController = new TipoIvaCrearController(miTipoIvaCrearInput);
         ResponseEntity<?> responseEntity = tipoIvaCrearController.crearTipoIva(unTipoIvaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -35,9 +35,9 @@ public class TipoIvaCrearControllerTest {
     @Test
     public  void crearTipoIva_TipoIvaExiste_Devuelve412() throws TipoIvaExisteException {
         TipoIvaDTO unTipoIvaDTO = new TipoIvaDTO(1, "Responsable Inscripto");
-        when(miCrearTipoIvaInput.crearTipoIva(any(TipoIva.class))).thenThrow(TipoIvaExisteException.class);
+        when(miTipoIvaCrearInput.crearTipoIva(any(TipoIva.class))).thenThrow(TipoIvaExisteException.class);
 
-        TipoIvaCrearController tipoIvaCrearController = new TipoIvaCrearController(miCrearTipoIvaInput);
+        TipoIvaCrearController tipoIvaCrearController = new TipoIvaCrearController(miTipoIvaCrearInput);
         ResponseEntity<?> responseEntity = tipoIvaCrearController.crearTipoIva(unTipoIvaDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());

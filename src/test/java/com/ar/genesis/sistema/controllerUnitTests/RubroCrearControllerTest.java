@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Rubro;
 import com.ar.genesis.sistema.core.exception.RubroExisteException;
-import com.ar.genesis.sistema.core.input.ICrearRubroInput;
+import com.ar.genesis.sistema.core.input.IRubroCrearInput;
 import com.ar.genesis.sistema.service.controller.RubroCrearController;
 import com.ar.genesis.sistema.service.dto.RubroDTO;
 import org.junit.jupiter.api.Assertions;
@@ -18,14 +18,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class RubroCrearControllerTest {
     @Mock
-    ICrearRubroInput miCrearRubroInput;
+    IRubroCrearInput miRubroCrearInput;
 
     @Test
     public  void crearRubro_RubroNoExiste_Devuelve200() throws RubroExisteException {
         RubroDTO unRubroDTO = new RubroDTO(1, "Rubro");
-        when(miCrearRubroInput.crearRubro(any(Rubro.class))).thenReturn(true);
+        when(miRubroCrearInput.crearRubro(any(Rubro.class))).thenReturn(true);
 
-        RubroCrearController rubroCrearController = new RubroCrearController(miCrearRubroInput);
+        RubroCrearController rubroCrearController = new RubroCrearController(miRubroCrearInput);
         ResponseEntity<?> responseEntity = rubroCrearController.crearRubro(unRubroDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -35,9 +35,9 @@ public class RubroCrearControllerTest {
     @Test
     public  void crearRubro_RubroExiste_Devuelve412() throws RubroExisteException {
         RubroDTO unRubroDTO = new RubroDTO(1, "Rubro");
-        when(miCrearRubroInput.crearRubro(any(Rubro.class))).thenThrow(RubroExisteException.class);
+        when(miRubroCrearInput.crearRubro(any(Rubro.class))).thenThrow(RubroExisteException.class);
 
-        RubroCrearController rubroCrearController = new RubroCrearController(miCrearRubroInput);
+        RubroCrearController rubroCrearController = new RubroCrearController(miRubroCrearInput);
         ResponseEntity<?> responseEntity = rubroCrearController.crearRubro(unRubroDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());

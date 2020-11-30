@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.service.controller;
 
 import com.ar.genesis.sistema.core.domain.Ubicacion;
 import com.ar.genesis.sistema.core.exception.UbicacionExisteException;
-import com.ar.genesis.sistema.core.input.IModificarUbicacionInput;
+import com.ar.genesis.sistema.core.input.IUbicacionModificarInput;
 import com.ar.genesis.sistema.service.dto.UbicacionDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,14 +17,14 @@ import javax.inject.Inject;
 @RestController
 public class UbicacionModificarController {
     @Inject
-    IModificarUbicacionInput miModificarUbicacionInput;
+    IUbicacionModificarInput miUbicacionModificarInput;
 
-    public UbicacionModificarController(IModificarUbicacionInput miModificarUbicacionInput) { this.miModificarUbicacionInput = miModificarUbicacionInput; }
+    public UbicacionModificarController(IUbicacionModificarInput miUbicacionModificarInput) { this.miUbicacionModificarInput = miUbicacionModificarInput; }
 
     @PutMapping(value = "/Ubicacion")
     public ResponseEntity<?> modificarUbicacion(@RequestBody UbicacionDTO unaUbicacionDTO ){
         try{
-            boolean resultado = this.miModificarUbicacionInput.modificarUbicacion(Ubicacion.instancia(unaUbicacionDTO.getId(), unaUbicacionDTO.getNombre()));
+            boolean resultado = this.miUbicacionModificarInput.modificarUbicacion(Ubicacion.instancia(unaUbicacionDTO.getId(), unaUbicacionDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (UbicacionExisteException e) {

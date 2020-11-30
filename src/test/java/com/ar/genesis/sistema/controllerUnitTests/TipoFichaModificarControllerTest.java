@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 
 import com.ar.genesis.sistema.core.domain.TipoFicha;
 import com.ar.genesis.sistema.core.exception.TipoFichaExisteException;
-import com.ar.genesis.sistema.core.input.IModificarTipoFichaInput;
+import com.ar.genesis.sistema.core.input.ITipoFichaModificarInput;
 import com.ar.genesis.sistema.service.controller.TipoFichaModificarController;
 import com.ar.genesis.sistema.service.dto.TipoFichaDTO;
 import org.junit.jupiter.api.Assertions;
@@ -18,14 +18,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class TipoFichaModificarControllerTest {
     @Mock
-    IModificarTipoFichaInput miModificarTipoFichaInput;
+    ITipoFichaModificarInput miTipoFichaModificarInput;
 
     @Test
     public  void modificarTipoFicha_TipoFichaNoExiste_Devuelve200() throws TipoFichaExisteException {
         TipoFichaDTO unTipoFichaDTO = new TipoFichaDTO(1, "Cliente");
-        when(miModificarTipoFichaInput.modificarTipoFicha(any(TipoFicha.class))).thenReturn(true);
+        when(miTipoFichaModificarInput.modificarTipoFicha(any(TipoFicha.class))).thenReturn(true);
 
-        TipoFichaModificarController tipoFichaModificarController = new TipoFichaModificarController(miModificarTipoFichaInput);
+        TipoFichaModificarController tipoFichaModificarController = new TipoFichaModificarController(miTipoFichaModificarInput);
         ResponseEntity<?> responseEntity = tipoFichaModificarController.modificarTipoFicha(unTipoFichaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -35,9 +35,9 @@ public class TipoFichaModificarControllerTest {
     @Test
     public  void modificarTipoFicha_TipoFichaExiste_Devuelve412() throws TipoFichaExisteException {
         TipoFichaDTO unTipoFichaDTO = new TipoFichaDTO(1, "Cliente");
-        when(miModificarTipoFichaInput.modificarTipoFicha(any(TipoFicha.class))).thenThrow(TipoFichaExisteException.class);
+        when(miTipoFichaModificarInput.modificarTipoFicha(any(TipoFicha.class))).thenThrow(TipoFichaExisteException.class);
 
-        TipoFichaModificarController tipoFichaModificarController = new TipoFichaModificarController(miModificarTipoFichaInput);
+        TipoFichaModificarController tipoFichaModificarController = new TipoFichaModificarController(miTipoFichaModificarInput);
         ResponseEntity<?> responseEntity = tipoFichaModificarController.modificarTipoFicha(unTipoFichaDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());

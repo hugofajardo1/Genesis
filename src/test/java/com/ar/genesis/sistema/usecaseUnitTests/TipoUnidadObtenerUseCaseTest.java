@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.usecaseUnitTests;
 
 import com.ar.genesis.sistema.core.domain.TipoUnidad;
 import com.ar.genesis.sistema.core.repository.ITipoUnidadObtenerRepository;
-import com.ar.genesis.sistema.core.usecase.TipoUnidadObtenerUseCase;
+import com.ar.genesis.sistema.core.usecase.TipoUnidadUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,7 +24,7 @@ public class TipoUnidadObtenerUseCaseTest {
     @Test
     public void obtenerTipoUnidades_devuelveLista(){
         when(miTipoUnidadObtenerRepository.obtenerTipoUnidades()).thenReturn(tipoUnidades);
-        TipoUnidadObtenerUseCase tipoUnidadObtenerUseCase = new TipoUnidadObtenerUseCase(miTipoUnidadObtenerRepository);
+        TipoUnidadUseCase tipoUnidadObtenerUseCase = new TipoUnidadUseCase(miTipoUnidadObtenerRepository);
         List<TipoUnidad> resultado = tipoUnidadObtenerUseCase.obtenerTipoUnidades();
         Assertions.assertEquals(2,resultado.size());
     }

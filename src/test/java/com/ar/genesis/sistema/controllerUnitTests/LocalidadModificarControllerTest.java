@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Localidad;
 import com.ar.genesis.sistema.core.exception.LocalidadExisteException;
-import com.ar.genesis.sistema.core.input.IModificarLocalidadInput;
+import com.ar.genesis.sistema.core.input.ILocalidadModificarInput;
 import com.ar.genesis.sistema.service.controller.LocalidadModificarController;
 import com.ar.genesis.sistema.service.dto.LocalidadDTO;
 import org.junit.jupiter.api.Assertions;
@@ -18,14 +18,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class LocalidadModificarControllerTest {
     @Mock
-    IModificarLocalidadInput miModificarLocalidadInput;
+    ILocalidadModificarInput miLocalidadModificarInput;
 
     @Test
     public  void modificarLocalidad_LocalidadNoExiste_Devuelve200() throws LocalidadExisteException {
         LocalidadDTO unaLocalidadDTO = new LocalidadDTO(1, "Localidad 1");
-        when(miModificarLocalidadInput.modificarLocalidad(any(Localidad.class))).thenReturn(true);
+        when(miLocalidadModificarInput.modificarLocalidad(any(Localidad.class))).thenReturn(true);
 
-        LocalidadModificarController localidadModificarController = new LocalidadModificarController(miModificarLocalidadInput);
+        LocalidadModificarController localidadModificarController = new LocalidadModificarController(miLocalidadModificarInput);
         ResponseEntity<?> responseEntity = localidadModificarController.modificarLocalidad(unaLocalidadDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -35,9 +35,9 @@ public class LocalidadModificarControllerTest {
     @Test
     public  void modificarLocalidad_LocalidadExiste_Devuelve412() throws LocalidadExisteException {
         LocalidadDTO unaLocalidadDTO = new LocalidadDTO(1, "Localidad 2");
-        when(miModificarLocalidadInput.modificarLocalidad(any(Localidad.class))).thenThrow(LocalidadExisteException.class);
+        when(miLocalidadModificarInput.modificarLocalidad(any(Localidad.class))).thenThrow(LocalidadExisteException.class);
 
-        LocalidadModificarController localidadModificarController = new LocalidadModificarController(miModificarLocalidadInput);
+        LocalidadModificarController localidadModificarController = new LocalidadModificarController(miLocalidadModificarInput);
         ResponseEntity<?> responseEntity = localidadModificarController.modificarLocalidad(unaLocalidadDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());

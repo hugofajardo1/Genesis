@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 
 import com.ar.genesis.sistema.core.domain.TipoFicha;
 import com.ar.genesis.sistema.core.exception.TipoFichaExisteException;
-import com.ar.genesis.sistema.core.input.ICrearTipoFichaInput;
+import com.ar.genesis.sistema.core.input.ITipoFichaCrearInput;
 import com.ar.genesis.sistema.service.controller.TipoFichaCrearController;
 import com.ar.genesis.sistema.service.dto.TipoFichaDTO;
 import org.junit.jupiter.api.Assertions;
@@ -18,14 +18,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class TipoFichaCrearControllerTest {
     @Mock
-    ICrearTipoFichaInput miCrearTipoFichaInput;
+    ITipoFichaCrearInput miTipoFichaCrearInput;
 
     @Test
     public  void crearTipoFicha_TipoFichaNoExiste_Devuelve200() throws TipoFichaExisteException {
         TipoFichaDTO unTipoFichaDTO = new TipoFichaDTO(1, "Cliente");
-        when(miCrearTipoFichaInput.crearTipoFicha(any(TipoFicha.class))).thenReturn(true);
+        when(miTipoFichaCrearInput.crearTipoFicha(any(TipoFicha.class))).thenReturn(true);
 
-        TipoFichaCrearController tipoFichaCrearController = new TipoFichaCrearController(miCrearTipoFichaInput);
+        TipoFichaCrearController tipoFichaCrearController = new TipoFichaCrearController(miTipoFichaCrearInput);
         ResponseEntity<?> responseEntity = tipoFichaCrearController.crearTipoFicha(unTipoFichaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -35,9 +35,9 @@ public class TipoFichaCrearControllerTest {
     @Test
     public  void crearTipoFicha_TipoFichaExiste_Devuelve412() throws TipoFichaExisteException {
         TipoFichaDTO unTipoFichaDTO = new TipoFichaDTO(1, "Cliente");
-        when(miCrearTipoFichaInput.crearTipoFicha(any(TipoFicha.class))).thenThrow(TipoFichaExisteException.class);
+        when(miTipoFichaCrearInput.crearTipoFicha(any(TipoFicha.class))).thenThrow(TipoFichaExisteException.class);
 
-        TipoFichaCrearController tipoFichaCrearController = new TipoFichaCrearController(miCrearTipoFichaInput);
+        TipoFichaCrearController tipoFichaCrearController = new TipoFichaCrearController(miTipoFichaCrearInput);
         ResponseEntity<?> responseEntity = tipoFichaCrearController.crearTipoFicha(unTipoFichaDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());

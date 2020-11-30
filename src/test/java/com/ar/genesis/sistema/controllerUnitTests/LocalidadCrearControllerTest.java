@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Localidad;
 import com.ar.genesis.sistema.core.exception.LocalidadExisteException;
-import com.ar.genesis.sistema.core.input.ICrearLocalidadInput;
+import com.ar.genesis.sistema.core.input.ILocalidadCrearInput;
 import com.ar.genesis.sistema.service.controller.LocalidadCrearController;
 import com.ar.genesis.sistema.service.dto.LocalidadDTO;
 import org.junit.jupiter.api.Assertions;
@@ -18,14 +18,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class LocalidadCrearControllerTest {
     @Mock
-    ICrearLocalidadInput miCrearLocalidadInput;
+    ILocalidadCrearInput miLocalidadCrearInput;
 
     @Test
     public  void crearLocalidad_LocalidadNoExiste_Devuelve200() throws LocalidadExisteException {
         LocalidadDTO unaLocalidadDTO = new LocalidadDTO(1, "Localidad 1");
-        when(miCrearLocalidadInput.crearLocalidad(any(Localidad.class))).thenReturn(true);
+        when(miLocalidadCrearInput.crearLocalidad(any(Localidad.class))).thenReturn(true);
 
-        LocalidadCrearController localidadCrearController = new LocalidadCrearController(miCrearLocalidadInput);
+        LocalidadCrearController localidadCrearController = new LocalidadCrearController(miLocalidadCrearInput);
         ResponseEntity<?> responseEntity = localidadCrearController.crearLocalidad(unaLocalidadDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -35,9 +35,9 @@ public class LocalidadCrearControllerTest {
     @Test
     public  void crearLocalidad_LocalidadExiste_Devuelve412() throws LocalidadExisteException {
         LocalidadDTO unaLocalidadDTO = new LocalidadDTO(1, "Localidad 1");
-        when(miCrearLocalidadInput.crearLocalidad(any(Localidad.class))).thenThrow(LocalidadExisteException.class);
+        when(miLocalidadCrearInput.crearLocalidad(any(Localidad.class))).thenThrow(LocalidadExisteException.class);
 
-        LocalidadCrearController localidadCrearController = new LocalidadCrearController(miCrearLocalidadInput);
+        LocalidadCrearController localidadCrearController = new LocalidadCrearController(miLocalidadCrearInput);
         ResponseEntity<?> responseEntity = localidadCrearController.crearLocalidad(unaLocalidadDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());

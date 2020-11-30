@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.service.controller;
 
 import com.ar.genesis.sistema.core.domain.Localidad;
 import com.ar.genesis.sistema.core.exception.LocalidadExisteException;
-import com.ar.genesis.sistema.core.input.IModificarLocalidadInput;
+import com.ar.genesis.sistema.core.input.ILocalidadModificarInput;
 import com.ar.genesis.sistema.service.dto.LocalidadDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,14 +17,14 @@ import javax.inject.Inject;
 @RestController
 public class LocalidadModificarController {
     @Inject
-    IModificarLocalidadInput miModificarLocalidadInput;
+    ILocalidadModificarInput miLocalidadModificarInput;
 
-    public LocalidadModificarController(IModificarLocalidadInput miModificarLocalidadInput) { this.miModificarLocalidadInput = miModificarLocalidadInput; }
+    public LocalidadModificarController(ILocalidadModificarInput miLocalidadModificarInput) { this.miLocalidadModificarInput = miLocalidadModificarInput; }
 
     @PutMapping(value = "/Localidad")
     public ResponseEntity<?> modificarLocalidad(@RequestBody LocalidadDTO unaLocalidadDTO ){
         try{
-            boolean resultado = this.miModificarLocalidadInput.modificarLocalidad(Localidad.instancia(unaLocalidadDTO.getId(), unaLocalidadDTO.getNombre()));
+            boolean resultado = this.miLocalidadModificarInput.modificarLocalidad(Localidad.instancia(unaLocalidadDTO.getId(), unaLocalidadDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (LocalidadExisteException e) {

@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.service.controller;
 
 import com.ar.genesis.sistema.core.domain.Provincia;
 import com.ar.genesis.sistema.core.exception.ProvinciaExisteException;
-import com.ar.genesis.sistema.core.input.IModificarProvinciaInput;
+import com.ar.genesis.sistema.core.input.IProvinciaModificarInput;
 import com.ar.genesis.sistema.service.dto.ProvinciaDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,14 +17,14 @@ import javax.inject.Inject;
 @RestController
 public class ProvinciaModificarController {
     @Inject
-    IModificarProvinciaInput miModificarProvinciaInput;
+    IProvinciaModificarInput miProvinciaModificarInput;
 
-    public ProvinciaModificarController(IModificarProvinciaInput miModificarProvinciaInput) { this.miModificarProvinciaInput = miModificarProvinciaInput; }
+    public ProvinciaModificarController(IProvinciaModificarInput miProvinciaModificarInput) { this.miProvinciaModificarInput = miProvinciaModificarInput; }
 
     @PutMapping(value = "/Provincia")
     public ResponseEntity<?> modificarProvincia(@RequestBody ProvinciaDTO unProvinciaDTO){
         try{
-            boolean resultado = this.miModificarProvinciaInput.modificarProvincia(Provincia.instancia(unProvinciaDTO.getId(), unProvinciaDTO.getNombre()));
+            boolean resultado = this.miProvinciaModificarInput.modificarProvincia(Provincia.instancia(unProvinciaDTO.getId(), unProvinciaDTO.getNombre()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (ProvinciaExisteException e) {

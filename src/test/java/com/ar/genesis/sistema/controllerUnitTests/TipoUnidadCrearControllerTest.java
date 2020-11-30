@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.controllerUnitTests;
 
 import com.ar.genesis.sistema.core.domain.TipoUnidad;
 import com.ar.genesis.sistema.core.exception.TipoUnidadExisteException;
-import com.ar.genesis.sistema.core.input.ICrearTipoUnidadInput;
+import com.ar.genesis.sistema.core.input.ITipoUnidadCrearInput;
 import com.ar.genesis.sistema.service.controller.TipoUnidadCrearController;
 import com.ar.genesis.sistema.service.dto.TipoUnidadDTO;
 import org.junit.jupiter.api.Assertions;
@@ -18,14 +18,14 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class TipoUnidadCrearControllerTest {
     @Mock
-    ICrearTipoUnidadInput miCrearTipoUnidadInput;
+    ITipoUnidadCrearInput miTipoUnidadCrearInput;
 
     @Test
     public  void crearTipoUnidad_TipoUnidadNoExiste_Devuelve200() throws TipoUnidadExisteException {
         TipoUnidadDTO unTipoUnidadDTO = new TipoUnidadDTO(1, "Unidad");
-        when(miCrearTipoUnidadInput.crearTipoUnidad(any(TipoUnidad.class))).thenReturn(true);
+        when(miTipoUnidadCrearInput.crearTipoUnidad(any(TipoUnidad.class))).thenReturn(true);
 
-        TipoUnidadCrearController tipoUnidadCrearController = new TipoUnidadCrearController(miCrearTipoUnidadInput);
+        TipoUnidadCrearController tipoUnidadCrearController = new TipoUnidadCrearController(miTipoUnidadCrearInput);
         ResponseEntity<?> responseEntity = tipoUnidadCrearController.crearTipoUnidad(unTipoUnidadDTO);
         boolean resultado = (boolean) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -35,9 +35,9 @@ public class TipoUnidadCrearControllerTest {
     @Test
     public  void crearTipoUnidad_TipoUnidadExiste_Devuelve412() throws TipoUnidadExisteException {
         TipoUnidadDTO unTipoUnidadDTO = new TipoUnidadDTO(1, "Unidad");
-        when(miCrearTipoUnidadInput.crearTipoUnidad(any(TipoUnidad.class))).thenThrow(TipoUnidadExisteException.class);
+        when(miTipoUnidadCrearInput.crearTipoUnidad(any(TipoUnidad.class))).thenThrow(TipoUnidadExisteException.class);
 
-        TipoUnidadCrearController tipoUnidadCrearController = new TipoUnidadCrearController(miCrearTipoUnidadInput);
+        TipoUnidadCrearController tipoUnidadCrearController = new TipoUnidadCrearController(miTipoUnidadCrearInput);
         ResponseEntity<?> responseEntity = tipoUnidadCrearController.crearTipoUnidad(unTipoUnidadDTO);
         String resultado = (String) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.PRECONDITION_FAILED, responseEntity.getStatusCode());

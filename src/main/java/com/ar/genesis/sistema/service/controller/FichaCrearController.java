@@ -3,7 +3,7 @@ package com.ar.genesis.sistema.service.controller;
 import com.ar.genesis.sistema.core.domain.Ficha;
 import com.ar.genesis.sistema.core.domain.TipoIva;
 import com.ar.genesis.sistema.core.exception.FichaExisteException;
-import com.ar.genesis.sistema.core.input.ICrearFichaInput;
+import com.ar.genesis.sistema.core.input.IFichaCrearInput;
 import com.ar.genesis.sistema.service.dto.FichaDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,16 +15,16 @@ import javax.inject.Inject;
 @RestController
 public class FichaCrearController {
     @Inject
-    ICrearFichaInput miCrearFichaInput;
+    IFichaCrearInput miFichaCrearInput;
 
-    public FichaCrearController(ICrearFichaInput miCrearFichaInput) {
-        this.miCrearFichaInput = miCrearFichaInput;
+    public FichaCrearController(IFichaCrearInput miFichaCrearInput) {
+        this.miFichaCrearInput = miFichaCrearInput;
     }
 
     @PostMapping(value = "/Ficha")
     public ResponseEntity<?> crearFicha(@RequestBody FichaDTO unaFichaDTO){
         try{
-            boolean resultado = this.miCrearFichaInput.crearFicha(Ficha.instancia(unaFichaDTO.getId(), unaFichaDTO.getNombre(), unaFichaDTO.getDomicilio(), unaFichaDTO.getTelefono(), TipoIva.instancia(1, "Responsable Inscripto"), "20255071336"));
+            boolean resultado = this.miFichaCrearInput.crearFicha(Ficha.instancia(unaFichaDTO.getId(), unaFichaDTO.getNombre(), unaFichaDTO.getDomicilio(), unaFichaDTO.getTelefono(), TipoIva.instancia(1, "Responsable Inscripto"), "20255071336"));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (FichaExisteException e) {
