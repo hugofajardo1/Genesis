@@ -12,8 +12,8 @@ import javax.inject.Inject;
 
 @SpringBootTest
 @SqlGroup({
-        @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:modificarSubRubroAntes.sql"),
-        @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:modificarSubRubroDespues.sql")
+        @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:SubRubroModificarAntes.sql"),
+        @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:SubRubroModificarDespues.sql")
 })
 public class SubRubroModificarDataTest {
     @Inject
