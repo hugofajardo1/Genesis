@@ -10,11 +10,11 @@ import java.util.List;
 
 @Service
 @Transactional
-public class TipoFichaUseCase implements ITipoFichaObtenerInput {
+public class TipoFichaObtenerUseCase implements ITipoFichaObtenerInput {
 
     ITipoFichaObtenerRepository miTipoFichaObtenerRepository;
 
-    public TipoFichaUseCase(ITipoFichaObtenerRepository miTipoFichaObtenerRepository) { this.miTipoFichaObtenerRepository = miTipoFichaObtenerRepository; }
+    public TipoFichaObtenerUseCase(ITipoFichaObtenerRepository miTipoFichaObtenerRepository) { this.miTipoFichaObtenerRepository = miTipoFichaObtenerRepository; }
 
     @Override
     public List<TipoFicha> obtenerTipoFichas() {

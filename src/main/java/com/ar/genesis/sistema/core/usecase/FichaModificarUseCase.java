@@ -9,11 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class FichaUseCaseModificar implements IFichaModificarInput {
+public class FichaModificarUseCase implements IFichaModificarInput {
 
     IFichaRepository miFichaRepository;
 
-    public FichaUseCaseModificar(IFichaRepository miFichaRepository) {
+    public FichaModificarUseCase(IFichaRepository miFichaRepository) {
         this.miFichaRepository = miFichaRepository;
     }
 

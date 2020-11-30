@@ -9,11 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class UbicacionUseCaseCrear implements IUbicacionCrearInput {
+public class UbicacionCrearUseCase implements IUbicacionCrearInput {
 
     IUbicacionRepository miUbicacionRepository;
 
-    public UbicacionUseCaseCrear(IUbicacionRepository miUbicacionRepository) { this.miUbicacionRepository = miUbicacionRepository; }
+    public UbicacionCrearUseCase(IUbicacionRepository miUbicacionRepository) { this.miUbicacionRepository = miUbicacionRepository; }
 
     @Override
     public boolean crearUbicacion(Ubicacion unaUbicacion) throws UbicacionExisteException {

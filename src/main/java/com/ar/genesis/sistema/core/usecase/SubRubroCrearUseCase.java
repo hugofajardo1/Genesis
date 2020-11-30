@@ -9,11 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class SubRubroUseCaseCrear implements ISubRubroCrearInput {
+public class SubRubroCrearUseCase implements ISubRubroCrearInput {
 
     ISubRubroRepository miSubRubroRepository;
 
-    public SubRubroUseCaseCrear(ISubRubroRepository miSubRubroRepository) { this.miSubRubroRepository = miSubRubroRepository; }
+    public SubRubroCrearUseCase(ISubRubroRepository miSubRubroRepository) { this.miSubRubroRepository = miSubRubroRepository; }
 
     @Override
     public boolean crearSubRubro(SubRubro unSubRubro) throws SubRubroExisteException {

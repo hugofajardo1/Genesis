@@ -3,7 +3,7 @@ package com.ar.genesis.sistema.usecaseUnitTests;
 import com.ar.genesis.sistema.core.domain.Localidad;
 import com.ar.genesis.sistema.core.exception.LocalidadExisteException;
 import com.ar.genesis.sistema.core.repository.ILocalidadRepository;
-import com.ar.genesis.sistema.core.usecase.LocalidadUseCaseCrear;
+import com.ar.genesis.sistema.core.usecase.LocalidadCrearUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +20,7 @@ public class LocalidadCrearUseCaseTest {
         Localidad unaLocalidad = Localidad.instancia(1, "Localidad 1");
         when(miLocalidadRepository.existeLocalidad("Localidad 1")).thenReturn(false);
         when(miLocalidadRepository.guardarLocalidad(unaLocalidad)).thenReturn(true);
-        LocalidadUseCaseCrear localidadCrearUseCase = new LocalidadUseCaseCrear(miLocalidadRepository);
+        LocalidadCrearUseCase localidadCrearUseCase = new LocalidadCrearUseCase(miLocalidadRepository);
         boolean resultado = localidadCrearUseCase.crearLocalidad(unaLocalidad);
         Assertions.assertTrue(resultado);
     }
@@ -30,7 +30,7 @@ public class LocalidadCrearUseCaseTest {
         Localidad unaLocalidad = Localidad.instancia(1, "Localidad 1");
         when(miLocalidadRepository.existeLocalidad("Localidad 1")).thenReturn(true);
         when(miLocalidadRepository.guardarLocalidad(unaLocalidad)).thenReturn(false);
-        LocalidadUseCaseCrear localidadCrearUseCase = new LocalidadUseCaseCrear(miLocalidadRepository);
+        LocalidadCrearUseCase localidadCrearUseCase = new LocalidadCrearUseCase(miLocalidadRepository);
         Assertions.assertThrows(LocalidadExisteException.class, () -> localidadCrearUseCase.crearLocalidad(unaLocalidad));
     }
 }

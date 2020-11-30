@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.usecaseUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Ubicacion;
 import com.ar.genesis.sistema.core.repository.IUbicacionObtenerRepository;
-import com.ar.genesis.sistema.core.usecase.UbicacionUbicacionObtenerUseCase;
+import com.ar.genesis.sistema.core.usecase.UbicacionObtenerUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,7 +24,7 @@ public class UbicacionObtenerUseCaseTest {
     @Test
     public void obtenerUbicaciones_devuelveLista(){
         when(miUbicacionObtenerRepository.obtenerUbicaciones()).thenReturn(Ubicaciones);
-        UbicacionUbicacionObtenerUseCase ubicacionObtenerUseCase = new UbicacionUbicacionObtenerUseCase(miUbicacionObtenerRepository);
+        UbicacionObtenerUseCase ubicacionObtenerUseCase = new UbicacionObtenerUseCase(miUbicacionObtenerRepository);
         List<Ubicacion> resultado = ubicacionObtenerUseCase.obtenerUbicaciones();
         Assertions.assertEquals(2,resultado.size());
     }

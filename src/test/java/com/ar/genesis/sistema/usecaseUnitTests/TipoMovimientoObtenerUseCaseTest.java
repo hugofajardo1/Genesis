@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.usecaseUnitTests;
 
 import com.ar.genesis.sistema.core.domain.TipoMovimiento;
 import com.ar.genesis.sistema.core.repository.ITipoMovimientoObtenerRepository;
-import com.ar.genesis.sistema.core.usecase.TipoMovimientoUseCase;
+import com.ar.genesis.sistema.core.usecase.TipoMovimientoObtenerUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,7 +24,7 @@ public class TipoMovimientoObtenerUseCaseTest {
     @Test
     public void obtenerTipoMovimientos_devuelveLista(){
         when(miTipoMovimientoObtenerRepository.obtenerTipoMovimientos()).thenReturn(tipoMovimientos);
-        TipoMovimientoUseCase tipoMovimientoObtenerUseCase = new TipoMovimientoUseCase(miTipoMovimientoObtenerRepository);
+        TipoMovimientoObtenerUseCase tipoMovimientoObtenerUseCase = new TipoMovimientoObtenerUseCase(miTipoMovimientoObtenerRepository);
         List<TipoMovimiento> resultado = tipoMovimientoObtenerUseCase.obtenerTipoMovimientos();
         Assertions.assertEquals(2,resultado.size());
     }

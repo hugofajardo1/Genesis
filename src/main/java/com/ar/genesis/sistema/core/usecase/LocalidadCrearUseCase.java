@@ -2,21 +2,21 @@ package com.ar.genesis.sistema.core.usecase;
 
 import com.ar.genesis.sistema.core.domain.Localidad;
 import com.ar.genesis.sistema.core.exception.LocalidadExisteException;
-import com.ar.genesis.sistema.core.input.ILocalidadModificarInput;
+import com.ar.genesis.sistema.core.input.ILocalidadCrearInput;
 import com.ar.genesis.sistema.core.repository.ILocalidadRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class LocalidadUseCaseModificar implements ILocalidadModificarInput {
+public class LocalidadCrearUseCase implements ILocalidadCrearInput {
 
     ILocalidadRepository miLocalidadRepository;
 
-    public LocalidadUseCaseModificar(ILocalidadRepository miLocalidadRepository) { this.miLocalidadRepository = miLocalidadRepository; }
+    public LocalidadCrearUseCase(ILocalidadRepository miLocalidadRepository) { this.miLocalidadRepository = miLocalidadRepository; }
 
     @Override
-    public boolean modificarLocalidad(Localidad unaLocalidad) throws LocalidadExisteException {
+    public boolean crearLocalidad(Localidad unaLocalidad) throws LocalidadExisteException {
         if(miLocalidadRepository.existeLocalidad(unaLocalidad.getNombre())){
             throw new LocalidadExisteException();
         }

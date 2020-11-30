@@ -10,11 +10,11 @@ import java.util.List;
 
 @Service
 @Transactional
-public class TipoMovimientoUseCase implements ITipoMovimientoObtenerInput {
+public class TipoMovimientoObtenerUseCase implements ITipoMovimientoObtenerInput {
 
     ITipoMovimientoObtenerRepository miTipoMovimientoObtenerRepository;
 
-    public TipoMovimientoUseCase(ITipoMovimientoObtenerRepository miTipoMovimientoObtenerRepository) { this.miTipoMovimientoObtenerRepository = miTipoMovimientoObtenerRepository; }
+    public TipoMovimientoObtenerUseCase(ITipoMovimientoObtenerRepository miTipoMovimientoObtenerRepository) { this.miTipoMovimientoObtenerRepository = miTipoMovimientoObtenerRepository; }
 
     @Override
     public List<TipoMovimiento> obtenerTipoMovimientos() {

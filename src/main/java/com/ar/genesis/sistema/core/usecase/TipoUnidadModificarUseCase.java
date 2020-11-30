@@ -9,11 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class TipoUnidadUseCaseModificar implements ITipoUnidadModificarInput {
+public class TipoUnidadModificarUseCase implements ITipoUnidadModificarInput {
 
     ITipoUnidadRepository miTipoUnidadRepository;
 
-    public TipoUnidadUseCaseModificar(ITipoUnidadRepository miTipoUnidadRepository) { this.miTipoUnidadRepository = miTipoUnidadRepository; }
+    public TipoUnidadModificarUseCase(ITipoUnidadRepository miTipoUnidadRepository) { this.miTipoUnidadRepository = miTipoUnidadRepository; }
 
     @Override
     public boolean modificarTipoUnidad(TipoUnidad unTipoUnidad) throws TipoUnidadExisteException {

@@ -9,11 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class ProvinciaUseCaseCrear implements IProvinciaCrearInput {
+public class ProvinciaCrearUseCase implements IProvinciaCrearInput {
 
     IProvinciaRepository miProvinciaRepository;
 
-    public ProvinciaUseCaseCrear(IProvinciaRepository miProvinciaRepository) { this.miProvinciaRepository = miProvinciaRepository; }
+    public ProvinciaCrearUseCase(IProvinciaRepository miProvinciaRepository) { this.miProvinciaRepository = miProvinciaRepository; }
 
     @Override
     public boolean crearProvincia(Provincia unaProvincia) throws ProvinciaExisteException {

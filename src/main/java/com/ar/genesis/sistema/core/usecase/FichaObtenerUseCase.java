@@ -10,11 +10,11 @@ import java.util.List;
 
 @Service
 @Transactional
-public class FichaUseCaseObtener implements IFichaObtenerInput {
+public class FichaObtenerUseCase implements IFichaObtenerInput {
 
     IFichaObtenerRepository miFichaObtenerRepository;
 
-    public FichaUseCaseObtener(IFichaObtenerRepository miFichaObtenerRepository) { this.miFichaObtenerRepository = miFichaObtenerRepository; }
+    public FichaObtenerUseCase(IFichaObtenerRepository miFichaObtenerRepository) { this.miFichaObtenerRepository = miFichaObtenerRepository; }
 
     @Override
     public List<Ficha> obtenerFichas() {

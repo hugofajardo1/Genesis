@@ -9,11 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class TipoUnidadUseCaseCrear implements ITipoUnidadCrearInput {
+public class TipoUnidadCrearUseCase implements ITipoUnidadCrearInput {
 
     ITipoUnidadRepository miTipoUnidadRepository;
 
-    public TipoUnidadUseCaseCrear(ITipoUnidadRepository miTipoUnidadRepository) { this.miTipoUnidadRepository = miTipoUnidadRepository; }
+    public TipoUnidadCrearUseCase(ITipoUnidadRepository miTipoUnidadRepository) { this.miTipoUnidadRepository = miTipoUnidadRepository; }
 
     public boolean crearTipoUnidad(TipoUnidad unTipoUnidad) throws TipoUnidadExisteException {
         if (miTipoUnidadRepository.existeTipoUnidad(unTipoUnidad.getNombre())){

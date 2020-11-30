@@ -9,11 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class RubroUseCaseCrear implements IRubroCrearInput {
+public class RubroCrearUseCase implements IRubroCrearInput {
 
     IRubroRepository miRubroRepository;
 
-    public RubroUseCaseCrear(IRubroRepository miRubroRepository) {
+    public RubroCrearUseCase(IRubroRepository miRubroRepository) {
         this.miRubroRepository = miRubroRepository;
     }
 
