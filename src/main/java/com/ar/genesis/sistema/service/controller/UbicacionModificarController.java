@@ -21,7 +21,7 @@ public class UbicacionModificarController {
 
     public UbicacionModificarController(IUbicacionModificarInput miUbicacionModificarInput) { this.miUbicacionModificarInput = miUbicacionModificarInput; }
 
-    @PutMapping(value = "/Ubicacion")
+    @PutMapping(value = "/ubicacion")
     public ResponseEntity<?> modificarUbicacion(@RequestBody UbicacionDTO unaUbicacionDTO ){
         try{
             boolean resultado = this.miUbicacionModificarInput.modificarUbicacion(Ubicacion.instancia(unaUbicacionDTO.getId(), unaUbicacionDTO.getNombre()));

@@ -20,7 +20,7 @@ public class TipoIvaObtenerController {
 
     public TipoIvaObtenerController(ITipoIvaObtenerInput miTipoIvaObtenerInput) { this.miTipoIvaObtenerInput = miTipoIvaObtenerInput; }
 
-    @GetMapping(value = "/TipoIvas")
+    @GetMapping(value = "/tipoiva")
     public ResponseEntity<?> obtenerTipoIvas(){
         try{
             List<TipoIvaDTO> tipoIvasDTO = new ArrayList<>();

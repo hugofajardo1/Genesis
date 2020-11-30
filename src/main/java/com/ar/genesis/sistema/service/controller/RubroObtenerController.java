@@ -21,7 +21,7 @@ public class RubroObtenerController {
     public RubroObtenerController(IRubroObtenerInput miRubroObtenerInput) {
         this.miRubroObtenerInput = miRubroObtenerInput;
     }
-    @GetMapping(value = "/Rubros")
+    @GetMapping(value = "/rubro")
     public ResponseEntity<?> obtenerRubros(){
         try{
             List<RubroDTO> rubrosDTO = new ArrayList<>();

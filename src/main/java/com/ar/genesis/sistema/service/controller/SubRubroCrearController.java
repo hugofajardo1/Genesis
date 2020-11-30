@@ -21,7 +21,7 @@ public class SubRubroCrearController {
 
     public SubRubroCrearController(ISubRubroCrearInput miSubRubroCrearInput) { this.miSubRubroCrearInput = miSubRubroCrearInput; }
 
-    @PostMapping(value = "/SubRubro")
+    @PostMapping(value = "/subrubro")
     public ResponseEntity<?> crearSubRubro(@RequestBody SubRubroDTO unSubRubroDTO){
         try{
             boolean resultado = this.miSubRubroCrearInput.crearSubRubro(SubRubro.instancia(unSubRubroDTO.getId(), unSubRubroDTO.getNombre()));

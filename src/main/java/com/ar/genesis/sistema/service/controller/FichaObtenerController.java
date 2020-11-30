@@ -19,7 +19,7 @@ public class FichaObtenerController {
 
     public FichaObtenerController(IFichaObtenerInput miFichaObtenerInput) { this.miFichaObtenerInput = miFichaObtenerInput; }
 
-    @GetMapping(value = "/Fichas")
+    @GetMapping(value = "/ficha")
     public ResponseEntity<?> obtenerFichas(){
         try{
             List<FichaDTO> fichasDTO = new ArrayList<>();

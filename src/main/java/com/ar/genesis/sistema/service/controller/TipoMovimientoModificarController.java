@@ -21,7 +21,7 @@ public class TipoMovimientoModificarController {
 
     public TipoMovimientoModificarController(ITipoMovimientoModificarInput miTipoMovimientoModificarInput) { this.miTipoMovimientoModificarInput = miTipoMovimientoModificarInput; }
 
-    @PutMapping(value = "/TipoMovimiento")
+    @PutMapping(value = "/tipomovimiento")
     public ResponseEntity<?> modificarTipoMovimiento(@RequestBody TipoMovimientoDTO unTipoMovimientoDTO){
         try{
             boolean resultado = this.miTipoMovimientoModificarInput.modificarTipoMovimiento(TipoMovimiento.instancia(unTipoMovimientoDTO.getId(), unTipoMovimientoDTO.getNombre()));

@@ -21,7 +21,7 @@ public class FichaCrearController {
         this.miFichaCrearInput = miFichaCrearInput;
     }
 
-    @PostMapping(value = "/Ficha")
+    @PostMapping(value = "/ficha")
     public ResponseEntity<?> crearFicha(@RequestBody FichaDTO unaFichaDTO){
         try{
             boolean resultado = this.miFichaCrearInput.crearFicha(Ficha.instancia(unaFichaDTO.getId(), unaFichaDTO.getNombre(), unaFichaDTO.getDomicilio(), unaFichaDTO.getTelefono(), TipoIva.instancia(1, "Responsable Inscripto"), "20255071336"));

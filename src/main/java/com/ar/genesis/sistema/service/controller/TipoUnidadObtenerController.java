@@ -20,7 +20,7 @@ public class TipoUnidadObtenerController {
 
     public TipoUnidadObtenerController(ITipoUnidadObtenerInput miTipoUnidadObtenerInput) { this.miTipoUnidadObtenerInput = miTipoUnidadObtenerInput; }
 
-    @GetMapping(value = "/TipoUnidades")
+    @GetMapping(value = "/tipounidad")
     public ResponseEntity<?> obtenerTipoUnidades(){
         try{
             List<TipoUnidadDTO> tipoUnidadesDTO = new ArrayList<>();

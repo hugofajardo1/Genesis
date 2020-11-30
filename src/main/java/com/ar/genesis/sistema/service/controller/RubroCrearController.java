@@ -23,7 +23,7 @@ public class RubroCrearController {
         this.miRubroCrearInput = miRubroCrearInput;
     }
 
-    @PostMapping(value = "/Rubro")
+    @PostMapping(value = "/rubro")
     public ResponseEntity<?> crearRubro(@RequestBody RubroDTO unRubroDTO){
         try{
             boolean resultado = this.miRubroCrearInput.crearRubro(Rubro.instancia(unRubroDTO.getId(), unRubroDTO.getNombre()));

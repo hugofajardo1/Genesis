@@ -21,7 +21,7 @@ public class SubRubroModificarController {
 
     public SubRubroModificarController(ISubRubroModificarInput miSubRubroModificarInput) { this.miSubRubroModificarInput = miSubRubroModificarInput; }
 
-    @PutMapping(value = "/SubRubro")
+    @PutMapping(value = "/subrubro")
     public ResponseEntity<?> modificarSubRubro(@RequestBody SubRubroDTO unSubRubroDTO){
         try{
             boolean resultado = this.miSubRubroModificarInput.modificarSubRubro(SubRubro.instancia(unSubRubroDTO.getId(), unSubRubroDTO.getNombre()));

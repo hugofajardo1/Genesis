@@ -21,7 +21,7 @@ public class TipoIvaModificarController {
 
     public TipoIvaModificarController(ITipoIvaModificarInput miTipoIvaModificarInput) { this.miTipoIvaModificarInput = miTipoIvaModificarInput; }
 
-    @PutMapping(value = "/TipoIva")
+    @PutMapping(value = "/tipoiva")
     public ResponseEntity<?> modificarTipoIva(@RequestBody TipoIvaDTO unTipoIvaDTO){
         try{
             boolean resultado = this.miTipoIvaModificarInput.modificarTipoIva(TipoIva.instancia(unTipoIvaDTO.getId(), unTipoIvaDTO.getNombre()));

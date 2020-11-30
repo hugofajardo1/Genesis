@@ -21,7 +21,7 @@ public class TipoIvaCrearController {
 
     public TipoIvaCrearController(ITipoIvaCrearInput miTipoIvaCrearInput) { this.miTipoIvaCrearInput = miTipoIvaCrearInput; }
 
-    @PostMapping(value = "/TipoIva")
+    @PostMapping(value = "/tipoiva")
     public ResponseEntity<?> crearTipoIva(@RequestBody TipoIvaDTO unTipoIvaDTO){
         try{
             boolean resultado = this.miTipoIvaCrearInput.crearTipoIva(TipoIva.instancia(unTipoIvaDTO.getId(), unTipoIvaDTO.getNombre()));

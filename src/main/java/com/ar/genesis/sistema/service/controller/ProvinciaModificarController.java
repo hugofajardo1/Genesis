@@ -21,7 +21,7 @@ public class ProvinciaModificarController {
 
     public ProvinciaModificarController(IProvinciaModificarInput miProvinciaModificarInput) { this.miProvinciaModificarInput = miProvinciaModificarInput; }
 
-    @PutMapping(value = "/Provincia")
+    @PutMapping(value = "/provincia")
     public ResponseEntity<?> modificarProvincia(@RequestBody ProvinciaDTO unProvinciaDTO){
         try{
             boolean resultado = this.miProvinciaModificarInput.modificarProvincia(Provincia.instancia(unProvinciaDTO.getId(), unProvinciaDTO.getNombre()));

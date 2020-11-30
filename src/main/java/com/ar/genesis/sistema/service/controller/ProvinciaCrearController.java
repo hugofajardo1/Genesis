@@ -21,7 +21,7 @@ public class ProvinciaCrearController {
 
     public ProvinciaCrearController(IProvinciaCrearInput miProvinciaCrearInput) { this.miProvinciaCrearInput = miProvinciaCrearInput; }
 
-    @PostMapping(value = "/Provincia")
+    @PostMapping(value = "/provincia")
     public ResponseEntity<?> crearProvincia(@RequestBody ProvinciaDTO unaProvinciaDTO){
         try{
             boolean resultado = this.miProvinciaCrearInput.crearProvincia(Provincia.instancia(unaProvinciaDTO.getId(), unaProvinciaDTO.getNombre()));

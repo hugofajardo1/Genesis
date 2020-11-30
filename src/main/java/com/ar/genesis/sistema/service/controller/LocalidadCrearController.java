@@ -21,7 +21,7 @@ public class LocalidadCrearController {
 
     public LocalidadCrearController(ILocalidadCrearInput miLocalidadCrearInput) { this.miLocalidadCrearInput = miLocalidadCrearInput; }
 
-    @PostMapping(value = "/Localidad")
+    @PostMapping(value = "/localidad")
     public ResponseEntity<?> crearLocalidad(@RequestBody LocalidadDTO unaLocalidadDTO){
         try{
             boolean resultado = this.miLocalidadCrearInput.crearLocalidad(Localidad.instancia(unaLocalidadDTO.getId(), unaLocalidadDTO.getNombre()));

@@ -20,7 +20,7 @@ public class ProvinciaObtenerController {
 
     public ProvinciaObtenerController(IProvinciaObtenerInput miProvinciaObtenerInput) { this.miProvinciaObtenerInput = miProvinciaObtenerInput; }
 
-    @GetMapping(value = "/Provincias")
+    @GetMapping(value = "/provincia")
     public ResponseEntity<?> obtenerProvincias(){
         try{
             List<ProvinciaDTO> provinciasDTO = new ArrayList<>();

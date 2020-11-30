@@ -20,7 +20,7 @@ public class FichaModificarController {
 
     public FichaModificarController(IFichaModificarInput miFichaModificarInput) { this.miFichaModificarInput = miFichaModificarInput; }
 
-    @PutMapping(value = "/Ficha")
+    @PutMapping(value = "/ficha")
     public ResponseEntity<?> modificarFicha(@RequestBody FichaDTO unaFichaDTO){
         try{
             boolean resultado = this.miFichaModificarInput.modificarFicha(Ficha.instancia(unaFichaDTO.getId(), unaFichaDTO.getNombre(), unaFichaDTO.getDomicilio(), unaFichaDTO.getTelefono(), TipoIva.instancia(1, "Responsable Inscripto"), "20255071336"));

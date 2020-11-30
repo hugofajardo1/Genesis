@@ -20,7 +20,7 @@ public class TipoFichaObtenerController {
 
     public TipoFichaObtenerController(ITipoFichaObtenerInput miTipoFichaObtenerInput) { this.miTipoFichaObtenerInput = miTipoFichaObtenerInput; }
 
-    @GetMapping(value = "/TipoFichas")
+    @GetMapping(value = "/tipoficha")
     public ResponseEntity<?> obtenerTipoFichas(){
         try{
             List<TipoFichaDTO> tipoFichasDTO = new ArrayList<>();

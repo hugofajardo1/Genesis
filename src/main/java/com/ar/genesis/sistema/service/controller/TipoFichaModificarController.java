@@ -18,7 +18,7 @@ public class TipoFichaModificarController {
 
     public TipoFichaModificarController(ITipoFichaModificarInput miTipoFichaModificarInput) { this.miTipoFichaModificarInput = miTipoFichaModificarInput; }
 
-    @PutMapping(value = "/TipoFicha")
+    @PutMapping(value = "/tipoficha")
     public ResponseEntity<?> modificarTipoFicha(@RequestBody TipoFichaDTO unTipoFichaDTO){
         try{
             boolean resultado = this.miTipoFichaModificarInput.modificarTipoFicha(TipoFicha.instancia(unTipoFichaDTO.getId(), unTipoFichaDTO.getNombre()));

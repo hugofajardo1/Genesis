@@ -20,7 +20,7 @@ public class TipoMovimientoObtenerController {
 
     public TipoMovimientoObtenerController(ITipoMovimientoObtenerInput miTipoMovimientoObtenerInput) { this.miTipoMovimientoObtenerInput = miTipoMovimientoObtenerInput; }
 
-    @GetMapping(value = "/TipoMovimientos")
+    @GetMapping(value = "/tipomovimiento")
     public ResponseEntity<?> obtenerTipoMovimientos(){
         try{
             List<TipoMovimientoDTO> tipoMovimientosDTO = new ArrayList<>();

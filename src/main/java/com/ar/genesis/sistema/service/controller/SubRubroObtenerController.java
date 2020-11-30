@@ -20,7 +20,7 @@ public class SubRubroObtenerController {
 
     public SubRubroObtenerController(ISubRubroObtenerInput miSubRubroObtenerInput) { this.miSubRubroObtenerInput = miSubRubroObtenerInput; }
 
-    @GetMapping(value = "/SubRubros")
+    @GetMapping(value = "/subrubro")
     public ResponseEntity<?> obtenerSubRubros(){
         try{
             List<SubRubroDTO> subRubrosDTO = new ArrayList<>();

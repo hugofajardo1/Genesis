@@ -21,7 +21,7 @@ public class TipoUnidadModificarController {
 
     public TipoUnidadModificarController(ITipoUnidadModificarInput miTipoUnidadModificarInput) { this.miTipoUnidadModificarInput = miTipoUnidadModificarInput; }
 
-    @PutMapping(value = "/TipoUnidad")
+    @PutMapping(value = "/tipounidad")
     public ResponseEntity<?> modificarTipoUnidad(@RequestBody TipoUnidadDTO unTipoUnidadDTO){
         try{
             boolean resultado = this.miTipoUnidadModificarInput.modificarTipoUnidad(TipoUnidad.instancia(unTipoUnidadDTO.getId(), unTipoUnidadDTO.getNombre()));

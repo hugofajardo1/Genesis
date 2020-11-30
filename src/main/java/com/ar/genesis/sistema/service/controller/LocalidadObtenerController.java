@@ -20,7 +20,7 @@ public class LocalidadObtenerController {
 
     public LocalidadObtenerController(ILocalidadObtenerInput miLocalidadObtenerInput) { this.miLocalidadObtenerInput = miLocalidadObtenerInput; }
 
-    @GetMapping(value = "/Localidades")
+    @GetMapping(value = "/localidad")
     public ResponseEntity<?> obtenerLocalidades(){
         try{
             List<LocalidadDTO> localidadesDTO = new ArrayList<>();

@@ -21,7 +21,7 @@ public class TipoUnidadCrearController {
 
     public TipoUnidadCrearController(ITipoUnidadCrearInput miTipoUnidadCrearInput) { this.miTipoUnidadCrearInput = miTipoUnidadCrearInput; }
 
-    @PostMapping(value = "/TipoUnidad")
+    @PostMapping(value = "/tipounidad")
     public ResponseEntity<?> crearTipoUnidad(@RequestBody TipoUnidadDTO unTipoUnidadDTO){
         try{
             boolean resultado = this.miTipoUnidadCrearInput.crearTipoUnidad(TipoUnidad.instancia(unTipoUnidadDTO.getId(), unTipoUnidadDTO.getNombre()));

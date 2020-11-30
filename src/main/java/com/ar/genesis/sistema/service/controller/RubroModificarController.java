@@ -21,7 +21,7 @@ public class RubroModificarController {
 
     public RubroModificarController(IRubroModificarInput miRubroModificarInput) { this.miRubroModificarInput = miRubroModificarInput; }
 
-    @PutMapping(value = "/Rubro")
+    @PutMapping(value = "/rubro")
     public ResponseEntity<?> modificarRubro(@RequestBody RubroDTO unRubroDTO){
         try{
             boolean resultado = this.miRubroModificarInput.modificarRubro(Rubro.instancia(unRubroDTO.getId(), unRubroDTO.getNombre()));
