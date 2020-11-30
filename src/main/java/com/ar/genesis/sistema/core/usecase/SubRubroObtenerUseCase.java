@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.core.usecase;
 
 import com.ar.genesis.sistema.core.domain.SubRubro;
 import com.ar.genesis.sistema.core.input.IObtenerSubRubrosInput;
-import com.ar.genesis.sistema.core.repository.IObtenerSubRubrosRepository;
+import com.ar.genesis.sistema.core.repository.ISubRubroObtenerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,12 +12,12 @@ import java.util.List;
 @Transactional
 public class SubRubroObtenerUseCase implements IObtenerSubRubrosInput {
 
-    IObtenerSubRubrosRepository miObtenerSubRubrosRepository;
+    ISubRubroObtenerRepository miSubRubroObtenerRepository;
 
-    public SubRubroObtenerUseCase(IObtenerSubRubrosRepository miObtenerSubRubrosRepository) { this.miObtenerSubRubrosRepository = miObtenerSubRubrosRepository; }
+    public SubRubroObtenerUseCase(ISubRubroObtenerRepository miSubRubroObtenerRepository) { this.miSubRubroObtenerRepository = miSubRubroObtenerRepository; }
 
     @Override
     public List<SubRubro> obtenerSubRubros() {
-        return miObtenerSubRubrosRepository.obtenerSubRubros();
+        return miSubRubroObtenerRepository.obtenerSubRubros();
     }
 }

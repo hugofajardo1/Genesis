@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.core.usecase;
 
 import com.ar.genesis.sistema.core.domain.TipoIva;
 import com.ar.genesis.sistema.core.input.IObtenerTipoIvasInput;
-import com.ar.genesis.sistema.core.repository.IObtenerTipoIvasRepository;
+import com.ar.genesis.sistema.core.repository.ITipoIvaObtenerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,12 +12,12 @@ import java.util.List;
 @Transactional
 public class TipoIvaObtenerUseCase implements IObtenerTipoIvasInput {
 
-    IObtenerTipoIvasRepository miObtenerTipoIvasRepository;
+    ITipoIvaObtenerRepository miTipoIvaObtenerRepository;
 
-    public TipoIvaObtenerUseCase(IObtenerTipoIvasRepository miObtenerTipoIvasRepository) { this.miObtenerTipoIvasRepository = miObtenerTipoIvasRepository; }
+    public TipoIvaObtenerUseCase(ITipoIvaObtenerRepository miTipoIvaObtenerRepository) { this.miTipoIvaObtenerRepository = miTipoIvaObtenerRepository; }
 
     @Override
     public List<TipoIva> obtenerTipoIvas() {
-        return miObtenerTipoIvasRepository.obtenerTipoIvas();
+        return miTipoIvaObtenerRepository.obtenerTipoIvas();
     }
 }

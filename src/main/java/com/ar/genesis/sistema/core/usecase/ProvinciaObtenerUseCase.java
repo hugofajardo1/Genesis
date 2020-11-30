@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.core.usecase;
 
 import com.ar.genesis.sistema.core.domain.Provincia;
 import com.ar.genesis.sistema.core.input.IObtenerProvinciasInput;
-import com.ar.genesis.sistema.core.repository.IObtenerProvinciasRepository;
+import com.ar.genesis.sistema.core.repository.IProvinciaObtenerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,12 +12,12 @@ import java.util.List;
 @Transactional
 public class ProvinciaObtenerUseCase implements IObtenerProvinciasInput {
 
-    IObtenerProvinciasRepository miObtenerProvinciasRepository;
+    IProvinciaObtenerRepository miProvinciaObtenerRepository;
 
-    public ProvinciaObtenerUseCase(IObtenerProvinciasRepository miObtenerProvinciasRepository) { this.miObtenerProvinciasRepository = miObtenerProvinciasRepository; }
+    public ProvinciaObtenerUseCase(IProvinciaObtenerRepository miProvinciaObtenerRepository) { this.miProvinciaObtenerRepository = miProvinciaObtenerRepository; }
 
     @Override
     public List<Provincia> obtenerProvincias() {
-        return miObtenerProvinciasRepository.obtenerProvincias();
+        return miProvinciaObtenerRepository.obtenerProvincias();
     }
 }

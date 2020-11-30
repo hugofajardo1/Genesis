@@ -1,7 +1,7 @@
 package com.ar.genesis.sistema.dataUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Ubicacion;
-import com.ar.genesis.sistema.persistence.repositoryImplementacion.UbicacionObtenerRepoImplmentacion;
+import com.ar.genesis.sistema.persistence.repositoryImplementacion.UbicacionUbicacionObtenerRepoImplmentacion;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 })
 public class UbicacionObtenerDataTest {
     @Inject
-    UbicacionObtenerRepoImplmentacion miUbicacionObtenerRepoImplmentacion;
+    UbicacionUbicacionObtenerRepoImplmentacion miUbicacionObtenerRepoImplmentacion;
 
     @Test
     public void obtenerUbicaciones_UbicacionesExisten_DevuelveListado(){

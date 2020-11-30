@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.core.usecase;
 
 import com.ar.genesis.sistema.core.domain.Ubicacion;
 import com.ar.genesis.sistema.core.input.IObtenerUbicacionesInput;
-import com.ar.genesis.sistema.core.repository.IObtenerUbicacionesRepository;
+import com.ar.genesis.sistema.core.repository.IUbicacionObtenerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,12 +12,12 @@ import java.util.List;
 @Transactional
 public class UbicacionObtenerUseCase implements IObtenerUbicacionesInput {
 
-    IObtenerUbicacionesRepository miObtenerUbicacionesRepository;
+    IUbicacionObtenerRepository miUbicacionObtenerRepository;
 
-    public UbicacionObtenerUseCase(IObtenerUbicacionesRepository miObtenerUbicacionesRepository) { this.miObtenerUbicacionesRepository = miObtenerUbicacionesRepository; }
+    public UbicacionObtenerUseCase(IUbicacionObtenerRepository miUbicacionObtenerRepository) { this.miUbicacionObtenerRepository = miUbicacionObtenerRepository; }
 
     @Override
     public List<Ubicacion> obtenerUbicaciones() {
-        return miObtenerUbicacionesRepository.obtenerUbicaciones();
+        return miUbicacionObtenerRepository.obtenerUbicaciones();
     }
 }

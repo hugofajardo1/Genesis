@@ -1,7 +1,7 @@
 package com.ar.genesis.sistema.usecaseUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Localidad;
-import com.ar.genesis.sistema.core.repository.IObtenerLocalidadesRepository;
+import com.ar.genesis.sistema.core.repository.ILocalidadObtenerRepository;
 import com.ar.genesis.sistema.core.usecase.LocalidadObtenerUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -17,14 +17,14 @@ import static org.mockito.Mockito.when;
 @ExtendWith(mockito.MockitoExtension.class)
 public class LocalidadObtenerUseCaseTest {
     @Mock
-    IObtenerLocalidadesRepository miObtenerLocalidadesRepository;
+    ILocalidadObtenerRepository miLocalidadObtenerRepository;
     @Spy
     List<Localidad> localidades = factoryListaLocalidades();
 
     @Test
     public void obtenerLocalidades_devuelveLista(){
-        when(miObtenerLocalidadesRepository.obtenerLocalidades()).thenReturn(localidades);
-        LocalidadObtenerUseCase localidadObtenerUseCase = new LocalidadObtenerUseCase(miObtenerLocalidadesRepository);
+        when(miLocalidadObtenerRepository.obtenerLocalidades()).thenReturn(localidades);
+        LocalidadObtenerUseCase localidadObtenerUseCase = new LocalidadObtenerUseCase(miLocalidadObtenerRepository);
         List<Localidad> resultado = localidadObtenerUseCase.obtenerLocalidades();
         Assertions.assertEquals(2,resultado.size());
     }

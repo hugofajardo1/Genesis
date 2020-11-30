@@ -4,6 +4,6 @@ import com.ar.genesis.sistema.core.domain.TipoFicha;
 
 import java.util.List;
 
-public interface IObtenerTipoFichasRepository {
+public interface ITipoFichaObtenerRepository {
     List<TipoFicha> obtenerTipoFichas();
 }

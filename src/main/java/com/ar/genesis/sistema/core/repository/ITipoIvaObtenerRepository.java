@@ -4,6 +4,6 @@ import com.ar.genesis.sistema.core.domain.TipoIva;
 
 import java.util.List;
 
-public interface IObtenerTipoIvasRepository {
+public interface ITipoIvaObtenerRepository {
     List<TipoIva> obtenerTipoIvas();
 }

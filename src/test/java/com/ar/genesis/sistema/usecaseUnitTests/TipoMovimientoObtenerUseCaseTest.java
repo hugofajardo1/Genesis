@@ -1,7 +1,7 @@
 package com.ar.genesis.sistema.usecaseUnitTests;
 
 import com.ar.genesis.sistema.core.domain.TipoMovimiento;
-import com.ar.genesis.sistema.core.repository.IObtenerTipoMovimientosRepository;
+import com.ar.genesis.sistema.core.repository.ITipoMovimientoObtenerRepository;
 import com.ar.genesis.sistema.core.usecase.TipoMovimientoObtenerUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -17,14 +17,14 @@ import static org.mockito.Mockito.when;
 @ExtendWith(mockito.MockitoExtension.class)
 public class TipoMovimientoObtenerUseCaseTest {
     @Mock
-    IObtenerTipoMovimientosRepository miObtenerTipoMovimientosRepository;
+    ITipoMovimientoObtenerRepository miTipoMovimientoObtenerRepository;
     @Spy
     List<TipoMovimiento> tipoMovimientos = factoryListaTipoMovimientos();
 
     @Test
     public void obtenerTipoMovimientos_devuelveLista(){
-        when(miObtenerTipoMovimientosRepository.obtenerTipoMovimientos()).thenReturn(tipoMovimientos);
-        TipoMovimientoObtenerUseCase tipoMovimientoObtenerUseCase = new TipoMovimientoObtenerUseCase(miObtenerTipoMovimientosRepository);
+        when(miTipoMovimientoObtenerRepository.obtenerTipoMovimientos()).thenReturn(tipoMovimientos);
+        TipoMovimientoObtenerUseCase tipoMovimientoObtenerUseCase = new TipoMovimientoObtenerUseCase(miTipoMovimientoObtenerRepository);
         List<TipoMovimiento> resultado = tipoMovimientoObtenerUseCase.obtenerTipoMovimientos();
         Assertions.assertEquals(2,resultado.size());
     }

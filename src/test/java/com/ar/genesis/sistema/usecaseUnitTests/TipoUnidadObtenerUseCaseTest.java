@@ -1,7 +1,7 @@
 package com.ar.genesis.sistema.usecaseUnitTests;
 
 import com.ar.genesis.sistema.core.domain.TipoUnidad;
-import com.ar.genesis.sistema.core.repository.IObtenerTipoUnidadesRepository;
+import com.ar.genesis.sistema.core.repository.ITipoUnidadObtenerRepository;
 import com.ar.genesis.sistema.core.usecase.TipoUnidadObtenerUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -17,14 +17,14 @@ import static org.mockito.Mockito.when;
 @ExtendWith(mockito.MockitoExtension.class)
 public class TipoUnidadObtenerUseCaseTest {
     @Mock
-    IObtenerTipoUnidadesRepository miObtenerTipoUnidadesRepository;
+    ITipoUnidadObtenerRepository miTipoUnidadObtenerRepository;
     @Spy
     List<TipoUnidad> tipoUnidades = factoryListaTipoUnidades();
 
     @Test
     public void obtenerTipoUnidades_devuelveLista(){
-        when(miObtenerTipoUnidadesRepository.obtenerTipoUnidades()).thenReturn(tipoUnidades);
-        TipoUnidadObtenerUseCase tipoUnidadObtenerUseCase = new TipoUnidadObtenerUseCase(miObtenerTipoUnidadesRepository);
+        when(miTipoUnidadObtenerRepository.obtenerTipoUnidades()).thenReturn(tipoUnidades);
+        TipoUnidadObtenerUseCase tipoUnidadObtenerUseCase = new TipoUnidadObtenerUseCase(miTipoUnidadObtenerRepository);
         List<TipoUnidad> resultado = tipoUnidadObtenerUseCase.obtenerTipoUnidades();
         Assertions.assertEquals(2,resultado.size());
     }

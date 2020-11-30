@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.core.usecase;
 
 import com.ar.genesis.sistema.core.domain.TipoFicha;
 import com.ar.genesis.sistema.core.input.IObtenerTipoFichasInput;
-import com.ar.genesis.sistema.core.repository.IObtenerTipoFichasRepository;
+import com.ar.genesis.sistema.core.repository.ITipoFichaObtenerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,12 +12,12 @@ import java.util.List;
 @Transactional
 public class TipoFichaObtenerUseCase implements IObtenerTipoFichasInput {
 
-    IObtenerTipoFichasRepository miObtenerTipoFichasRepository;
+    ITipoFichaObtenerRepository miTipoFichaObtenerRepository;
 
-    public TipoFichaObtenerUseCase(IObtenerTipoFichasRepository miObtenerTipoFichasRepository) { this.miObtenerTipoFichasRepository = miObtenerTipoFichasRepository; }
+    public TipoFichaObtenerUseCase(ITipoFichaObtenerRepository miTipoFichaObtenerRepository) { this.miTipoFichaObtenerRepository = miTipoFichaObtenerRepository; }
 
     @Override
     public List<TipoFicha> obtenerTipoFichas() {
-        return miObtenerTipoFichasRepository.obtenerTipoFichas();
+        return miTipoFichaObtenerRepository.obtenerTipoFichas();
     }
 }

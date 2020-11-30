@@ -4,6 +4,6 @@ import com.ar.genesis.sistema.core.domain.TipoUnidad;
 
 import java.util.List;
 
-public interface IObtenerTipoUnidadesRepository {
+public interface ITipoUnidadObtenerRepository {
     List<TipoUnidad> obtenerTipoUnidades();
 }

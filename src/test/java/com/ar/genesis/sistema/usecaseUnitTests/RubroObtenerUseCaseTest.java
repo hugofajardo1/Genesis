@@ -1,7 +1,7 @@
 package com.ar.genesis.sistema.usecaseUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Rubro;
-import com.ar.genesis.sistema.core.repository.IObtenerRubrosRepository;
+import com.ar.genesis.sistema.core.repository.IRubroObtenerRepository;
 import com.ar.genesis.sistema.core.usecase.RubroObtenerUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -17,14 +17,14 @@ import static org.mockito.Mockito.when;
 @ExtendWith(mockito.MockitoExtension.class)
 public class RubroObtenerUseCaseTest {
     @Mock
-    IObtenerRubrosRepository miObtenerRubrosRepository;
+    IRubroObtenerRepository miRubroObtenerRepository;
     @Spy
     List<Rubro> Rubros = factoryListaRubros();
 
     @Test
     public void obtenerRubros_devuelveLista(){
-        when(miObtenerRubrosRepository.obtenerRubros()).thenReturn(Rubros);
-        RubroObtenerUseCase rubroObtenerUseCase = new RubroObtenerUseCase(miObtenerRubrosRepository);
+        when(miRubroObtenerRepository.obtenerRubros()).thenReturn(Rubros);
+        RubroObtenerUseCase rubroObtenerUseCase = new RubroObtenerUseCase(miRubroObtenerRepository);
         List<Rubro> resultado = rubroObtenerUseCase.obtenerRubros();
         Assertions.assertEquals(2,resultado.size());
     }

@@ -4,6 +4,6 @@ import com.ar.genesis.sistema.core.domain.Ubicacion;
 
 import java.util.List;
 
-public interface IObtenerUbicacionesRepository {
+public interface IUbicacionObtenerRepository {
     List<Ubicacion> obtenerUbicaciones();
 }

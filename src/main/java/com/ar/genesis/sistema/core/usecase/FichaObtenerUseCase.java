@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.core.usecase;
 
 import com.ar.genesis.sistema.core.domain.Ficha;
 import com.ar.genesis.sistema.core.input.IObtenerFichaInput;
-import com.ar.genesis.sistema.core.repository.IObtenerFichasRepository;
+import com.ar.genesis.sistema.core.repository.IFichaObtenerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,12 +12,12 @@ import java.util.List;
 @Transactional
 public class FichaObtenerUseCase implements IObtenerFichaInput {
 
-    IObtenerFichasRepository miObtenerFichasRepository;
+    IFichaObtenerRepository miFichaObtenerRepository;
 
-    public FichaObtenerUseCase(IObtenerFichasRepository miObtenerFichasRepository) { this.miObtenerFichasRepository = miObtenerFichasRepository; }
+    public FichaObtenerUseCase(IFichaObtenerRepository miFichaObtenerRepository) { this.miFichaObtenerRepository = miFichaObtenerRepository; }
 
     @Override
     public List<Ficha> obtenerFichas() {
-        return miObtenerFichasRepository.obtenerFichas();
+        return miFichaObtenerRepository.obtenerFichas();
     }
 }

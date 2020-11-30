@@ -1,7 +1,7 @@
 package com.ar.genesis.sistema.persistence.repositoryImplementacion;
 
 import com.ar.genesis.sistema.core.domain.Ficha;
-import com.ar.genesis.sistema.core.repository.IObtenerFichasRepository;
+import com.ar.genesis.sistema.core.repository.IFichaObtenerRepository;
 import com.ar.genesis.sistema.persistence.repositoryCRUD.IFichaCRUD;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 @Service
-public class FichaObtenerRepoImplementacion implements IObtenerFichasRepository {
+public class FichaFichaObtenerRepoImplementacion implements IFichaObtenerRepository {
     @Inject
     IFichaCRUD miFichaCRUD;
 

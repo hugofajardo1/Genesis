@@ -4,6 +4,6 @@ import com.ar.genesis.sistema.core.domain.SubRubro;
 
 import java.util.List;
 
-public interface IObtenerSubRubrosRepository {
+public interface ISubRubroObtenerRepository {
     List<SubRubro> obtenerSubRubros();
 }

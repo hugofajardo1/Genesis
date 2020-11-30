@@ -1,7 +1,7 @@
 package com.ar.genesis.sistema.dataUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Ficha;
-import com.ar.genesis.sistema.persistence.repositoryImplementacion.FichaObtenerRepoImplementacion;
+import com.ar.genesis.sistema.persistence.repositoryImplementacion.FichaFichaObtenerRepoImplementacion;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class FichaObtenerDataTest {
 
     @Inject
-    FichaObtenerRepoImplementacion miFichaObtenerRepoImplementacion;
+    FichaFichaObtenerRepoImplementacion miFichaObtenerRepoImplementacion;
 
     @Test
     public void obtenerFichas_ExistenFichas_DevuelveListado(){

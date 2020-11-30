@@ -4,6 +4,6 @@ import com.ar.genesis.sistema.core.domain.TipoMovimiento;
 
 import java.util.List;
 
-public interface IObtenerTipoMovimientosRepository {
+public interface ITipoMovimientoObtenerRepository {
     List<TipoMovimiento> obtenerTipoMovimientos();
 }

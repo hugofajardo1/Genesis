@@ -2,7 +2,7 @@ package com.ar.genesis.sistema.usecaseUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Ficha;
 import com.ar.genesis.sistema.core.domain.TipoIva;
-import com.ar.genesis.sistema.core.repository.IObtenerFichasRepository;
+import com.ar.genesis.sistema.core.repository.IFichaObtenerRepository;
 import com.ar.genesis.sistema.core.usecase.FichaObtenerUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -18,15 +18,15 @@ import static org.mockito.Mockito.when;
 @ExtendWith(mockito.MockitoExtension.class)
 public class FichaObtenerUseCaseTest {
     @Mock
-    IObtenerFichasRepository miObtenerFichasRepository;
+    IFichaObtenerRepository miFichaObtenerRepository;
 
     @Spy
     List<Ficha> fichas = factoryListaFichas();
 
     @Test
     public void obtenerFichas_devuelveLista(){
-        when(miObtenerFichasRepository.obtenerFichas()).thenReturn(fichas);
-        FichaObtenerUseCase obtenerFichasUseCase = new FichaObtenerUseCase(miObtenerFichasRepository);
+        when(miFichaObtenerRepository.obtenerFichas()).thenReturn(fichas);
+        FichaObtenerUseCase obtenerFichasUseCase = new FichaObtenerUseCase(miFichaObtenerRepository);
         List<Ficha> resultado = obtenerFichasUseCase.obtenerFichas();
         Assertions.assertEquals(2,resultado.size());
     }

@@ -4,6 +4,6 @@ import com.ar.genesis.sistema.core.domain.Ficha;
 
 import java.util.List;
 
-public interface IObtenerFichasRepository {
+public interface IFichaObtenerRepository {
     List<Ficha> obtenerFichas();
 }
