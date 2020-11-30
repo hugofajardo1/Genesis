@@ -4,5 +4,5 @@ import com.ar.genesis.sistema.core.domain.Ubicacion;
 import com.ar.genesis.sistema.core.exception.UbicacionExisteException;
 
 public interface IUbicacionCrearInput {
-    boolean crearUbicacion(Ubicacion ubicacion) throws UbicacionExisteException;
+    boolean crearUbicacion(Ubicacion unaUbicacion) throws UbicacionExisteException;
 }

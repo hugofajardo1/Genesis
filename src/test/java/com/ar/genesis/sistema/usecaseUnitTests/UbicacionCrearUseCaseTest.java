@@ -16,21 +16,21 @@ public class UbicacionCrearUseCaseTest {
     @Mock
     IUbicacionRepository miUbicacionRepository;
     @Test
-    void crearTipoUbicacion_UbicacionNoExiste_GuardaCorrectamente() throws UbicacionExisteException {
-        Ubicacion ubicacion = Ubicacion.instancia(1, "Ubicacion 1");
+    void crearUbicacion_UbicacionNoExiste_GuardaCorrectamente() throws UbicacionExisteException {
+        Ubicacion unaUbicacion = Ubicacion.instancia(1, "Ubicacion 1");
         when(miUbicacionRepository.existeUbicacion("Ubicacion 1")).thenReturn(false);
-        when(miUbicacionRepository.guardarUbicacion(ubicacion)).thenReturn(true);
+        when(miUbicacionRepository.guardarUbicacion(unaUbicacion)).thenReturn(true);
         UbicacionCrearUseCase ubicacionCrearUseCase = new UbicacionCrearUseCase(miUbicacionRepository);
-        boolean resultado = ubicacionCrearUseCase.crearUbicacion(ubicacion);
+        boolean resultado = ubicacionCrearUseCase.crearUbicacion(unaUbicacion);
         Assertions.assertTrue(resultado);
     }
 
     @Test
-    void crearTipoUbicacion_UbicacionExiste_NoGuardaTipoUbicacion() {
-        Ubicacion ubicacion = Ubicacion.instancia(1, "Ubicacion 1");
+    void crearUbicacion_UbicacionExiste_NoGuardaUbicacion() {
+        Ubicacion unaUbicacion = Ubicacion.instancia(1, "Ubicacion 1");
         when(miUbicacionRepository.existeUbicacion("Ubicacion 1")).thenReturn(true);
-        when(miUbicacionRepository.guardarUbicacion(ubicacion)).thenReturn(false);
+        when(miUbicacionRepository.guardarUbicacion(unaUbicacion)).thenReturn(false);
         UbicacionCrearUseCase ubicacionCrearUseCase = new UbicacionCrearUseCase(miUbicacionRepository);
-        Assertions.assertThrows(UbicacionExisteException.class, () -> ubicacionCrearUseCase.crearUbicacion(ubicacion));
+        Assertions.assertThrows(UbicacionExisteException.class, () -> ubicacionCrearUseCase.crearUbicacion(unaUbicacion));
     }
 }
