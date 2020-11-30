@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 @Service
-public class TipoIvaRepoImplmentacion implements ITipoIvaObtenerRepository {
+public class TipoIvaObtenerRepoImplmentacion implements ITipoIvaObtenerRepository {
     @Inject
     ITipoIvaCRUD miTipoIvaCRUD;
 

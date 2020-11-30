@@ -19,7 +19,7 @@ public class FichaRepoImplementacion implements IFichaRepository {
     }
 
     @Override
-    public boolean guardarFicha(Ficha ficha) {
-        return miFichaCRUD.save(ficha).getId()!=null;
+    public boolean guardarFicha(Ficha unaFicha) {
+        return miFichaCRUD.save(unaFicha).getId()!=null;
     }
 }

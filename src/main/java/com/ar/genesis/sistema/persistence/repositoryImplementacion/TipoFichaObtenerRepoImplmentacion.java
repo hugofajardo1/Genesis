@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 @Service
-public class TipoFichaRepoImplmentacion implements ITipoFichaObtenerRepository {
+public class TipoFichaObtenerRepoImplmentacion implements ITipoFichaObtenerRepository {
     @Inject
     ITipoFichaCRUD miTipoFichaCRUD;
 

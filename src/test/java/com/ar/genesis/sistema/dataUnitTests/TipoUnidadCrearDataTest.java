@@ -16,7 +16,6 @@ import javax.inject.Inject;
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:TipoUnidadCrearDespues.sql")
 })
 public class TipoUnidadCrearDataTest {
-
     @Inject
     TipoUnidadRepoImplementacion miTipoUnidadRepoImplementacion;
 

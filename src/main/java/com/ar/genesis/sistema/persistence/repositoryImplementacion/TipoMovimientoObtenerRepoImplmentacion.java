@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 @Service
-public class TipoMovimientoRepoImplmentacion implements ITipoMovimientoObtenerRepository {
+public class TipoMovimientoObtenerRepoImplmentacion implements ITipoMovimientoObtenerRepository {
     @Inject
     ITipoMovimientoCRUD miTipoMovimientoCRUD;
 

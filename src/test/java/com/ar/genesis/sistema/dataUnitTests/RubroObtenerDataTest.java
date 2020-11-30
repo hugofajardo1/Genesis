@@ -1,7 +1,7 @@
 package com.ar.genesis.sistema.dataUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Rubro;
-import com.ar.genesis.sistema.persistence.repositoryImplementacion.RubroRubroObtenerRepoImplmentacion;
+import com.ar.genesis.sistema.persistence.repositoryImplementacion.RubroObtenerRepoImplmentacion;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 })
 public class RubroObtenerDataTest {
     @Inject
-    RubroRubroObtenerRepoImplmentacion miRubroObtenerRepoImplmentacion;
+    RubroObtenerRepoImplmentacion miRubroObtenerRepoImplmentacion;
 
     @Test
     public void obtenerRubros_RubrosExisten_DevuelveListado(){

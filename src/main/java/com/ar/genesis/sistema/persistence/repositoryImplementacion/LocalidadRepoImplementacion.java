@@ -17,5 +17,5 @@ public class LocalidadRepoImplementacion implements ILocalidadRepository {
     public boolean existeLocalidad(String nombre) { return miLocalidadCRUD.existsByNombre(nombre); }
 
     @Override
-    public boolean guardarLocalidad(Localidad localidad) { return miLocalidadCRUD.save(localidad).getId()!=null; }
+    public boolean guardarLocalidad(Localidad unaLocalidad) { return miLocalidadCRUD.save(unaLocalidad).getId()!=null; }
 }

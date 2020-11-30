@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 @Service
-public class FichaFichaObtenerRepoImplementacion implements IFichaObtenerRepository {
+public class FichaObtenerRepoImplementacion implements IFichaObtenerRepository {
     @Inject
     IFichaCRUD miFichaCRUD;
 

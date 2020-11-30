@@ -1,7 +1,7 @@
 package com.ar.genesis.sistema.dataUnitTests;
 
 import com.ar.genesis.sistema.core.domain.TipoFicha;
-import com.ar.genesis.sistema.persistence.repositoryImplementacion.TipoFichaRepoImplmentacion;
+import com.ar.genesis.sistema.persistence.repositoryImplementacion.TipoFichaObtenerRepoImplmentacion;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 })
 public class TipoFichaObtenerDataTest {
     @Inject
-    TipoFichaRepoImplmentacion miTipoFichaObtenerRepoImplmentacion;
+    TipoFichaObtenerRepoImplmentacion miTipoFichaObtenerRepoImplmentacion;
 
     @Test
     public void obtenerTipoFichas_TipoFichasExisten_DevuelveListado(){

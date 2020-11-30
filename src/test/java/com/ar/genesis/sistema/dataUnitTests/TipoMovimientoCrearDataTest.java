@@ -16,7 +16,6 @@ import javax.inject.Inject;
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:TipoMovimientoCrearDespues.sql")
 })
 public class TipoMovimientoCrearDataTest {
-
     @Inject
     TipoMovimientoRepoImplementacion miTipoMovimientoRepoImplementacion;
 

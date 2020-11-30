@@ -17,7 +17,6 @@ import javax.inject.Inject;
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:FichaCrearDespues.sql")
 })
 public class FichaCrearDataTest {
-
     @Inject
     FichaRepoImplementacion miFichaRepoImplementacion;
 

@@ -17,5 +17,5 @@ public class UbicacionRepoImplementacion implements IUbicacionRepository {
     public boolean existeUbicacion(String nombre) { return miUbicacionCRUD.existsByNombre(nombre); }
 
     @Override
-    public boolean guardarUbicacion(Ubicacion ubicacion) { return miUbicacionCRUD.save(ubicacion).getId()!=null; }
+    public boolean guardarUbicacion(Ubicacion unaUbicacion) { return miUbicacionCRUD.save(unaUbicacion).getId()!=null; }
 }

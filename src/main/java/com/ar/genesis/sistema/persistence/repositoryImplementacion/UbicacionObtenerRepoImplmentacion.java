@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 @Service
-public class UbicacionUbicacionObtenerRepoImplmentacion implements IUbicacionObtenerRepository {
+public class UbicacionObtenerRepoImplmentacion implements IUbicacionObtenerRepository {
     @Inject
     IUbicacionCRUD miUbicacionCRUD;
 

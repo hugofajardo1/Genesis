@@ -17,5 +17,5 @@ public class ProvinciaRepoImplementacion implements IProvinciaRepository {
     public boolean existeProvincia(String nombre) { return miProvinciaCRUD.existsByNombre(nombre); }
 
     @Override
-    public boolean guardarProvincia(Provincia unProvincia) { return miProvinciaCRUD.save(unProvincia).getId()!=null; }
+    public boolean guardarProvincia(Provincia unaProvincia) { return miProvinciaCRUD.save(unaProvincia).getId()!=null; }
 }
