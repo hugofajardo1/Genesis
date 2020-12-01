@@ -16,7 +16,7 @@ public class SubRubroCrearUseCaseTest {
     @Mock
     ISubRubroRepository miSubRubroRepository;
     @Test
-    void crearTipoSubRubro_SubRubroNoExiste_GuardaCorrectamente() throws SubRubroExisteException {
+    void crearSubRubro_SubRubroNoExiste_GuardaCorrectamente() throws SubRubroExisteException {
         SubRubro unSubRubro = SubRubro.instancia(1, "SubRubro");
         when(miSubRubroRepository.existeSubRubro("SubRubro")).thenReturn(false);
         when(miSubRubroRepository.guardarSubRubro(unSubRubro)).thenReturn(true);
@@ -26,7 +26,7 @@ public class SubRubroCrearUseCaseTest {
     }
 
     @Test
-    void crearTipoSubRubro_SubRubroExiste_NoGuardaTipoSubRubro() {
+    void crearSubRubro_SubRubroExiste_NoGuardaSubRubro() {
         SubRubro unSubRubro = SubRubro.instancia(1, "SubRubro");
         when(miSubRubroRepository.existeSubRubro("SubRubro")).thenReturn(true);
         when(miSubRubroRepository.guardarSubRubro(unSubRubro)).thenReturn(false);

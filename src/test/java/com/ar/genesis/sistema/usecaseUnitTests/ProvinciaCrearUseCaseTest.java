@@ -16,7 +16,7 @@ public class ProvinciaCrearUseCaseTest {
     @Mock
     IProvinciaRepository miProvinciaRepository;
     @Test
-    void crearTipoProvincia_ProvinciaNoExiste_GuardaCorrectamente() throws ProvinciaExisteException {
+    void crearProvincia_ProvinciaNoExiste_GuardaCorrectamente() throws ProvinciaExisteException {
         Provincia unaProvincia = Provincia.instancia(1, "Provincia");
         when(miProvinciaRepository.existeProvincia("Provincia")).thenReturn(false);
         when(miProvinciaRepository.guardarProvincia(unaProvincia)).thenReturn(true);
@@ -26,7 +26,7 @@ public class ProvinciaCrearUseCaseTest {
     }
 
     @Test
-    void crearTipoProvincia_ProvinciaExiste_NoGuardaTipoProvincia() {
+    void crearProvincia_ProvinciaExiste_NoGuardaProvincia() {
         Provincia unaProvincia = Provincia.instancia(1, "Provincia");
         when(miProvinciaRepository.existeProvincia("Provincia")).thenReturn(true);
         when(miProvinciaRepository.guardarProvincia(unaProvincia)).thenReturn(false);

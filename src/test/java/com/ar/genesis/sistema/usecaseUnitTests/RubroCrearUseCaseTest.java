@@ -16,7 +16,7 @@ public class RubroCrearUseCaseTest {
     @Mock
     IRubroRepository miRubroRepository;
     @Test
-    void crearTipoRubro_RubroNoExiste_GuardaCorrectamente() throws RubroExisteException {
+    void crearRubro_RubroNoExiste_GuardaCorrectamente() throws RubroExisteException {
         Rubro unRubro = Rubro.instancia(1, "Rubro");
         when(miRubroRepository.existeRubro("Rubro")).thenReturn(false);
         when(miRubroRepository.guardarRubro(unRubro)).thenReturn(true);
@@ -26,7 +26,7 @@ public class RubroCrearUseCaseTest {
     }
 
     @Test
-    void crearTipoRubro_RubroExiste_NoGuardaTipoRubro() {
+    void crearRubro_RubroExiste_NoGuardaRubro() {
         Rubro unRubro = Rubro.instancia(1, "Rubro");
         when(miRubroRepository.existeRubro("Rubro")).thenReturn(true);
         when(miRubroRepository.guardarRubro(unRubro)).thenReturn(false);
