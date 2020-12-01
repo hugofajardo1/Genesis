@@ -5,6 +5,8 @@ import com.ar.genesis.sistema.core.exception.FichaExisteException;
 import com.ar.genesis.sistema.core.input.IFichaModificarInput;
 import com.ar.genesis.sistema.service.controller.FichaModificarController;
 import com.ar.genesis.sistema.service.dto.FichaDTO;
+import com.ar.genesis.sistema.service.dto.LocalidadDTO;
+import com.ar.genesis.sistema.service.dto.ProvinciaDTO;
 import com.ar.genesis.sistema.service.dto.TipoIvaDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -23,7 +25,7 @@ public class FichaModificarControllerTest {
 
     @Test
     public  void modificarFicha_FichaNoExiste_Devuelve200() throws FichaExisteException {
-        FichaDTO unaFichaDTO = new FichaDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", "3825416543", new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336");
+        FichaDTO unaFichaDTO = new FichaDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", new LocalidadDTO(1, "Chilecito"), new ProvinciaDTO(1, "La Rioja"),"3825416543", new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336", "007-4343-0", "hugofajardo1@gmail.com");
         when(miFichaModificarInput.modificarFicha(any(Ficha.class))).thenReturn(true);
 
         FichaModificarController fichaModificarController = new FichaModificarController(miFichaModificarInput);
@@ -35,7 +37,7 @@ public class FichaModificarControllerTest {
 
     @Test
     public  void modificarFicha_FichaExiste_Devuelve412() throws FichaExisteException {
-        FichaDTO unaFichaDTO = new FichaDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", "3825416543", new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336");
+        FichaDTO unaFichaDTO = new FichaDTO(1, "Fajardo, Hugo Manuel", "Bs As 245", new LocalidadDTO(1, "Chilecito"), new ProvinciaDTO(1, "La Rioja"),"3825416543", new TipoIvaDTO(1, "Responsable Inscripto"), "20255071336", "007-4343-0", "hugofajardo1@gmail.com");
         when(miFichaModificarInput.modificarFicha(any(Ficha.class))).thenThrow(FichaExisteException.class);
 
         FichaModificarController fichaModificarController = new FichaModificarController(miFichaModificarInput);

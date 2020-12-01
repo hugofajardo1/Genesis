@@ -1,6 +1,8 @@
 package com.ar.genesis.sistema.controllerUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Ficha;
+import com.ar.genesis.sistema.core.domain.Localidad;
+import com.ar.genesis.sistema.core.domain.Provincia;
 import com.ar.genesis.sistema.core.domain.TipoIva;
 import com.ar.genesis.sistema.core.input.IFichaObtenerInput;
 import com.ar.genesis.sistema.service.controller.FichaObtenerController;
@@ -24,7 +26,7 @@ public class FichaObtenerControllerTest {
     @Test
     public void obtenerFichas_FichasExisten_Devuelve200(){
         List<Ficha> fichas = new ArrayList<>();
-        fichas.add(Ficha.instancia(1,"Fajardo, Hugo", "Bs. As. 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336"));
+        fichas.add(Ficha.instancia(1,"Fajardo, Hugo", "Bs. As. 245", Localidad.instancia(1, "Chilecito"), Provincia.instancia(1, "La Rioja"), "3825416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336", "B-00007-777", "contacto"));
         when(miObtenerFichasInput.obtenerFichas()).thenReturn(fichas);
 
         FichaObtenerController fichaObtenerController = new FichaObtenerController(miObtenerFichasInput);

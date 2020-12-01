@@ -1,6 +1,8 @@
 package com.ar.genesis.sistema.dataUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Ficha;
+import com.ar.genesis.sistema.core.domain.Localidad;
+import com.ar.genesis.sistema.core.domain.Provincia;
 import com.ar.genesis.sistema.core.domain.TipoIva;
 import com.ar.genesis.sistema.persistence.repositoryImplementacion.FichaRepoImplementacion;
 import org.junit.jupiter.api.Assertions;
@@ -22,7 +24,7 @@ public class FichaModificarDataTest {
 
     @Test
     public void guardarFicha_FichaGuardado_devuelveTrue() {
-        Ficha unaFicha = Ficha.instancia(1, "Fajardo, Hugo Manuel", "Bs As 245", "38525416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336");
+        Ficha unaFicha = Ficha.instancia(1, "Fajardo, Hugo Manuel", "Bs As 245", Localidad.instancia(1, "Chilecito"), Provincia.instancia(1, "La Rioja"), "38525416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336", "B-00007-777", "Contacto: Fajardo");
         boolean resultado= miFichaRepoImplementacion.guardarFicha(unaFicha);
         Assertions.assertTrue(resultado);
     }

@@ -10,20 +10,32 @@ public class FichaDTO {
     String nombre;
     @JsonProperty("domicilio")
     String domicilio;
+    @JsonProperty("localidad")
+    LocalidadDTO localidad;
+    @JsonProperty("provincia")
+    ProvinciaDTO provincia;
     @JsonProperty("telefono")
     String telefono;
     @JsonProperty("tipo_iva")
     TipoIvaDTO tipoIva;
     @JsonProperty("cuit")
     String cuit;
+    @JsonProperty("ibrutos")
+    String ibrutos;
+    @JsonProperty("contacto")
+    String contacto;
 
-    public FichaDTO(Integer id, String nombre, String domicilio, String telefono, TipoIvaDTO tipoIva, String cuit) {
+    public FichaDTO(Integer id, String nombre, String domicilio, LocalidadDTO localidad, ProvinciaDTO provincia, String telefono, TipoIvaDTO tipoIva, String cuit, String ibrutos, String contacto) {
         this.setId(id);
         this.setNombre(nombre);
         this.setDomicilio(domicilio);
+        this.setLocalidad(localidad);
+        this.setProvincia(provincia);
         this.setTelefono(telefono);
         this.setTipoIva(tipoIva);
         this.setCuit(cuit);
+        this.setIbrutos(ibrutos);
+        this.setContacto(contacto);
     }
 
     public Integer getId() {
@@ -72,5 +84,37 @@ public class FichaDTO {
 
     public void setCuit(String cuit) {
         this.cuit = cuit;
+    }
+
+    public LocalidadDTO getLocalidad() {
+        return localidad;
+    }
+
+    public void setLocalidad(LocalidadDTO localidad) {
+        this.localidad = localidad;
+    }
+
+    public ProvinciaDTO getProvincia() {
+        return provincia;
+    }
+
+    public void setProvincia(ProvinciaDTO provincia) {
+        this.provincia = provincia;
+    }
+
+    public String getIbrutos() {
+        return ibrutos;
+    }
+
+    public void setIbrutos(String ibrutos) {
+        this.ibrutos = ibrutos;
+    }
+
+    public String getContacto() {
+        return contacto;
+    }
+
+    public void setContacto(String contacto) {
+        this.contacto = contacto;
     }
 }

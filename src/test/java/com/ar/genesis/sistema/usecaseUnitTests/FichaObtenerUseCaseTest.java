@@ -1,6 +1,8 @@
 package com.ar.genesis.sistema.usecaseUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Ficha;
+import com.ar.genesis.sistema.core.domain.Localidad;
+import com.ar.genesis.sistema.core.domain.Provincia;
 import com.ar.genesis.sistema.core.domain.TipoIva;
 import com.ar.genesis.sistema.core.repository.IFichaObtenerRepository;
 import com.ar.genesis.sistema.core.usecase.FichaObtenerUseCase;
@@ -33,8 +35,8 @@ public class FichaObtenerUseCaseTest {
 
     public List<Ficha> factoryListaFichas() {
         List<Ficha> fichas = new ArrayList<>();
-        Ficha ficha1 = Ficha.instancia(1, "Fajardo, Hugo", "Bs As 245", "3825416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336");
-        Ficha ficha2 = Ficha.instancia(2, "Fajardo, Lourdes", "Juan XXIII 59", "5453454", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336");
+        Ficha ficha1 = Ficha.instancia(1, "Fajardo, Hugo", "Bs As 245", Localidad.instancia(1, "Chilecito"), Provincia.instancia(1, "La Rioja"), "3825416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336", "B-00007-777", "Contacto: Fajardo");
+        Ficha ficha2 = Ficha.instancia(2, "Fajardo, Lourdes", "Juan XXIII 59", Localidad.instancia(1, "Chilecito"), Provincia.instancia(1, "La Rioja"), "5453454", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336", "B-00007-777", "Contacto: Fajardo Luli");
         fichas.add(ficha1);
         fichas.add(ficha2);
         return fichas;

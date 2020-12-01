@@ -1,6 +1,8 @@
 package com.ar.genesis.sistema.service.controller;
 
 import com.ar.genesis.sistema.core.domain.Ficha;
+import com.ar.genesis.sistema.core.domain.Localidad;
+import com.ar.genesis.sistema.core.domain.Provincia;
 import com.ar.genesis.sistema.core.domain.TipoIva;
 import com.ar.genesis.sistema.core.exception.FichaExisteException;
 import com.ar.genesis.sistema.core.input.IFichaModificarInput;
@@ -23,7 +25,7 @@ public class FichaModificarController {
     @PutMapping(value = "/ficha")
     public ResponseEntity<?> modificarFicha(@RequestBody FichaDTO unaFichaDTO){
         try{
-            boolean resultado = this.miFichaModificarInput.modificarFicha(Ficha.instancia(unaFichaDTO.getId(), unaFichaDTO.getNombre(), unaFichaDTO.getDomicilio(), unaFichaDTO.getTelefono(), TipoIva.instancia(1, "Responsable Inscripto"), "20255071336"));
+            boolean resultado = this.miFichaModificarInput.modificarFicha(Ficha.instancia(unaFichaDTO.getId(), unaFichaDTO.getNombre(), unaFichaDTO.getDomicilio(), Localidad.instancia(1, "Chilecito"), Provincia.instancia(1, "La Rioja"), unaFichaDTO.getTelefono(), TipoIva.instancia(1, "Responsable Inscripto"), "20255071336", "B-00007-777", "20255071336"));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (FichaExisteException e) {
