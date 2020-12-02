@@ -1,6 +1,6 @@
 package com.ar.genesis.sistema.usecaseUnitTests;
 
-import com.ar.genesis.sistema.core.domain.Producto;
+import com.ar.genesis.sistema.core.domain.*;
 import com.ar.genesis.sistema.core.exception.ProductoExisteException;
 import com.ar.genesis.sistema.core.repository.IProductoRepository;
 import com.ar.genesis.sistema.core.usecase.ProductoModificarUseCase;
@@ -17,8 +17,8 @@ public class ProductoModificarUseCaseTest {
     IProductoRepository miProductoRepository;
     @Test
     void modificarProducto_ProductoActualizadoCorrectamente() throws ProductoExisteException {
-        Producto unProducto = Producto.instancia(1, "Producto");
-        when(miProductoRepository.existeProducto("Producto")).thenReturn(false);
+        Producto unProducto = Producto.instancia(1, "Teclado Genius USB", "A548743", TipoUnidad.instancia(1, "Unidad"), 100, 21, 35, 0, Rubro.instancia(1,"Hardware"), SubRubro.instancia(1, "Perifericos"), Ubicacion.instancia(1, "Estante 1"));
+        when(miProductoRepository.existeProducto("Teclado Genius USB")).thenReturn(false);
         when(miProductoRepository.guardarProducto(unProducto)).thenReturn(true);
         ProductoModificarUseCase productoModificarUseCase = new ProductoModificarUseCase(miProductoRepository);
         boolean resultado = productoModificarUseCase.modificarProducto(unProducto);
@@ -27,8 +27,8 @@ public class ProductoModificarUseCaseTest {
 
     @Test
     void modificarProducto_HayConflictoProductoExiste_ProductoNoActualiza() {
-        Producto unProducto = Producto.instancia(1, "Producto");
-        when(miProductoRepository.existeProducto("Producto")).thenReturn(true);
+        Producto unProducto = Producto.instancia(1, "Teclado Genius USB", "A548743", TipoUnidad.instancia(1, "Unidad"), 100, 21, 35, 0, Rubro.instancia(1,"Hardware"), SubRubro.instancia(1, "Perifericos"), Ubicacion.instancia(1, "Estante 1"));
+        when(miProductoRepository.existeProducto("Teclado Genius USB")).thenReturn(true);
         when(miProductoRepository.guardarProducto(unProducto)).thenReturn(false);
         ProductoModificarUseCase productoModificarUseCase = new ProductoModificarUseCase(miProductoRepository);
         Assertions.assertThrows(ProductoExisteException.class, () -> productoModificarUseCase.modificarProducto(unProducto));

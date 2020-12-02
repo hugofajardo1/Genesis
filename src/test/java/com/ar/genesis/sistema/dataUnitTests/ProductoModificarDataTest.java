@@ -1,6 +1,6 @@
 package com.ar.genesis.sistema.dataUnitTests;
 
-import com.ar.genesis.sistema.core.domain.Producto;
+import com.ar.genesis.sistema.core.domain.*;
 import com.ar.genesis.sistema.persistence.repositoryImplementacion.ProductoRepoImplementacion;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ public class ProductoModificarDataTest {
 
     @Test
     public void guardarProducto_ProductoGuardado_devuelveTrue() {
-        Producto unProducto = Producto.instancia(1, "Producto 1");
+        Producto unProducto = Producto.instancia(1, "Teclado Genius USB", "Producto 1", TipoUnidad.instancia(1, "Unidad"), 100, 21, 35, 0, Rubro.instancia(1, "Hardware"), SubRubro.instancia(1, "Perifericos"), Ubicacion.instancia(1, "Estante 1"));
         boolean resultado = miProductoRepoImplementacion.guardarProducto(unProducto);
         Assertions.assertTrue(resultado);
     }

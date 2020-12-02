@@ -1,6 +1,6 @@
 package com.ar.genesis.sistema.service.controller;
 
-import com.ar.genesis.sistema.core.domain.Producto;
+import com.ar.genesis.sistema.core.domain.*;
 import com.ar.genesis.sistema.core.exception.ProductoExisteException;
 import com.ar.genesis.sistema.core.input.IProductoModificarInput;
 import com.ar.genesis.sistema.service.dto.ProductoDTO;
@@ -24,7 +24,7 @@ public class ProductoModificarController {
     @PutMapping(value = "/producto")
     public ResponseEntity<?> modificarProducto(@RequestBody ProductoDTO unProductoDTO){
         try{
-            boolean resultado = this.miProductoModificarInput.modificarProducto(Producto.instancia(unProductoDTO.getId(), unProductoDTO.getNombre()));
+            boolean resultado = this.miProductoModificarInput.modificarProducto(Producto.instancia(unProductoDTO.getId(), "Teclado Genius USB", unProductoDTO.getNombre(), TipoUnidad.instancia(1, "Unidad"), 100, 21, 35, 0, Rubro.instancia(1, "Hardware"), SubRubro.instancia(1, "Perifericos"), Ubicacion.instancia(1, "Estante 1")));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (ProductoExisteException e) {
