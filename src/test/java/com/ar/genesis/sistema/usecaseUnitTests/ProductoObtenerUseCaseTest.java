@@ -31,8 +31,8 @@ public class ProductoObtenerUseCaseTest {
 
     public List<Producto> factoryListaProductos() {
         List<Producto> productos = new ArrayList<>();
-        Producto producto1 = Producto.instancia(1, "Teclado Genius USB", "Producto 1", TipoUnidad.instancia(1, "Unidad"), 100, 21, 35, 0, Rubro.instancia(1, "Hardware"), SubRubro.instancia(1, "Perifericos"), Ubicacion.instancia(1, "Estante 1"));
-        Producto producto2 = Producto.instancia(2, "Teclado Genius USB KB100", "Producto 2", TipoUnidad.instancia(1, "Unidad"), 100, 21, 35, 0, Rubro.instancia(1, "Hardware"), SubRubro.instancia(1, "Perifericos"), Ubicacion.instancia(1, "Estante 1"));
+        Producto producto1 = Producto.instancia(1, "Teclado Genius USB", "Producto 1", TipoUnidad.instancia(1, "Unidad"), 100, 21, 35, 0, Rubro.instancia(1, "Hardware"), SubRubro.instancia(1, "Perifericos"), Ubicacion.instancia(1, "Estante 1"), Proveedor.instancia(1, "Proveedor 1"));
+        Producto producto2 = Producto.instancia(2, "Teclado Genius USB KB100", "Producto 2", TipoUnidad.instancia(1, "Unidad"), 100, 21, 35, 0, Rubro.instancia(1, "Hardware"), SubRubro.instancia(1, "Perifericos"), Ubicacion.instancia(1, "Estante 1"), Proveedor.instancia(1, "Proveedor 1"));
         productos.add(producto1);
         productos.add(producto2);
         return productos;

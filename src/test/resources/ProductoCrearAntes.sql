@@ -4,6 +4,7 @@ DELETE FROM tipo_unidades;
 DELETE FROM rubros;
 DELETE FROM subrubros;
 DELETE FROM ubicaciones;
+DELETE FROM proveedores;
 
 ALTER SEQUENCE seq_productos RESTART WITH 1;
 
@@ -18,3 +19,6 @@ INSERT INTO subrubros (id, nombre) VALUES (nextval('seq_subrubros'), 'Periferico
 
 ALTER SEQUENCE seq_ubicaciones RESTART WITH 1;
 INSERT INTO ubicaciones (id, nombre) VALUES (nextval('seq_ubicaciones'), 'Estante 1');
+
+ALTER SEQUENCE seq_proveedores RESTART WITH 1;
+INSERT INTO proveedores (id, nombre) VALUES (nextval('seq_proveedores'), 'Proveedor 1');

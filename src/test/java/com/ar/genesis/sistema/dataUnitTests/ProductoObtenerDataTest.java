@@ -23,7 +23,7 @@ public class ProductoObtenerDataTest {
 
     @Test
     public void obtenerProductos_ProductosExisten_DevuelveListado(){
-        List<Producto> Productos = miProductoObtenerRepoImplmentacion.obtenerProductos();
-        assertEquals(2, Productos.size());
+        List<Producto> productos = miProductoObtenerRepoImplmentacion.obtenerProductos();
+        assertEquals(2, productos.size());
     }
 }

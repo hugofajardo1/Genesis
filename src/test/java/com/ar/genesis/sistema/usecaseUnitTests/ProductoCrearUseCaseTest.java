@@ -17,7 +17,7 @@ public class ProductoCrearUseCaseTest {
     IProductoRepository miProductoRepository;
     @Test
     void crearTipoProducto_ProductoNoExiste_GuardaCorrectamente() throws ProductoExisteException {
-        Producto unProducto = Producto.instancia(1, "Teclado Genius USB", "A548743", TipoUnidad.instancia(1, "Unidad"), 100, 21, 35, 0, Rubro.instancia(1,"Hardware"), SubRubro.instancia(1, "Perifericos"), Ubicacion.instancia(1, "Estante 1"));
+        Producto unProducto = Producto.instancia(1, "Teclado Genius USB", "A548743", TipoUnidad.instancia(1, "Unidad"), 100, 21, 35, 0, Rubro.instancia(1,"Hardware"), SubRubro.instancia(1, "Perifericos"), Ubicacion.instancia(1, "Estante 1"), Proveedor.instancia(1, "Proveedor 1"));
         when(miProductoRepository.existeProducto("Teclado Genius USB")).thenReturn(false);
         when(miProductoRepository.guardarProducto(unProducto)).thenReturn(true);
         ProductoCrearUseCase productoCrearUseCase = new ProductoCrearUseCase(miProductoRepository);
@@ -27,7 +27,7 @@ public class ProductoCrearUseCaseTest {
 
     @Test
     void crearTipoProducto_ProductoExiste_NoGuardaTipoProducto() {
-        Producto unProducto = Producto.instancia(1, "Teclado Genius USB", "A548743", TipoUnidad.instancia(1, "Unidad"), 100, 21, 35, 0, Rubro.instancia(1,"Hardware"), SubRubro.instancia(1, "Perifericos"), Ubicacion.instancia(1, "Estante 1"));
+        Producto unProducto = Producto.instancia(1, "Teclado Genius USB", "A548743", TipoUnidad.instancia(1, "Unidad"), 100, 21, 35, 0, Rubro.instancia(1,"Hardware"), SubRubro.instancia(1, "Perifericos"), Ubicacion.instancia(1, "Estante 1"), Proveedor.instancia(1, "Proveedor 1"));
         when(miProductoRepository.existeProducto("Teclado Genius USB")).thenReturn(true);
         when(miProductoRepository.guardarProducto(unProducto)).thenReturn(false);
         ProductoCrearUseCase productoCrearUseCase = new ProductoCrearUseCase(miProductoRepository);

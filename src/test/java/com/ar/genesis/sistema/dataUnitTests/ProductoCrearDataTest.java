@@ -21,7 +21,7 @@ public class ProductoCrearDataTest {
 
     @Test
     public void guardarProducto_ProductoGuardado_devuelveTrue() {
-        Producto unProducto = Producto.instancia(null, "Teclado Genius USB", "Producto", TipoUnidad.instancia(1, "Unidad"), 100, 21, 35, 0, Rubro.instancia(1, "Hardware"), SubRubro.instancia(1, "Perifericos"), Ubicacion.instancia(1, "Estante 1"));
+        Producto unProducto = Producto.instancia(null, "Teclado Genius USB", "Producto", TipoUnidad.instancia(1, "Unidad"), 100, 21, 35, 0, Rubro.instancia(1, "Hardware"), SubRubro.instancia(1, "Perifericos"), Ubicacion.instancia(1, "Estante 1"), Proveedor.instancia(1, "Proveedor 1"));
         boolean resultado = miProductoRepoImplementacion.guardarProducto(unProducto);
         Assertions.assertTrue(resultado);
     }

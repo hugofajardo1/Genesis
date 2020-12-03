@@ -32,11 +32,14 @@ public class Producto {
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "ubicacionid")
     Ubicacion ubicacion;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "proveedorid")
+    Proveedor proveedor;
 
     public Producto() {
     }
 
-    private Producto(Integer id, String nombre, String codigoUsuario, TipoUnidad unidad, double costo, double iva, double margen, double flete, Rubro rubro, SubRubro subRubro, Ubicacion ubicacion) {
+    private Producto(Integer id, String nombre, String codigoUsuario, TipoUnidad unidad, double costo, double iva, double margen, double flete, Rubro rubro, SubRubro subRubro, Ubicacion ubicacion, Proveedor proveedor) {
         this.setId(id);
         this.setNombre(nombre);
         this.setCodigoUsuario(codigoUsuario);
@@ -48,10 +51,11 @@ public class Producto {
         this.setRubro(rubro);
         this.setSubRubro(subRubro);
         this.setUbicacion(ubicacion);
+        this.setProveedor(proveedor);
     }
 
-    public static Producto instancia(Integer id, String nombre, String codigoUsuario, TipoUnidad unidad, double costo, double iva, double margen, double flete, Rubro rubro, SubRubro subRubro, Ubicacion ubicacion){
-        return new Producto(id, nombre, codigoUsuario, unidad, costo, iva, margen, flete, rubro, subRubro, ubicacion);
+    public static Producto instancia(Integer id, String nombre, String codigoUsuario, TipoUnidad unidad, double costo, double iva, double margen, double flete, Rubro rubro, SubRubro subRubro, Ubicacion ubicacion, Proveedor proveedor){
+        return new Producto(id, nombre, codigoUsuario, unidad, costo, iva, margen, flete, rubro, subRubro, ubicacion, proveedor);
     }
 
     public Integer getId() {
@@ -140,5 +144,13 @@ public class Producto {
 
     public void setUbicacion(Ubicacion ubicacion) {
         this.ubicacion = ubicacion;
+    }
+
+    public Proveedor getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(Proveedor proveedor) {
+        this.proveedor = proveedor;
     }
 }
