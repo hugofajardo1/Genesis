@@ -28,6 +28,8 @@ public class ProductoDTO {
     UbicacionDTO ubicacion;
     @JsonProperty("proveedor")
     ProveedorDTO proveedor;
+    @JsonProperty("precioventa")
+    Double precioVenta;
 
 
     public ProductoDTO(Integer id, String nombre, String codigoUsuario, TipoUnidadDTO tipoUnidad, Double costo, Double iva, Double margen, Double flete, RubroDTO rubro, SubRubroDTO subRubro, UbicacionDTO ubicacion, ProveedorDTO proveedor) {
@@ -139,5 +141,10 @@ public class ProductoDTO {
 
     public void setProveedor(ProveedorDTO proveedor) {
         this.proveedor = proveedor;
+    }
+
+    public Double getPrecioVenta() {
+        Double precioCalculado = this.getCosto() * ((this.getFlete() /100)+1) * ((this.getMargen() /100)+1) * ((this.getIva() /100)+1);
+        return Math.round(precioCalculado * 100.0) / 100.0;
     }
 }

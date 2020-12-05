@@ -35,6 +35,8 @@ public class Producto {
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "proveedorid")
     Proveedor proveedor;
+    @Transient
+    Double precioVenta;
 
     public Producto() {
     }
@@ -152,5 +154,10 @@ public class Producto {
 
     public void setProveedor(Proveedor proveedor) {
         this.proveedor = proveedor;
+    }
+
+    public Double getPrecioVenta() {
+        Double precioCalculado = this.getCosto() * ((this.getFlete() /100)+1) * ((this.getMargen() /100)+1) * ((this.getIva() /100)+1);
+        return Math.round(precioCalculado * 100.0) / 100.0;
     }
 }
