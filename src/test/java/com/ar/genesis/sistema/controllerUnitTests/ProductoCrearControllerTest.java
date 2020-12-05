@@ -4,7 +4,7 @@ import com.ar.genesis.sistema.core.domain.Producto;
 import com.ar.genesis.sistema.core.exception.ProductoExisteException;
 import com.ar.genesis.sistema.core.input.IProductoCrearInput;
 import com.ar.genesis.sistema.service.controller.ProductoCrearController;
-import com.ar.genesis.sistema.service.dto.ProductoDTO;
+import com.ar.genesis.sistema.service.dto.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -22,7 +22,7 @@ public class ProductoCrearControllerTest {
 
     @Test
     public  void crearProducto_ProductoNoExiste_Devuelve200() throws ProductoExisteException {
-        ProductoDTO unProductoDTO = new ProductoDTO(1, "Producto");
+        ProductoDTO unProductoDTO = new ProductoDTO(1, "Producto", "C42343", new TipoUnidadDTO(1, "Unidad"), 100.0, 21.0, 35.0, 0.0, new RubroDTO(1, "Hardware"), new SubRubroDTO(1, "Perifericos"), new UbicacionDTO(1, "Estante 1"), new ProveedorDTO(1, "Proveedor 1"));
         when(miProductoCrearInput.crearProducto(any(Producto.class))).thenReturn(true);
 
         ProductoCrearController productoCrearController = new ProductoCrearController(miProductoCrearInput);
@@ -34,7 +34,7 @@ public class ProductoCrearControllerTest {
 
     @Test
     public  void crearProducto_ProductoExiste_Devuelve412() throws ProductoExisteException {
-        ProductoDTO unProductoDTO = new ProductoDTO(1, "Producto");
+        ProductoDTO unProductoDTO = new ProductoDTO(1, "Producto", "C42343", new TipoUnidadDTO(1, "Unidad"), 100.0, 21.0, 35.0, 0.0, new RubroDTO(1, "Hardware"), new SubRubroDTO(1, "Perifericos"), new UbicacionDTO(1, "Estante 1"), new ProveedorDTO(1, "Proveedor 1"));
         when(miProductoCrearInput.crearProducto(any(Producto.class))).thenThrow(ProductoExisteException.class);
 
         ProductoCrearController productoCrearController = new ProductoCrearController(miProductoCrearInput);
