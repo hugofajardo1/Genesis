@@ -26,7 +26,7 @@ public class FichaCrearController {
     @PostMapping(value = "/ficha")
     public ResponseEntity<?> crearFicha(@RequestBody FichaDTO unaFichaDTO){
         try{
-            boolean resultado = this.miFichaCrearInput.crearFicha(Ficha.instancia(unaFichaDTO.getId(), unaFichaDTO.getNombre(), unaFichaDTO.getDomicilio(), Localidad.instancia(1, "Chilecito"), Provincia.instancia(1, "La Rioja"), unaFichaDTO.getTelefono(), TipoIva.instancia(1, "Responsable Inscripto"), "20255071336", "B-00007-777", "20255071336"));
+            boolean resultado = this.miFichaCrearInput.crearFicha(Ficha.instancia(unaFichaDTO.getId(), unaFichaDTO.getNombre(), unaFichaDTO.getDomicilio(), Localidad.instancia(unaFichaDTO.getLocalidad().getId(), unaFichaDTO.getLocalidad().getNombre()), Provincia.instancia(unaFichaDTO.getProvincia().getId(), unaFichaDTO.getProvincia().getNombre()), unaFichaDTO.getTelefono(), TipoIva.instancia(unaFichaDTO.getTipoIva().getId(), unaFichaDTO.getTipoIva().getNombre()), unaFichaDTO.getCuit(), unaFichaDTO.getIbrutos(), unaFichaDTO.getContacto()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (FichaExisteException e) {
