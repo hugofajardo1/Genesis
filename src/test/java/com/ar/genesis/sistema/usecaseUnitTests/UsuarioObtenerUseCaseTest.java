@@ -19,11 +19,11 @@ public class UsuarioObtenerUseCaseTest {
     @Mock
     IUsuarioObtenerRepository miUsuarioObtenerRepository;
     @Spy
-    List<Usuario> Usuarios = factoryListaUsuarios();
+    List<Usuario> usuarios = factoryListaUsuarios();
 
     @Test
     public void obtenerUsuarios_devuelveLista(){
-        when(miUsuarioObtenerRepository.obtenerUsuarios()).thenReturn(Usuarios);
+        when(miUsuarioObtenerRepository.obtenerUsuarios()).thenReturn(usuarios);
         UsuarioObtenerUseCase usuarioObtenerUseCase = new UsuarioObtenerUseCase(miUsuarioObtenerRepository);
         List<Usuario> resultado = usuarioObtenerUseCase.obtenerUsuarios();
         Assertions.assertEquals(2,resultado.size());
