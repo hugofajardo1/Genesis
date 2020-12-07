@@ -12,4 +12,6 @@ public interface IUbicacionCRUD extends CrudRepository<Ubicacion, Integer> {
     boolean existsByNombre(String nombre);
 
     List<Ubicacion> findAllByOrderById();
+
+    Ubicacion findUbicacionByIdEquals(Integer i);
 }
