@@ -13,4 +13,5 @@ public interface ITipoUnidadCRUD extends CrudRepository<TipoUnidad, Integer> {
 
     List<TipoUnidad> findAllByOrderById();
 
+    TipoUnidad findTipoUnidadByIdEquals(Integer id);
 }
