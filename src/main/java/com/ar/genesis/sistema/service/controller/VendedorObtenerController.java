@@ -20,7 +20,7 @@ public class VendedorObtenerController {
 
     public VendedorObtenerController(IVendedorObtenerInput miVendedorObtenerInput) { this.miVendedorObtenerInput = miVendedorObtenerInput; }
 
-    @GetMapping(value = "/Vendedor")
+    @GetMapping(value = "/vendedor")
     public ResponseEntity<?> obtenerVendedores(){
         try{
             List<VendedorDTO> vendedoresDTO = new ArrayList<>();
