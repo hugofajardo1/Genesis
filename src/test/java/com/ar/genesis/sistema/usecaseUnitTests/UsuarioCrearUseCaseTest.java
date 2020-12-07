@@ -17,7 +17,7 @@ public class UsuarioCrearUseCaseTest {
     IUsuarioRepository miUsuarioRepository;
     @Test
     void crearUsuario_UsuarioNoExiste_GuardaCorrectamente() throws UsuarioExisteException {
-        Usuario unUsuario = Usuario.instancia(1, "Usuario 1");
+        Usuario unUsuario = Usuario.instancia(1, "Usuario 1", "nombreusuario", "contrasenia");
         when(miUsuarioRepository.existeUsuario("Usuario 1")).thenReturn(false);
         when(miUsuarioRepository.guardarUsuario(unUsuario)).thenReturn(true);
         UsuarioCrearUseCase usuarioCrearUseCase = new UsuarioCrearUseCase(miUsuarioRepository);
@@ -27,7 +27,7 @@ public class UsuarioCrearUseCaseTest {
 
     @Test
     void crearUsuario_UsuarioExiste_NoGuardaUsuario() {
-        Usuario unUsuario = Usuario.instancia(1, "Usuario 1");
+        Usuario unUsuario = Usuario.instancia(1, "Usuario 1", "nombreusuario", "contrasenia");
         when(miUsuarioRepository.existeUsuario("Usuario 1")).thenReturn(true);
         when(miUsuarioRepository.guardarUsuario(unUsuario)).thenReturn(false);
         UsuarioCrearUseCase usuarioCrearUseCase = new UsuarioCrearUseCase(miUsuarioRepository);

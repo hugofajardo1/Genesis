@@ -22,7 +22,7 @@ public class UsuarioCrearDataTest {
 
     @Test
     public void guardarUsuario_UsuarioGuardado_devuelveTrue() {
-        Usuario unUsuario = Usuario.instancia(null, "Usuario 1");
+        Usuario unUsuario = Usuario.instancia(null, "Usuario 1", "nombreusuario", "contrasenia");
         boolean resultado = miUsuarioRepoImplementacion.guardarUsuario(unUsuario);
         Assertions.assertTrue(resultado);
     }

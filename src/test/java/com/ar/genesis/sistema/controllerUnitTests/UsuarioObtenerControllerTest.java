@@ -23,11 +23,11 @@ public class UsuarioObtenerControllerTest {
     @Test
     public void obtenerUsuarios_UsuariosExisten_Devuelve200(){
         List<Usuario> usuarios = new ArrayList<>();
-        usuarios.add(Usuario.instancia(1,"Usuario 1"));
+        usuarios.add(Usuario.instancia(1,"Usuario 1", "nombreusuario", "contrasenia"));
         when(miUsuarioObtenerInput.obtenerUsuarios()).thenReturn(usuarios);
 
         UsuarioObtenerController usuarioObtenerController = new UsuarioObtenerController(miUsuarioObtenerInput);
-        ResponseEntity<?> responseEntity = usuarioObtenerController.obtenerUsuarioes();
+        ResponseEntity<?> responseEntity = usuarioObtenerController.obtenerUsuarios();
         List<?> resultado = (List<?>) responseEntity.getBody();
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         if(resultado != null) {

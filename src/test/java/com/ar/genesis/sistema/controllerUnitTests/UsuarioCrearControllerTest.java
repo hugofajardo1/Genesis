@@ -22,7 +22,7 @@ public class UsuarioCrearControllerTest {
 
     @Test
     public  void crearUsuario_UsuarioNoExiste_Devuelve200() throws UsuarioExisteException {
-        UsuarioDTO unUsuarioDTO = new UsuarioDTO(1, "Usuario 1");
+        UsuarioDTO unUsuarioDTO = new UsuarioDTO(1, "Usuario 1", "usuario", "contrasenia");
         when(miUsuarioCrearInput.crearUsuario(any(Usuario.class))).thenReturn(true);
 
         UsuarioCrearController usuarioCrearController = new UsuarioCrearController(miUsuarioCrearInput);
@@ -34,7 +34,7 @@ public class UsuarioCrearControllerTest {
 
     @Test
     public  void crearUsuario_UsuarioExiste_Devuelve412() throws UsuarioExisteException {
-        UsuarioDTO unUsuarioDTO = new UsuarioDTO(1, "Usuario 1");
+        UsuarioDTO unUsuarioDTO = new UsuarioDTO(1, "Usuario 1", "usuario", "contrasenia");
         when(miUsuarioCrearInput.crearUsuario(any(Usuario.class))).thenThrow(UsuarioExisteException.class);
 
         UsuarioCrearController usuarioCrearController = new UsuarioCrearController(miUsuarioCrearInput);

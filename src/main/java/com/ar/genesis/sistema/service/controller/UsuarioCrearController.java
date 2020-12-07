@@ -24,7 +24,7 @@ public class UsuarioCrearController {
     @PostMapping(value = "/usuario")
     public ResponseEntity<?> crearUsuario(@RequestBody UsuarioDTO unUsuarioDTO){
         try{
-            boolean resultado = this.miUsuarioCrearInput.crearUsuario(Usuario.instancia(unUsuarioDTO.getId(), unUsuarioDTO.getNombre()));
+            boolean resultado = this.miUsuarioCrearInput.crearUsuario(Usuario.instancia(unUsuarioDTO.getId(), unUsuarioDTO.getNombre(), unUsuarioDTO.getNombreUsuario(), unUsuarioDTO.getContrasenia()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (UsuarioExisteException e) {

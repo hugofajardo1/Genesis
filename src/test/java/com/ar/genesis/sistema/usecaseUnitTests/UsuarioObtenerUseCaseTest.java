@@ -31,8 +31,8 @@ public class UsuarioObtenerUseCaseTest {
 
     public List<Usuario> factoryListaUsuarios() {
         List<Usuario> usuarios = new ArrayList<>();
-        Usuario usuario1 = Usuario.instancia(1, "Usuario 1");
-        Usuario usuario2 = Usuario.instancia(2, "Usuario 2");
+        Usuario usuario1 = Usuario.instancia(1, "Usuario 1", "nombreusuario", "contrasenia");
+        Usuario usuario2 = Usuario.instancia(2, "Usuario 2", "nombreusuario", "contrasenia");
         usuarios.add(usuario1);
         usuarios.add(usuario2);
         return usuarios;

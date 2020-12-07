@@ -22,7 +22,7 @@ public class UsuarioModificarControllerTest {
 
     @Test
     public  void modificarUsuario_UsuarioNoExiste_Devuelve200() throws UsuarioExisteException {
-        UsuarioDTO unUsuarioDTO = new UsuarioDTO(1, "Usuario 1");
+        UsuarioDTO unUsuarioDTO = new UsuarioDTO(1, "Usuario 1", "usuario", "contrasenia");
         when(miUsuarioModificarInput.modificarUsuario(any(Usuario.class))).thenReturn(true);
 
         UsuarioModificarController usuarioModificarController = new UsuarioModificarController(miUsuarioModificarInput);
@@ -34,7 +34,7 @@ public class UsuarioModificarControllerTest {
 
     @Test
     public  void modificarUsuario_UsuarioExiste_Devuelve412() throws UsuarioExisteException {
-        UsuarioDTO unUsuarioDTO = new UsuarioDTO(1, "Usuario 1");
+        UsuarioDTO unUsuarioDTO = new UsuarioDTO(1, "Usuario 1", "usuario", "contrasenia");
         when(miUsuarioModificarInput.modificarUsuario(any(Usuario.class))).thenThrow(UsuarioExisteException.class);
 
         UsuarioModificarController usuarioModificarController = new UsuarioModificarController(miUsuarioModificarInput);

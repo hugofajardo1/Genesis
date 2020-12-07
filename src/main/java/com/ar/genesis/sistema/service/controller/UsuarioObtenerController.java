@@ -20,11 +20,11 @@ public class UsuarioObtenerController {
 
     public UsuarioObtenerController(IUsuarioObtenerInput miUsuarioObtenerInput) { this.miUsuarioObtenerInput = miUsuarioObtenerInput; }
 
-    @GetMapping(value = "/Usuario")
-    public ResponseEntity<?> obtenerUsuarioes(){
+    @GetMapping(value = "/usuario")
+    public ResponseEntity<?> obtenerUsuarios(){
         try{
             List<UsuarioDTO> usuariosDTO = new ArrayList<>();
-            miUsuarioObtenerInput.obtenerUsuarios().forEach(unUsuario -> usuariosDTO.add(new UsuarioDTO(unUsuario.getId(), unUsuario.getNombre())));
+            miUsuarioObtenerInput.obtenerUsuarios().forEach(unUsuario -> usuariosDTO.add(new UsuarioDTO(unUsuario.getId(), unUsuario.getNombre(), unUsuario.getNombreUsuario(), unUsuario.getContrasenia())));
             if (usuariosDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(usuariosDTO);
         } catch (Exception ex) {

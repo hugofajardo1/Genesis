@@ -17,7 +17,7 @@ public class UsuarioModificarUseCaseTest {
     IUsuarioRepository miUsuarioRepository;
     @Test
     void modificarUsuario_UsuarioActualizadoCorrectamente() throws UsuarioExisteException {
-        Usuario unUsuario = Usuario.instancia(1, "Cliente");
+        Usuario unUsuario = Usuario.instancia(1, "Cliente", "nombreusuario", "contrasenia");
         when(miUsuarioRepository.existeUsuario("Cliente")).thenReturn(false);
         when(miUsuarioRepository.guardarUsuario(unUsuario)).thenReturn(true);
         UsuarioModificarUseCase usuarioModificarUseCase = new UsuarioModificarUseCase(miUsuarioRepository);
@@ -27,7 +27,7 @@ public class UsuarioModificarUseCaseTest {
 
     @Test
     void modificarUsuario_HayConflictoUsuarioExiste_UsuarioNoActualiza() {
-        Usuario unUsuario = Usuario.instancia(1, "Cliente");
+        Usuario unUsuario = Usuario.instancia(1, "Cliente", "nombreusuario", "contrasenia");
         when(miUsuarioRepository.existeUsuario("Cliente")).thenReturn(true);
         when(miUsuarioRepository.guardarUsuario(unUsuario)).thenReturn(false);
         UsuarioModificarUseCase usuarioModificarUseCase = new UsuarioModificarUseCase(miUsuarioRepository);

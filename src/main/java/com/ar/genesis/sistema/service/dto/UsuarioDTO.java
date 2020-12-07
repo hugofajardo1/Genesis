@@ -7,10 +7,16 @@ public class UsuarioDTO {
     Integer id;
     @JsonProperty("nombre")
     String nombre;
+    @JsonProperty("nombreusuario")
+    String nombreUsuario;
+    @JsonProperty("contrasenia")
+    String contrasenia;
 
-    public UsuarioDTO(Integer id, String nombre) {
+    public UsuarioDTO(Integer id, String nombre, String nombreUsuario, String contrasenia) {
         this.setId(id);
         this.setNombre(nombre);
+        this.setNombreUsuario(nombreUsuario);
+        this.setContrasenia(contrasenia);
     }
 
     public Integer getId() {
@@ -29,4 +35,19 @@ public class UsuarioDTO {
         this.nombre = nombre;
     }
 
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
+    }
 }
