@@ -20,11 +20,11 @@ public class UsuarioObtenerPorNombreUsuarioYContraseniaDataTest {
 
     @Test
     public void obtenerUsuarioPorNombreUsuarioYContrasenia_DevuelveUsuario() {
-        Assertions.assertNotNull(miUsuarioObtenerPorNombreUsuarioYContraseniaRepoImplementacion.obtenerUsuario("nombreUsuario", "contrasenia"));
+        Assertions.assertNotNull(miUsuarioObtenerPorNombreUsuarioYContraseniaRepoImplementacion.obtenerUsuario("nusuario", "contra"));
     }
 
     @Test
     public void obtenerUsuarioPorNombreUsuarioYContrasenia_DevuelveNull() {
-        Assertions.assertNull(miUsuarioObtenerPorNombreUsuarioYContraseniaRepoImplementacion.obtenerUsuario("nombreUsuarioooo", "contrasenia"));
+        Assertions.assertNull(miUsuarioObtenerPorNombreUsuarioYContraseniaRepoImplementacion.obtenerUsuario("nusuariooooo", "contrasenia"));
     }
 }
