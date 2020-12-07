@@ -29,9 +29,6 @@ public class RubroObtenerControllerTest {
         RubroObtenerController rubroObtenerController = new RubroObtenerController(miRubroObtenerInput);
         ResponseEntity<?> responseEntity = rubroObtenerController.obtenerRubros();
         List<?> resultado = (List<?>) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        if(resultado != null) {
-            Assertions.assertEquals(resultado.size(), 1);
-        }
+        Assertions.assertEquals(resultado.size(), 1);
     }
 }

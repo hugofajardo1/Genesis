@@ -29,9 +29,6 @@ public class SubRubroObtenerControllerTest {
         SubRubroObtenerController subRubroObtenerController = new SubRubroObtenerController(miSubRubroObtenerInput);
         ResponseEntity<?> responseEntity = subRubroObtenerController.obtenerSubRubros();
         List<?> resultado = (List<?>) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        if(resultado != null) {
-            Assertions.assertEquals(resultado.size(), 1);
-        }
+        Assertions.assertEquals(resultado.size(), 1);
     }
 }

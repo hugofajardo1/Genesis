@@ -29,9 +29,6 @@ public class UsuarioObtenerControllerTest {
         UsuarioObtenerController usuarioObtenerController = new UsuarioObtenerController(miUsuarioObtenerInput);
         ResponseEntity<?> responseEntity = usuarioObtenerController.obtenerUsuarios();
         List<?> resultado = (List<?>) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        if(resultado != null) {
-            Assertions.assertEquals(resultado.size(), 1);
-        }
+        Assertions.assertEquals(resultado.size(), 1);
     }
 }

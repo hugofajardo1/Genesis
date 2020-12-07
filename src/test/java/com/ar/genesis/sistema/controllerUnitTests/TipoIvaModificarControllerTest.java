@@ -28,7 +28,6 @@ public class TipoIvaModificarControllerTest {
         TipoIvaModificarController tipoIvaModificarController = new TipoIvaModificarController(miTipoIvaModificarInput);
         ResponseEntity<?> responseEntity = tipoIvaModificarController.modificarTipoIva(unTipoIvaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 

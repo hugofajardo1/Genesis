@@ -28,7 +28,6 @@ public class RubroModificarControllerTest {
         RubroModificarController rubroModificarController = new RubroModificarController(miRubroModificarInput);
         ResponseEntity<?> responseEntity = rubroModificarController.modificarRubro(unRubroDTO);
         boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 

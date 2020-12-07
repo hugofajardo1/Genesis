@@ -29,9 +29,6 @@ public class TipoFichaObtenerControllerTest {
         TipoFichaObtenerController tipoFichaObtenerController = new TipoFichaObtenerController(miTipoFichaObtenerInput);
         ResponseEntity<?> responseEntity = tipoFichaObtenerController.obtenerTipoFichas();
         List<?> resultado = (List<?>) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        if(resultado != null) {
-            Assertions.assertEquals(resultado.size(), 1);
-        }
+        Assertions.assertEquals(resultado.size(), 1);
     }
 }

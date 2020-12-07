@@ -28,7 +28,6 @@ public class SubRubroModificarControllerTest {
         SubRubroModificarController subRubroModificarController = new SubRubroModificarController(miSubRubroModificarInput);
         ResponseEntity<?> responseEntity = subRubroModificarController.modificarSubRubro(unSubRubroDTO);
         boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 

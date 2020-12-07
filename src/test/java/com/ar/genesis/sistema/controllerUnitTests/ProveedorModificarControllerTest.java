@@ -28,7 +28,6 @@ public class ProveedorModificarControllerTest {
         ProveedorModificarController proveedorModificarController = new ProveedorModificarController(miProveedorModificarInput);
         ResponseEntity<?> responseEntity = proveedorModificarController.modificarProveedor(unProveedorDTO);
         boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 

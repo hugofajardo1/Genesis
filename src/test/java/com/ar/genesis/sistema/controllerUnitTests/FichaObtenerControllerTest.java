@@ -32,9 +32,6 @@ public class FichaObtenerControllerTest {
         FichaObtenerController fichaObtenerController = new FichaObtenerController(miObtenerFichasInput);
         ResponseEntity<?> responseEntity = fichaObtenerController.obtenerFichas();
         List<?> resultado = (List<?>) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        if(resultado != null) {
-            Assertions.assertEquals(resultado.size(), 1);
-        }
+        Assertions.assertEquals(resultado.size(), 1);
     }
 }

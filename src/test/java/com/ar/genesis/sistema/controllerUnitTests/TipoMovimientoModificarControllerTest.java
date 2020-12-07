@@ -28,7 +28,6 @@ public class TipoMovimientoModificarControllerTest {
         TipoMovimientoModificarController tipoMovimientoModificarController = new TipoMovimientoModificarController(miTipoMovimientoModificarInput);
         ResponseEntity<?> responseEntity = tipoMovimientoModificarController.modificarTipoMovimiento(unTipoMovimientoDTO);
         boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 

@@ -29,9 +29,6 @@ public class ProvinciaObtenerControllerTest {
         ProvinciaObtenerController provinciaObtenerController = new ProvinciaObtenerController(miProvinciaObtenerInput);
         ResponseEntity<?> responseEntity = provinciaObtenerController.obtenerProvincias();
         List<?> resultado = (List<?>) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        if(resultado != null) {
-            Assertions.assertEquals(resultado.size(), 1);
-        }
+        Assertions.assertEquals(resultado.size(), 1);
     }
 }

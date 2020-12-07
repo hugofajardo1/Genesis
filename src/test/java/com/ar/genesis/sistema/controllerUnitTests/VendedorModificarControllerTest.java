@@ -28,7 +28,6 @@ public class VendedorModificarControllerTest {
         VendedorModificarController vendedorModificarController = new VendedorModificarController(miVendedorModificarInput);
         ResponseEntity<?> responseEntity = vendedorModificarController.modificarVendedor(unVendedorDTO);
         boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 

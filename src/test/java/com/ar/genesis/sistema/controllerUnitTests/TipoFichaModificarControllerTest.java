@@ -28,7 +28,6 @@ public class TipoFichaModificarControllerTest {
         TipoFichaModificarController tipoFichaModificarController = new TipoFichaModificarController(miTipoFichaModificarInput);
         ResponseEntity<?> responseEntity = tipoFichaModificarController.modificarTipoFicha(unTipoFichaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 

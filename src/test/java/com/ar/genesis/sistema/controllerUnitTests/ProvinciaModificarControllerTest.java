@@ -28,7 +28,6 @@ public class ProvinciaModificarControllerTest {
         ProvinciaModificarController provinciaModificarController = new ProvinciaModificarController(miProvinciaModificarInput);
         ResponseEntity<?> responseEntity = provinciaModificarController.modificarProvincia(unProvinciaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 

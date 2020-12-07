@@ -28,7 +28,6 @@ public class RubroCrearControllerTest {
         RubroCrearController rubroCrearController = new RubroCrearController(miRubroCrearInput);
         ResponseEntity<?> responseEntity = rubroCrearController.crearRubro(unRubroDTO);
         boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 

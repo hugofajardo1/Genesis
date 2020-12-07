@@ -28,7 +28,6 @@ public class UsuarioCrearControllerTest {
         UsuarioCrearController usuarioCrearController = new UsuarioCrearController(miUsuarioCrearInput);
         ResponseEntity<?> responseEntity = usuarioCrearController.crearUsuario(unUsuarioDTO);
         boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 

@@ -28,7 +28,6 @@ public class ProductoModificarControllerTest {
         ProductoModificarController productoModificarController = new ProductoModificarController(miProductoModificarInput);
         ResponseEntity<?> responseEntity = productoModificarController.modificarProducto(unProductoDTO);
         boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 

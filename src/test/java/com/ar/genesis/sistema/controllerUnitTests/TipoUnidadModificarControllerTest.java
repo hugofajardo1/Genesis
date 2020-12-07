@@ -28,7 +28,6 @@ public class TipoUnidadModificarControllerTest {
         TipoUnidadModificarController tipoUnidadModificarController = new TipoUnidadModificarController(miTipoUnidadModificarInput);
         ResponseEntity<?> responseEntity = tipoUnidadModificarController.modificarTipoUnidad(unTipoUnidadDTO);
         boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 

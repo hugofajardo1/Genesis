@@ -28,7 +28,6 @@ public class UsuarioModificarControllerTest {
         UsuarioModificarController usuarioModificarController = new UsuarioModificarController(miUsuarioModificarInput);
         ResponseEntity<?> responseEntity = usuarioModificarController.modificarUsuario(unUsuarioDTO);
         boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 

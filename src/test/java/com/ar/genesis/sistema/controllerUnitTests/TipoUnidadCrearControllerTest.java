@@ -28,7 +28,6 @@ public class TipoUnidadCrearControllerTest {
         TipoUnidadCrearController tipoUnidadCrearController = new TipoUnidadCrearController(miTipoUnidadCrearInput);
         ResponseEntity<?> responseEntity = tipoUnidadCrearController.crearTipoUnidad(unTipoUnidadDTO);
         boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 

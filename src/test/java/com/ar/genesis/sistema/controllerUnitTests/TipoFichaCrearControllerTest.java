@@ -28,7 +28,6 @@ public class TipoFichaCrearControllerTest {
         TipoFichaCrearController tipoFichaCrearController = new TipoFichaCrearController(miTipoFichaCrearInput);
         ResponseEntity<?> responseEntity = tipoFichaCrearController.crearTipoFicha(unTipoFichaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 

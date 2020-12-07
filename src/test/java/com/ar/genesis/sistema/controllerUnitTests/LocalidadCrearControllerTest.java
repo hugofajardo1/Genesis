@@ -28,7 +28,6 @@ public class LocalidadCrearControllerTest {
         LocalidadCrearController localidadCrearController = new LocalidadCrearController(miLocalidadCrearInput);
         ResponseEntity<?> responseEntity = localidadCrearController.crearLocalidad(unaLocalidadDTO);
         boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 

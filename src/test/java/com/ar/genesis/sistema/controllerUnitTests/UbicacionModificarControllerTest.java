@@ -28,7 +28,6 @@ public class UbicacionModificarControllerTest {
         UbicacionModificarController ubicacionModificarController = new UbicacionModificarController(miUbicacionModificarInput);
         ResponseEntity<?> responseEntity = ubicacionModificarController.modificarUbicacion(unaUbicacionDTO);
         boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 

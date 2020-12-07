@@ -28,7 +28,6 @@ public class LocalidadModificarControllerTest {
         LocalidadModificarController localidadModificarController = new LocalidadModificarController(miLocalidadModificarInput);
         ResponseEntity<?> responseEntity = localidadModificarController.modificarLocalidad(unaLocalidadDTO);
         boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 

@@ -28,7 +28,6 @@ public class ProductoCrearControllerTest {
         ProductoCrearController productoCrearController = new ProductoCrearController(miProductoCrearInput);
         ResponseEntity<?> responseEntity = productoCrearController.crearProducto(unProductoDTO);
         boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 

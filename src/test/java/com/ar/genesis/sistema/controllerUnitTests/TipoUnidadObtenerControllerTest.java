@@ -29,9 +29,6 @@ public class TipoUnidadObtenerControllerTest {
         TipoUnidadObtenerController tipoUnidadObtenerController = new TipoUnidadObtenerController(miTipoUnidadObtenerInput);
         ResponseEntity<?> responseEntity = tipoUnidadObtenerController.obtenerTipoUnidades();
         List<?> resultado = (List<?>) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        if(resultado != null) {
-            Assertions.assertEquals(resultado.size(), 1);
-        }
+        Assertions.assertEquals(resultado.size(), 1);
     }
 }

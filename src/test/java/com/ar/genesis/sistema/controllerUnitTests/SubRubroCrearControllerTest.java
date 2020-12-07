@@ -28,7 +28,6 @@ public class SubRubroCrearControllerTest {
         SubRubroCrearController subRubroCrearController = new SubRubroCrearController(miSubRubroCrearInput);
         ResponseEntity<?> responseEntity = subRubroCrearController.crearSubRubro(unSubRubroDTO);
         boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 

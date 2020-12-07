@@ -28,7 +28,6 @@ public class VendedorCrearControllerTest {
         VendedorCrearController vendedorCrearController = new VendedorCrearController(miVendedorCrearInput);
         ResponseEntity<?> responseEntity = vendedorCrearController.crearVendedor(unVendedorDTO);
         boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 

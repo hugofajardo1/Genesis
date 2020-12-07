@@ -32,7 +32,6 @@ public class FichaCrearControllerTest {
         FichaCrearController fichaCrearController = new FichaCrearController(miFichaCrearInput);
         ResponseEntity<?> responseEntity = fichaCrearController.crearFicha(unaFichaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 

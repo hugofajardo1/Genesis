@@ -28,7 +28,6 @@ public class TipoIvaCrearControllerTest {
         TipoIvaCrearController tipoIvaCrearController = new TipoIvaCrearController(miTipoIvaCrearInput);
         ResponseEntity<?> responseEntity = tipoIvaCrearController.crearTipoIva(unTipoIvaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 

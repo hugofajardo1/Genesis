@@ -28,7 +28,6 @@ public class TipoMovimientoCrearControllerTest {
         TipoMovimientoCrearController tipoMovimientoCrearController = new TipoMovimientoCrearController(miTipoMovimientoCrearInput);
         ResponseEntity<?> responseEntity = tipoMovimientoCrearController.crearTipoMovimiento(unTipoMovimientoDTO);
         boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 

@@ -28,7 +28,6 @@ public class ProvinciaCrearControllerTest {
         ProvinciaCrearController provinciaCrearController = new ProvinciaCrearController(miProvinciaCrearInput);
         ResponseEntity<?> responseEntity = provinciaCrearController.crearProvincia(unaProvinciaDTO);
         boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 

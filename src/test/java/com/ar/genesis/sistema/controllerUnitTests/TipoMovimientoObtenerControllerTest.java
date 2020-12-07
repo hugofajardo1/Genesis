@@ -29,9 +29,6 @@ public class TipoMovimientoObtenerControllerTest {
         TipoMovimientoObtenerController tipoMovimientoObtenerController = new TipoMovimientoObtenerController(miTipoMovimientoObtenerInput);
         ResponseEntity<?> responseEntity = tipoMovimientoObtenerController.obtenerTipoMovimientos();
         List<?> resultado = (List<?>) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        if(resultado != null) {
-            Assertions.assertEquals(resultado.size(), 1);
-        }
+        Assertions.assertEquals(resultado.size(), 1);
     }
 }

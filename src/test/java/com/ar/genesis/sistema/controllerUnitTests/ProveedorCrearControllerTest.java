@@ -28,7 +28,6 @@ public class ProveedorCrearControllerTest {
         ProveedorCrearController proveedorCrearController = new ProveedorCrearController(miProveedorCrearInput);
         ResponseEntity<?> responseEntity = proveedorCrearController.crearProveedor(unProveedorDTO);
         boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(resultado);
     }
 
