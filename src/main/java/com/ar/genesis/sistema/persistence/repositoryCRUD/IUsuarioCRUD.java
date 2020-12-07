@@ -15,4 +15,6 @@ public interface IUsuarioCRUD extends CrudRepository<Usuario, Integer> {
     List<Usuario> findAllByOrderById();
 
     Usuario findByNombreUsuarioEqualsAndContraseniaEquals(String nombreUsuario, String contrasenia);
+
+    Usuario findUsuarioByIdEquals(Integer id);
 }

@@ -1,7 +1,5 @@
 package com.ar.genesis.sistema.dataUnitTests;
 
-import com.ar.genesis.sistema.core.domain.Usuario;
-import com.ar.genesis.sistema.core.exception.UsuarioNoExisteException;
 import com.ar.genesis.sistema.persistence.repositoryImplementacion.UsuarioObtenerPorNombreUsuarioYContraseniaRepoImplmentacion;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -10,8 +8,6 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlGroup;
 
 import javax.inject.Inject;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @SqlGroup({
