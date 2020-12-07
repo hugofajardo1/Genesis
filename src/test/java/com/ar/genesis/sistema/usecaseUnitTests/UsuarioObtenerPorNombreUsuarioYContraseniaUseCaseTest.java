@@ -17,7 +17,7 @@ public class UsuarioObtenerPorNombreUsuarioYContraseniaUseCaseTest {
     IUsuarioObtenerPorNombreUsuarioYContraseniaRepository miUsuarioObtenerPorNombreUsuarioYContraseniaRepository;
 
     @Test
-    public void obtenerUsuarioPorNombreUsuarioYContrasenia_devuelveUsuario() {
+    public void obtenerUsuarioPorNombreUsuarioYContrasenia_devuelveUsuario() throws UsuarioNoExisteException {
         Usuario unUsuario = Usuario.instancia(1, "Usuario 1", "nombreusuario", "contrasenia");
 
         when(miUsuarioObtenerPorNombreUsuarioYContraseniaRepository.obtenerUsuario("nombreusuario", "contrasenia")).thenReturn(unUsuario);
@@ -27,7 +27,7 @@ public class UsuarioObtenerPorNombreUsuarioYContraseniaUseCaseTest {
         Assertions.assertNotNull(resultado);
     }
     @Test
-    public void obtenerUsuarioPorNombreUsuarioYContrasenia_devuelveUsuarioNoExiste() {
+    public void obtenerUsuarioPorNombreUsuarioYContrasenia_devuelveUsuarioNoExiste() throws UsuarioNoExisteException {
 
         when(miUsuarioObtenerPorNombreUsuarioYContraseniaRepository.obtenerUsuario("nombreusuario", "contrasenia")).thenReturn(null);
 

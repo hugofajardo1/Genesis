@@ -1,6 +1,7 @@
 package com.ar.genesis.sistema.service.controller;
 
 import com.ar.genesis.sistema.core.domain.Usuario;
+import com.ar.genesis.sistema.core.exception.UsuarioNoExisteException;
 import com.ar.genesis.sistema.core.input.IUsuarioObtenerPorNombreUsuarioYContraseniaInput;
 import com.ar.genesis.sistema.service.dto.UsuarioDTO;
 import org.springframework.http.HttpStatus;
@@ -28,11 +29,10 @@ public class UsuarioObtenerPorNombreUsuarioYContraseniaController {
             if (unUsuario!=null){
                 unUsuarioDTO = new UsuarioDTO(unUsuario.getId(), unUsuario.getNombre(), unUsuario.getNombreUsuario(), unUsuario.getContrasenia());
             }
-            if (unUsuarioDTO==null) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(unUsuarioDTO);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (UsuarioNoExisteException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).body(e.toString());
         }
     }
 }

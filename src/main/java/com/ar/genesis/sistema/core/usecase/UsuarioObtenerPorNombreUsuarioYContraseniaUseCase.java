@@ -16,7 +16,11 @@ public class UsuarioObtenerPorNombreUsuarioYContraseniaUseCase implements IUsuar
     public UsuarioObtenerPorNombreUsuarioYContraseniaUseCase(IUsuarioObtenerPorNombreUsuarioYContraseniaRepository miUsuarioObtenerPorNombreUsuarioYContraseniaRepository) { this.miUsuarioObtenerPorNombreUsuarioYContraseniaRepository = miUsuarioObtenerPorNombreUsuarioYContraseniaRepository; }
 
     @Override
-    public Usuario obtenerUsuario(String nombreUsuario, String contrasenia) {
-        return miUsuarioObtenerPorNombreUsuarioYContraseniaRepository.obtenerUsuario(nombreUsuario, contrasenia);
+    public Usuario obtenerUsuario(String nombreUsuario, String contrasenia) throws UsuarioNoExisteException {
+        Usuario unUsuario = miUsuarioObtenerPorNombreUsuarioYContraseniaRepository.obtenerUsuario(nombreUsuario, contrasenia);
+        if(unUsuario==null){
+            throw new UsuarioNoExisteException();
+        }
+        return unUsuario;
     }
 }
