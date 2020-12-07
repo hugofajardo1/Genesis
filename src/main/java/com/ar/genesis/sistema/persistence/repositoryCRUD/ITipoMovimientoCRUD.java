@@ -12,4 +12,6 @@ public interface ITipoMovimientoCRUD extends CrudRepository<TipoMovimiento, Inte
     boolean existsByNombre(String nombre);
 
     List<TipoMovimiento> findAllByOrderById();
+
+    TipoMovimiento findTipoMovimientoByIdEquals(Integer id);
 }
