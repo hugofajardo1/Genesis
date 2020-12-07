@@ -1,6 +1,7 @@
 package com.ar.genesis.sistema.usecaseUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Usuario;
+import com.ar.genesis.sistema.core.exception.UsuarioExisteException;
 import com.ar.genesis.sistema.core.exception.UsuarioNoExisteException;
 import com.ar.genesis.sistema.core.repository.IUsuarioObtenerPorNombreUsuarioYContraseniaRepository;
 import com.ar.genesis.sistema.core.usecase.UsuarioObtenerPorNombreUsuarioYContraseniaUseCase;
@@ -32,6 +33,6 @@ public class UsuarioObtenerPorNombreUsuarioYContraseniaUseCaseTest {
         when(miUsuarioObtenerPorNombreUsuarioYContraseniaRepository.obtenerUsuario("nombreusuario", "contrasenia")).thenReturn(null);
 
         UsuarioObtenerPorNombreUsuarioYContraseniaUseCase usuarioObtenerPorNombreUsuarioYContraseniaUseCase = new UsuarioObtenerPorNombreUsuarioYContraseniaUseCase(miUsuarioObtenerPorNombreUsuarioYContraseniaRepository);
-        Assertions.assertNull(usuarioObtenerPorNombreUsuarioYContraseniaUseCase.obtenerUsuario("nombreusuario", "contrasenia"));
+        Assertions.assertThrows(UsuarioNoExisteException.class, () -> usuarioObtenerPorNombreUsuarioYContraseniaUseCase.obtenerUsuario("nombreusuario", "contrasenia"));
     }
 }
