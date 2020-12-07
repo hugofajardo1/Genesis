@@ -1,7 +1,7 @@
 package com.ar.genesis.sistema.dataUnitTests;
 
 import com.ar.genesis.sistema.core.domain.SubRubro;
-import com.ar.genesis.sistema.persistence.repositoryImplementacion.SubRubroObtenerRepoImplmentacion;
+import com.ar.genesis.sistema.persistence.repositoryImplementacion.SubRubroObtenerRepoImplementacion;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
@@ -19,11 +19,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 })
 public class SubRubroObtenerDataTest {
     @Inject
-    SubRubroObtenerRepoImplmentacion miSubRubroObtenerRepoImplmentacion;
+    SubRubroObtenerRepoImplementacion miSubRubroObtenerRepoImplementacion;
 
     @Test
     public void obtenerSubRubros_SubRubrosExisten_DevuelveListado(){
-        List<SubRubro> subRubros = miSubRubroObtenerRepoImplmentacion.obtenerSubRubros();
+        List<SubRubro> subRubros = miSubRubroObtenerRepoImplementacion.obtenerSubRubros();
         assertEquals(2, subRubros.size());
     }
 }

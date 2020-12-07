@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import javax.inject.Inject;
 
 @Service
-public class UsuarioObtenerPorNombreUsuarioYContraseniaRepoImplmentacion implements IUsuarioObtenerPorNombreUsuarioYContraseniaRepository {
+public class UsuarioObtenerPorNombreUsuarioYContraseniaRepoImplementacion implements IUsuarioObtenerPorNombreUsuarioYContraseniaRepository {
     @Inject
     IUsuarioCRUD miUsuarioCRUD;
 

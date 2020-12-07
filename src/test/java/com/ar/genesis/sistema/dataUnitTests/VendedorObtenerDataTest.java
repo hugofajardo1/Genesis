@@ -1,7 +1,7 @@
 package com.ar.genesis.sistema.dataUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Vendedor;
-import com.ar.genesis.sistema.persistence.repositoryImplementacion.VendedorObtenerRepoImplmentacion;
+import com.ar.genesis.sistema.persistence.repositoryImplementacion.VendedorObtenerRepoImplementacion;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
@@ -19,11 +19,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 })
 public class VendedorObtenerDataTest {
     @Inject
-    VendedorObtenerRepoImplmentacion miVendedorObtenerRepoImplmentacion;
+    VendedorObtenerRepoImplementacion miVendedorObtenerRepoImplementacion;
 
     @Test
     public void obtenerVendedores_VendedoresExisten_DevuelveListado(){
-        List<Vendedor> vendedores = miVendedorObtenerRepoImplmentacion.obtenerVendedores();
+        List<Vendedor> vendedores = miVendedorObtenerRepoImplementacion.obtenerVendedores();
         assertEquals(2, vendedores.size());
     }
 }

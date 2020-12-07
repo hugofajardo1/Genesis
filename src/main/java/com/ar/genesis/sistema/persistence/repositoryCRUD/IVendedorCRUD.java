@@ -12,4 +12,6 @@ public interface IVendedorCRUD extends CrudRepository<Vendedor, Integer> {
     boolean existsByNombre(String nombre);
 
     List<Vendedor> findAllByOrderById();
+
+    Vendedor findVendedorByIdEquals(Integer id);
 }

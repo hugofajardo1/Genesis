@@ -1,7 +1,7 @@
 package com.ar.genesis.sistema.dataUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Usuario;
-import com.ar.genesis.sistema.persistence.repositoryImplementacion.UsuarioObtenerRepoImplmentacion;
+import com.ar.genesis.sistema.persistence.repositoryImplementacion.UsuarioObtenerRepoImplementacion;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
@@ -19,11 +19,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 })
 public class UsuarioObtenerDataTest {
     @Inject
-    UsuarioObtenerRepoImplmentacion miUsuarioObtenerRepoImplmentacion;
+    UsuarioObtenerRepoImplementacion miUsuarioObtenerRepoImplementacion;
 
     @Test
     public void obtenerUsuarios_UsuariosExisten_DevuelveListado(){
-        List<Usuario> usuarios = miUsuarioObtenerRepoImplmentacion.obtenerUsuarios();
+        List<Usuario> usuarios = miUsuarioObtenerRepoImplementacion.obtenerUsuarios();
         assertEquals(2, usuarios.size());
     }
 }

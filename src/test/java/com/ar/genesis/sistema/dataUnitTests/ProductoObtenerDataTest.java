@@ -1,7 +1,7 @@
 package com.ar.genesis.sistema.dataUnitTests;
 
 import com.ar.genesis.sistema.core.domain.Producto;
-import com.ar.genesis.sistema.persistence.repositoryImplementacion.ProductoObtenerRepoImplmentacion;
+import com.ar.genesis.sistema.persistence.repositoryImplementacion.ProductoObtenerRepoImplementacion;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
@@ -19,11 +19,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 })
 public class ProductoObtenerDataTest {
     @Inject
-    ProductoObtenerRepoImplmentacion miProductoObtenerRepoImplmentacion;
+    ProductoObtenerRepoImplementacion miProductoObtenerRepoImplementacion;
 
     @Test
     public void obtenerProductos_ProductosExisten_DevuelveListado(){
-        List<Producto> productos = miProductoObtenerRepoImplmentacion.obtenerProductos();
+        List<Producto> productos = miProductoObtenerRepoImplementacion.obtenerProductos();
         assertEquals(2, productos.size());
     }
 }
