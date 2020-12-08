@@ -12,4 +12,6 @@ public interface IProductoCRUD extends CrudRepository<Producto, Integer> {
     boolean existsByNombre(String nombre);
 
     List<Producto> findAllByOrderById();
+
+    Producto findProductoByIdEquals(Integer id);
 }
