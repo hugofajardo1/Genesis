@@ -12,4 +12,6 @@ public interface ILocalidadCRUD extends CrudRepository<Localidad, Integer> {
     boolean existsByNombre(String nombre);
 
     List<Localidad> findAllByOrderById();
+
+    Localidad findLocalidadByIdEquals(Integer id);
 }
