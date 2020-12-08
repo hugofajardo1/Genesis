@@ -12,4 +12,6 @@ public interface IRubroCRUD extends CrudRepository<Rubro, Integer> {
     boolean existsByNombre(String nombre);
 
     List<Rubro> findAllByOrderById();
+
+    Rubro findRubroByIdEquals(Integer id);
 }
