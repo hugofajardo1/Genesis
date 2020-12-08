@@ -12,4 +12,6 @@ public interface ITipoFichaCRUD extends CrudRepository<TipoFicha, Integer> {
     boolean existsByNombre(String nombre);
 
     List<TipoFicha> findAllByOrderById();
+
+    TipoFicha findTipoFichaByIdEquals(Integer id);
 }
