@@ -12,4 +12,6 @@ public interface IProveedorCRUD extends CrudRepository<Proveedor, Integer> {
     boolean existsByNombre(String nombre);
 
     List<Proveedor> findAllByOrderById();
+
+    Proveedor findProveedorByIdEquals(Integer id);
 }
