@@ -12,4 +12,6 @@ public interface ISubRubroCRUD extends CrudRepository<SubRubro, Integer> {
     boolean existsByNombre(String nombre);
 
     List<SubRubro> findAllByOrderById();
+
+    SubRubro findSubRubroByIdEquals(Integer id);
 }
