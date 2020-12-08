@@ -12,4 +12,6 @@ public interface IProvinciaCRUD extends CrudRepository<Provincia, Integer> {
     boolean existsByNombre(String nombre);
 
     List<Provincia> findAllByOrderById();
+
+    Provincia findProvinciaByIdEquals(Integer id);
 }
