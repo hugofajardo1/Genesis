@@ -13,4 +13,5 @@ public interface IFichaCRUD extends CrudRepository<Ficha, Integer> {
 
     List<Ficha> findAllByOrderById();
 
+    Ficha findFichaByIdEquals(Integer id);
 }
