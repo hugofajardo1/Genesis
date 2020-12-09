@@ -10,8 +10,10 @@ public class Producto {
     Integer id;
     @Column(name = "nombre", nullable = false, length = 110)
     String nombre;
-    @Column(name = "codigousuario", nullable = false, length = 110)
+    @Column(name = "codigousuario", nullable = false, length = 20)
     String codigoUsuario;
+    @Column(name = "codigobarra", nullable = false, length = 20)
+    String codigoBarra;
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "tipounidadid")
     TipoUnidad tipoUnidad;
@@ -41,10 +43,11 @@ public class Producto {
     public Producto() {
     }
 
-    private Producto(Integer id, String nombre, String codigoUsuario, TipoUnidad unidad, double costo, double iva, double margen, double flete, Rubro rubro, SubRubro subRubro, Ubicacion ubicacion, Proveedor proveedor) {
+    private Producto(Integer id, String nombre, String codigoUsuario, String codigoBarra, TipoUnidad unidad, double costo, double iva, double margen, double flete, Rubro rubro, SubRubro subRubro, Ubicacion ubicacion, Proveedor proveedor) {
         this.setId(id);
         this.setNombre(nombre);
         this.setCodigoUsuario(codigoUsuario);
+        this.setCodigoBarra(codigoBarra);
         this.setTipoUnidad(unidad);
         this.setCosto(costo);
         this.setIva(iva);
@@ -56,8 +59,8 @@ public class Producto {
         this.setProveedor(proveedor);
     }
 
-    public static Producto instancia(Integer id, String nombre, String codigoUsuario, TipoUnidad unidad, double costo, double iva, double margen, double flete, Rubro rubro, SubRubro subRubro, Ubicacion ubicacion, Proveedor proveedor){
-        return new Producto(id, nombre, codigoUsuario, unidad, costo, iva, margen, flete, rubro, subRubro, ubicacion, proveedor);
+    public static Producto instancia(Integer id, String nombre, String codigoUsuario, String codigoBarra, TipoUnidad unidad, double costo, double iva, double margen, double flete, Rubro rubro, SubRubro subRubro, Ubicacion ubicacion, Proveedor proveedor){
+        return new Producto(id, nombre, codigoUsuario, codigoBarra, unidad, costo, iva, margen, flete, rubro, subRubro, ubicacion, proveedor);
     }
 
     public Integer getId() {
@@ -82,6 +85,14 @@ public class Producto {
 
     public void setCodigoUsuario(String codigoUsuario) {
         this.codigoUsuario = codigoUsuario;
+    }
+
+    public String getCodigoBarra() {
+        return codigoBarra;
+    }
+
+    public void setCodigoBarra(String codigoBarra) {
+        this.codigoBarra = codigoBarra;
     }
 
     public TipoUnidad getTipoUnidad() {

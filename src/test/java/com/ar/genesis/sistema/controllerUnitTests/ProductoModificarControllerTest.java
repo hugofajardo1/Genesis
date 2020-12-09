@@ -22,7 +22,7 @@ public class ProductoModificarControllerTest {
 
     @Test
     public  void modificarProducto_ProductoNoExiste_Devuelve200() throws ProductoExisteException {
-        ProductoDTO unProductoDTO = new ProductoDTO(1, "Producto", "Producto 1", new TipoUnidadDTO(1, "Unidad"), 100.0, 21.0, 35.0, 0.0, new RubroDTO(1, "Hardware"), new SubRubroDTO(1, "Perifericos"), new UbicacionDTO(1, "Estante 1"), new ProveedorDTO(1, "Proveedor 1"));
+        ProductoDTO unProductoDTO = new ProductoDTO(1, "Producto 1", "A32345", "770077007700770", new TipoUnidadDTO(1, "Unidad"), 100.0, 21.0, 35.0, 0.0, new RubroDTO(1, "Hardware"), new SubRubroDTO(1, "Perifericos"), new UbicacionDTO(1, "Estante 1"), new ProveedorDTO(1, "Proveedor 1"));
         when(miProductoModificarInput.modificarProducto(any(Producto.class))).thenReturn(true);
 
         ProductoModificarController productoModificarController = new ProductoModificarController(miProductoModificarInput);
@@ -33,7 +33,7 @@ public class ProductoModificarControllerTest {
 
     @Test
     public  void modificarProducto_ProductoExiste_Devuelve412() throws ProductoExisteException {
-        ProductoDTO unProductoDTO = new ProductoDTO(1, "Producto", "Producto 2", new TipoUnidadDTO(1, "Unidad"), 100.0, 21.0, 35.0, 0.0, new RubroDTO(1, "Hardware"), new SubRubroDTO(1, "Perifericos"), new UbicacionDTO(1, "Estante 1"), new ProveedorDTO(1, "Proveedor 1"));
+        ProductoDTO unProductoDTO = new ProductoDTO(1, "Producto 1", "A32345", "770077007700770", new TipoUnidadDTO(1, "Unidad"), 100.0, 21.0, 35.0, 0.0, new RubroDTO(1, "Hardware"), new SubRubroDTO(1, "Perifericos"), new UbicacionDTO(1, "Estante 1"), new ProveedorDTO(1, "Proveedor 1"));
         when(miProductoModificarInput.modificarProducto(any(Producto.class))).thenThrow(ProductoExisteException.class);
 
         ProductoModificarController productoModificarController = new ProductoModificarController(miProductoModificarInput);

@@ -27,7 +27,7 @@ public class ProductoObtenerPorIdController {
             Producto unProducto = miProductoObtenerPorIdInput.obtenerProducto(id);
             ProductoDTO unProductoDTO=null;
             if (unProducto!=null){
-                unProductoDTO = new ProductoDTO(unProducto.getId(), unProducto.getNombre(), unProducto.getCodigoUsuario(), new TipoUnidadDTO(unProducto.getTipoUnidad().getId(), unProducto.getTipoUnidad().getNombre()), unProducto.getCosto(), unProducto.getIva(), unProducto.getMargen(), unProducto.getFlete(), new RubroDTO(unProducto.getRubro().getId(), unProducto.getRubro().getNombre()), new SubRubroDTO(unProducto.getSubRubro().getId(), unProducto.getSubRubro().getNombre()), new UbicacionDTO(unProducto.getUbicacion().getId(), unProducto.getUbicacion().getNombre()), new ProveedorDTO(unProducto.getProveedor().getId(), unProducto.getProveedor().getNombre()));
+                unProductoDTO = new ProductoDTO(unProducto.getId(), unProducto.getNombre(), unProducto.getCodigoUsuario(), unProducto.getCodigoBarra(), new TipoUnidadDTO(unProducto.getTipoUnidad().getId(), unProducto.getTipoUnidad().getNombre()), unProducto.getCosto(), unProducto.getIva(), unProducto.getMargen(), unProducto.getFlete(), new RubroDTO(unProducto.getRubro().getId(), unProducto.getRubro().getNombre()), new SubRubroDTO(unProducto.getSubRubro().getId(), unProducto.getSubRubro().getNombre()), new UbicacionDTO(unProducto.getUbicacion().getId(), unProducto.getUbicacion().getNombre()), new ProveedorDTO(unProducto.getProveedor().getId(), unProducto.getProveedor().getNombre()));
             }
             return ResponseEntity.status(HttpStatus.OK).body(unProductoDTO);
         } catch (ProductoNoExisteException e) {

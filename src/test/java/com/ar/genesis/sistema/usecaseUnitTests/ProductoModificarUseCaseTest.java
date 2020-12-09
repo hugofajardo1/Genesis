@@ -17,7 +17,7 @@ public class ProductoModificarUseCaseTest {
     IProductoRepository miProductoRepository;
     @Test
     void modificarProducto_ProductoActualizadoCorrectamente() throws ProductoExisteException {
-        Producto unProducto = Producto.instancia(1, "Teclado Genius USB", "A548743", TipoUnidad.instancia(1, "Unidad"), 100, 21, 35, 0, Rubro.instancia(1,"Hardware"), SubRubro.instancia(1, "Perifericos"), Ubicacion.instancia(1, "Estante 1"), Proveedor.instancia(1, "Proveedor 1"));
+        Producto unProducto = Producto.instancia(1, "Teclado Genius USB", "A548743", "770077007700770", TipoUnidad.instancia(1, "Unidad"), 100, 21, 35, 0, Rubro.instancia(1,"Hardware"), SubRubro.instancia(1, "Perifericos"), Ubicacion.instancia(1, "Estante 1"), Proveedor.instancia(1, "Proveedor 1"));
         when(miProductoRepository.existeProducto("Teclado Genius USB")).thenReturn(false);
         when(miProductoRepository.guardarProducto(unProducto)).thenReturn(true);
         ProductoModificarUseCase productoModificarUseCase = new ProductoModificarUseCase(miProductoRepository);
@@ -27,7 +27,7 @@ public class ProductoModificarUseCaseTest {
 
     @Test
     void modificarProducto_HayConflictoProductoExiste_ProductoNoActualiza() {
-        Producto unProducto = Producto.instancia(1, "Teclado Genius USB", "A548743", TipoUnidad.instancia(1, "Unidad"), 100, 21, 35, 0, Rubro.instancia(1,"Hardware"), SubRubro.instancia(1, "Perifericos"), Ubicacion.instancia(1, "Estante 1"), Proveedor.instancia(1, "Proveedor 1"));
+        Producto unProducto = Producto.instancia(1, "Teclado Genius USB", "A548743", "770077007700770", TipoUnidad.instancia(1, "Unidad"), 100, 21, 35, 0, Rubro.instancia(1,"Hardware"), SubRubro.instancia(1, "Perifericos"), Ubicacion.instancia(1, "Estante 1"), Proveedor.instancia(1, "Proveedor 1"));
         when(miProductoRepository.existeProducto("Teclado Genius USB")).thenReturn(true);
         when(miProductoRepository.guardarProducto(unProducto)).thenReturn(false);
         ProductoModificarUseCase productoModificarUseCase = new ProductoModificarUseCase(miProductoRepository);

@@ -23,5 +23,5 @@ INSERT INTO ubicaciones (id, nombre) VALUES (nextval('seq_ubicaciones'), 'Estant
 ALTER SEQUENCE seq_proveedores RESTART WITH 1;
 INSERT INTO proveedores (id, nombre) VALUES (nextval('seq_proveedores'), 'Proveedor 1');
 
-INSERT INTO productos (id,nombre, codigousuario, tipounidadid, costo, iva, margen, flete, rubroid, subrubroid, ubicacionid, proveedorid) VALUES(nextval('seq_productos'),'Producto 1', 'F44234', 1, 100.0, 21.0, 35.0, 0.0, 1, 1, 1, 1);
-INSERT INTO productos (id,nombre, codigousuario, tipounidadid, costo, iva, margen, flete, rubroid, subrubroid, ubicacionid, proveedorid) VALUES(nextval('seq_productos'),'Producto 2', 'F44235', 1, 100.0, 21.0, 35.0, 0.0, 1, 1, 1, 1);
+INSERT INTO productos (id,nombre, codigousuario, codigobarra, tipounidadid, costo, iva, margen, flete, rubroid, subrubroid, ubicacionid, proveedorid) VALUES(nextval('seq_productos'),'Producto 1', 'F44234', '770077007700770', 1, 100.0, 21.0, 35.0, 0.0, 1, 1, 1, 1);
+INSERT INTO productos (id,nombre, codigousuario, codigobarra, tipounidadid, costo, iva, margen, flete, rubroid, subrubroid, ubicacionid, proveedorid) VALUES(nextval('seq_productos'),'Producto 2', 'F44235', '770077007700771', 1, 100.0, 21.0, 35.0, 0.0, 1, 1, 1, 1);

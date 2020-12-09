@@ -10,6 +10,8 @@ public class ProductoDTO {
     String nombre;
     @JsonProperty("codigousuario")
     String codigoUsuario;
+    @JsonProperty("codigobarra")
+    String codigoBarra;
     @JsonProperty("tipounidad")
     TipoUnidadDTO tipoUnidad;
     @JsonProperty("costo")
@@ -32,10 +34,11 @@ public class ProductoDTO {
     Double precioVenta;
 
 
-    public ProductoDTO(Integer id, String nombre, String codigoUsuario, TipoUnidadDTO tipoUnidad, Double costo, Double iva, Double margen, Double flete, RubroDTO rubro, SubRubroDTO subRubro, UbicacionDTO ubicacion, ProveedorDTO proveedor) {
+    public ProductoDTO(Integer id, String nombre, String codigoUsuario, String codigoBarra, TipoUnidadDTO tipoUnidad, Double costo, Double iva, Double margen, Double flete, RubroDTO rubro, SubRubroDTO subRubro, UbicacionDTO ubicacion, ProveedorDTO proveedor) {
         this.setId(id);
         this.setNombre(nombre);
         this.setCodigoUsuario(codigoUsuario);
+        this.setCodigoBarra(codigoBarra);
         this.setTipoUnidad(tipoUnidad);
         this.setCosto(costo);
         this.setIva(iva);
@@ -69,6 +72,14 @@ public class ProductoDTO {
 
     public void setCodigoUsuario(String codigoUsuario) {
         this.codigoUsuario = codigoUsuario;
+    }
+
+    public String getCodigoBarra() {
+        return codigoBarra;
+    }
+
+    public void setCodigoBarra(String codigoBarra) {
+        this.codigoBarra = codigoBarra;
     }
 
     public TipoUnidadDTO getTipoUnidad() {

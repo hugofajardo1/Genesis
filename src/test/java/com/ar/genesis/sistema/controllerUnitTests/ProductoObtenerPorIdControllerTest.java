@@ -20,7 +20,7 @@ public class ProductoObtenerPorIdControllerTest {
 
     @Test
     public void obtenerProductoPorId_DevuelveProducto() throws ProductoNoExisteException {
-        Producto unProducto = Producto.instancia(1, "Teclado Genius USB", "A548743", TipoUnidad.instancia(1, "Unidad"), 100, 21, 35, 0, Rubro.instancia(1,"Hardware"), SubRubro.instancia(1, "Perifericos"), Ubicacion.instancia(1, "Estante 1"), Proveedor.instancia(1, "Proveedor 1"));
+        Producto unProducto = Producto.instancia(1, "Teclado Genius USB", "A548743", "770077007700770", TipoUnidad.instancia(1, "Unidad"), 100, 21, 35, 0, Rubro.instancia(1,"Hardware"), SubRubro.instancia(1, "Perifericos"), Ubicacion.instancia(1, "Estante 1"), Proveedor.instancia(1, "Proveedor 1"));
         when(miProductoObtenerPorIdInput.obtenerProducto(1)).thenReturn(unProducto);
 
         ProductoObtenerPorIdController productoObtenerPorIdController = new ProductoObtenerPorIdController(miProductoObtenerPorIdInput);
