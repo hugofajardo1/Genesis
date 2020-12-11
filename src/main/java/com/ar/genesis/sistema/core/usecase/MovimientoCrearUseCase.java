@@ -19,7 +19,7 @@ public class MovimientoCrearUseCase implements IMovimientoCrearInput {
 
     @Override
     public boolean crearMovimiento(Movimiento unMovimiento) throws MovimientoIncompletoException {
-        if(!miMovimientoRepository.validarMovimiento(unMovimiento)){
+        if(unMovimiento.getItems().isEmpty()){
             throw new MovimientoIncompletoException();
         }
         return miMovimientoRepository.guardarMovimiento(unMovimiento);

@@ -34,9 +34,9 @@ public class Movimiento {
     @Column(name = "saldo", nullable = false)
     Double saldo;
 
-    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "movimientoid")
-    private List<MovimientoItem> movimientos;
+    private List<MovimientoItem> items;
 
     public Movimiento() {
     }
@@ -52,7 +52,7 @@ public class Movimiento {
         this.setMontoNeto(montoNeto);
         this.setMontoTotal(montoTotal);
         this.setSaldo(saldo);
-        this.setMovimientos(new ArrayList<>());
+        this.setItems(new ArrayList<>());
     }
 
     public static Movimiento instancia(Integer id, TipoMovimiento tipoMovimiento, Ficha ficha, TipoIva tipoIva, String cuit, LocalDate fecha, LocalTime hora, Double montoNeto, Double montoTotal, Double saldo) {
@@ -139,11 +139,11 @@ public class Movimiento {
         this.saldo = saldo;
     }
 
-    public List<MovimientoItem> getMovimientos() {
-        return movimientos;
+    public List<MovimientoItem> getItems() {
+        return items;
     }
 
-    public void setMovimientos(List<MovimientoItem> movimientos) {
-        this.movimientos = movimientos;
+    public void setItems(List<MovimientoItem> movimientos) {
+        this.items = movimientos;
     }
 }

@@ -22,10 +22,14 @@ public class MovimientoItem {
     @Column(name = "precioventafinal", nullable = false)
     Double precioVentaFinal;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "movimientoid")
+    Movimiento movimiento;
+
     public MovimientoItem() {
     }
 
-    private MovimientoItem(Integer id, Producto producto, Double cantidad, Double iva, Double precioCosto, Double precioVenta, Double precioVentaFinal) {
+    private MovimientoItem(Integer id, Producto producto, Double cantidad, Double iva, Double precioCosto, Double precioVenta, Double precioVentaFinal, Movimiento movimiento) {
         this.setId(id);
         this.setProducto(producto);
         this.setCantidad(cantidad);
@@ -33,10 +37,11 @@ public class MovimientoItem {
         this.setPrecioCosto(precioCosto);
         this.setPrecioVenta(precioVenta);
         this.setPrecioVentaFinal(precioVentaFinal);
+        this.setMovimiento(movimiento);
     }
 
-    public static MovimientoItem instancia(Integer id, Producto producto, Double cantidad, Double iva, Double precioCosto, Double precioVenta, Double precioVentaFinal) {
-        return new MovimientoItem(id, producto, cantidad, iva, precioCosto, precioVenta, precioVentaFinal);
+    public static MovimientoItem instancia(Integer id, Producto producto, Double cantidad, Double iva, Double precioCosto, Double precioVenta, Double precioVentaFinal, Movimiento movimiento) {
+        return new MovimientoItem(id, producto, cantidad, iva, precioCosto, precioVenta, precioVentaFinal, movimiento);
     }
 
     public Integer getId() {
@@ -93,5 +98,13 @@ public class MovimientoItem {
 
     public void setPrecioVentaFinal(Double precioVentaFinal) {
         this.precioVentaFinal = precioVentaFinal;
+    }
+
+    public Movimiento getMovimiento() {
+        return movimiento;
+    }
+
+    public void setMovimiento(Movimiento movimiento) {
+        this.movimiento = movimiento;
     }
 }
