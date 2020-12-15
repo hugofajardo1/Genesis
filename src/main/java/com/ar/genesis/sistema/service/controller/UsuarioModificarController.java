@@ -1,5 +1,6 @@
 package com.ar.genesis.sistema.service.controller;
 
+import com.ar.genesis.sistema.core.domain.Sucursal;
 import com.ar.genesis.sistema.core.domain.Usuario;
 import com.ar.genesis.sistema.core.exception.UsuarioExisteException;
 import com.ar.genesis.sistema.core.input.IUsuarioModificarInput;
@@ -24,7 +25,7 @@ public class UsuarioModificarController {
     @PutMapping(value = "/usuario")
     public ResponseEntity<?> modificarUsuario(@RequestBody UsuarioDTO unUsuarioDTO){
         try{
-            boolean resultado = this.miUsuarioModificarInput.modificarUsuario(Usuario.instancia(unUsuarioDTO.getId(), unUsuarioDTO.getNombre(), unUsuarioDTO.getNombreUsuario(), unUsuarioDTO.getContrasenia()));
+            boolean resultado = this.miUsuarioModificarInput.modificarUsuario(Usuario.instancia(unUsuarioDTO.getId(), unUsuarioDTO.getNombre(), unUsuarioDTO.getNombreUsuario(), unUsuarioDTO.getContrasenia(), Sucursal.instancia(unUsuarioDTO.getSucursal().getId(), unUsuarioDTO.getSucursal().getNombre())));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (UsuarioExisteException e) {

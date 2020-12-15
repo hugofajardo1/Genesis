@@ -1,5 +1,6 @@
 package com.ar.genesis.sistema.dataUnitTests;
 
+import com.ar.genesis.sistema.core.domain.Sucursal;
 import com.ar.genesis.sistema.core.domain.Usuario;
 import com.ar.genesis.sistema.persistence.repositoryImplementacion.UsuarioRepoImplementacion;
 import org.junit.jupiter.api.Assertions;
@@ -22,7 +23,7 @@ public class UsuarioCrearDataTest {
 
     @Test
     public void guardarUsuario_UsuarioGuardado_devuelveTrue() {
-        Usuario unUsuario = Usuario.instancia(null, "Usuario 1", "nombreusuario", "contrasenia");
+        Usuario unUsuario = Usuario.instancia(null, "Usuario 1", "nombreusuario", "contrasenia", Sucursal.instancia(1, "Sucursal 1"));
         boolean resultado = miUsuarioRepoImplementacion.guardarUsuario(unUsuario);
         Assertions.assertTrue(resultado);
     }

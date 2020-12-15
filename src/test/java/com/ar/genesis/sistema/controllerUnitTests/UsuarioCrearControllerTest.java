@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.core.domain.Usuario;
 import com.ar.genesis.sistema.core.exception.UsuarioExisteException;
 import com.ar.genesis.sistema.core.input.IUsuarioCrearInput;
 import com.ar.genesis.sistema.service.controller.UsuarioCrearController;
+import com.ar.genesis.sistema.service.dto.SucursalDTO;
 import com.ar.genesis.sistema.service.dto.UsuarioDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ public class UsuarioCrearControllerTest {
 
     @Test
     public  void crearUsuario_UsuarioNoExiste_Devuelve200() throws UsuarioExisteException {
-        UsuarioDTO unUsuarioDTO = new UsuarioDTO(1, "Usuario 1", "usuario", "contrasenia");
+        UsuarioDTO unUsuarioDTO = new UsuarioDTO(1, "Usuario 1", "usuario", "contrasenia", new SucursalDTO(1, "Sucursal 1"));
         when(miUsuarioCrearInput.crearUsuario(any(Usuario.class))).thenReturn(true);
 
         UsuarioCrearController usuarioCrearController = new UsuarioCrearController(miUsuarioCrearInput);
@@ -33,7 +34,7 @@ public class UsuarioCrearControllerTest {
 
     @Test
     public  void crearUsuario_UsuarioExiste_Devuelve412() throws UsuarioExisteException {
-        UsuarioDTO unUsuarioDTO = new UsuarioDTO(1, "Usuario 1", "usuario", "contrasenia");
+        UsuarioDTO unUsuarioDTO = new UsuarioDTO(1, "Usuario 1", "usuario", "contrasenia", new SucursalDTO(1, "Sucursal 1"));
         when(miUsuarioCrearInput.crearUsuario(any(Usuario.class))).thenThrow(UsuarioExisteException.class);
 
         UsuarioCrearController usuarioCrearController = new UsuarioCrearController(miUsuarioCrearInput);

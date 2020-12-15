@@ -14,18 +14,22 @@ public class Usuario {
     String nombreUsuario;
     @Column(name = "contrasenia", nullable = false, length = 50)
     String contrasenia;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "sucursalid")
+    Sucursal sucursal;
 
     public Usuario() {
     }
 
-    private Usuario(Integer id, String nombre, String nombreUsuario, String contrasenia) {
+    private Usuario(Integer id, String nombre, String nombreUsuario, String contrasenia, Sucursal sucursal) {
         this.setId(id);
         this.setNombre(nombre);
         this.setNombreUsuario(nombreUsuario);
         this.setContrasenia(contrasenia);
+        this.setSucursal(sucursal);
     }
-    public static Usuario instancia(Integer id, String nombre, String nombreusuario, String contrasenia){
-        return new Usuario(id, nombre, nombreusuario, contrasenia);
+    public static Usuario instancia(Integer id, String nombre, String nombreusuario, String contrasenia, Sucursal sucursal){
+        return new Usuario(id, nombre, nombreusuario, contrasenia, sucursal);
     }
 
     public Integer getId() {
@@ -58,5 +62,13 @@ public class Usuario {
 
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
+    }
+
+    public Sucursal getSucursal() {
+        return sucursal;
+    }
+
+    public void setSucursal(Sucursal sucursal) {
+        this.sucursal = sucursal;
     }
 }

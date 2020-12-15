@@ -1,5 +1,6 @@
 package com.ar.genesis.sistema.usecaseUnitTests;
 
+import com.ar.genesis.sistema.core.domain.Sucursal;
 import com.ar.genesis.sistema.core.domain.Usuario;
 import com.ar.genesis.sistema.core.exception.UsuarioExisteException;
 import com.ar.genesis.sistema.core.repository.IUsuarioRepository;
@@ -17,7 +18,7 @@ public class UsuarioModificarUseCaseTest {
     IUsuarioRepository miUsuarioRepository;
     @Test
     void modificarUsuario_UsuarioActualizadoCorrectamente() throws UsuarioExisteException {
-        Usuario unUsuario = Usuario.instancia(1, "Cliente", "nombreusuario", "contrasenia");
+        Usuario unUsuario = Usuario.instancia(1, "Cliente", "nombreusuario", "contrasenia", Sucursal.instancia(1, "Sucursal 1"));
         when(miUsuarioRepository.existeUsuario("Cliente")).thenReturn(false);
         when(miUsuarioRepository.guardarUsuario(unUsuario)).thenReturn(true);
         UsuarioModificarUseCase usuarioModificarUseCase = new UsuarioModificarUseCase(miUsuarioRepository);
@@ -27,7 +28,7 @@ public class UsuarioModificarUseCaseTest {
 
     @Test
     void modificarUsuario_HayConflictoUsuarioExiste_UsuarioNoActualiza() {
-        Usuario unUsuario = Usuario.instancia(1, "Cliente", "nombreusuario", "contrasenia");
+        Usuario unUsuario = Usuario.instancia(1, "Cliente", "nombreusuario", "contrasenia", Sucursal.instancia(1, "Sucursal 1"));
         when(miUsuarioRepository.existeUsuario("Cliente")).thenReturn(true);
         when(miUsuarioRepository.guardarUsuario(unUsuario)).thenReturn(false);
         UsuarioModificarUseCase usuarioModificarUseCase = new UsuarioModificarUseCase(miUsuarioRepository);

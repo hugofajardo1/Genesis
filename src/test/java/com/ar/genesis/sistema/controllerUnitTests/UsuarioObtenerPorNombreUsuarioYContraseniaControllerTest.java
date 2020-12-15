@@ -1,5 +1,6 @@
 package com.ar.genesis.sistema.controllerUnitTests;
 
+import com.ar.genesis.sistema.core.domain.Sucursal;
 import com.ar.genesis.sistema.core.domain.Usuario;
 import com.ar.genesis.sistema.core.exception.UsuarioNoExisteException;
 import com.ar.genesis.sistema.core.input.IUsuarioObtenerPorNombreUsuarioYContraseniaInput;
@@ -9,7 +10,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import static org.mockito.Mockito.when;
@@ -21,7 +21,7 @@ public class UsuarioObtenerPorNombreUsuarioYContraseniaControllerTest {
 
     @Test
     public void obtenerUsuarioPorNombreUsuarioYContrasenia_DevuelveUsuario() throws UsuarioNoExisteException {
-        Usuario unUsuario = Usuario.instancia(1,"Usuario 1", "nombreusuario", "contrasenia");
+        Usuario unUsuario = Usuario.instancia(1,"Usuario 1", "nombreusuario", "contrasenia", Sucursal.instancia(1, "Sucursal 1"));
         when(miUsuarioObtenerPorNombreUsuarioYContraseniaInput.obtenerUsuario("nombreusuario", "contrasenia")).thenReturn(unUsuario);
 
         UsuarioObtenerPorNombreUsuarioYContraseniaController usuarioObtenerPorNombreUsuarioYContraseniaController = new UsuarioObtenerPorNombreUsuarioYContraseniaController(miUsuarioObtenerPorNombreUsuarioYContraseniaInput);

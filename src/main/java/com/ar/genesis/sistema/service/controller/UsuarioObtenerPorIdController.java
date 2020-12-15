@@ -3,6 +3,7 @@ package com.ar.genesis.sistema.service.controller;
 import com.ar.genesis.sistema.core.domain.Usuario;
 import com.ar.genesis.sistema.core.exception.UsuarioNoExisteException;
 import com.ar.genesis.sistema.core.input.IUsuarioObtenerPorIdInput;
+import com.ar.genesis.sistema.service.dto.SucursalDTO;
 import com.ar.genesis.sistema.service.dto.UsuarioDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,7 @@ public class UsuarioObtenerPorIdController {
             Usuario unUsuario = miUsuarioObtenerPorIdInput.obtenerUsuario(id);
             UsuarioDTO unUsuarioDTO=null;
             if (unUsuario!=null){
-                unUsuarioDTO = new UsuarioDTO(unUsuario.getId(), unUsuario.getNombre(), unUsuario.getNombreUsuario(), unUsuario.getContrasenia());
+                unUsuarioDTO = new UsuarioDTO(unUsuario.getId(), unUsuario.getNombre(), unUsuario.getNombreUsuario(), unUsuario.getContrasenia(), new SucursalDTO(unUsuario.getSucursal().getId(), unUsuario.getSucursal().getNombre()));
             }
             return ResponseEntity.status(HttpStatus.OK).body(unUsuarioDTO);
         } catch (UsuarioNoExisteException e) {

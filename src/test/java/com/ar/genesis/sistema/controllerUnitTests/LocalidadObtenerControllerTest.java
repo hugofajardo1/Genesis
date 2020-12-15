@@ -29,6 +29,6 @@ public class LocalidadObtenerControllerTest {
         LocalidadObtenerController localidadObtenerController = new LocalidadObtenerController(miLocalidadObtenerInput);
         ResponseEntity<?> responseEntity = localidadObtenerController.obtenerLocalidades();
         List<?> resultado = (List<?>) responseEntity.getBody();
-        Assertions.assertEquals(resultado.size(), 1);
+        Assertions.assertNotNull(resultado);
     }
 }

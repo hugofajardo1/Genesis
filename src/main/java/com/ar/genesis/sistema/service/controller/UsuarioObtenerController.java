@@ -1,6 +1,7 @@
 package com.ar.genesis.sistema.service.controller;
 
 import com.ar.genesis.sistema.core.input.IUsuarioObtenerInput;
+import com.ar.genesis.sistema.service.dto.SucursalDTO;
 import com.ar.genesis.sistema.service.dto.UsuarioDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class UsuarioObtenerController {
     public ResponseEntity<?> obtenerUsuarios(){
         try{
             List<UsuarioDTO> usuariosDTO = new ArrayList<>();
-            miUsuarioObtenerInput.obtenerUsuarios().forEach(unUsuario -> usuariosDTO.add(new UsuarioDTO(unUsuario.getId(), unUsuario.getNombre(), unUsuario.getNombreUsuario(), unUsuario.getContrasenia())));
+            miUsuarioObtenerInput.obtenerUsuarios().forEach(unUsuario -> usuariosDTO.add(new UsuarioDTO(unUsuario.getId(), unUsuario.getNombre(), unUsuario.getNombreUsuario(), unUsuario.getContrasenia(), new SucursalDTO(unUsuario.getSucursal().getId(), unUsuario.getSucursal().getNombre()))));
             if (usuariosDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(usuariosDTO);
         } catch (Exception ex) {

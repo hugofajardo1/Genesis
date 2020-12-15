@@ -1,5 +1,6 @@
 package com.ar.genesis.sistema.usecaseUnitTests;
 
+import com.ar.genesis.sistema.core.domain.Sucursal;
 import com.ar.genesis.sistema.core.domain.Usuario;
 import com.ar.genesis.sistema.core.repository.IUsuarioObtenerRepository;
 import com.ar.genesis.sistema.core.usecase.UsuarioObtenerUseCase;
@@ -31,8 +32,8 @@ public class UsuarioObtenerUseCaseTest {
 
     public List<Usuario> factoryListaUsuarios() {
         List<Usuario> usuarios = new ArrayList<>();
-        Usuario usuario1 = Usuario.instancia(1, "Usuario 1", "nombreusuario", "contrasenia");
-        Usuario usuario2 = Usuario.instancia(2, "Usuario 2", "nombreusuario", "contrasenia");
+        Usuario usuario1 = Usuario.instancia(1, "Usuario 1", "nombreusuario", "contrasenia", Sucursal.instancia(1, "Sucursal 1"));
+        Usuario usuario2 = Usuario.instancia(2, "Usuario 2", "nombreusuario", "contrasenia", Sucursal.instancia(1, "Sucursal 1"));
         usuarios.add(usuario1);
         usuarios.add(usuario2);
         return usuarios;

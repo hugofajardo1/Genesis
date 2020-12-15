@@ -1,7 +1,7 @@
 package com.ar.genesis.sistema.usecaseUnitTests;
 
+import com.ar.genesis.sistema.core.domain.Sucursal;
 import com.ar.genesis.sistema.core.domain.Usuario;
-import com.ar.genesis.sistema.core.exception.UsuarioExisteException;
 import com.ar.genesis.sistema.core.exception.UsuarioNoExisteException;
 import com.ar.genesis.sistema.core.repository.IUsuarioObtenerPorNombreUsuarioYContraseniaRepository;
 import com.ar.genesis.sistema.core.usecase.UsuarioObtenerPorNombreUsuarioYContraseniaUseCase;
@@ -19,7 +19,7 @@ public class UsuarioObtenerPorNombreUsuarioYContraseniaUseCaseTest {
 
     @Test
     public void obtenerUsuarioPorNombreUsuarioYContrasenia_devuelveUsuario() throws UsuarioNoExisteException {
-        Usuario unUsuario = Usuario.instancia(1, "Usuario 1", "nombreusuario", "contrasenia");
+        Usuario unUsuario = Usuario.instancia(1, "Usuario 1", "nombreusuario", "contrasenia", Sucursal.instancia(1, "Sucursal 1"));
 
         when(miUsuarioObtenerPorNombreUsuarioYContraseniaRepository.obtenerUsuario("nombreusuario", "contrasenia")).thenReturn(unUsuario);
 

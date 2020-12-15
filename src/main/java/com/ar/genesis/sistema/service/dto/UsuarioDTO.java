@@ -11,12 +11,15 @@ public class UsuarioDTO {
     String nombreUsuario;
     @JsonProperty("contrasenia")
     String contrasenia;
+    @JsonProperty("sucursal")
+    SucursalDTO sucursal;
 
-    public UsuarioDTO(Integer id, String nombre, String nombreUsuario, String contrasenia) {
+    public UsuarioDTO(Integer id, String nombre, String nombreUsuario, String contrasenia, SucursalDTO sucursalDTO) {
         this.setId(id);
         this.setNombre(nombre);
         this.setNombreUsuario(nombreUsuario);
         this.setContrasenia(contrasenia);
+        this.setSucursal(sucursalDTO);
     }
 
     public Integer getId() {
@@ -49,5 +52,13 @@ public class UsuarioDTO {
 
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
+    }
+
+    public SucursalDTO getSucursal() {
+        return sucursal;
+    }
+
+    public void setSucursal(SucursalDTO sucursal) {
+        this.sucursal = sucursal;
     }
 }
