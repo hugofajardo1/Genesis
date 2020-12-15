@@ -25,11 +25,11 @@ public class UbicacionObtenerPorIdController {
     public ResponseEntity<?> obtenerUbicacion(@PathVariable Integer id){
         try{
             Ubicacion unaUbicacion = miUbicacionObtenerPorIdInput.obtenerUbicacion(id);
-            UbicacionDTO unUbicacionDTO=null;
+            UbicacionDTO unaUbicacionDTO=null;
             if (unaUbicacion!=null){
-                unUbicacionDTO = new UbicacionDTO(unaUbicacion.getId(), unaUbicacion.getNombre());
+                unaUbicacionDTO = new UbicacionDTO(unaUbicacion.getId(), unaUbicacion.getNombre());
             }
-            return ResponseEntity.status(HttpStatus.OK).body(unUbicacionDTO);
+            return ResponseEntity.status(HttpStatus.OK).body(unaUbicacionDTO);
         } catch (UbicacionNoExisteException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).body(e.toString());

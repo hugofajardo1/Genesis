@@ -25,11 +25,11 @@ public class LocalidadObtenerPorIdController {
     public ResponseEntity<?> obtenerLocalidad(@PathVariable Integer id){
         try{
             Localidad unaLocalidad = miLocalidadObtenerPorIdInput.obtenerLocalidad(id);
-            LocalidadDTO unLocalidadDTO=null;
+            LocalidadDTO unaLocalidadDTO=null;
             if (unaLocalidad!=null){
-                unLocalidadDTO = new LocalidadDTO(unaLocalidad.getId(), unaLocalidad.getNombre());
+                unaLocalidadDTO = new LocalidadDTO(unaLocalidad.getId(), unaLocalidad.getNombre());
             }
-            return ResponseEntity.status(HttpStatus.OK).body(unLocalidadDTO);
+            return ResponseEntity.status(HttpStatus.OK).body(unaLocalidadDTO);
         } catch (LocalidadNoExisteException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).body(e.toString());

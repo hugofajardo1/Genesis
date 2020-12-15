@@ -28,11 +28,11 @@ public class FichaObtenerPorIdController {
     public ResponseEntity<?> obtenerFicha(@PathVariable Integer id){
         try{
             Ficha unaFicha = miFichaObtenerPorIdInput.obtenerFicha(id);
-            FichaDTO unFichaDTO=null;
+            FichaDTO unaFichaDTO=null;
             if (unaFicha!=null){
-                unFichaDTO = new FichaDTO(unaFicha.getId(), unaFicha.getNombre(), unaFicha.getDomicilio(), new LocalidadDTO(unaFicha.getLocalidad().getId(), unaFicha.getLocalidad().getNombre()), new ProvinciaDTO(unaFicha.getProvincia().getId(), unaFicha.getProvincia().getNombre()), unaFicha.getTelefono(), new TipoIvaDTO(unaFicha.getTipoIva().getId(), unaFicha.getTipoIva().getNombre()), unaFicha.getCuit(), unaFicha.getIbrutos(), unaFicha.getContacto());
+                unaFichaDTO = new FichaDTO(unaFicha.getId(), unaFicha.getNombre(), unaFicha.getDomicilio(), new LocalidadDTO(unaFicha.getLocalidad().getId(), unaFicha.getLocalidad().getNombre()), new ProvinciaDTO(unaFicha.getProvincia().getId(), unaFicha.getProvincia().getNombre()), unaFicha.getTelefono(), new TipoIvaDTO(unaFicha.getTipoIva().getId(), unaFicha.getTipoIva().getNombre()), unaFicha.getCuit(), unaFicha.getIbrutos(), unaFicha.getContacto());
             }
-            return ResponseEntity.status(HttpStatus.OK).body(unFichaDTO);
+            return ResponseEntity.status(HttpStatus.OK).body(unaFichaDTO);
         } catch (FichaNoExisteException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).body(e.toString());

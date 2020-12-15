@@ -25,11 +25,11 @@ public class ProvinciaObtenerPorIdController {
     public ResponseEntity<?> obtenerProvincia(@PathVariable Integer id){
         try{
             Provincia unaProvincia = miProvinciaObtenerPorIdInput.obtenerProvincia(id);
-            ProvinciaDTO unProvinciaDTO=null;
+            ProvinciaDTO unaProvinciaDTO=null;
             if (unaProvincia!=null){
-                unProvinciaDTO = new ProvinciaDTO(unaProvincia.getId(), unaProvincia.getNombre());
+                unaProvinciaDTO = new ProvinciaDTO(unaProvincia.getId(), unaProvincia.getNombre());
             }
-            return ResponseEntity.status(HttpStatus.OK).body(unProvinciaDTO);
+            return ResponseEntity.status(HttpStatus.OK).body(unaProvinciaDTO);
         } catch (ProvinciaNoExisteException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).body(e.toString());
