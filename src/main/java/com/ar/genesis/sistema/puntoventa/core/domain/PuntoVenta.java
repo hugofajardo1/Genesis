@@ -6,6 +6,7 @@ import javax.persistence.*;
 @SequenceGenerator(name = "seq_puntosventas", sequenceName = "seq_puntosventas", allocationSize = 1)
 public class PuntoVenta {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_puntosventas")
     Integer id;
     @Column(name = "nombre", nullable = false, length = 50)
     String nombre;
