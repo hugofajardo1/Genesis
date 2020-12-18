@@ -1,5 +1,6 @@
 package com.ar.genesis.sistema.puntoventa.service.dto;
 
+import com.ar.genesis.sistema.sucursal.service.dto.SucursalDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class PuntoVentaDTO {
@@ -8,12 +9,15 @@ public class PuntoVentaDTO {
     Integer id;
     @JsonProperty("nombre")
     String nombre;
+    @JsonProperty("sucursal")
+    SucursalDTO sucursal;
     @JsonProperty("tipofacturacion")
     Integer tipofacturacion;
 
-    public PuntoVentaDTO(Integer id, String nombre, Integer tipoFacturacion) {
+    public PuntoVentaDTO(Integer id, String nombre, SucursalDTO sucursal, Integer tipoFacturacion) {
         this.setId(id);
         this.setNombre(nombre);
+        this.setSucursal(sucursal);
         this.setTipofacturacion(tipoFacturacion);
     }
 
@@ -31,6 +35,14 @@ public class PuntoVentaDTO {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public SucursalDTO getSucursal() {
+        return sucursal;
+    }
+
+    public void setSucursal(SucursalDTO sucursal) {
+        this.sucursal = sucursal;
     }
 
     public Integer getTipofacturacion() {

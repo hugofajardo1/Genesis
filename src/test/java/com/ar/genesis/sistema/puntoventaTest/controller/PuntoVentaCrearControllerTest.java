@@ -6,6 +6,7 @@ import com.ar.genesis.sistema.puntoventa.core.input.IPuntoVentaCrearInput;
 
 import com.ar.genesis.sistema.puntoventa.service.controller.PuntoVentaCrearController;
 import com.ar.genesis.sistema.puntoventa.service.dto.PuntoVentaDTO;
+import com.ar.genesis.sistema.sucursal.service.dto.SucursalDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -23,7 +24,7 @@ public class PuntoVentaCrearControllerTest {
 
     @Test
     public  void crearPuntoVenta_PuntoVentaNoExiste_Devuelve200() throws PuntoVentaExisteException {
-        PuntoVentaDTO unPuntoVentaDTO = new PuntoVentaDTO(1, "PuntoVenta 1", 5);
+        PuntoVentaDTO unPuntoVentaDTO = new PuntoVentaDTO(1, "PuntoVenta 1", new SucursalDTO(1, "Sucursal 1"), 5);
         when(miPuntoVentaCrearInput.crearPuntoVenta(any(PuntoVenta.class))).thenReturn(true);
 
         PuntoVentaCrearController puntoVentaCrearController = new PuntoVentaCrearController(miPuntoVentaCrearInput);
@@ -34,7 +35,7 @@ public class PuntoVentaCrearControllerTest {
 
     @Test
     public  void crearPuntoVenta_PuntoVentaExiste_Devuelve412() throws PuntoVentaExisteException {
-        PuntoVentaDTO unPuntoVentaDTO = new PuntoVentaDTO(1, "PuntoVenta 1", 5);
+        PuntoVentaDTO unPuntoVentaDTO = new PuntoVentaDTO(1, "PuntoVenta 1", new SucursalDTO(1, "Sucursal 1"), 5);
         when(miPuntoVentaCrearInput.crearPuntoVenta(any(PuntoVenta.class))).thenThrow(PuntoVentaExisteException.class);
 
         PuntoVentaCrearController puntoVentaCrearController = new PuntoVentaCrearController(miPuntoVentaCrearInput);

@@ -5,6 +5,7 @@ import com.ar.genesis.sistema.puntoventa.core.exception.PuntoVentaNoExisteExcept
 import com.ar.genesis.sistema.puntoventa.core.input.IPuntoVentaObtenerPorIdInput;
 import com.ar.genesis.sistema.puntoventa.service.controller.PuntoVentaObtenerPorIdController;
 import com.ar.genesis.sistema.puntoventa.service.dto.PuntoVentaDTO;
+import com.ar.genesis.sistema.sucursal.core.domain.Sucursal;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -20,7 +21,7 @@ public class PuntoVentaObtenerPorIdControllerTest {
 
     @Test
     public void obtenerPuntoVentaPorId_DevuelvePuntoVenta() throws PuntoVentaNoExisteException {
-        PuntoVenta unPuntoVenta = PuntoVenta.instancia(1,"PuntoVenta 1", 5);
+        PuntoVenta unPuntoVenta = PuntoVenta.instancia(1,"PuntoVenta 1", Sucursal.instancia(1, "Sucursal 1"), 5);
         when(miPuntoVentaObtenerPorIdInput.obtenerPuntoVenta(1)).thenReturn(unPuntoVenta);
 
         PuntoVentaObtenerPorIdController puntoventaObtenerPorIdController = new PuntoVentaObtenerPorIdController(miPuntoVentaObtenerPorIdInput);

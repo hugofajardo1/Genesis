@@ -3,6 +3,7 @@ package com.ar.genesis.sistema.puntoventaTest.usecase;
 import com.ar.genesis.sistema.puntoventa.core.domain.PuntoVenta;
 import com.ar.genesis.sistema.puntoventa.core.repository.IPuntoVentaObtenerRepository;
 import com.ar.genesis.sistema.puntoventa.core.usecase.PuntoVentaObtenerUseCase;
+import com.ar.genesis.sistema.sucursal.core.domain.Sucursal;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,8 +32,8 @@ public class PuntoVentaObtenerUseCaseTest {
 
     public List<PuntoVenta> factoryListaPuntoVentas() {
         List<PuntoVenta> puntoventas = new ArrayList<>();
-        PuntoVenta puntoventa1 = PuntoVenta.instancia(1, "PuntoVenta 1", 5);
-        PuntoVenta puntoventa2 = PuntoVenta.instancia(2, "PuntoVenta 2", 5);
+        PuntoVenta puntoventa1 = PuntoVenta.instancia(1, "PuntoVenta 1", Sucursal.instancia(1, "Sucursal 1"), 5);
+        PuntoVenta puntoventa2 = PuntoVenta.instancia(2, "PuntoVenta 2", Sucursal.instancia(1, "Sucursal 1"), 5);
         puntoventas.add(puntoventa1);
         puntoventas.add(puntoventa2);
         return puntoventas;

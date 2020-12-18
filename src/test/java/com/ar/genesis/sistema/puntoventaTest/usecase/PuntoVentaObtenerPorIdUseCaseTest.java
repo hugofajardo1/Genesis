@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.puntoventa.core.domain.PuntoVenta;
 import com.ar.genesis.sistema.puntoventa.core.exception.PuntoVentaNoExisteException;
 import com.ar.genesis.sistema.puntoventa.core.repository.IPuntoVentaObtenerPorIdRepository;
 import com.ar.genesis.sistema.puntoventa.core.usecase.PuntoVentaObtenerPorIdUseCase;
+import com.ar.genesis.sistema.sucursal.core.domain.Sucursal;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,7 +19,7 @@ public class PuntoVentaObtenerPorIdUseCaseTest {
 
     @Test
     public void obtenerPuntoVentaPorId_devuelvePuntoVenta() throws PuntoVentaNoExisteException {
-        PuntoVenta unPuntoVenta = PuntoVenta.instancia(1, "PuntoVenta 1", 5);
+        PuntoVenta unPuntoVenta = PuntoVenta.instancia(1, "PuntoVenta 1", Sucursal.instancia(1, "Sucursal 1"), 5);
 
         when(miPuntoVentaObtenerPorIdRepository.obtenerPuntoVenta(1)).thenReturn(unPuntoVenta);
 

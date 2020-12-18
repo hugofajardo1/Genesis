@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.puntoventa.core.domain.PuntoVenta;
 import com.ar.genesis.sistema.puntoventa.core.exception.PuntoVentaExisteException;
 import com.ar.genesis.sistema.puntoventa.core.input.IPuntoVentaModificarInput;
 import com.ar.genesis.sistema.puntoventa.service.dto.PuntoVentaDTO;
+import com.ar.genesis.sistema.sucursal.core.domain.Sucursal;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,7 +25,7 @@ public class PuntoVentaModificarController {
     @PutMapping(value = "/puntoventa")
     public ResponseEntity<?> modificarPuntoVenta(@RequestBody PuntoVentaDTO unPuntoVentaDTO){
         try{
-            boolean resultado = this.miPuntoVentaModificarInput.modificarPuntoVenta(PuntoVenta.instancia(unPuntoVentaDTO.getId(), unPuntoVentaDTO.getNombre(), unPuntoVentaDTO.getTipofacturacion()));
+            boolean resultado = this.miPuntoVentaModificarInput.modificarPuntoVenta(PuntoVenta.instancia(unPuntoVentaDTO.getId(), unPuntoVentaDTO.getNombre(), Sucursal.instancia(unPuntoVentaDTO.getSucursal().getId(), unPuntoVentaDTO.getSucursal().getNombre()), unPuntoVentaDTO.getTipofacturacion()));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (PuntoVentaExisteException e) {

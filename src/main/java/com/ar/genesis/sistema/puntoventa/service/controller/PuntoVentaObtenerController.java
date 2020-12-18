@@ -2,6 +2,7 @@ package com.ar.genesis.sistema.puntoventa.service.controller;
 
 import com.ar.genesis.sistema.puntoventa.core.input.IPuntoVentaObtenerInput;
 import com.ar.genesis.sistema.puntoventa.service.dto.PuntoVentaDTO;
+import com.ar.genesis.sistema.sucursal.service.dto.SucursalDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,7 +26,7 @@ public class PuntoVentaObtenerController {
     public ResponseEntity<?> obtenerPuntoVentas(){
         try{
             List<PuntoVentaDTO> puntoventasDTO = new ArrayList<>();
-            miPuntoVentaObtenerInput.obtenerPuntoVentas().forEach(unPuntoVenta -> puntoventasDTO.add(new PuntoVentaDTO(unPuntoVenta.getId(), unPuntoVenta.getNombre(), unPuntoVenta.getTipoFacturacion())));
+            miPuntoVentaObtenerInput.obtenerPuntoVentas().forEach(unPuntoVenta -> puntoventasDTO.add(new PuntoVentaDTO(unPuntoVenta.getId(), unPuntoVenta.getNombre(), new SucursalDTO(unPuntoVenta.getSucursal().getId(), unPuntoVenta.getSucursal().getNombre()), unPuntoVenta.getTipoFacturacion())));
             if (puntoventasDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(puntoventasDTO);
         } catch (Exception ex) {

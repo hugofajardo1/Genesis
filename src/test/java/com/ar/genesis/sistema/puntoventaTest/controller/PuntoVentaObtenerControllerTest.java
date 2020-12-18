@@ -3,6 +3,7 @@ package com.ar.genesis.sistema.puntoventaTest.controller;
 import com.ar.genesis.sistema.puntoventa.core.domain.PuntoVenta;
 import com.ar.genesis.sistema.puntoventa.core.input.IPuntoVentaObtenerInput;
 import com.ar.genesis.sistema.puntoventa.service.controller.PuntoVentaObtenerController;
+import com.ar.genesis.sistema.sucursal.core.domain.Sucursal;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -22,7 +23,7 @@ public class PuntoVentaObtenerControllerTest {
     @Test
     public void obtenerPuntoVentas_PuntoVentasExisten_Devuelve200(){
         List<PuntoVenta> puntoventas = new ArrayList<>();
-        puntoventas.add(PuntoVenta.instancia(1,"PuntoVenta  1", 5));
+        puntoventas.add(PuntoVenta.instancia(1,"PuntoVenta  1", Sucursal.instancia(1, "Sucursal 1"), 5));
         when(miPuntoVentaObtenerInput.obtenerPuntoVentas()).thenReturn(puntoventas);
 
         PuntoVentaObtenerController puntoventaObtenerController = new PuntoVentaObtenerController(miPuntoVentaObtenerInput);
