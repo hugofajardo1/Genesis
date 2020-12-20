@@ -1,5 +1,7 @@
 package com.ar.genesis.sistema.movimiento.core.domain;
 
+import com.ar.genesis.sistema.puntoventa.core.domain.PuntoVenta;
+import com.ar.genesis.sistema.sucursal.core.domain.Sucursal;
 import com.ar.genesis.sistema.tipoiva.core.domain.TipoIva;
 import com.ar.genesis.sistema.tipomovimiento.core.domain.TipoMovimiento;
 import com.ar.genesis.sistema.ficha.core.domain.Ficha;
@@ -16,6 +18,12 @@ public class Movimiento {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_movimientos")
     Integer id;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "sucursalid")
+    Sucursal sucursal;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "puntoventaid")
+    PuntoVenta puntoVenta;
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "tipo_movimientoid")
     TipoMovimiento tipoMovimiento;
@@ -45,8 +53,10 @@ public class Movimiento {
     public Movimiento() {
     }
 
-    private Movimiento(Integer id, TipoMovimiento tipoMovimiento, Ficha ficha, TipoIva tipoIva, String cuit, LocalDate fecha, LocalTime hora, Double montoNeto, Double montoTotal, Double saldo) {
+    private Movimiento(Integer id, PuntoVenta puntoVenta, TipoMovimiento tipoMovimiento, Ficha ficha, TipoIva tipoIva, String cuit, LocalDate fecha, LocalTime hora, Double montoNeto, Double montoTotal, Double saldo) {
         this.setId(id);
+        this.setSucursal(puntoVenta.getSucursal());
+        this.setPuntoVenta(puntoVenta);
         this.setTipoMovimiento(tipoMovimiento);
         this.setFicha(ficha);
         this.setTipoIva(tipoIva);
@@ -59,8 +69,8 @@ public class Movimiento {
         this.setItems(new ArrayList<>());
     }
 
-    public static Movimiento instancia(Integer id, TipoMovimiento tipoMovimiento, Ficha ficha, TipoIva tipoIva, String cuit, LocalDate fecha, LocalTime hora, Double montoNeto, Double montoTotal, Double saldo) {
-        return new Movimiento(id, tipoMovimiento, ficha, tipoIva, cuit, fecha, hora, montoNeto, montoTotal, saldo);
+    public static Movimiento instancia(Integer id, PuntoVenta puntoVenta, TipoMovimiento tipoMovimiento, Ficha ficha, TipoIva tipoIva, String cuit, LocalDate fecha, LocalTime hora, Double montoNeto, Double montoTotal, Double saldo) {
+        return new Movimiento(id, puntoVenta, tipoMovimiento, ficha, tipoIva, cuit, fecha, hora, montoNeto, montoTotal, saldo);
     }
 
     public Integer getId() {
@@ -69,6 +79,22 @@ public class Movimiento {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Sucursal getSucursal() {
+        return sucursal;
+    }
+
+    public void setSucursal(Sucursal sucursal) {
+        this.sucursal = sucursal;
+    }
+
+    public PuntoVenta getPuntoVenta() {
+        return puntoVenta;
+    }
+
+    public void setPuntoVenta(PuntoVenta puntoVenta) {
+        this.puntoVenta = puntoVenta;
     }
 
     public TipoMovimiento getTipoMovimiento() {

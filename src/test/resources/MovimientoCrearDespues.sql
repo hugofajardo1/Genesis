@@ -1,6 +1,9 @@
 DELETE FROM movimientositem;
 DELETE FROM movimientos;
 
+DELETE FROM puntosventas;
+DELETE FROM sucursales;
+
 DELETE FROM fichas;
 DELETE FROM tipo_ivas;
 DELETE FROM localidades;

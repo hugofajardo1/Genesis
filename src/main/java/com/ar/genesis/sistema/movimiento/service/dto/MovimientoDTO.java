@@ -1,6 +1,8 @@
 package com.ar.genesis.sistema.movimiento.service.dto;
 
 import com.ar.genesis.sistema.ficha.service.dto.FichaDTO;
+import com.ar.genesis.sistema.puntoventa.service.dto.PuntoVentaDTO;
+import com.ar.genesis.sistema.sucursal.service.dto.SucursalDTO;
 import com.ar.genesis.sistema.tipoiva.service.dto.TipoIvaDTO;
 import com.ar.genesis.sistema.tipomovimiento.service.dto.TipoMovimientoDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +14,10 @@ import java.util.List;
 public class MovimientoDTO {
     @JsonProperty("id")
     Integer id;
+    @JsonProperty("sucursal")
+    SucursalDTO sucursal;
+    @JsonProperty("puntoventa")
+    PuntoVentaDTO puntoVenta;
     @JsonProperty("tipomovimiento")
     TipoMovimientoDTO tipoMovimiento;
     @JsonProperty("ficha")
@@ -33,8 +39,10 @@ public class MovimientoDTO {
     @JsonProperty("items")
     List<MovimientoItemDTO> items;
 
-    public MovimientoDTO(Integer id, TipoMovimientoDTO tipoMovimiento, FichaDTO ficha, TipoIvaDTO tipoIva, String cuit, LocalDate fecha, LocalTime hora, Double montoNeto, Double montoTotal, Double saldo, List<MovimientoItemDTO> items) {
+    public MovimientoDTO(Integer id, PuntoVentaDTO puntoVenta, TipoMovimientoDTO tipoMovimiento, FichaDTO ficha, TipoIvaDTO tipoIva, String cuit, LocalDate fecha, LocalTime hora, Double montoNeto, Double montoTotal, Double saldo, List<MovimientoItemDTO> items) {
         this.setId(id);
+        this.setSucursal(puntoVenta.getSucursal());
+        this.setPuntoVenta(puntoVenta);
         this.setTipoMovimiento(tipoMovimiento);
         this.setFicha(ficha);
         this.setTipoIva(tipoIva);
@@ -53,6 +61,22 @@ public class MovimientoDTO {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public SucursalDTO getSucursal() {
+        return sucursal;
+    }
+
+    public void setSucursal(SucursalDTO sucursal) {
+        this.sucursal = sucursal;
+    }
+
+    public PuntoVentaDTO getPuntoVenta() {
+        return puntoVenta;
+    }
+
+    public void setPuntoVenta(PuntoVentaDTO puntoVenta) {
+        this.puntoVenta = puntoVenta;
     }
 
     public TipoMovimientoDTO getTipoMovimiento() {

@@ -1,17 +1,24 @@
 DELETE FROM movimientositem;
 DELETE FROM movimientos;
 
+DELETE FROM puntosventas;
+DELETE FROM sucursales;
+
 DELETE FROM fichas;
 
 DELETE FROM tipo_ivas;
 DELETE FROM localidades;
 DELETE FROM provincias;
 
+ALTER SEQUENCE seq_sucursales RESTART WITH 1;
+ALTER SEQUENCE seq_puntosventas RESTART WITH 1;
 ALTER SEQUENCE seq_fichas RESTART WITH 1;
 ALTER SEQUENCE seq_tipo_ivas RESTART WITH 1;
 ALTER SEQUENCE seq_localidades RESTART WITH 1;
 ALTER SEQUENCE seq_provincias RESTART WITH 1;
 
+INSERT INTO sucursales (id,nombre) VALUES(nextval('seq_sucursales'),'Sucursal 1');
+INSERT INTO puntosventas (id, nombre, sucursalid, tipofacturacion) VALUES(nextval('seq_puntosventas'),'Punto Venta 1', 1, 5);
 INSERT INTO tipo_ivas (id, nombre) VALUES (nextval('seq_tipo_ivas'), 'Responsable Inscripto');
 INSERT INTO localidades (id, nombre) VALUES (nextval('seq_localidades'), 'Chilecito');
 INSERT INTO provincias (id, nombre) VALUES (nextval('seq_provincias'), 'La Rioja');
