@@ -15,3 +15,4 @@ INSERT INTO usuarios (id,nombre, nombreusuario, contrasenia, sucursalid) VALUES(
 
 ALTER SEQUENCE seq_permisosusuarios RESTART WITH 1;
 INSERT INTO permisosusuarios(id, permisoid, usuarioid) VALUES(nextval('seq_permisosusuarios'), 1, 1);
+INSERT INTO permisosusuarios(id, permisoid, usuarioid) VALUES(nextval('seq_permisosusuarios'), 2, 1);
