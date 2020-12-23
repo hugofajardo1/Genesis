@@ -178,7 +178,7 @@ public class Movimiento {
     }
 
     public Double MontoTotalImputado(){
-        if (this.getTipoMovimiento().getImputacion()=="Debe") {
+        if (this.getTipoMovimiento().getImputacion().equals("Debe")) {
             return this.getMontoTotal();
         } else {
             return -this.getMontoTotal();
