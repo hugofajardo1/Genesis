@@ -31,8 +31,8 @@ public class TipoMovimientoObtenerUseCaseTest {
 
     public List<TipoMovimiento> factoryListaTipoMovimientos() {
         List<TipoMovimiento> tipoMovimientos = new ArrayList<>();
-        TipoMovimiento tipoMovimiento1 = TipoMovimiento.instancia(1, "Factura A");
-        TipoMovimiento tipoMovimiento2 = TipoMovimiento.instancia(2, "Nota de Debito A");
+        TipoMovimiento tipoMovimiento1 = TipoMovimiento.instancia(1, "Factura A", "Debe");
+        TipoMovimiento tipoMovimiento2 = TipoMovimiento.instancia(2, "Nota de Debito A", "Debe");
         tipoMovimientos.add(tipoMovimiento1);
         tipoMovimientos.add(tipoMovimiento2);
         return tipoMovimientos;

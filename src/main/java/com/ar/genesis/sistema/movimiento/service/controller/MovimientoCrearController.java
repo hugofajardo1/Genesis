@@ -36,7 +36,7 @@ public class MovimientoCrearController {
         try{
             PuntoVenta unPuntoVenta = PuntoVenta.instancia(unMovimientoDTO.getPuntoVenta().getId(), unMovimientoDTO.getPuntoVenta().getNombre(), Sucursal.instancia(unMovimientoDTO.getSucursal().getId(), unMovimientoDTO.getSucursal().getNombre()), 5);
             TipoIva unTipoIva = TipoIva.instancia(unMovimientoDTO.getFicha().getTipoIva().getId(), unMovimientoDTO.getFicha().getTipoIva().getNombre());
-            TipoMovimiento unTipoMovimiento = TipoMovimiento.instancia(unMovimientoDTO.getTipoMovimiento().getId(), unMovimientoDTO.getTipoMovimiento().getNombre());
+            TipoMovimiento unTipoMovimiento = TipoMovimiento.instancia(unMovimientoDTO.getTipoMovimiento().getId(), unMovimientoDTO.getTipoMovimiento().getNombre(), "Debe");
             Localidad unaLocalidad = Localidad.instancia(unMovimientoDTO.getFicha().getLocalidad().getId(), unMovimientoDTO.getFicha().getLocalidad().getNombre());
             Provincia unaProvincia = Provincia.instancia(unMovimientoDTO.getFicha().getProvincia().getId(), unMovimientoDTO.getFicha().getProvincia().getNombre());
             Ficha unaFicha = Ficha.instancia(unMovimientoDTO.getFicha().getId(), unMovimientoDTO.getFicha().getNombre(), unMovimientoDTO.getFicha().getDomicilio(), unaLocalidad, unaProvincia, unMovimientoDTO.getFicha().getTelefono(), unTipoIva, unMovimientoDTO.getFicha().getCuit(), unMovimientoDTO.getFicha().getIbrutos(), unMovimientoDTO.getFicha().getContacto());

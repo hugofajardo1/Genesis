@@ -17,7 +17,7 @@ public class TipoMovimientoCrearUseCaseTest {
     ITipoMovimientoRepository miTipoMovimientoRepository;
     @Test
     void crearTipoMovimiento_TipoMovimientoNoExiste_GuardaCorrectamente() throws TipoMovimientoExisteException {
-        TipoMovimiento unTipoMovimiento = TipoMovimiento.instancia(1, "Factura A");
+        TipoMovimiento unTipoMovimiento = TipoMovimiento.instancia(1, "Factura A", "Debe");
         when(miTipoMovimientoRepository.existeTipoMovimiento("Factura A")).thenReturn(false);
         when(miTipoMovimientoRepository.guardarTipoMovimiento(unTipoMovimiento)).thenReturn(true);
         TipoMovimientoCrearUseCase tipoMovimientoCrearUseCase = new TipoMovimientoCrearUseCase(miTipoMovimientoRepository);
@@ -27,7 +27,7 @@ public class TipoMovimientoCrearUseCaseTest {
 
     @Test
     void crearTipoMovimiento_TipoMovimientoExiste_NoGuardaTipoMovimiento() {
-        TipoMovimiento unTipoMovimiento = TipoMovimiento.instancia(1, "Factura A");
+        TipoMovimiento unTipoMovimiento = TipoMovimiento.instancia(1, "Factura A", "Debe");
         when(miTipoMovimientoRepository.existeTipoMovimiento("Factura A")).thenReturn(true);
         when(miTipoMovimientoRepository.guardarTipoMovimiento(unTipoMovimiento)).thenReturn(false);
         TipoMovimientoCrearUseCase tipoMovimientoCrearUseCase = new TipoMovimientoCrearUseCase(miTipoMovimientoRepository);

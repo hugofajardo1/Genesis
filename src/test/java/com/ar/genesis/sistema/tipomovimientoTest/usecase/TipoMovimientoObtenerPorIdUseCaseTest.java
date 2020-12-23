@@ -18,7 +18,7 @@ public class TipoMovimientoObtenerPorIdUseCaseTest {
 
     @Test
     public void obtenerTipoMovimientoPorId_devuelveTipoMovimiento() throws TipoMovimientoNoExisteException {
-        TipoMovimiento unTipoMovimiento = TipoMovimiento.instancia(1, "TipoMovimiento 1");
+        TipoMovimiento unTipoMovimiento = TipoMovimiento.instancia(1, "TipoMovimiento 1", "Debe");
 
         when(miTipoMovimientoObtenerPorIdRepository.obtenerTipoMovimiento(1)).thenReturn(unTipoMovimiento);
 

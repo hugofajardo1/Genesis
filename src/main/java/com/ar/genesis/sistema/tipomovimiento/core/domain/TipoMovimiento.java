@@ -10,16 +10,19 @@ public class TipoMovimiento {
     Integer id;
     @Column(name = "nombre", nullable = false, length = 50)
     String nombre;
+    @Column(name = "imputacion", nullable = false, length = 5)
+    String imputacion;
 
     public TipoMovimiento() {
     }
 
-    private TipoMovimiento(Integer id, String nombre) {
-        this.id = id;
-        this.nombre = nombre;
+    private TipoMovimiento(Integer id, String nombre, String imputacion) {
+        this.setId(id);
+        this.setNombre(nombre);
+        this.setImputacion(imputacion);
     }
-    public static TipoMovimiento instancia(Integer id, String nombre){
-        return new TipoMovimiento(id, nombre);
+    public static TipoMovimiento instancia(Integer id, String nombre, String imputacion){
+        return new TipoMovimiento(id, nombre, imputacion);
     }
 
     public Integer getId() {
@@ -36,5 +39,13 @@ public class TipoMovimiento {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getImputacion() {
+        return imputacion;
+    }
+
+    public void setImputacion(String imputacion) {
+        this.imputacion = imputacion;
     }
 }

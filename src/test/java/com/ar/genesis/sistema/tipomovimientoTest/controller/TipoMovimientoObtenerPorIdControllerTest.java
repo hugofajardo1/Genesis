@@ -20,7 +20,7 @@ public class TipoMovimientoObtenerPorIdControllerTest {
 
     @Test
     public void obtenerTipoMovimientoPorId_DevuelveTipoMovimiento() throws TipoMovimientoNoExisteException {
-        TipoMovimiento unTipoMovimiento = TipoMovimiento.instancia(1,"TipoMovimiento 1");
+        TipoMovimiento unTipoMovimiento = TipoMovimiento.instancia(1,"TipoMovimiento 1", "Debe");
         when(miTipoMovimientoObtenerPorIdInput.obtenerTipoMovimiento(1)).thenReturn(unTipoMovimiento);
 
         TipoMovimientoObtenerPorIdController tipoMovimientoObtenerPorIdController = new TipoMovimientoObtenerPorIdController(miTipoMovimientoObtenerPorIdInput);

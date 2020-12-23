@@ -27,7 +27,7 @@ public class TipoMovimientoObtenerPorIdController {
             TipoMovimiento unTipoMovimiento = miTipoMovimientoObtenerPorIdInput.obtenerTipoMovimiento(id);
             TipoMovimientoDTO unTipoMovimientoDTO=null;
             if (unTipoMovimiento!=null){
-                unTipoMovimientoDTO = new TipoMovimientoDTO(unTipoMovimiento.getId(), unTipoMovimiento.getNombre());
+                unTipoMovimientoDTO = new TipoMovimientoDTO(unTipoMovimiento.getId(), unTipoMovimiento.getNombre(), unTipoMovimiento.getImputacion());
             }
             return ResponseEntity.status(HttpStatus.OK).body(unTipoMovimientoDTO);
         } catch (TipoMovimientoNoExisteException e) {

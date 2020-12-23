@@ -176,4 +176,12 @@ public class Movimiento {
     public void setItems(List<MovimientoItem> movimientos) {
         this.items = movimientos;
     }
+
+    public Double MontoTotalImputado(){
+        if (this.getTipoMovimiento().getImputacion()=="Debe") {
+            return this.getMontoTotal();
+        } else {
+            return -this.getMontoTotal();
+        }
+    }
 }

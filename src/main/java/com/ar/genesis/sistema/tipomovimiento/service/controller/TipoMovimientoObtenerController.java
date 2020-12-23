@@ -24,7 +24,7 @@ public class TipoMovimientoObtenerController {
     public ResponseEntity<?> obtenerTipoMovimientos(){
         try{
             List<TipoMovimientoDTO> tipoMovimientosDTO = new ArrayList<>();
-            miTipoMovimientoObtenerInput.obtenerTipoMovimientos().forEach(unTipoMovimiento -> tipoMovimientosDTO.add(new TipoMovimientoDTO(unTipoMovimiento.getId(), unTipoMovimiento.getNombre())));
+            miTipoMovimientoObtenerInput.obtenerTipoMovimientos().forEach(unTipoMovimiento -> tipoMovimientosDTO.add(new TipoMovimientoDTO(unTipoMovimiento.getId(), unTipoMovimiento.getNombre(), unTipoMovimiento.getImputacion())));
             if (tipoMovimientosDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(tipoMovimientosDTO);
         } catch (Exception ex) {

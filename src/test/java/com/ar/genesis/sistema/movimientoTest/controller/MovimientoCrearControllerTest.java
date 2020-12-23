@@ -47,7 +47,7 @@ public class MovimientoCrearControllerTest {
         MovimientoItemDTO unMovimientoItemDTO = new MovimientoItemDTO(1, unProductoDTO, 1.0, unProductoDTO.getIva(), unProductoDTO.getCosto(), unProductoDTO.getPrecioVenta(), unProductoDTO.getPrecioVenta());
         ArrayList<MovimientoItemDTO> itemsDTO = new ArrayList<>();
         itemsDTO.add(unMovimientoItemDTO);
-        MovimientoDTO unMovimientoDTO = new MovimientoDTO(null, unPuntoVentaDTO, new TipoMovimientoDTO(1, "Factura A"), unaFichaDTO, unaFichaDTO.getTipoIva(), unaFichaDTO.getCuit(), LocalDate.now(), LocalTime.now(), 100.0, 121.0, 121.0, itemsDTO);
+        MovimientoDTO unMovimientoDTO = new MovimientoDTO(null, unPuntoVentaDTO, new TipoMovimientoDTO(1, "Factura A", "Debe"), unaFichaDTO, unaFichaDTO.getTipoIva(), unaFichaDTO.getCuit(), LocalDate.now(), LocalTime.now(), 100.0, 121.0, 121.0, itemsDTO);
         when(miMovimientoCrearInput.crearMovimiento(any(Movimiento.class))).thenReturn(true);
 
         MovimientoCrearController movimientoCrearController = new MovimientoCrearController(miMovimientoCrearInput);
@@ -64,7 +64,7 @@ public class MovimientoCrearControllerTest {
         MovimientoItemDTO  unMovimientoItemDTO = new MovimientoItemDTO(1, unProductoDTO, 1.0, unProductoDTO.getIva(), unProductoDTO.getCosto(), unProductoDTO.getPrecioVenta(), unProductoDTO.getPrecioVenta());
         ArrayList<MovimientoItemDTO> itemsDTO = new ArrayList<>();
         itemsDTO.add(unMovimientoItemDTO);
-        MovimientoDTO unMovimientoDTO = new MovimientoDTO(null, unPuntoVentaDTO, new TipoMovimientoDTO(1, "Factura A"), unaFichaDTO, unaFichaDTO.getTipoIva(), unaFichaDTO.getCuit(), LocalDate.now(), LocalTime.now(), 100.0, 121.0, 121.0, itemsDTO);
+        MovimientoDTO unMovimientoDTO = new MovimientoDTO(null, unPuntoVentaDTO, new TipoMovimientoDTO(1, "Factura A", "Debe"), unaFichaDTO, unaFichaDTO.getTipoIva(), unaFichaDTO.getCuit(), LocalDate.now(), LocalTime.now(), 100.0, 121.0, 121.0, itemsDTO);
         when(miMovimientoCrearInput.crearMovimiento(any(Movimiento.class))).thenThrow(MovimientoExisteException.class);
 
         MovimientoCrearController movimientoCrearController = new MovimientoCrearController(miMovimientoCrearInput);
