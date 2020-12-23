@@ -15,5 +15,5 @@ public interface IPermisoUsuarioCRUD extends CrudRepository<PermisoUsuario, Inte
 
     List<PermisoUsuario> findAllByOrderById();
 
-    PermisoUsuario findRubroByIdEquals(Integer id);
+    PermisoUsuario findPermisoUsuarioByIdEquals(Integer id);
 }
