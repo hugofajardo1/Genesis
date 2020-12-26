@@ -8,7 +8,7 @@ import javax.persistence.*;
 @SequenceGenerator(name = "seq_movimientositem", sequenceName = "seq_movimientositem", allocationSize = 1)
 public class MovimientoItem {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_movimientos")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_movimientositem")
     Integer id;
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "productoid")

@@ -25,13 +25,13 @@ public class Movimiento {
     @JoinColumn(name = "puntoventaid")
     PuntoVenta puntoVenta;
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "tipo_movimientoid")
+    @JoinColumn(name = "tipomovimientoid")
     TipoMovimiento tipoMovimiento;
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "fichaid")
     Ficha ficha;
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "tipo_ivaid")
+    @JoinColumn(name = "tipoivaid")
     TipoIva tipoIva;
     @Column(name = "cuit", nullable = false, length = 11)
     String cuit;
