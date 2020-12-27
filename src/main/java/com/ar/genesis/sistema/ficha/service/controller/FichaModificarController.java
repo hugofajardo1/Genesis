@@ -7,6 +7,7 @@ import com.ar.genesis.sistema.tipoiva.core.domain.TipoIva;
 import com.ar.genesis.sistema.ficha.core.exception.FichaExisteException;
 import com.ar.genesis.sistema.ficha.core.input.IFichaModificarInput;
 import com.ar.genesis.sistema.ficha.service.dto.FichaDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,8 @@ public class FichaModificarController {
     @PutMapping(value = "/ficha")
     public ResponseEntity<?> modificarFicha(@RequestBody FichaDTO unaFichaDTO){
         try{
-            boolean resultado = this.miFichaModificarInput.modificarFicha(Ficha.instancia(unaFichaDTO.getId(), unaFichaDTO.getNombre(), unaFichaDTO.getDomicilio(), Localidad.instancia(unaFichaDTO.getLocalidad().getId(), unaFichaDTO.getLocalidad().getNombre()), Provincia.instancia(unaFichaDTO.getProvincia().getId(), unaFichaDTO.getProvincia().getNombre()), unaFichaDTO.getTelefono(), TipoIva.instancia(unaFichaDTO.getTipoIva().getId(), unaFichaDTO.getTipoIva().getNombre()), unaFichaDTO.getCuit(), unaFichaDTO.getIbrutos(), unaFichaDTO.getContacto()));
+            ModelMapper modelMapper = new ModelMapper();
+            boolean resultado = this.miFichaModificarInput.modificarFicha(modelMapper.map(unaFichaDTO, Ficha.class));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (FichaExisteException e) {

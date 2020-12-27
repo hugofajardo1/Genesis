@@ -7,6 +7,7 @@ import com.ar.genesis.sistema.ficha.service.dto.FichaDTO;
 import com.ar.genesis.sistema.localidad.service.dto.LocalidadDTO;
 import com.ar.genesis.sistema.provincia.service.dto.ProvinciaDTO;
 import com.ar.genesis.sistema.tipoiva.service.dto.TipoIvaDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,7 +31,8 @@ public class FichaObtenerPorIdController {
             Ficha unaFicha = miFichaObtenerPorIdInput.obtenerFicha(id);
             FichaDTO unaFichaDTO=null;
             if (unaFicha!=null){
-                unaFichaDTO = new FichaDTO(unaFicha.getId(), unaFicha.getNombre(), unaFicha.getDomicilio(), new LocalidadDTO(unaFicha.getLocalidad().getId(), unaFicha.getLocalidad().getNombre()), new ProvinciaDTO(unaFicha.getProvincia().getId(), unaFicha.getProvincia().getNombre()), unaFicha.getTelefono(), new TipoIvaDTO(unaFicha.getTipoIva().getId(), unaFicha.getTipoIva().getNombre()), unaFicha.getCuit(), unaFicha.getIbrutos(), unaFicha.getContacto());
+                ModelMapper modelMapper = new ModelMapper();
+                unaFichaDTO = modelMapper.map(unaFicha, FichaDTO.class);
             }
             return ResponseEntity.status(HttpStatus.OK).body(unaFichaDTO);
         } catch (FichaNoExisteException e) {

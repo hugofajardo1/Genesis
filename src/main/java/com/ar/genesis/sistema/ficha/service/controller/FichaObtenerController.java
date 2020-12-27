@@ -1,10 +1,12 @@
 package com.ar.genesis.sistema.ficha.service.controller;
 
+import com.ar.genesis.sistema.ficha.core.domain.Ficha;
 import com.ar.genesis.sistema.ficha.core.input.IFichaObtenerInput;
 import com.ar.genesis.sistema.ficha.service.dto.FichaDTO;
 import com.ar.genesis.sistema.localidad.service.dto.LocalidadDTO;
 import com.ar.genesis.sistema.provincia.service.dto.ProvinciaDTO;
 import com.ar.genesis.sistema.tipoiva.service.dto.TipoIvaDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +26,9 @@ public class FichaObtenerController {
     @GetMapping(value = "/ficha")
     public ResponseEntity<?> obtenerFichas(){
         try{
+            ModelMapper modelMapper = new ModelMapper();
             List<FichaDTO> fichasDTO = new ArrayList<>();
-            miFichaObtenerInput.obtenerFichas().forEach(unaFicha -> fichasDTO.add(new FichaDTO(unaFicha.getId(), unaFicha.getNombre(), unaFicha.getDomicilio(), new LocalidadDTO(unaFicha.getLocalidad().getId(), unaFicha.getLocalidad().getNombre()), new ProvinciaDTO(unaFicha.getProvincia().getId(), unaFicha.getProvincia().getNombre()), unaFicha.getTelefono(), new TipoIvaDTO(unaFicha.getTipoIva().getId(), unaFicha.getTipoIva().getNombre()), unaFicha.getCuit(), unaFicha.getIbrutos(), unaFicha.getContacto())));
+            miFichaObtenerInput.obtenerFichas().forEach(unaFicha -> fichasDTO.add(modelMapper.map(unaFicha, FichaDTO.class)));
             if (fichasDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(fichasDTO);
         } catch (Exception ex) {
