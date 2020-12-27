@@ -2,6 +2,7 @@ package com.ar.genesis.sistema.localidad.service.controller;
 
 import com.ar.genesis.sistema.localidad.core.input.ILocalidadObtenerInput;
 import com.ar.genesis.sistema.localidad.service.dto.LocalidadDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,7 +25,8 @@ public class LocalidadObtenerController {
     public ResponseEntity<?> obtenerLocalidades(){
         try{
             List<LocalidadDTO> localidadesDTO = new ArrayList<>();
-            miLocalidadObtenerInput.obtenerLocalidades().forEach(unaLocalidad -> localidadesDTO.add(new LocalidadDTO(unaLocalidad.getId(), unaLocalidad.getNombre())));
+            ModelMapper modelMapper = new ModelMapper();
+            miLocalidadObtenerInput.obtenerLocalidades().forEach(unaLocalidad -> localidadesDTO.add(modelMapper.map(unaLocalidad, LocalidadDTO.class)));
             if (localidadesDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(localidadesDTO);
         } catch (Exception ex) {

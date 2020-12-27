@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.localidad.core.domain.Localidad;
 import com.ar.genesis.sistema.localidad.core.exception.LocalidadExisteException;
 import com.ar.genesis.sistema.localidad.core.input.ILocalidadModificarInput;
 import com.ar.genesis.sistema.localidad.service.dto.LocalidadDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,7 +25,8 @@ public class LocalidadModificarController {
     @PutMapping(value = "/localidad")
     public ResponseEntity<?> modificarLocalidad(@RequestBody LocalidadDTO unaLocalidadDTO ){
         try{
-            boolean resultado = this.miLocalidadModificarInput.modificarLocalidad(Localidad.instancia(unaLocalidadDTO.getId(), unaLocalidadDTO.getNombre()));
+            ModelMapper modelMapper = new ModelMapper();
+            boolean resultado = this.miLocalidadModificarInput.modificarLocalidad(modelMapper.map(unaLocalidadDTO, Localidad.class));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (LocalidadExisteException e) {

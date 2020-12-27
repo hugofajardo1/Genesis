@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.localidad.core.domain.Localidad;
 import com.ar.genesis.sistema.localidad.core.exception.LocalidadNoExisteException;
 import com.ar.genesis.sistema.localidad.core.input.ILocalidadObtenerPorIdInput;
 import com.ar.genesis.sistema.localidad.service.dto.LocalidadDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,7 +28,8 @@ public class LocalidadObtenerPorIdController {
             Localidad unaLocalidad = miLocalidadObtenerPorIdInput.obtenerLocalidad(id);
             LocalidadDTO unaLocalidadDTO=null;
             if (unaLocalidad!=null){
-                unaLocalidadDTO = new LocalidadDTO(unaLocalidad.getId(), unaLocalidad.getNombre());
+                ModelMapper modelMapper = new ModelMapper();
+                unaLocalidadDTO = modelMapper.map(unaLocalidad, LocalidadDTO.class);
             }
             return ResponseEntity.status(HttpStatus.OK).body(unaLocalidadDTO);
         } catch (LocalidadNoExisteException e) {
