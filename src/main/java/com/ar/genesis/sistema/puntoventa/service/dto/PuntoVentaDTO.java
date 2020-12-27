@@ -14,6 +14,10 @@ public class PuntoVentaDTO {
     @JsonProperty("tipofacturacion")
     Integer tipofacturacion;
 
+    public PuntoVentaDTO(){
+
+    }
+
     public PuntoVentaDTO(Integer id, String nombre, SucursalDTO sucursal, Integer tipoFacturacion) {
         this.setId(id);
         this.setNombre(nombre);

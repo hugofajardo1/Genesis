@@ -19,6 +19,10 @@ public class MovimientoItemDTO {
     @JsonProperty("precioventafinal")
     Double precioVentaFinal;
 
+    public MovimientoItemDTO(){
+
+    }
+
     public MovimientoItemDTO(Integer id, ProductoDTO producto, Double cantidad, Double iva, Double precioCosto, Double precioVenta, Double precioVentaFinal) {
         this.id = id;
         this.producto = producto;

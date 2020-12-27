@@ -8,6 +8,10 @@ public class ProveedorDTO {
     @JsonProperty("nombre")
     String nombre;
 
+    public ProveedorDTO(){
+
+    }
+
     public ProveedorDTO(Integer id, String nombre) {
         this.setId(id);
         this.setNombre(nombre);

@@ -9,6 +9,10 @@ public class SubRubroDTO {
     @JsonProperty("nombre")
     String nombre;
 
+    public SubRubroDTO(){
+
+    }
+
     public SubRubroDTO(Integer id, String nombre) {
         this.setId(id);
         this.setNombre(nombre);

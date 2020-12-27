@@ -9,6 +9,10 @@ public class SucursalDTO {
     @JsonProperty("nombre")
     String nombre;
 
+    public SucursalDTO(){
+
+    }
+
     public SucursalDTO(Integer id, String nombre) {
         this.setId(id);
         this.setNombre(nombre);

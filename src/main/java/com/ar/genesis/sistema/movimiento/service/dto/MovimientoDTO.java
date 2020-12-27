@@ -39,6 +39,10 @@ public class MovimientoDTO {
     @JsonProperty("items")
     List<MovimientoItemDTO> items;
 
+    public MovimientoDTO(){
+
+    }
+
     public MovimientoDTO(Integer id, PuntoVentaDTO puntoVenta, TipoMovimientoDTO tipoMovimiento, FichaDTO ficha, TipoIvaDTO tipoIva, String cuit, LocalDate fecha, LocalTime hora, Double montoNeto, Double montoTotal, Double saldo, List<MovimientoItemDTO> items) {
         this.setId(id);
         this.setSucursal(puntoVenta.getSucursal());

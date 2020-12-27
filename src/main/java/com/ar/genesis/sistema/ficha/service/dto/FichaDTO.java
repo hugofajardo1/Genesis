@@ -28,6 +28,10 @@ public class FichaDTO {
     @JsonProperty("contacto")
     String contacto;
 
+    public FichaDTO(){
+
+    }
+
     public FichaDTO(Integer id, String nombre, String domicilio, LocalidadDTO localidad, ProvinciaDTO provincia, String telefono, TipoIvaDTO tipoIva, String cuit, String ibrutos, String contacto) {
         this.setId(id);
         this.setNombre(nombre);

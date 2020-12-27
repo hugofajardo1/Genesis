@@ -38,6 +38,9 @@ public class ProductoDTO {
     @JsonProperty("precioventa")
     Double precioVenta;
 
+    public ProductoDTO(){
+
+    }
 
     public ProductoDTO(Integer id, String nombre, String codigoUsuario, String codigoBarra, TipoUnidadDTO tipoUnidad, Double costo, Double iva, Double margen, Double flete, RubroDTO rubro, SubRubroDTO subRubro, UbicacionDTO ubicacion, ProveedorDTO proveedor) {
         this.setId(id);

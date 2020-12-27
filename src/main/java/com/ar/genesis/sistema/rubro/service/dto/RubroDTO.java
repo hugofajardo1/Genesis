@@ -9,6 +9,10 @@ public class RubroDTO {
     @JsonProperty("nombre")
     String nombre;
 
+    public RubroDTO(){
+
+    }
+
     public RubroDTO(Integer id, String nombre) {
         this.setId(id);
         this.setNombre(nombre);

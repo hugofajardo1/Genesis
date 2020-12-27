@@ -8,6 +8,10 @@ public class TipoIvaDTO {
     @JsonProperty("nombre")
     String nombre;
 
+    public TipoIvaDTO(){
+
+    }
+
     public TipoIvaDTO(Integer id, String nombre) {
         this.setId(id);
         this.setNombre(nombre);

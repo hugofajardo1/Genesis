@@ -13,6 +13,10 @@ public class PermisoUsuarioDTO {
     @JsonProperty("usuarioid")
     UsuarioDTO usuario;
 
+    public PermisoUsuarioDTO(){
+
+    }
+
     public PermisoUsuarioDTO(Integer id, PermisoDTO permiso, UsuarioDTO usuario) {
         this.setId(id);
         this.setPermiso(permiso);

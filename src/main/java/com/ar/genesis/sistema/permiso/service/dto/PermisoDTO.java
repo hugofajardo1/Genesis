@@ -9,6 +9,10 @@ public class PermisoDTO {
     @JsonProperty("nombre")
     String nombre;
 
+    public PermisoDTO(){
+
+    }
+
     public PermisoDTO(Integer id, String nombre) {
         this.setId(id);
         this.setNombre(nombre);

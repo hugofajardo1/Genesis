@@ -15,6 +15,10 @@ public class UsuarioDTO {
     @JsonProperty("sucursal")
     SucursalDTO sucursal;
 
+    public UsuarioDTO(){
+
+    }
+
     public UsuarioDTO(Integer id, String nombre, String nombreUsuario, String contrasenia, SucursalDTO sucursalDTO) {
         this.setId(id);
         this.setNombre(nombre);

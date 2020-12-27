@@ -9,6 +9,10 @@ public class TipoFichaDTO {
     @JsonProperty("nombre")
     String nombre;
 
+    public TipoFichaDTO(){
+
+    }
+
     public TipoFichaDTO(Integer id, String nombre) {
         this.setId(id);
         this.setNombre(nombre);

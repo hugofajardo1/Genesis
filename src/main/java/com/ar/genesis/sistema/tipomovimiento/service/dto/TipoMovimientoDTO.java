@@ -10,6 +10,10 @@ public class TipoMovimientoDTO {
     @JsonProperty("imputacion")
     String imputacion;
 
+    public TipoMovimientoDTO(){
+
+    }
+
     public TipoMovimientoDTO(Integer id, String nombre, String imputacion) {
         this.setId(id);
         this.setNombre(nombre);

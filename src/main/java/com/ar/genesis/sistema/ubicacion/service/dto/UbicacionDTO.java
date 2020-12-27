@@ -9,6 +9,10 @@ public class UbicacionDTO {
     @JsonProperty("nombre")
     String nombre;
 
+    public UbicacionDTO(){
+
+    }
+
     public UbicacionDTO(Integer id, String nombre) {
         this.setId(id);
         this.setNombre(nombre);

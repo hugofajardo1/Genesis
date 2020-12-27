@@ -8,6 +8,10 @@ public class TipoUnidadDTO {
     @JsonProperty("nombre")
     String nombre;
 
+    public TipoUnidadDTO(){
+
+    }
+
     public TipoUnidadDTO(Integer id, String nombre) {
         this.setId(id);
         this.setNombre(nombre);
