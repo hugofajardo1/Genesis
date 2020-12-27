@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.permiso.core.domain.Permiso;
 import com.ar.genesis.sistema.permiso.core.exception.PermisoExisteException;
 import com.ar.genesis.sistema.permiso.core.input.IPermisoModificarInput;
 import com.ar.genesis.sistema.permiso.service.dto.PermisoDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,7 +25,8 @@ public class PermisoModificarController {
     @PutMapping(value = "/permiso")
     public ResponseEntity<?> modificarPermiso(@RequestBody PermisoDTO unPermisoDTO){
         try{
-            boolean resultado = this.miPermisoModificarInput.modificarPermiso(Permiso.instancia(unPermisoDTO.getId(), unPermisoDTO.getNombre()));
+            ModelMapper modelMapper = new ModelMapper();
+            boolean resultado = this.miPermisoModificarInput.modificarPermiso(modelMapper.map(unPermisoDTO, Permiso.class));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (PermisoExisteException e) {

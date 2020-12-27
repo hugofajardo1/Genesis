@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.permiso.core.domain.Permiso;
 import com.ar.genesis.sistema.permiso.core.exception.PermisoNoExisteException;
 import com.ar.genesis.sistema.permiso.core.input.IPermisoObtenerPorIdInput;
 import com.ar.genesis.sistema.permiso.service.dto.PermisoDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,7 +28,8 @@ public class PermisoObtenerPorIdController {
             Permiso unPermiso = miPermisoObtenerPorIdInput.obtenerPermiso(id);
             PermisoDTO unPermisoDTO=null;
             if (unPermiso!=null){
-                unPermisoDTO = new PermisoDTO(unPermiso.getId(), unPermiso.getNombre());
+                ModelMapper modelMapper = new ModelMapper();
+                unPermisoDTO = modelMapper.map(unPermiso, PermisoDTO.class);
             }
             return ResponseEntity.status(HttpStatus.OK).body(unPermisoDTO);
         } catch (PermisoNoExisteException e) {

@@ -2,6 +2,7 @@ package com.ar.genesis.sistema.permiso.service.controller;
 
 import com.ar.genesis.sistema.permiso.core.input.IPermisoObtenerInput;
 import com.ar.genesis.sistema.permiso.service.dto.PermisoDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,8 +25,9 @@ public class PermisoObtenerController {
     @GetMapping(value = "/permiso")
     public ResponseEntity<?> obtenerPermisos(){
         try{
+            ModelMapper modelMapper = new ModelMapper();
             List<PermisoDTO> permisosDTO = new ArrayList<>();
-            miPermisoObtenerInput.obtenerPermisos().forEach(unPermiso -> permisosDTO.add(new PermisoDTO(unPermiso.getId(), unPermiso.getNombre())));
+            miPermisoObtenerInput.obtenerPermisos().forEach(unPermiso -> permisosDTO.add(modelMapper.map(unPermiso, PermisoDTO.class)));
             if (permisosDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(permisosDTO);
         } catch (Exception ex) {
