@@ -2,6 +2,7 @@ package com.ar.genesis.sistema.proveedor.service.controller;
 
 import com.ar.genesis.sistema.proveedor.core.input.IProveedorObtenerInput;
 import com.ar.genesis.sistema.proveedor.service.dto.ProveedorDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,8 +24,9 @@ public class ProveedorObtenerController {
     @GetMapping(value = "/proveedor")
     public ResponseEntity<?> obtenerProveedores(){
         try{
+            ModelMapper modelMapper = new ModelMapper();
             List<ProveedorDTO> ProveedoresDTO = new ArrayList<>();
-            miProveedorObtenerInput.obtenerProveedores().forEach(unProveedor -> ProveedoresDTO.add(new ProveedorDTO(unProveedor.getId(), unProveedor.getNombre())));
+            miProveedorObtenerInput.obtenerProveedores().forEach(unProveedor -> ProveedoresDTO.add(modelMapper.map(unProveedor, ProveedorDTO.class)));
             if (ProveedoresDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(ProveedoresDTO);
         } catch (Exception ex) {

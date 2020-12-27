@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.proveedor.core.domain.Proveedor;
 import com.ar.genesis.sistema.proveedor.core.exception.ProveedorExisteException;
 import com.ar.genesis.sistema.proveedor.core.input.IProveedorModificarInput;
 import com.ar.genesis.sistema.proveedor.service.dto.ProveedorDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,7 +25,8 @@ public class ProveedorModificarController {
     @PutMapping(value = "/proveedor")
     public ResponseEntity<?> modificarProveedor(@RequestBody ProveedorDTO unProveedorDTO){
         try{
-            boolean resultado = this.miProveedorModificarInput.modificarProveedor(Proveedor.instancia(unProveedorDTO.getId(), unProveedorDTO.getNombre()));
+            ModelMapper modelMapper = new ModelMapper();
+            boolean resultado = this.miProveedorModificarInput.modificarProveedor(modelMapper.map(unProveedorDTO, Proveedor.class));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (ProveedorExisteException e) {

@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.proveedor.core.domain.Proveedor;
 import com.ar.genesis.sistema.proveedor.core.exception.ProveedorNoExisteException;
 import com.ar.genesis.sistema.proveedor.core.input.IProveedorObtenerPorIdInput;
 import com.ar.genesis.sistema.proveedor.service.dto.ProveedorDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,7 +28,8 @@ public class ProveedorObtenerPorIdController {
             Proveedor unProveedor = miProveedorObtenerPorIdInput.obtenerProveedor(id);
             ProveedorDTO unProveedorDTO=null;
             if (unProveedor!=null){
-                unProveedorDTO = new ProveedorDTO(unProveedor.getId(), unProveedor.getNombre());
+                ModelMapper modelMapper = new ModelMapper();
+                unProveedorDTO = modelMapper.map(unProveedor, ProveedorDTO.class);
             }
             return ResponseEntity.status(HttpStatus.OK).body(unProveedorDTO);
         } catch (ProveedorNoExisteException e) {
