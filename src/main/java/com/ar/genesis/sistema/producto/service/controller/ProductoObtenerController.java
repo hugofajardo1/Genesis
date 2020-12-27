@@ -7,6 +7,7 @@ import com.ar.genesis.sistema.rubro.service.dto.RubroDTO;
 import com.ar.genesis.sistema.subrubro.service.dto.SubRubroDTO;
 import com.ar.genesis.sistema.tipounidad.service.dto.TipoUnidadDTO;
 import com.ar.genesis.sistema.ubicacion.service.dto.UbicacionDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,8 +30,9 @@ public class ProductoObtenerController {
     @GetMapping(value = "/producto")
     public ResponseEntity<?> obtenerProductos(){
         try{
+            ModelMapper modelMapper = new ModelMapper();
             List<ProductoDTO> productosDTO = new ArrayList<>();
-            miProductoObtenerInput.obtenerProductos().forEach(unProducto -> productosDTO.add(new ProductoDTO(unProducto.getId(), unProducto.getNombre(), unProducto.getCodigoUsuario(), unProducto.getCodigoBarra(), new TipoUnidadDTO(unProducto.getTipoUnidad().getId(), unProducto.getTipoUnidad().getNombre()), unProducto.getCosto(), unProducto.getIva(), unProducto.getMargen(), unProducto.getFlete(), new RubroDTO(unProducto.getRubro().getId(), unProducto.getRubro().getNombre()), new SubRubroDTO(unProducto.getSubRubro().getId(), unProducto.getSubRubro().getNombre()), new UbicacionDTO(unProducto.getUbicacion().getId(), unProducto.getUbicacion().getNombre()), new ProveedorDTO(unProducto.getProveedor().getId(), unProducto.getProveedor().getNombre()))));
+            miProductoObtenerInput.obtenerProductos().forEach(unProducto -> productosDTO.add(modelMapper.map(unProducto, ProductoDTO.class)));
             if (productosDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(productosDTO);
         } catch (Exception ex) {
