@@ -7,6 +7,7 @@ import com.ar.genesis.sistema.permisousuario.core.input.IPermisoUsuarioCrearInpu
 import com.ar.genesis.sistema.permisousuario.service.dto.PermisoUsuarioDTO;
 import com.ar.genesis.sistema.sucursal.core.domain.Sucursal;
 import com.ar.genesis.sistema.usuario.core.domain.Usuario;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,7 +30,8 @@ public class PermisoUsuarioCrearController {
     @PostMapping(value = "/permisousuario")
     public ResponseEntity<?> crearPermisoUsuario(@RequestBody PermisoUsuarioDTO unPermisoUsuarioDTO){
         try{
-            boolean resultado = this.miPermisoUsuarioCrearInput.crearPermisoUsuario(PermisoUsuario.instancia(unPermisoUsuarioDTO.getId(), Permiso.instancia(unPermisoUsuarioDTO.getPermiso().getId(), unPermisoUsuarioDTO.getPermiso().getNombre()), Usuario.instancia(unPermisoUsuarioDTO.getUsuario().getId(), unPermisoUsuarioDTO.getUsuario().getNombre(), unPermisoUsuarioDTO.getUsuario().getNombreUsuario(), unPermisoUsuarioDTO.getUsuario().getContrasenia(), Sucursal.instancia(unPermisoUsuarioDTO.getUsuario().getSucursal().getId(), unPermisoUsuarioDTO.getUsuario().getSucursal().getNombre()))));
+            ModelMapper modelMapper = new ModelMapper();
+            boolean resultado = this.miPermisoUsuarioCrearInput.crearPermisoUsuario(modelMapper.map(unPermisoUsuarioDTO, PermisoUsuario.class));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (PermisoUsuarioExisteException e) {

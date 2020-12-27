@@ -7,6 +7,7 @@ import com.ar.genesis.sistema.permisousuario.core.input.IPermisoUsuarioObtenerPo
 import com.ar.genesis.sistema.permisousuario.service.dto.PermisoUsuarioDTO;
 import com.ar.genesis.sistema.sucursal.service.dto.SucursalDTO;
 import com.ar.genesis.sistema.usuario.service.dto.UsuarioDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,7 +31,8 @@ public class PermisoUsuarioObtenerPorIdController {
             PermisoUsuario unPermisoUsuario = miPermisoUsuarioObtenerPorIdInput.obtenerPermisoUsuario(id);
             PermisoUsuarioDTO unPermisoUsuarioDTO=null;
             if (unPermisoUsuario!=null){
-                unPermisoUsuarioDTO = new PermisoUsuarioDTO(unPermisoUsuario.getId(), new PermisoDTO(unPermisoUsuario.getPermiso().getId(), unPermisoUsuario.getPermiso().getNombre()), new UsuarioDTO(unPermisoUsuario.getUsuario().getId(), unPermisoUsuario.getPermiso().getNombre(), unPermisoUsuario.getUsuario().getNombreUsuario(), unPermisoUsuario.getUsuario().getContrasenia(), new SucursalDTO(unPermisoUsuario.getUsuario().getSucursal().getId(), unPermisoUsuario.getUsuario().getSucursal().getNombre())));
+                ModelMapper modelMapper = new ModelMapper();
+                unPermisoUsuarioDTO = modelMapper.map(unPermisoUsuario, PermisoUsuarioDTO.class);
             }
             return ResponseEntity.status(HttpStatus.OK).body(unPermisoUsuarioDTO);
         } catch (PermisoUsuarioNoExisteException e) {
