@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.sucursal.core.domain.Sucursal;
 import com.ar.genesis.sistema.sucursal.core.exception.SucursalNoExisteException;
 import com.ar.genesis.sistema.sucursal.core.input.ISucursalObtenerPorIdInput;
 import com.ar.genesis.sistema.sucursal.service.dto.SucursalDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,7 +28,8 @@ public class SucursalObtenerPorIdController {
             Sucursal unaSucursal = miSucursalObtenerPorIdInput.obtenerSucursal(id);
             SucursalDTO unaSucursalDTO=null;
             if (unaSucursal!=null){
-                unaSucursalDTO = new SucursalDTO(unaSucursal.getId(), unaSucursal.getNombre());
+                ModelMapper modelMapper = new ModelMapper();
+                unaSucursalDTO = modelMapper.map(unaSucursal, SucursalDTO.class);
             }
             return ResponseEntity.status(HttpStatus.OK).body(unaSucursalDTO);
         } catch (SucursalNoExisteException e) {

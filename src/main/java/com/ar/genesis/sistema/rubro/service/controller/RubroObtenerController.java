@@ -2,6 +2,7 @@ package com.ar.genesis.sistema.rubro.service.controller;
 
 import com.ar.genesis.sistema.rubro.core.input.IRubroObtenerInput;
 import com.ar.genesis.sistema.rubro.service.dto.RubroDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,8 +25,9 @@ public class RubroObtenerController {
     @GetMapping(value = "/rubro")
     public ResponseEntity<?> obtenerRubros(){
         try{
+            ModelMapper modelMapper = new ModelMapper();
             List<RubroDTO> rubrosDTO = new ArrayList<>();
-            miRubroObtenerInput.obtenerRubros().forEach(unRubro -> rubrosDTO.add(new RubroDTO(unRubro.getId(), unRubro.getNombre())));
+            miRubroObtenerInput.obtenerRubros().forEach(unRubro -> rubrosDTO.add(modelMapper.map(unRubro, RubroDTO.class)));
             if (rubrosDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(rubrosDTO);
         } catch (Exception ex) {

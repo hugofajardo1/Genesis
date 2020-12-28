@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.subrubro.core.domain.SubRubro;
 import com.ar.genesis.sistema.subrubro.core.exception.SubRubroExisteException;
 import com.ar.genesis.sistema.subrubro.core.input.ISubRubroModificarInput;
 import com.ar.genesis.sistema.subrubro.service.dto.SubRubroDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,7 +25,8 @@ public class SubRubroModificarController {
     @PutMapping(value = "/subrubro")
     public ResponseEntity<?> modificarSubRubro(@RequestBody SubRubroDTO unSubRubroDTO){
         try{
-            boolean resultado = this.miSubRubroModificarInput.modificarSubRubro(SubRubro.instancia(unSubRubroDTO.getId(), unSubRubroDTO.getNombre()));
+            ModelMapper modelMapper = new ModelMapper();
+            boolean resultado = this.miSubRubroModificarInput.modificarSubRubro(modelMapper.map(unSubRubroDTO, SubRubro.class));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (SubRubroExisteException e) {

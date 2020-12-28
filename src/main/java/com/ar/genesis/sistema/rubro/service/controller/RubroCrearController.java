@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.rubro.core.domain.Rubro;
 import com.ar.genesis.sistema.rubro.core.exception.RubroExisteException;
 import com.ar.genesis.sistema.rubro.core.input.IRubroCrearInput;
 import com.ar.genesis.sistema.rubro.service.dto.RubroDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,7 +27,8 @@ public class RubroCrearController {
     @PostMapping(value = "/rubro")
     public ResponseEntity<?> crearRubro(@RequestBody RubroDTO unRubroDTO){
         try{
-            boolean resultado = this.miRubroCrearInput.crearRubro(Rubro.instancia(unRubroDTO.getId(), unRubroDTO.getNombre()));
+            ModelMapper modelMapper = new ModelMapper();
+            boolean resultado = this.miRubroCrearInput.crearRubro(modelMapper.map(unRubroDTO, Rubro.class));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (RubroExisteException e) {

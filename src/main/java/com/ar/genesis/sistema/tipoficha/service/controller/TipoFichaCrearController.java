@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.tipoficha.core.domain.TipoFicha;
 import com.ar.genesis.sistema.tipoficha.core.exception.TipoFichaExisteException;
 import com.ar.genesis.sistema.tipoficha.core.input.ITipoFichaCrearInput;
 import com.ar.genesis.sistema.tipoficha.service.dto.TipoFichaDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,7 +25,8 @@ public class TipoFichaCrearController {
     @PostMapping(value = "/tipoficha")
     public ResponseEntity<?> crearTipoFicha(@RequestBody TipoFichaDTO unTipoFichaDTO){
         try{
-            boolean resultado = this.miTipoFichaCrearInput.crearTipoFicha(TipoFicha.instancia(unTipoFichaDTO.getId(), unTipoFichaDTO.getNombre()));
+            ModelMapper modelMapper = new ModelMapper();
+            boolean resultado = this.miTipoFichaCrearInput.crearTipoFicha(modelMapper.map(unTipoFichaDTO, TipoFicha.class));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (TipoFichaExisteException e) {

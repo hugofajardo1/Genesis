@@ -2,6 +2,7 @@ package com.ar.genesis.sistema.sucursal.service.controller;
 
 import com.ar.genesis.sistema.sucursal.core.input.ISucursalObtenerInput;
 import com.ar.genesis.sistema.sucursal.service.dto.SucursalDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,8 +24,9 @@ public class SucursalObtenerController {
     @GetMapping(value = "/sucursal")
     public ResponseEntity<?> obtenerSucursales(){
         try{
+            ModelMapper modelMapper = new ModelMapper();
             List<SucursalDTO> sucursalesDTO = new ArrayList<>();
-            miSucursalObtenerInput.obtenerSucursales().forEach(unaSucursal -> sucursalesDTO.add(new SucursalDTO(unaSucursal.getId(), unaSucursal.getNombre())));
+            miSucursalObtenerInput.obtenerSucursales().forEach(unaSucursal -> sucursalesDTO.add(modelMapper.map(unaSucursal, SucursalDTO.class)));
             if (sucursalesDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(sucursalesDTO);
         } catch (Exception ex) {

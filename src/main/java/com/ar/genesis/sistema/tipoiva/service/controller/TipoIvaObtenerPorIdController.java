@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.tipoiva.core.domain.TipoIva;
 import com.ar.genesis.sistema.tipoiva.core.exception.TipoIvaNoExisteException;
 import com.ar.genesis.sistema.tipoiva.core.input.ITipoIvaObtenerPorIdInput;
 import com.ar.genesis.sistema.tipoiva.service.dto.TipoIvaDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,7 +28,8 @@ public class TipoIvaObtenerPorIdController {
             TipoIva unTipoIva = miTipoIvaObtenerPorIdInput.obtenerTipoIva(id);
             TipoIvaDTO unTipoIvaDTO=null;
             if (unTipoIva!=null){
-                unTipoIvaDTO = new TipoIvaDTO(unTipoIva.getId(), unTipoIva.getNombre());
+                ModelMapper modelMapper = new ModelMapper();
+                unTipoIvaDTO = modelMapper.map(unTipoIva, TipoIvaDTO.class);
             }
             return ResponseEntity.status(HttpStatus.OK).body(unTipoIvaDTO);
         } catch (TipoIvaNoExisteException e) {

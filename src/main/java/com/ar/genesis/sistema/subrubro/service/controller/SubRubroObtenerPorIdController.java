@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.subrubro.core.domain.SubRubro;
 import com.ar.genesis.sistema.subrubro.core.exception.SubRubroNoExisteException;
 import com.ar.genesis.sistema.subrubro.core.input.ISubRubroObtenerPorIdInput;
 import com.ar.genesis.sistema.subrubro.service.dto.SubRubroDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,7 +28,8 @@ public class SubRubroObtenerPorIdController {
             SubRubro unSubRubro = miSubRubroObtenerPorIdInput.obtenerSubRubro(id);
             SubRubroDTO unSubRubroDTO=null;
             if (unSubRubro!=null){
-                unSubRubroDTO = new SubRubroDTO(unSubRubro.getId(), unSubRubro.getNombre());
+                ModelMapper modelMapper = new ModelMapper();
+                unSubRubroDTO = modelMapper.map(unSubRubro, SubRubroDTO.class);
             }
             return ResponseEntity.status(HttpStatus.OK).body(unSubRubroDTO);
         } catch (SubRubroNoExisteException e) {

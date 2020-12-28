@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.rubro.core.domain.Rubro;
 import com.ar.genesis.sistema.rubro.core.exception.RubroNoExisteException;
 import com.ar.genesis.sistema.rubro.core.input.IRubroObtenerPorIdInput;
 import com.ar.genesis.sistema.rubro.service.dto.RubroDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,7 +28,8 @@ public class RubroObtenerPorIdController {
             Rubro unRubro = miRubroObtenerPorIdInput.obtenerRubro(id);
             RubroDTO unRubroDTO=null;
             if (unRubro!=null){
-                unRubroDTO = new RubroDTO(unRubro.getId(), unRubro.getNombre());
+                ModelMapper modelMapper = new ModelMapper();
+                unRubroDTO = modelMapper.map(unRubro, RubroDTO.class);
             }
             return ResponseEntity.status(HttpStatus.OK).body(unRubroDTO);
         } catch (RubroNoExisteException e) {

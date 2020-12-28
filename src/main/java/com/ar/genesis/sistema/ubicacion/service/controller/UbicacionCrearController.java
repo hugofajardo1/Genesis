@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.ubicacion.core.domain.Ubicacion;
 import com.ar.genesis.sistema.ubicacion.core.exception.UbicacionExisteException;
 import com.ar.genesis.sistema.ubicacion.core.input.IUbicacionCrearInput;
 import com.ar.genesis.sistema.ubicacion.service.dto.UbicacionDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,7 +25,8 @@ public class UbicacionCrearController {
     @PostMapping(value = "/ubicacion")
     public ResponseEntity<?> crearUbicacion(@RequestBody UbicacionDTO unaUbicacionDTO){
         try{
-            boolean resultado = this.miUbicacionCrearInput.crearUbicacion(Ubicacion.instancia(unaUbicacionDTO.getId(), unaUbicacionDTO.getNombre()));
+            ModelMapper modelMapper = new ModelMapper();
+            boolean resultado = this.miUbicacionCrearInput.crearUbicacion(modelMapper.map(unaUbicacionDTO, Ubicacion.class));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (UbicacionExisteException e) {

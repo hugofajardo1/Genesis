@@ -2,6 +2,7 @@ package com.ar.genesis.sistema.provincia.service.controller;
 
 import com.ar.genesis.sistema.provincia.core.input.IProvinciaObtenerInput;
 import com.ar.genesis.sistema.provincia.service.dto.ProvinciaDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,8 +24,9 @@ public class ProvinciaObtenerController {
     @GetMapping(value = "/provincia")
     public ResponseEntity<?> obtenerProvincias(){
         try{
+            ModelMapper modelMapper = new ModelMapper();
             List<ProvinciaDTO> provinciasDTO = new ArrayList<>();
-            miProvinciaObtenerInput.obtenerProvincias().forEach(unaProvincia -> provinciasDTO.add(new ProvinciaDTO(unaProvincia.getId(), unaProvincia.getNombre())));
+            miProvinciaObtenerInput.obtenerProvincias().forEach(unaProvincia -> provinciasDTO.add(modelMapper.map(unaProvincia, ProvinciaDTO.class)));
             if (provinciasDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(provinciasDTO);
         } catch (Exception ex) {

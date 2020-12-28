@@ -2,6 +2,7 @@ package com.ar.genesis.sistema.tipomovimiento.service.controller;
 
 import com.ar.genesis.sistema.tipomovimiento.core.input.ITipoMovimientoObtenerInput;
 import com.ar.genesis.sistema.tipomovimiento.service.dto.TipoMovimientoDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,8 +24,9 @@ public class TipoMovimientoObtenerController {
     @GetMapping(value = "/tipomovimiento")
     public ResponseEntity<?> obtenerTipoMovimientos(){
         try{
+            ModelMapper modelMapper = new ModelMapper();
             List<TipoMovimientoDTO> tipoMovimientosDTO = new ArrayList<>();
-            miTipoMovimientoObtenerInput.obtenerTipoMovimientos().forEach(unTipoMovimiento -> tipoMovimientosDTO.add(new TipoMovimientoDTO(unTipoMovimiento.getId(), unTipoMovimiento.getNombre(), unTipoMovimiento.getImputacion())));
+            miTipoMovimientoObtenerInput.obtenerTipoMovimientos().forEach(unTipoMovimiento -> tipoMovimientosDTO.add(modelMapper.map(unTipoMovimiento, TipoMovimientoDTO.class)));
             if (tipoMovimientosDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(tipoMovimientosDTO);
         } catch (Exception ex) {

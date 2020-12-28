@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.tipomovimiento.core.domain.TipoMovimiento;
 import com.ar.genesis.sistema.tipomovimiento.core.exception.TipoMovimientoNoExisteException;
 import com.ar.genesis.sistema.tipomovimiento.core.input.ITipoMovimientoObtenerPorIdInput;
 import com.ar.genesis.sistema.tipomovimiento.service.dto.TipoMovimientoDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,7 +28,8 @@ public class TipoMovimientoObtenerPorIdController {
             TipoMovimiento unTipoMovimiento = miTipoMovimientoObtenerPorIdInput.obtenerTipoMovimiento(id);
             TipoMovimientoDTO unTipoMovimientoDTO=null;
             if (unTipoMovimiento!=null){
-                unTipoMovimientoDTO = new TipoMovimientoDTO(unTipoMovimiento.getId(), unTipoMovimiento.getNombre(), unTipoMovimiento.getImputacion());
+                ModelMapper modelMapper = new ModelMapper();
+                unTipoMovimientoDTO = modelMapper.map(unTipoMovimiento, TipoMovimientoDTO.class);
             }
             return ResponseEntity.status(HttpStatus.OK).body(unTipoMovimientoDTO);
         } catch (TipoMovimientoNoExisteException e) {

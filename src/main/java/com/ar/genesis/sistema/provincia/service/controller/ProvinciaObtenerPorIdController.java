@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.provincia.core.domain.Provincia;
 import com.ar.genesis.sistema.provincia.core.exception.ProvinciaNoExisteException;
 import com.ar.genesis.sistema.provincia.core.input.IProvinciaObtenerPorIdInput;
 import com.ar.genesis.sistema.provincia.service.dto.ProvinciaDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,7 +28,8 @@ public class ProvinciaObtenerPorIdController {
             Provincia unaProvincia = miProvinciaObtenerPorIdInput.obtenerProvincia(id);
             ProvinciaDTO unaProvinciaDTO=null;
             if (unaProvincia!=null){
-                unaProvinciaDTO = new ProvinciaDTO(unaProvincia.getId(), unaProvincia.getNombre());
+                ModelMapper modelMapper = new ModelMapper();
+                unaProvinciaDTO = modelMapper.map(unaProvincia, ProvinciaDTO.class);
             }
             return ResponseEntity.status(HttpStatus.OK).body(unaProvinciaDTO);
         } catch (ProvinciaNoExisteException e) {

@@ -2,6 +2,7 @@ package com.ar.genesis.sistema.tipoficha.service.controller;
 
 import com.ar.genesis.sistema.tipoficha.core.input.ITipoFichaObtenerInput;
 import com.ar.genesis.sistema.tipoficha.service.dto.TipoFichaDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,8 +24,9 @@ public class TipoFichaObtenerController {
     @GetMapping(value = "/tipoficha")
     public ResponseEntity<?> obtenerTipoFichas(){
         try{
+            ModelMapper modelMapper = new ModelMapper();
             List<TipoFichaDTO> tipoFichasDTO = new ArrayList<>();
-            miTipoFichaObtenerInput.obtenerTipoFichas().forEach(unTipoFicha -> tipoFichasDTO.add(new TipoFichaDTO(unTipoFicha.getId(), unTipoFicha.getNombre())));
+            miTipoFichaObtenerInput.obtenerTipoFichas().forEach(unTipoFicha -> tipoFichasDTO.add(modelMapper.map(unTipoFicha, TipoFichaDTO.class)));
             if (tipoFichasDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(tipoFichasDTO);
         } catch (Exception ex) {

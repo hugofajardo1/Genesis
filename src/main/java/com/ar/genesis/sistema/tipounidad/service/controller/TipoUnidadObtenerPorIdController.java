@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.tipounidad.core.domain.TipoUnidad;
 import com.ar.genesis.sistema.tipounidad.core.exception.TipoUnidadNoExisteException;
 import com.ar.genesis.sistema.tipounidad.core.input.ITipoUnidadObtenerPorIdInput;
 import com.ar.genesis.sistema.tipounidad.service.dto.TipoUnidadDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,7 +28,8 @@ public class TipoUnidadObtenerPorIdController {
             TipoUnidad unTipoUnidad = miTipoUnidadObtenerPorIdInput.obtenerTipoUnidad(id);
             TipoUnidadDTO unTipoUnidadDTO=null;
             if (unTipoUnidad!=null){
-                unTipoUnidadDTO = new TipoUnidadDTO(unTipoUnidad.getId(), unTipoUnidad.getNombre());
+                ModelMapper modelMapper = new ModelMapper();
+                unTipoUnidadDTO = modelMapper.map(unTipoUnidad, TipoUnidadDTO.class);
             }
             return ResponseEntity.status(HttpStatus.OK).body(unTipoUnidadDTO);
         } catch (TipoUnidadNoExisteException e) {

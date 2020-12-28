@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.tipoiva.core.domain.TipoIva;
 import com.ar.genesis.sistema.tipoiva.core.exception.TipoIvaExisteException;
 import com.ar.genesis.sistema.tipoiva.core.input.ITipoIvaCrearInput;
 import com.ar.genesis.sistema.tipoiva.service.dto.TipoIvaDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,7 +25,8 @@ public class TipoIvaCrearController {
     @PostMapping(value = "/tipoiva")
     public ResponseEntity<?> crearTipoIva(@RequestBody TipoIvaDTO unTipoIvaDTO){
         try{
-            boolean resultado = this.miTipoIvaCrearInput.crearTipoIva(TipoIva.instancia(unTipoIvaDTO.getId(), unTipoIvaDTO.getNombre()));
+            ModelMapper modelMapper = new ModelMapper();
+            boolean resultado = this.miTipoIvaCrearInput.crearTipoIva(modelMapper.map(unTipoIvaDTO, TipoIva.class));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (TipoIvaExisteException e) {

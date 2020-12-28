@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.tipomovimiento.core.domain.TipoMovimiento;
 import com.ar.genesis.sistema.tipomovimiento.core.exception.TipoMovimientoExisteException;
 import com.ar.genesis.sistema.tipomovimiento.core.input.ITipoMovimientoModificarInput;
 import com.ar.genesis.sistema.tipomovimiento.service.dto.TipoMovimientoDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,7 +25,8 @@ public class TipoMovimientoModificarController {
     @PutMapping(value = "/tipomovimiento")
     public ResponseEntity<?> modificarTipoMovimiento(@RequestBody TipoMovimientoDTO unTipoMovimientoDTO){
         try{
-            boolean resultado = this.miTipoMovimientoModificarInput.modificarTipoMovimiento(TipoMovimiento.instancia(unTipoMovimientoDTO.getId(), unTipoMovimientoDTO.getNombre(), unTipoMovimientoDTO.getImputacion()));
+            ModelMapper modelMapper = new ModelMapper();
+            boolean resultado = this.miTipoMovimientoModificarInput.modificarTipoMovimiento(modelMapper.map(unTipoMovimientoDTO, TipoMovimiento.class));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (TipoMovimientoExisteException e) {

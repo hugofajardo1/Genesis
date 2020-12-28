@@ -6,6 +6,7 @@ import com.ar.genesis.sistema.puntoventa.core.exception.PuntoVentaExisteExceptio
 import com.ar.genesis.sistema.puntoventa.core.input.IPuntoVentaCrearInput;
 import com.ar.genesis.sistema.puntoventa.service.dto.PuntoVentaDTO;
 import com.ar.genesis.sistema.sucursal.core.domain.Sucursal;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,7 +29,8 @@ public class PuntoVentaCrearController {
     @PostMapping(value = "/puntoventa")
     public ResponseEntity<?> crearPuntoVenta(@RequestBody PuntoVentaDTO unPuntoVentaDTO){
         try{
-            boolean resultado = this.miPuntoVentaCrearInput.crearPuntoVenta(PuntoVenta.instancia(unPuntoVentaDTO.getId(), unPuntoVentaDTO.getNombre(), Sucursal.instancia(unPuntoVentaDTO.getSucursal().getId(), unPuntoVentaDTO.getSucursal().getNombre()), unPuntoVentaDTO.getTipofacturacion()));
+            ModelMapper modelMapper = new ModelMapper();
+            boolean resultado = this.miPuntoVentaCrearInput.crearPuntoVenta(modelMapper.map(unPuntoVentaDTO, PuntoVenta.class));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (PuntoVentaExisteException e) {

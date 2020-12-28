@@ -5,6 +5,7 @@ import com.ar.genesis.sistema.usuario.core.domain.Usuario;
 import com.ar.genesis.sistema.usuario.core.exception.UsuarioExisteException;
 import com.ar.genesis.sistema.usuario.core.input.IUsuarioCrearInput;
 import com.ar.genesis.sistema.usuario.service.dto.UsuarioDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,7 +26,8 @@ public class UsuarioCrearController {
     @PostMapping(value = "/usuario")
     public ResponseEntity<?> crearUsuario(@RequestBody UsuarioDTO unUsuarioDTO){
         try{
-            boolean resultado = this.miUsuarioCrearInput.crearUsuario(Usuario.instancia(unUsuarioDTO.getId(), unUsuarioDTO.getNombre(), unUsuarioDTO.getNombreUsuario(), unUsuarioDTO.getContrasenia(), Sucursal.instancia(unUsuarioDTO.getSucursal().getId(), unUsuarioDTO.getSucursal().getNombre())));
+            ModelMapper modelMapper = new ModelMapper();
+            boolean resultado = this.miUsuarioCrearInput.crearUsuario(modelMapper.map(unUsuarioDTO, Usuario.class));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (UsuarioExisteException e) {

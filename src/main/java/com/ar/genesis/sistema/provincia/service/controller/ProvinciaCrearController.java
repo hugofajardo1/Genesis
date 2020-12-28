@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.provincia.core.domain.Provincia;
 import com.ar.genesis.sistema.provincia.core.exception.ProvinciaExisteException;
 import com.ar.genesis.sistema.provincia.core.input.IProvinciaCrearInput;
 import com.ar.genesis.sistema.provincia.service.dto.ProvinciaDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,7 +25,8 @@ public class ProvinciaCrearController {
     @PostMapping(value = "/provincia")
     public ResponseEntity<?> crearProvincia(@RequestBody ProvinciaDTO unaProvinciaDTO){
         try{
-            boolean resultado = this.miProvinciaCrearInput.crearProvincia(Provincia.instancia(unaProvinciaDTO.getId(), unaProvinciaDTO.getNombre()));
+            ModelMapper modelMapper = new ModelMapper();
+            boolean resultado = this.miProvinciaCrearInput.crearProvincia(modelMapper.map(unaProvinciaDTO, Provincia.class));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (ProvinciaExisteException e) {

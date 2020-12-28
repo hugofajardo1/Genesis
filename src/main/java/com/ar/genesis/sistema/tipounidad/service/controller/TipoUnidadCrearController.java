@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.tipounidad.core.domain.TipoUnidad;
 import com.ar.genesis.sistema.tipounidad.core.exception.TipoUnidadExisteException;
 import com.ar.genesis.sistema.tipounidad.core.input.ITipoUnidadCrearInput;
 import com.ar.genesis.sistema.tipounidad.service.dto.TipoUnidadDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,7 +25,8 @@ public class TipoUnidadCrearController {
     @PostMapping(value = "/tipounidad")
     public ResponseEntity<?> crearTipoUnidad(@RequestBody TipoUnidadDTO unTipoUnidadDTO){
         try{
-            boolean resultado = this.miTipoUnidadCrearInput.crearTipoUnidad(TipoUnidad.instancia(unTipoUnidadDTO.getId(), unTipoUnidadDTO.getNombre()));
+            ModelMapper modelMapper = new ModelMapper();
+            boolean resultado = this.miTipoUnidadCrearInput.crearTipoUnidad(modelMapper.map(unTipoUnidadDTO, TipoUnidad.class));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (TipoUnidadExisteException e) {

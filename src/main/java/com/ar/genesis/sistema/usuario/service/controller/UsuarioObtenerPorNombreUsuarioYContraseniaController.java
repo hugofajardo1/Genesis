@@ -5,6 +5,7 @@ import com.ar.genesis.sistema.usuario.core.exception.UsuarioNoExisteException;
 import com.ar.genesis.sistema.usuario.core.input.IUsuarioObtenerPorNombreUsuarioYContraseniaInput;
 import com.ar.genesis.sistema.sucursal.service.dto.SucursalDTO;
 import com.ar.genesis.sistema.usuario.service.dto.UsuarioDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,7 +29,8 @@ public class UsuarioObtenerPorNombreUsuarioYContraseniaController {
             Usuario unUsuario = miUsuarioObtenerPorNombreUsuarioYContraseniaInput.obtenerUsuario(nombreUsuario, contrasenia);
             UsuarioDTO unUsuarioDTO=null;
             if (unUsuario!=null){
-                unUsuarioDTO = new UsuarioDTO(unUsuario.getId(), unUsuario.getNombre(), unUsuario.getNombreUsuario(), unUsuario.getContrasenia(), new SucursalDTO(unUsuario.getSucursal().getId(), unUsuario.getSucursal().getNombre()));
+                ModelMapper modelMapper = new ModelMapper();
+                unUsuarioDTO = modelMapper.map(unUsuario, UsuarioDTO.class);
             }
             return ResponseEntity.status(HttpStatus.OK).body(unUsuarioDTO);
         } catch (UsuarioNoExisteException e) {

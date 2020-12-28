@@ -3,6 +3,7 @@ package com.ar.genesis.sistema.usuario.service.controller;
 import com.ar.genesis.sistema.usuario.core.input.IUsuarioObtenerInput;
 import com.ar.genesis.sistema.sucursal.service.dto.SucursalDTO;
 import com.ar.genesis.sistema.usuario.service.dto.UsuarioDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,8 +25,9 @@ public class UsuarioObtenerController {
     @GetMapping(value = "/usuario")
     public ResponseEntity<?> obtenerUsuarios(){
         try{
+            ModelMapper modelMapper = new ModelMapper();
             List<UsuarioDTO> usuariosDTO = new ArrayList<>();
-            miUsuarioObtenerInput.obtenerUsuarios().forEach(unUsuario -> usuariosDTO.add(new UsuarioDTO(unUsuario.getId(), unUsuario.getNombre(), unUsuario.getNombreUsuario(), unUsuario.getContrasenia(), new SucursalDTO(unUsuario.getSucursal().getId(), unUsuario.getSucursal().getNombre()))));
+            miUsuarioObtenerInput.obtenerUsuarios().forEach(unUsuario -> usuariosDTO.add(modelMapper.map(unUsuario, UsuarioDTO.class)));
             if (usuariosDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(usuariosDTO);
         } catch (Exception ex) {

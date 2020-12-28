@@ -2,6 +2,7 @@ package com.ar.genesis.sistema.tipoiva.service.controller;
 
 import com.ar.genesis.sistema.tipoiva.core.input.ITipoIvaObtenerInput;
 import com.ar.genesis.sistema.tipoiva.service.dto.TipoIvaDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,8 +24,9 @@ public class TipoIvaObtenerController {
     @GetMapping(value = "/tipoiva")
     public ResponseEntity<?> obtenerTipoIvas(){
         try{
+            ModelMapper modelMapper = new ModelMapper();
             List<TipoIvaDTO> tipoIvasDTO = new ArrayList<>();
-            miTipoIvaObtenerInput.obtenerTipoIvas().forEach(unTipoIva -> tipoIvasDTO.add(new TipoIvaDTO(unTipoIva.getId(), unTipoIva.getNombre())));
+            miTipoIvaObtenerInput.obtenerTipoIvas().forEach(unTipoIva -> tipoIvasDTO.add(modelMapper.map(unTipoIva, TipoIvaDTO.class)));
             if (tipoIvasDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(tipoIvasDTO);
         } catch (Exception ex) {

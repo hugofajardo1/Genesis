@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.sucursal.core.domain.Sucursal;
 import com.ar.genesis.sistema.sucursal.core.exception.SucursalExisteException;
 import com.ar.genesis.sistema.sucursal.core.input.ISucursalCrearInput;
 import com.ar.genesis.sistema.sucursal.service.dto.SucursalDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,7 +25,8 @@ public class SucursalCrearController {
     @PostMapping(value = "/sucursal")
     public ResponseEntity<?> crearSucursal(@RequestBody SucursalDTO unaSucursalDTO){
         try{
-            boolean resultado = this.miSucursalCrearInput.crearSucursal(Sucursal.instancia(unaSucursalDTO.getId(), unaSucursalDTO.getNombre()));
+            ModelMapper modelMapper = new ModelMapper();
+            boolean resultado = this.miSucursalCrearInput.crearSucursal(modelMapper.map(unaSucursalDTO, Sucursal.class));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (SucursalExisteException e) {

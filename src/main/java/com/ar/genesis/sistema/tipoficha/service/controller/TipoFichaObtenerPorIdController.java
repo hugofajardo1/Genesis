@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.tipoficha.core.domain.TipoFicha;
 import com.ar.genesis.sistema.tipoficha.core.exception.TipoFichaNoExisteException;
 import com.ar.genesis.sistema.tipoficha.core.input.ITipoFichaObtenerPorIdInput;
 import com.ar.genesis.sistema.tipoficha.service.dto.TipoFichaDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,7 +28,8 @@ public class TipoFichaObtenerPorIdController {
             TipoFicha unTipoFicha = miTipoFichaObtenerPorIdInput.obtenerTipoFicha(id);
             TipoFichaDTO unTipoFichaDTO=null;
             if (unTipoFicha!=null){
-                unTipoFichaDTO = new TipoFichaDTO(unTipoFicha.getId(), unTipoFicha.getNombre());
+                ModelMapper modelMapper = new ModelMapper();
+                unTipoFichaDTO = modelMapper.map(unTipoFicha, TipoFichaDTO.class);
             }
             return ResponseEntity.status(HttpStatus.OK).body(unTipoFichaDTO);
         } catch (TipoFichaNoExisteException e) {

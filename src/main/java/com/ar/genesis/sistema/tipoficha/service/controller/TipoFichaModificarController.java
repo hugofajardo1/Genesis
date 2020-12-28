@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.tipoficha.core.domain.TipoFicha;
 import com.ar.genesis.sistema.tipoficha.core.exception.TipoFichaExisteException;
 import com.ar.genesis.sistema.tipoficha.core.input.ITipoFichaModificarInput;
 import com.ar.genesis.sistema.tipoficha.service.dto.TipoFichaDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,8 @@ public class TipoFichaModificarController {
     @PutMapping(value = "/tipoficha")
     public ResponseEntity<?> modificarTipoFicha(@RequestBody TipoFichaDTO unTipoFichaDTO){
         try{
-            boolean resultado = this.miTipoFichaModificarInput.modificarTipoFicha(TipoFicha.instancia(unTipoFichaDTO.getId(), unTipoFichaDTO.getNombre()));
+            ModelMapper modelMapper = new ModelMapper();
+            boolean resultado = this.miTipoFichaModificarInput.modificarTipoFicha(modelMapper.map(unTipoFichaDTO, TipoFicha.class));
             if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (TipoFichaExisteException e) {

@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.ubicacion.core.domain.Ubicacion;
 import com.ar.genesis.sistema.ubicacion.core.exception.UbicacionNoExisteException;
 import com.ar.genesis.sistema.ubicacion.core.input.IUbicacionObtenerPorIdInput;
 import com.ar.genesis.sistema.ubicacion.service.dto.UbicacionDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,7 +28,8 @@ public class UbicacionObtenerPorIdController {
             Ubicacion unaUbicacion = miUbicacionObtenerPorIdInput.obtenerUbicacion(id);
             UbicacionDTO unaUbicacionDTO=null;
             if (unaUbicacion!=null){
-                unaUbicacionDTO = new UbicacionDTO(unaUbicacion.getId(), unaUbicacion.getNombre());
+                ModelMapper modelMapper = new ModelMapper();
+                unaUbicacionDTO = modelMapper.map(unaUbicacion, UbicacionDTO.class);
             }
             return ResponseEntity.status(HttpStatus.OK).body(unaUbicacionDTO);
         } catch (UbicacionNoExisteException e) {

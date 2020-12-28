@@ -4,6 +4,7 @@ import com.ar.genesis.sistema.vendedor.core.domain.Vendedor;
 import com.ar.genesis.sistema.vendedor.core.exception.VendedorNoExisteException;
 import com.ar.genesis.sistema.vendedor.core.input.IVendedorObtenerPorIdInput;
 import com.ar.genesis.sistema.vendedor.service.dto.VendedorDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,7 +28,8 @@ public class VendedorObtenerPorIdController {
             Vendedor unVendedor = miVendedorObtenerPorIdInput.obtenerVendedor(id);
             VendedorDTO unVendedorDTO=null;
             if (unVendedor!=null){
-                unVendedorDTO = new VendedorDTO(unVendedor.getId(), unVendedor.getNombre());
+                ModelMapper modelMapper = new ModelMapper();
+                unVendedorDTO = modelMapper.map(unVendedor, VendedorDTO.class);
             }
             return ResponseEntity.status(HttpStatus.OK).body(unVendedorDTO);
         } catch (VendedorNoExisteException e) {

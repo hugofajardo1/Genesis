@@ -2,6 +2,7 @@ package com.ar.genesis.sistema.tipounidad.service.controller;
 
 import com.ar.genesis.sistema.tipounidad.core.input.ITipoUnidadObtenerInput;
 import com.ar.genesis.sistema.tipounidad.service.dto.TipoUnidadDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,8 +24,9 @@ public class TipoUnidadObtenerController {
     @GetMapping(value = "/tipounidad")
     public ResponseEntity<?> obtenerTipoUnidades(){
         try{
+            ModelMapper modelMapper = new ModelMapper();
             List<TipoUnidadDTO> tipoUnidadesDTO = new ArrayList<>();
-            miTipoUnidadObtenerInput.obtenerTipoUnidades().forEach(unTipoUnidad -> tipoUnidadesDTO.add(new TipoUnidadDTO(unTipoUnidad.getId(), unTipoUnidad.getNombre())));
+            miTipoUnidadObtenerInput.obtenerTipoUnidades().forEach(unTipoUnidad -> tipoUnidadesDTO.add(modelMapper.map(unTipoUnidad, TipoUnidadDTO.class)));
             if (tipoUnidadesDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(tipoUnidadesDTO);
         } catch (Exception ex) {

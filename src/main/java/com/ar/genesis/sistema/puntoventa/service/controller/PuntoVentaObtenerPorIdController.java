@@ -5,6 +5,7 @@ import com.ar.genesis.sistema.puntoventa.core.exception.PuntoVentaNoExisteExcept
 import com.ar.genesis.sistema.puntoventa.core.input.IPuntoVentaObtenerPorIdInput;
 import com.ar.genesis.sistema.puntoventa.service.dto.PuntoVentaDTO;
 import com.ar.genesis.sistema.sucursal.service.dto.SucursalDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,7 +29,8 @@ public class PuntoVentaObtenerPorIdController {
             PuntoVenta unPuntoVenta = miPuntoVentaObtenerPorIdInput.obtenerPuntoVenta(id);
             PuntoVentaDTO unPuntoVentaDTO=null;
             if (unPuntoVenta!=null){
-                unPuntoVentaDTO = new PuntoVentaDTO(unPuntoVenta.getId(), unPuntoVenta.getNombre(), new SucursalDTO(unPuntoVenta.getSucursal().getId(), unPuntoVenta.getSucursal().getNombre()), unPuntoVenta.getTipoFacturacion());
+                ModelMapper modelMapper = new ModelMapper();
+                unPuntoVentaDTO = modelMapper.map(unPuntoVenta, PuntoVentaDTO.class);
             }
             return ResponseEntity.status(HttpStatus.OK).body(unPuntoVentaDTO);
         } catch (PuntoVentaNoExisteException e) {
