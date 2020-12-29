@@ -27,6 +27,8 @@ public class Movimiento {
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "tipomovimientoid")
     TipoMovimiento tipoMovimiento;
+    @Column(name = "numero", nullable = false)
+    Integer numero;
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "fichaid")
     Ficha ficha;
@@ -53,11 +55,12 @@ public class Movimiento {
     public Movimiento() {
     }
 
-    private Movimiento(Integer id, PuntoVenta puntoVenta, TipoMovimiento tipoMovimiento, Ficha ficha, TipoIva tipoIva, String cuit, LocalDate fecha, LocalTime hora, Double montoNeto, Double montoTotal, Double saldo) {
+    private Movimiento(Integer id, PuntoVenta puntoVenta, TipoMovimiento tipoMovimiento, Integer numero, Ficha ficha, TipoIva tipoIva, String cuit, LocalDate fecha, LocalTime hora, Double montoNeto, Double montoTotal, Double saldo) {
         this.setId(id);
         this.setSucursal(puntoVenta.getSucursal());
         this.setPuntoVenta(puntoVenta);
         this.setTipoMovimiento(tipoMovimiento);
+        this.setNumero(numero);
         this.setFicha(ficha);
         this.setTipoIva(tipoIva);
         this.setCuit(cuit);
@@ -69,8 +72,8 @@ public class Movimiento {
         this.setItems(new ArrayList<>());
     }
 
-    public static Movimiento instancia(Integer id, PuntoVenta puntoVenta, TipoMovimiento tipoMovimiento, Ficha ficha, TipoIva tipoIva, String cuit, LocalDate fecha, LocalTime hora, Double montoNeto, Double montoTotal, Double saldo) {
-        return new Movimiento(id, puntoVenta, tipoMovimiento, ficha, tipoIva, cuit, fecha, hora, montoNeto, montoTotal, saldo);
+    public static Movimiento instancia(Integer id, PuntoVenta puntoVenta, TipoMovimiento tipoMovimiento, Integer numero, Ficha ficha, TipoIva tipoIva, String cuit, LocalDate fecha, LocalTime hora, Double montoNeto, Double montoTotal, Double saldo) {
+        return new Movimiento(id, puntoVenta, tipoMovimiento, numero, ficha, tipoIva, cuit, fecha, hora, montoNeto, montoTotal, saldo);
     }
 
     public Integer getId() {
@@ -103,6 +106,14 @@ public class Movimiento {
 
     public void setTipoMovimiento(TipoMovimiento tipoMovimiento) {
         this.tipoMovimiento = tipoMovimiento;
+    }
+
+    public Integer getNumero() {
+        return numero;
+    }
+
+    public void setNumero(Integer numero) {
+        this.numero = numero;
     }
 
     public Ficha getFicha() {

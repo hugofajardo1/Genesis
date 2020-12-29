@@ -9,11 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class MovimientoCrearUseCase implements IMovimientoCrearInput {
+public class MovimientoClienteCrearUseCase implements IMovimientoCrearInput {
 
     IMovimientoRepository miMovimientoRepository;
 
-    public MovimientoCrearUseCase(IMovimientoRepository miMovimientoRepository) {
+    public MovimientoClienteCrearUseCase(IMovimientoRepository miMovimientoRepository) {
         this.miMovimientoRepository = miMovimientoRepository;
     }
 

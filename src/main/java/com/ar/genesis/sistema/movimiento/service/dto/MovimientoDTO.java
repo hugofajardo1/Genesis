@@ -20,6 +20,8 @@ public class MovimientoDTO {
     PuntoVentaDTO puntoVenta;
     @JsonProperty("tipomovimiento")
     TipoMovimientoDTO tipoMovimiento;
+    @JsonProperty("numero")
+    Integer numero;
     @JsonProperty("ficha")
     FichaDTO ficha;
     @JsonProperty("tipoiva")
@@ -43,11 +45,12 @@ public class MovimientoDTO {
 
     }
 
-    public MovimientoDTO(Integer id, PuntoVentaDTO puntoVenta, TipoMovimientoDTO tipoMovimiento, FichaDTO ficha, TipoIvaDTO tipoIva, String cuit, LocalDate fecha, LocalTime hora, Double montoNeto, Double montoTotal, Double saldo, List<MovimientoItemDTO> items) {
+    public MovimientoDTO(Integer id, PuntoVentaDTO puntoVenta, TipoMovimientoDTO tipoMovimiento, Integer numero, FichaDTO ficha, TipoIvaDTO tipoIva, String cuit, LocalDate fecha, LocalTime hora, Double montoNeto, Double montoTotal, Double saldo, List<MovimientoItemDTO> items) {
         this.setId(id);
         this.setSucursal(puntoVenta.getSucursal());
         this.setPuntoVenta(puntoVenta);
         this.setTipoMovimiento(tipoMovimiento);
+        this.setNumero(numero);
         this.setFicha(ficha);
         this.setTipoIva(tipoIva);
         this.setCuit(cuit);
@@ -89,6 +92,14 @@ public class MovimientoDTO {
 
     public void setTipoMovimiento(TipoMovimientoDTO tipoMovimiento) {
         this.tipoMovimiento = tipoMovimiento;
+    }
+
+    public Integer getNumero() {
+        return numero;
+    }
+
+    public void setNumero(Integer numero) {
+        this.numero = numero;
     }
 
     public FichaDTO getFicha() {

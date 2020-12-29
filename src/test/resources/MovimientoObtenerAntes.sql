@@ -44,5 +44,5 @@ INSERT INTO subrubros (id, nombre) VALUES (nextval('seq_subrubros'), 'Periferico
 INSERT INTO ubicaciones (id, nombre) VALUES (nextval('seq_ubicaciones'), 'Estante 1');
 INSERT INTO proveedores (id, nombre) VALUES (nextval('seq_proveedores'), 'Proveedor 1');
 INSERT INTO productos (id, nombre, codigousuario, codigobarra, tipounidadid, costo, iva, margen, flete, rubroid, subrubroid, ubicacionid, proveedorid) VALUES(nextval('seq_productos'),'Producto 1', 'F44234', '770077007700770', 1, 100.0, 21.0, 35.0, 0.0, 1, 1, 1, 1);
-INSERT INTO movimientos(id, sucursalid, puntoventaid, tipomovimientoid, fichaid, tipoivaid, cuit, fecha, hora, montoneto, montototal, saldo) VALUES (nextval('seq_movimientos'), 1, 1, 1, 1, 1, '20255071336', '2020/12/26', '18:00:00', 100.0, 121.0, 121.0);
+INSERT INTO movimientos(id, sucursalid, puntoventaid, tipomovimientoid, numero, fichaid, tipoivaid, cuit, fecha, hora, montoneto, montototal, saldo) VALUES (nextval('seq_movimientos'), 1, 1, 1, 1, 1, 1, '20255071336', '2020/12/26', '18:00:00', 100.0, 121.0, 121.0);
 INSERT INTO movimientositem(id, productoid, cantidad, iva, preciocosto, precioventa, precioventafinal, movimientoid) VALUES (nextval('seq_movimientositem'), 1, 1, 21.0, 100.0, 163.35, 163.35, 1);
