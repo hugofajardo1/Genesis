@@ -12,7 +12,7 @@ import org.mockito.Mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(mockito.MockitoExtension.class)
-public class TipoMovimientoClienteCrearUseCaseTest {
+public class TipoMovimientoCrearUseCaseTest {
     @Mock
     ITipoMovimientoRepository miTipoMovimientoRepository;
     @Test

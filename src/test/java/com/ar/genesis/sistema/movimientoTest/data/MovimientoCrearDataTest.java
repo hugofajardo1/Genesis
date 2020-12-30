@@ -31,7 +31,7 @@ import java.time.LocalTime;
         @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:MovimientoCrearAntes.sql"),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:MovimientoCrearDespues.sql")
 })
-public class MovimientoClienteCrearDataTest {
+public class MovimientoCrearDataTest {
     @Inject
     MovimientoRepoImplementacion miMovimientoRepoImplementacion;
 

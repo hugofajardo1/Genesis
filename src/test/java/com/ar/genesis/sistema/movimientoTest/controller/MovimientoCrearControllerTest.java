@@ -37,7 +37,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class MovimientoClienteCrearControllerTest {
+public class MovimientoCrearControllerTest {
     @Mock
     IMovimientoCrearInput miMovimientoCrearInput;
 
