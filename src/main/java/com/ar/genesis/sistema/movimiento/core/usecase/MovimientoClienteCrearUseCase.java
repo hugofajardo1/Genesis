@@ -18,7 +18,7 @@ public class MovimientoClienteCrearUseCase implements IMovimientoCrearInput {
     }
 
     @Override
-    public boolean crearMovimiento(Movimiento unMovimiento) throws MovimientoIncompletoException {
+    public Movimiento crearMovimiento(Movimiento unMovimiento) throws MovimientoIncompletoException {
         if(unMovimiento.getItems().isEmpty()){
             throw new MovimientoIncompletoException();
         }

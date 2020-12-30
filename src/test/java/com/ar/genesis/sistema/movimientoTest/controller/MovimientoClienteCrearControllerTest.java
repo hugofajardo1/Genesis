@@ -18,11 +18,13 @@ import com.ar.genesis.sistema.subrubro.service.dto.SubRubroDTO;
 import com.ar.genesis.sistema.sucursal.service.dto.SucursalDTO;
 import com.ar.genesis.sistema.tipoiva.service.dto.TipoIvaDTO;
 import com.ar.genesis.sistema.tipomovimiento.service.dto.TipoMovimientoDTO;
+import com.ar.genesis.sistema.tipooperacion.service.dto.TipoOperacionDTO;
 import com.ar.genesis.sistema.tipounidad.service.dto.TipoUnidadDTO;
 import com.ar.genesis.sistema.ubicacion.service.dto.UbicacionDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,13 +49,14 @@ public class MovimientoClienteCrearControllerTest {
         MovimientoItemDTO unMovimientoItemDTO = new MovimientoItemDTO(1, unProductoDTO, 1.0, unProductoDTO.getIva(), unProductoDTO.getCosto(), unProductoDTO.getPrecioVenta(), unProductoDTO.getPrecioVenta());
         ArrayList<MovimientoItemDTO> itemsDTO = new ArrayList<>();
         itemsDTO.add(unMovimientoItemDTO);
-        MovimientoDTO unMovimientoDTO = new MovimientoDTO(null, unPuntoVentaDTO, new TipoMovimientoDTO(1, "Factura A", "Debe"), 0, unaFichaDTO, unaFichaDTO.getTipoIva(), unaFichaDTO.getCuit(), LocalDate.now(), LocalTime.now(), 100.0, 121.0, 121.0, itemsDTO);
-        when(miMovimientoCrearInput.crearMovimiento(any(Movimiento.class))).thenReturn(true);
+        MovimientoDTO unMovimientoDTO = new MovimientoDTO(null, unPuntoVentaDTO, new TipoOperacionDTO(1, "Venta"), new TipoMovimientoDTO(1, "Factura A", "Debe"), 0, unaFichaDTO, unaFichaDTO.getTipoIva(), unaFichaDTO.getCuit(), LocalDate.now(), LocalTime.now(), 100.0, 121.0, 121.0, itemsDTO);
+        ModelMapper mapper = new ModelMapper();
+        when(miMovimientoCrearInput.crearMovimiento(any(Movimiento.class))).thenReturn(mapper.map(unMovimientoDTO, Movimiento.class));
 
         MovimientoCrearController movimientoCrearController = new MovimientoCrearController(miMovimientoCrearInput);
         ResponseEntity<?> responseEntity = movimientoCrearController.crearMovimiento(unMovimientoDTO);
-        boolean resultado = (boolean) responseEntity.getBody();
-        Assertions.assertTrue(resultado);
+        MovimientoDTO resultado = (MovimientoDTO) responseEntity.getBody();
+        Assertions.assertNotNull(resultado);
     }
 
     @Test
@@ -64,7 +67,7 @@ public class MovimientoClienteCrearControllerTest {
         MovimientoItemDTO  unMovimientoItemDTO = new MovimientoItemDTO(1, unProductoDTO, 1.0, unProductoDTO.getIva(), unProductoDTO.getCosto(), unProductoDTO.getPrecioVenta(), unProductoDTO.getPrecioVenta());
         ArrayList<MovimientoItemDTO> itemsDTO = new ArrayList<>();
         itemsDTO.add(unMovimientoItemDTO);
-        MovimientoDTO unMovimientoDTO = new MovimientoDTO(null, unPuntoVentaDTO, new TipoMovimientoDTO(1, "Factura A", "Debe"), 0, unaFichaDTO, unaFichaDTO.getTipoIva(), unaFichaDTO.getCuit(), LocalDate.now(), LocalTime.now(), 100.0, 121.0, 121.0, itemsDTO);
+        MovimientoDTO unMovimientoDTO = new MovimientoDTO(null, unPuntoVentaDTO, new TipoOperacionDTO(1, "Venta"), new TipoMovimientoDTO(1, "Factura A", "Debe"), 0, unaFichaDTO, unaFichaDTO.getTipoIva(), unaFichaDTO.getCuit(), LocalDate.now(), LocalTime.now(), 100.0, 121.0, 121.0, itemsDTO);
         when(miMovimientoCrearInput.crearMovimiento(any(Movimiento.class))).thenThrow(MovimientoExisteException.class);
 
         MovimientoCrearController movimientoCrearController = new MovimientoCrearController(miMovimientoCrearInput);

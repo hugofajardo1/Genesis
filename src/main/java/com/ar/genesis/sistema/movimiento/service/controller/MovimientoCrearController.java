@@ -29,8 +29,8 @@ public class MovimientoCrearController {
     public ResponseEntity<?> crearMovimiento(@RequestBody MovimientoDTO unMovimientoDTO){
         try{
             ModelMapper modelMapper = new ModelMapper();
-            boolean resultado = this.miMovimientoCrearInput.crearMovimiento(modelMapper.map(unMovimientoDTO, Movimiento.class));
-            if (resultado) return ResponseEntity.status(HttpStatus.OK).body(true);
+            Movimiento resultado = this.miMovimientoCrearInput.crearMovimiento(modelMapper.map(unMovimientoDTO, Movimiento.class));
+            if (resultado!=null) return ResponseEntity.status(HttpStatus.OK).body(modelMapper.map(resultado, MovimientoDTO.class));
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (MovimientoExisteException | MovimientoIncompletoException e) {
             return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).body(e.toString());

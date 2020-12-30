@@ -14,6 +14,11 @@ public class MovimientoRepoImplementacion implements IMovimientoRepository {
     IMovimientoCRUD miMovimientoCRUD;
 
     @Override
-    public boolean guardarMovimiento(Movimiento unMovimiento) {
-        return miMovimientoCRUD.save(unMovimiento).getId()!=null; }
+    public Movimiento guardarMovimiento(Movimiento unMovimiento) {
+        if (miMovimientoCRUD.save(unMovimiento).getId()!=null) {
+            return unMovimiento;
+        } else {
+            return null;
+        }
+    }
 }

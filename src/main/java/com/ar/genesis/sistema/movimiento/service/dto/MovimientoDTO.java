@@ -5,6 +5,7 @@ import com.ar.genesis.sistema.puntoventa.service.dto.PuntoVentaDTO;
 import com.ar.genesis.sistema.sucursal.service.dto.SucursalDTO;
 import com.ar.genesis.sistema.tipoiva.service.dto.TipoIvaDTO;
 import com.ar.genesis.sistema.tipomovimiento.service.dto.TipoMovimientoDTO;
+import com.ar.genesis.sistema.tipooperacion.service.dto.TipoOperacionDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
@@ -18,6 +19,8 @@ public class MovimientoDTO {
     SucursalDTO sucursal;
     @JsonProperty("puntoventa")
     PuntoVentaDTO puntoVenta;
+    @JsonProperty("tipooperacion")
+    TipoOperacionDTO tipoOperacion;
     @JsonProperty("tipomovimiento")
     TipoMovimientoDTO tipoMovimiento;
     @JsonProperty("numero")
@@ -45,10 +48,11 @@ public class MovimientoDTO {
 
     }
 
-    public MovimientoDTO(Integer id, PuntoVentaDTO puntoVenta, TipoMovimientoDTO tipoMovimiento, Integer numero, FichaDTO ficha, TipoIvaDTO tipoIva, String cuit, LocalDate fecha, LocalTime hora, Double montoNeto, Double montoTotal, Double saldo, List<MovimientoItemDTO> items) {
+    public MovimientoDTO(Integer id, PuntoVentaDTO puntoVenta, TipoOperacionDTO tipoOperacion, TipoMovimientoDTO tipoMovimiento, Integer numero, FichaDTO ficha, TipoIvaDTO tipoIva, String cuit, LocalDate fecha, LocalTime hora, Double montoNeto, Double montoTotal, Double saldo, List<MovimientoItemDTO> items) {
         this.setId(id);
         this.setSucursal(puntoVenta.getSucursal());
         this.setPuntoVenta(puntoVenta);
+        this.setTipoOperacion(tipoOperacion);
         this.setTipoMovimiento(tipoMovimiento);
         this.setNumero(numero);
         this.setFicha(ficha);
@@ -84,6 +88,14 @@ public class MovimientoDTO {
 
     public void setPuntoVenta(PuntoVentaDTO puntoVenta) {
         this.puntoVenta = puntoVenta;
+    }
+
+    public TipoOperacionDTO getTipoOperacion() {
+        return tipoOperacion;
+    }
+
+    public void setTipoOperacion(TipoOperacionDTO tipoOperacion) {
+        this.tipoOperacion = tipoOperacion;
     }
 
     public TipoMovimientoDTO getTipoMovimiento() {

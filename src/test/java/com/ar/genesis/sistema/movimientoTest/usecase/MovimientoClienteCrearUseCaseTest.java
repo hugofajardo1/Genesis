@@ -36,21 +36,21 @@ public class MovimientoClienteCrearUseCaseTest {
     void crearMovimientoCliente_MovimientoNoExiste_GuardaCorrectamente() throws MovimientoIncompletoException {
         PuntoVenta unPuntoVenta = PuntoVenta.instancia(1, "Punto Venta 1", Sucursal.instancia(1, "Sucursal 1"),5);
         Ficha unaFicha = Ficha.instancia(1, "Fajardo, Hugo", "Bs As 245", Localidad.instancia(1, "Chilecito"), Provincia.instancia(1, "La Rioja"), "3825416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336", "B-00007-777", "Contacto: Fajardo");
-        Movimiento unMovimiento = Movimiento.instancia(null, unPuntoVenta, TipoMovimiento.instancia(1, "Factura A", "Debe"), 0, unaFicha, unaFicha.getTipoIva(), unaFicha.getCuit(), LocalDate.now(), LocalTime.now(), 200.0, 200.0, 200.0);
+        Movimiento unMovimiento = Movimiento.instanciaCliente(null, unPuntoVenta, TipoMovimiento.instancia(1, "Factura A", "Debe"), unaFicha, unaFicha.getTipoIva(), unaFicha.getCuit(), LocalDate.now(), LocalTime.now(), 200.0, 200.0, 200.0);
         Producto unProducto = Producto.instancia(1, "Teclado Genius USB", "A548743", "770077007700770", TipoUnidad.instancia(1, "Unidad"), 100, 21, 35, 0, Rubro.instancia(1,"Hardware"), SubRubro.instancia(1, "Perifericos"), Ubicacion.instancia(1, "Estante 1"), Proveedor.instancia(1, "Proveedor 1"));
         MovimientoItem unItem = MovimientoItem.instancia(null, unProducto, 1.0, unProducto.getIva(), unProducto.getCosto(), unProducto.getPrecioVenta(), unProducto.getPrecioVenta(), unMovimiento);
         unMovimiento.getItems().add(unItem);
-        when(miMovimientoRepository.guardarMovimiento(unMovimiento)).thenReturn(true);
+        when(miMovimientoRepository.guardarMovimiento(unMovimiento)).thenReturn(unMovimiento);
         MovimientoClienteCrearUseCase movimientoClienteCrearUseCase = new MovimientoClienteCrearUseCase(miMovimientoRepository);
-        boolean resultado = movimientoClienteCrearUseCase.crearMovimiento(unMovimiento);
-        Assertions.assertTrue(resultado);
+        Movimiento resultado = movimientoClienteCrearUseCase.crearMovimiento(unMovimiento);
+        Assertions.assertNotNull(resultado);
     }
     @Test
     void crearMovimientoCliente_MovimientoIncompleto_NoGuardaMovimiento() {
         PuntoVenta unPuntoVenta = PuntoVenta.instancia(1, "Punto Venta 1", Sucursal.instancia(1, "Sucursal 1"),5);
         Ficha unaFicha = Ficha.instancia(1, "Fajardo, Hugo", "Bs As 245", Localidad.instancia(1, "Chilecito"), Provincia.instancia(1, "La Rioja"), "3825416543", TipoIva.instancia(1, "Responsable Inscripto"), "20255071336", "B-00007-777", "Contacto: Fajardo");
-        Movimiento unMovimiento = Movimiento.instancia(null, unPuntoVenta, TipoMovimiento.instancia(1, "Factura A", "Debe"), 0, unaFicha, unaFicha.getTipoIva(), unaFicha.getCuit(), LocalDate.now(), LocalTime.now(), 200.0, 200.0, 200.0);
-        when(miMovimientoRepository.guardarMovimiento(unMovimiento)).thenReturn(false);
+        Movimiento unMovimiento = Movimiento.instanciaCliente(null, unPuntoVenta, TipoMovimiento.instancia(1, "Factura A", "Debe"), unaFicha, unaFicha.getTipoIva(), unaFicha.getCuit(), LocalDate.now(), LocalTime.now(), 200.0, 200.0, 200.0);
+        when(miMovimientoRepository.guardarMovimiento(unMovimiento)).thenReturn(null);
         MovimientoClienteCrearUseCase movimientoClienteCrearUseCase = new MovimientoClienteCrearUseCase(miMovimientoRepository);
         Assertions.assertThrows(MovimientoIncompletoException.class, () -> movimientoClienteCrearUseCase.crearMovimiento(unMovimiento));
     }

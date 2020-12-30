@@ -5,5 +5,5 @@ import com.ar.genesis.sistema.movimiento.core.exception.MovimientoExisteExceptio
 import com.ar.genesis.sistema.movimiento.core.exception.MovimientoIncompletoException;
 
 public interface IMovimientoCrearInput {
-    boolean crearMovimiento(Movimiento unMovimiento) throws MovimientoExisteException, MovimientoIncompletoException;
+    Movimiento crearMovimiento(Movimiento unMovimiento) throws MovimientoExisteException, MovimientoIncompletoException;
 }
