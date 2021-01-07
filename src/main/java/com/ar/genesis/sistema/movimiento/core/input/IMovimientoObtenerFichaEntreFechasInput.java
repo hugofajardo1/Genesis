@@ -7,5 +7,5 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface IMovimientoObtenerFichaEntreFechasInput {
-    List<Movimiento> obtenerMovimientosFichaEntreFechas(Ficha unaFicha, LocalDate fechaDesde, LocalDate fechaHasta);
+    List<Movimiento> obtenerMovimientosFichaEntreFechas(Integer fichaid, LocalDate fechaDesde, LocalDate fechaHasta);
 }

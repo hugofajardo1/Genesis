@@ -1,6 +1,6 @@
 package com.ar.genesis.sistema.movimiento.service.controller;
 
-import com.ar.genesis.sistema.movimiento.core.input.IMovimientoObtenerEntreFechasInput;
+import com.ar.genesis.sistema.movimiento.core.input.IMovimientoObtenerFichaEntreFechasInput;
 import com.ar.genesis.sistema.movimiento.service.dto.MovimientoDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -17,18 +17,18 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
-public class MovimientoObtenerEntreFechasController {
+public class MovimientoObtenerFichaEntreFechasController {
     @Inject
-    IMovimientoObtenerEntreFechasInput miMovimientoObtenerEntreFechasInput;
+    IMovimientoObtenerFichaEntreFechasInput miMovimientoObtenerFichaEntreFechasInput;
 
-    public MovimientoObtenerEntreFechasController(IMovimientoObtenerEntreFechasInput miMovimientoObtenerEntreFechasInput) { this.miMovimientoObtenerEntreFechasInput = miMovimientoObtenerEntreFechasInput; }
+    public MovimientoObtenerFichaEntreFechasController(IMovimientoObtenerFichaEntreFechasInput miMovimientoObtenerFichaEntreFechasInput) { this.miMovimientoObtenerFichaEntreFechasInput = miMovimientoObtenerFichaEntreFechasInput; }
 
-    @GetMapping(value = "/movimiento/desde/{desde}/hasta/{hasta}")
-    public ResponseEntity<?> obtenerMovimientosEntreFechas(@PathVariable LocalDate desde, @PathVariable LocalDate hasta){
+    @GetMapping(value = "/movimiento/ficha/{fichaid}/desde/{desde}/hasta/{hasta}")
+    public ResponseEntity<?> obtenerMovimientosFichaEntreFechas(@PathVariable Integer fichaid, @PathVariable LocalDate desde, @PathVariable LocalDate hasta){
         try{
             ModelMapper modelMapper = new ModelMapper();
             List<MovimientoDTO> movimientosDTO = new ArrayList<>();
-            miMovimientoObtenerEntreFechasInput.obtenerMovimientosEntreFechas(desde, hasta).forEach(unMovimiento -> movimientosDTO.add(modelMapper.map(unMovimiento, MovimientoDTO.class)));
+            miMovimientoObtenerFichaEntreFechasInput.obtenerMovimientosFichaEntreFechas(fichaid, desde, hasta).forEach(unMovimiento -> movimientosDTO.add(modelMapper.map(unMovimiento, MovimientoDTO.class)));
             if (movimientosDTO.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             return ResponseEntity.status(HttpStatus.OK).body(movimientosDTO);
         } catch (Exception ex) {

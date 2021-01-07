@@ -17,12 +17,16 @@ public class MovimientoObtenerFichaEntreFechasUseCase implements IMovimientoObte
 
     IMovimientoObtenerFichaEntreFechasRepository miMovimientoObtenerFichaEntreFechasRepository;
 
-    public MovimientoObtenerFichaEntreFechasUseCase(IMovimientoObtenerFichaEntreFechasRepository miMovimientoObtenerFichaEntreFechasRepository) {
+    IFichaObtenerPorIdRepository miFichaObtenerPorIdRepository;
+
+    public MovimientoObtenerFichaEntreFechasUseCase(IMovimientoObtenerFichaEntreFechasRepository miMovimientoObtenerFichaEntreFechasRepository, IFichaObtenerPorIdRepository miFichaObtenerPorIdRepository) {
         this.miMovimientoObtenerFichaEntreFechasRepository = miMovimientoObtenerFichaEntreFechasRepository;
+        this.miFichaObtenerPorIdRepository = miFichaObtenerPorIdRepository;
     }
 
     @Override
-    public List<Movimiento> obtenerMovimientosFichaEntreFechas(Ficha unaFicha, LocalDate fechaDesde, LocalDate fechaHasta) {
+    public List<Movimiento> obtenerMovimientosFichaEntreFechas(Integer fichaid, LocalDate fechaDesde, LocalDate fechaHasta) {
+        Ficha unaFicha = miFichaObtenerPorIdRepository.obtenerFicha(fichaid);
         return miMovimientoObtenerFichaEntreFechasRepository.obtenerMovimientosFichaEntreFechas(unaFicha, fechaDesde, fechaHasta);
     }
 }

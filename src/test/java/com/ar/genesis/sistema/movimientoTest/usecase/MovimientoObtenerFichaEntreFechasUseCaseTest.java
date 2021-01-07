@@ -49,9 +49,10 @@ public class MovimientoObtenerFichaEntreFechasUseCaseTest {
         LocalDate fechaDesde = LocalDate.of(2020,12,1);
         LocalDate fechaHasta = LocalDate.of(2020,12,31);
 
+        when(miFichaObtenerPorIdRepository.obtenerFicha(1)).thenReturn(unaFicha);
         when(miMovimientoObtenerFichaEntreFechasRepository.obtenerMovimientosFichaEntreFechas(unaFicha, fechaDesde, fechaHasta)).thenReturn(movimientos);
-        MovimientoObtenerFichaEntreFechasUseCase movimientoObtenerClienteEntreFechasUseCase = new MovimientoObtenerFichaEntreFechasUseCase(miMovimientoObtenerFichaEntreFechasRepository);
-        List<Movimiento> resultado = movimientoObtenerClienteEntreFechasUseCase.obtenerMovimientosFichaEntreFechas(unaFicha, fechaDesde, fechaHasta);
+        MovimientoObtenerFichaEntreFechasUseCase movimientoObtenerClienteEntreFechasUseCase = new MovimientoObtenerFichaEntreFechasUseCase(miMovimientoObtenerFichaEntreFechasRepository, miFichaObtenerPorIdRepository);
+        List<Movimiento> resultado = movimientoObtenerClienteEntreFechasUseCase.obtenerMovimientosFichaEntreFechas(1, fechaDesde, fechaHasta);
         Assertions.assertEquals(1, resultado.size());
     }
 
