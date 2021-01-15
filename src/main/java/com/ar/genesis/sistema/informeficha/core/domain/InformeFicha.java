@@ -8,6 +8,7 @@ import java.util.List;
 
 public class InformeFicha {
     Ficha ficha;
+    LocalDate fechaDesde;
     LocalDate fechaHasta;
     Double saldoInicial;
     Double saldoFinal;
@@ -16,16 +17,17 @@ public class InformeFicha {
     public InformeFicha() {
     }
 
-    public InformeFicha(Ficha ficha, LocalDate fechaHasta, Double saldoInicial, Double saldoFinal, List<Movimiento> movimientos) {
+    public InformeFicha(Ficha ficha, LocalDate fechaDesde, LocalDate fechaHasta, Double saldoInicial, Double saldoFinal, List<Movimiento> movimientos) {
         this.ficha = ficha;
+        this.fechaDesde = fechaDesde;
         this.fechaHasta = fechaHasta;
         this.saldoInicial = saldoInicial;
         this.saldoFinal = saldoFinal;
         this.movimientos = movimientos;
     }
 
-    public static InformeFicha instancia(Ficha ficha, LocalDate fechaHasta, Double saldoInicial, Double saldoFinal, List<Movimiento> movimientos) {
-        return new InformeFicha(ficha, fechaHasta, saldoInicial, saldoFinal, movimientos);
+    public static InformeFicha instancia(Ficha ficha, LocalDate fechaDesde, LocalDate fechaHasta, Double saldoInicial, Double saldoFinal, List<Movimiento> movimientos) {
+        return new InformeFicha(ficha, fechaDesde, fechaHasta, saldoInicial, saldoFinal, movimientos);
     }
 
     public Ficha getFicha() {
@@ -34,6 +36,14 @@ public class InformeFicha {
 
     public void setFicha(Ficha ficha) {
         this.ficha = ficha;
+    }
+
+    public LocalDate getFechaDesde() {
+        return fechaDesde;
+    }
+
+    public void setFechaDesde(LocalDate fechaDesde) {
+        this.fechaDesde = fechaDesde;
     }
 
     public LocalDate getFechaHasta() {

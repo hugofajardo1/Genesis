@@ -21,14 +21,18 @@ public class InformeFichaDataTest {
     InformeFichaRepoImplementacion miInformeFichaRepoImplementacion;
 
     @Test
-    public void obtenerFichaPorId_DevuelveFicha() throws FichaNoExisteException {
+    public void obtenerInformeFichaPorId_DevuelveInformeFicha() throws FichaNoExisteException {
+        LocalDate fechaDesde = LocalDate.of(2020,12,1);
         LocalDate fechaHasta = LocalDate.of(2020,12,31);
-        Assertions.assertNotNull(miInformeFichaRepoImplementacion.obtenerInformeFicha(1, fechaHasta));
+
+        Assertions.assertNotNull(miInformeFichaRepoImplementacion.obtenerInformeFicha(1, fechaDesde, fechaHasta));
     }
 
     @Test
-    public void obtenerFichaPorId_DevuelveNull() throws FichaNoExisteException {
+    public void obtenerInformeFichaPorId_DevuelveNull() throws FichaNoExisteException {
+        LocalDate fechaDesde = LocalDate.of(2020,12,1);
         LocalDate fechaHasta = LocalDate.of(2020,12,31);
-        Assertions.assertThrows(FichaNoExisteException.class, () -> miInformeFichaRepoImplementacion.obtenerInformeFicha(3, fechaHasta));
+
+        Assertions.assertThrows(FichaNoExisteException.class, () -> miInformeFichaRepoImplementacion.obtenerInformeFicha(3, fechaDesde, fechaHasta));
     }
 }

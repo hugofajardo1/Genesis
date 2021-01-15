@@ -31,6 +31,8 @@ public class Movimiento {
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "tipomovimientoid")
     TipoMovimiento tipoMovimiento;
+    @Column(name = "imputa", nullable = false, length = 5)
+    String imputa;
     @Column(name = "numero", nullable = false)
     Integer numero;
     @ManyToOne(cascade = CascadeType.MERGE)
@@ -65,6 +67,7 @@ public class Movimiento {
         this.setPuntoVenta(puntoVenta);
         this.setTipoOperacion(tipoOperacion);
         this.setTipoMovimiento(tipoMovimiento);
+        this.setImputa(tipoMovimiento.getImputacion());
         this.setNumero(numero);
         this.setFicha(ficha);
         this.setTipoIva(tipoIva);
@@ -123,6 +126,14 @@ public class Movimiento {
 
     public void setTipoMovimiento(TipoMovimiento tipoMovimiento) {
         this.tipoMovimiento = tipoMovimiento;
+    }
+
+    public String getImputa() {
+        return imputa;
+    }
+
+    public void setImputa(String imputa) {
+        this.imputa = imputa;
     }
 
     public Integer getNumero() {

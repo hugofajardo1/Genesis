@@ -47,23 +47,25 @@ public class InformeFichaUseCaseTest {
         ArrayList<Movimiento> movimientos = new ArrayList<>();
         movimientos.add(unMovimiento);
 
+        LocalDate fechaDesde = LocalDate.of(2020,12,1);
         LocalDate fechaHasta = LocalDate.of(2020,12,31);
 
-        InformeFicha unInformeFicha = InformeFicha.instancia(unaFicha, fechaHasta, 0.0, 200.0, movimientos);
+        InformeFicha unInformeFicha = InformeFicha.instancia(unaFicha, fechaDesde, fechaHasta, 0.0, 200.0, movimientos);
 
-        when(miInformeFichaRepository.obtenerInformeFicha(1, fechaHasta)).thenReturn(unInformeFicha);
+        when(miInformeFichaRepository.obtenerInformeFicha(1, fechaDesde, fechaHasta)).thenReturn(unInformeFicha);
 
         InformeFichaUseCase fichaObtenerPorIdUseCase = new InformeFichaUseCase(miInformeFichaRepository);
-        InformeFicha resultado = fichaObtenerPorIdUseCase.obtenerInformeFicha(1, fechaHasta);
+        InformeFicha resultado = fichaObtenerPorIdUseCase.obtenerInformeFicha(1, fechaDesde, fechaHasta);
         Assertions.assertNotNull(resultado);
     }
     @Test
     public void obtenerInformeFicha_devuelveFichaNoExiste() throws FichaNoExisteException {
+        LocalDate fechaDesde = LocalDate.of(2020,12,1);
         LocalDate fechaHasta = LocalDate.of(2020,12,31);
 
-        when(miInformeFichaRepository.obtenerInformeFicha(1, fechaHasta)).thenReturn(null);
+        when(miInformeFichaRepository.obtenerInformeFicha(1, fechaDesde, fechaHasta)).thenReturn(null);
 
         InformeFichaUseCase InformeFichaUseCase = new InformeFichaUseCase(miInformeFichaRepository);
-        Assertions.assertThrows(FichaNoExisteException.class, () -> InformeFichaUseCase.obtenerInformeFicha(1, fechaHasta));
+        Assertions.assertThrows(FichaNoExisteException.class, () -> InformeFichaUseCase.obtenerInformeFicha(1, fechaDesde, fechaHasta));
     }
 }

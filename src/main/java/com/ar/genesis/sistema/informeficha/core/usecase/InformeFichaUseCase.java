@@ -19,8 +19,8 @@ public class InformeFichaUseCase implements IInformeFichaInput {
     public InformeFichaUseCase(IInformeFichaRepository miInformeFichaRepository) { this.miInformeFichaRepository = miInformeFichaRepository; }
 
     @Override
-    public InformeFicha obtenerInformeFicha(Integer id, LocalDate fechaHasta) throws FichaNoExisteException {
-        InformeFicha unInformeFicha = miInformeFichaRepository.obtenerInformeFicha(id, fechaHasta);
+    public InformeFicha obtenerInformeFicha(Integer id, LocalDate fechaDesde, LocalDate fechaHasta) throws FichaNoExisteException {
+        InformeFicha unInformeFicha = miInformeFichaRepository.obtenerInformeFicha(id, fechaDesde, fechaHasta);
         if(unInformeFicha==null){
             throw new FichaNoExisteException();
         }
