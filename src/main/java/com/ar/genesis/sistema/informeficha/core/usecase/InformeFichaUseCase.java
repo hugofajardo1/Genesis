@@ -1,6 +1,5 @@
 package com.ar.genesis.sistema.informeficha.core.usecase;
 
-import com.ar.genesis.sistema.ficha.core.domain.Ficha;
 import com.ar.genesis.sistema.ficha.core.exception.FichaNoExisteException;
 import com.ar.genesis.sistema.informeficha.core.domain.InformeFicha;
 import com.ar.genesis.sistema.informeficha.core.input.IInformeFichaInput;

@@ -33,18 +33,10 @@ public class InformeFichaRepoImplementacion implements IInformeFichaRepository {
         Double saldoInicialHaber = miInformeFichaCRUD.getSaldoHaber(unaFicha.getId(), fechaDesde);
         Double saldoFinalDebe = miInformeFichaCRUD.getSaldoDebe(unaFicha.getId(), fechaHasta);
         Double saldoFinalHaber = miInformeFichaCRUD.getSaldoHaber(unaFicha.getId(), fechaHasta);
-        if (saldoInicialDebe==null) {
-            saldoInicialDebe=0.0;
-        }
-        if (saldoInicialHaber==null) {
-            saldoInicialHaber=0.0;
-        }
-        if (saldoFinalDebe==null) {
-            saldoFinalDebe=0.0;
-        }
-        if (saldoFinalHaber==null) {
-            saldoFinalHaber=0.0;
-        }
+        if (saldoInicialDebe==null) saldoInicialDebe = 0.0;
+        if (saldoInicialHaber==null) saldoInicialHaber = 0.0;
+        if (saldoFinalDebe==null) saldoFinalDebe = 0.0;
+        if (saldoFinalHaber==null) saldoFinalHaber = 0.0;
         return InformeFicha.instancia(unaFicha, fechaDesde, fechaHasta, saldoInicialDebe - saldoInicialHaber, saldoFinalDebe  - saldoFinalHaber, movimientos);
     }
 }

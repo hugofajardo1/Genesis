@@ -4,9 +4,6 @@ import com.ar.genesis.sistema.ficha.core.domain.Ficha;
 import com.ar.genesis.sistema.ficha.core.exception.FichaNoExisteException;
 import com.ar.genesis.sistema.ficha.core.input.IFichaObtenerPorIdInput;
 import com.ar.genesis.sistema.ficha.service.dto.FichaDTO;
-import com.ar.genesis.sistema.localidad.service.dto.LocalidadDTO;
-import com.ar.genesis.sistema.provincia.service.dto.ProvinciaDTO;
-import com.ar.genesis.sistema.tipoiva.service.dto.TipoIvaDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,14 +18,14 @@ import javax.inject.Inject;
 @RestController
 public class FichaObtenerPorIdController {
     @Inject
-    IFichaObtenerPorIdInput miFichaObtenerPorIdInput;
+    IFichaObtenerPorIdInput miInformeFichaInput;
 
-    public FichaObtenerPorIdController(IFichaObtenerPorIdInput miFichaObtenerPorIdInput) { this.miFichaObtenerPorIdInput = miFichaObtenerPorIdInput; }
+    public FichaObtenerPorIdController(IFichaObtenerPorIdInput miInformeFichaInput) { this.miInformeFichaInput = miInformeFichaInput; }
 
     @GetMapping(value = "/ficha/id/{id}")
     public ResponseEntity<?> obtenerFicha(@PathVariable Integer id){
         try{
-            Ficha unaFicha = miFichaObtenerPorIdInput.obtenerFicha(id);
+            Ficha unaFicha = miInformeFichaInput.obtenerFicha(id);
             FichaDTO unaFichaDTO=null;
             if (unaFicha!=null){
                 ModelMapper modelMapper = new ModelMapper();
